@@ -1,4 +1,4 @@
-
+from datasets import load_dataset
 from typing import cast
 import json
 import copy
@@ -21,6 +21,9 @@ from transformers import (
     set_seed,
     BitsAndBytesConfig
 )
+import transformers
+import torch.distributed as dist
+import os 
 
 IGNORE_INDEX = -100
 DEFAULT_PAD_TOKEN = "[PAD]"
@@ -44,7 +47,7 @@ class TrainingArguments(transformers.TrainingArguments):
     cache_dir: Optional[str] = field(default=None)
     optim: str = field(default="adamw_torch")
     model_max_length: int = field(
-        default=2048,
+        default=1024,
         metadata={"help": "Maximum sequence length. Sequences will be right padded (and possibly truncated)."},
     )
 
@@ -84,6 +87,7 @@ def _tokenize_fn(strings: Sequence[str], tokenizer: transformers.PreTrainedToken
         )
         for text in strings
     ]
+    print("smart token")
     input_ids = labels = [tokenized.input_ids[0] for tokenized in tokenized_list]
     input_ids_lens = labels_lens = [
         tokenized.input_ids.ne(tokenizer.pad_token_id).sum().item() for tokenized in tokenized_list
@@ -103,6 +107,8 @@ def preprocess(
 ) -> Dict:
     """Preprocess the data by tokenizing."""
     examples = [s + t for s, t in zip(sources, targets)]
+    print(examples[0])
+
     examples_tokenized, sources_tokenized = [_tokenize_fn(strings, tokenizer) for strings in (examples, sources)]
     input_ids = examples_tokenized["input_ids"]
     labels = copy.deepcopy(input_ids)
@@ -125,7 +131,6 @@ class SupervisedDataset(Dataset):
             for example in list_data_dict
         ]
         targets = [f"{example['Response'][-1]}{tokenizer.eos_token}" for example in list_data_dict]
-
         logging.warning("Tokenizing inputs... This may take some time...")
         data_dict = preprocess(sources, targets, tokenizer)
 
@@ -176,9 +181,19 @@ def train():
     model_args = cast(TrainingArguments, model_args)
     data_args = cast(TrainingArguments, data_args)
 
+    # distributed setup
+    os.environ['CCL_PROCESS_LAUNCHER'] = 'none'
+
+    local_rank = int(os.getenv("LOCAL_RANK", "0"))
+    world_size = int(os.getenv("WORLD_SIZE", "1"))
+    os.environ['CCL_LOCAL_SIZE'] = str(world_size)
+    os.environ['CCL_LOCAL_RANK'] = str(local_rank)
+
+
     model = transformers.AutoModelForCausalLM.from_pretrained(
         model_args.model_name_or_path,
-        torch_dtype=torch.float16,
+        torch_dtype=torch.float32,
+        attn_implementation="sdpa"
     )
 
     model.gradient_checkpointing_enable()
@@ -190,7 +205,7 @@ def train():
         padding_side="left",
         use_fast=False,
     )
-    
+
     if tokenizer.pad_token is None:
         smart_tokenizer_and_embedding_resize(
             special_tokens_dict=dict(pad_token=DEFAULT_PAD_TOKEN),
@@ -205,7 +220,6 @@ def train():
                 "unk_token": DEFAULT_UNK_TOKEN,
             }
         )
-    import os
     data_module = make_supervised_data_module(tokenizer=tokenizer, data_args=data_args)
     trainer = Trainer(model=model, tokenizer=tokenizer, args=training_args, **data_module)
     trainer.train()
@@ -215,3 +229,4 @@ def train():
 
 if __name__ == "__main__":
     train()
+

@@ -1,0 +1,7 @@
+[W213 07:46:07.678967572 OperatorEntry.cpp:155] Warning: Warning only once for all operators,  other operators may also be overridden.
+  Overriding a previously registered kernel for the same operator and the same dispatch key
+  operator: aten::_cummax_helper(Tensor self, Tensor(a!) values, Tensor(b!) indices, int dim) -> ()
+    registered at /root/pytorch/build/aten/src/ATen/RegisterSchema.cpp:6
+  dispatch key: XPU
+  previous kernel: registered at /root/pytorch/build/aten/src/ATen/RegisterCPU.cpp:30476
+       new kernel: registered at /root/intel-extension-for-pytorch/build/Release/csrc/gpu/csrc/aten/generated/ATen/RegisterXPU.cpp:2971 (function operator())
