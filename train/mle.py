@@ -123,7 +123,8 @@ class SupervisedDataset(Dataset):
     def __init__(self, data_path: str, tokenizer: transformers.PreTrainedTokenizer):
         super(SupervisedDataset, self).__init__()
         logging.warning("Loading data...")
-        list_data_dict = [json.loads(l) for l in open(data_path, "r")]
+        #list_data_dict = [json.loads(l) for l in open(data_path, "r")]
+        list_data_dict = json.load(open(data_path, encoding='utf-8'))
 
         logging.warning("Formatting inputs...")
         sources = [
@@ -224,7 +225,9 @@ def train():
     trainer = Trainer(model=model, tokenizer=tokenizer, args=training_args, **data_module)
     trainer.train()
     trainer.save_state()
-    trainer.save_model(output_dir=training_args.output_dir)
+    trainer.save_model("./saved_model")
+    model.save_pretrained("./saved_pretrained_model")
+    model.push_to_hub("lilu6301/codegen-tree-model")
 
 
 if __name__ == "__main__":
