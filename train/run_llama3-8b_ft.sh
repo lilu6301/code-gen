@@ -13,12 +13,12 @@ Run_llama3-8b_peft_fsdp() {
         --model_name_or_path ${model} \
 	--data_path //root/llm/fine-tuning/RTL-Coder/dataset.json \
         --bf16 True \
-        --model_max_length 4096 \
+        --model_max_length 65536 \
         --output_dir="output" \
         --evaluation_strategy="no" \
         --learning_rate=1e-5 \
         --gradient_accumulation_steps=1 \
-        --per_device_train_batch_size=8 \
+        --per_device_train_batch_size=1 \
         --per_device_eval_batch_size=8 \
         --num_train_epochs=5 \
         --save_steps=500 \
