@@ -47,7 +47,7 @@ class TrainingArguments(transformers.TrainingArguments):
     cache_dir: Optional[str] = field(default=None)
     optim: str = field(default="adamw_torch")
     model_max_length: int = field(
-        default=1024,
+        default=2048,
         metadata={"help": "Maximum sequence length. Sequences will be right padded (and possibly truncated)."},
     )
 
@@ -227,7 +227,16 @@ def train():
     trainer.save_state()
     trainer.save_model("./saved_model")
     model.save_pretrained("./saved_pretrained_model")
-    model.push_to_hub("lilu6301/codegen-tree-model")
+
+    model.eval()
+    test_dataset = json.load(open("./test_dataset.json", encoding='utf-8'))
+    for input_text in test_dataset:
+        inputs = tokenizer(input_text, return_tensors="pt").to("xpu")
+        outputs = model.generate(input_ids=inputs["input_ids"], max_new_tokens=2048)
+        print("input sentence: ", input_text)
+        print("=======================================")
+        print(" output prediction: ", tokenizer.batch_decode(outputs.detach().cpu().numpy(), skip_special_tokens=True))
+        print("=======================================")
 
 
 if __name__ == "__main__":
