@@ -47,7 +47,7 @@ class TrainingArguments(transformers.TrainingArguments):
     cache_dir: Optional[str] = field(default=None)
     optim: str = field(default="adamw_torch")
     model_max_length: int = field(
-        default=2048,
+        default=1024,
         metadata={"help": "Maximum sequence length. Sequences will be right padded (and possibly truncated)."},
     )
 
@@ -175,7 +175,8 @@ def save_tunable_parameters(model, path):
         k: v.to("cpu") for k, v in model.named_parameters() if v.requires_grad
     }
     torch.save(saved_params, path)
-def train():
+
+def validate():
     parser = transformers.HfArgumentParser((ModelArguments, DataArguments, TrainingArguments))
     model_args, data_args, training_args = parser.parse_args_into_dataclasses()
     training_args = cast(TrainingArguments, training_args)
@@ -193,52 +194,53 @@ def train():
 
     model = transformers.AutoModelForCausalLM.from_pretrained(
         model_args.model_name_or_path,
-        torch_dtype=torch.float32,
+        torch_dtype=torch.float16,
         attn_implementation="sdpa"
     )
 
-    model.gradient_checkpointing_enable()
+    #model.gradient_checkpointing_enable()
 
     tokenizer = transformers.AutoTokenizer.from_pretrained(
-        model_args.model_name_or_path,
+        "mistralai/Mistral-7B-v0.1",
         cache_dir=training_args.cache_dir,
         model_max_length=training_args.model_max_length,
         padding_side="left",
         use_fast=False,
     )
-
-    if tokenizer.pad_token is None:
-        smart_tokenizer_and_embedding_resize(
-            special_tokens_dict=dict(pad_token=DEFAULT_PAD_TOKEN),
-            tokenizer=tokenizer,
-            model=model,
-        )
-    if "llama" in model_args.model_name_or_path:
-        tokenizer.add_special_tokens(
-            {
-                "eos_token": DEFAULT_EOS_TOKEN,
-                "bos_token": DEFAULT_BOS_TOKEN,
-                "unk_token": DEFAULT_UNK_TOKEN,
-            }
-        )
-    data_module = make_supervised_data_module(tokenizer=tokenizer, data_args=data_args)
-    trainer = Trainer(model=model, tokenizer=tokenizer, args=training_args, **data_module)
-    trainer.train()
-    trainer.save_state()
-    trainer.save_model("./saved_model")
-    model.save_pretrained("./saved_pretrained_model")
-
+    model = model.to('xpu')
     model.eval()
+
     test_dataset = json.load(open("../test_dataset.json", encoding='utf-8'))
+    
+    max_token_size = 0
+    sizes = []
+    for i, input_text in enumerate(test_dataset):
+        #inputs = tokenizer(input_text["Instruction"]+str(input_text["Response"][-1]), return_tensors="pt")
+        inputs = tokenizer(input_text, return_tensors="pt")
+        if inputs["input_ids"].shape[-1] > max_token_size:
+            max_token_size = len(inputs["input_ids"])
+        print(i)
+        print("token size : ", inputs["input_ids"].shape[-1])
+        sizes.append(inputs["input_ids"].shape[-1])
+        #with open("a"+str(i), "a") as f:
+        #    for i in range(inputs["input_ids"].shape[-1]):
+        #        encode_value = inputs["input_ids"][0, i]
+        #        decode_string = tokenizer.decode(encode_value, skip_special_tokens=True)
+        #        out_string = "["+decode_string+"]"
+        #        f.write(out_string)
+    print("max_token_size: ", max_token_size)
+    sizes.sort()
+    print(sizes[-10:])
+
     for input_text in test_dataset:
+        #input_text = "In January-September 2009 , the Group 's net interest income increased to EUR 112.4 mn from EUR 74.3 mn in January-September 2008 ."
         inputs = tokenizer(input_text, return_tensors="pt").to("xpu")
         outputs = model.generate(input_ids=inputs["input_ids"], max_new_tokens=2048)
         print("input sentence: ", input_text)
-        print("=======================================")
+        print("================================================================")
         print(" output prediction: ", tokenizer.batch_decode(outputs.detach().cpu().numpy(), skip_special_tokens=True))
-        print("=======================================")
-
+        print("================================================================")
 
 if __name__ == "__main__":
-    train()
+    validate()
 
