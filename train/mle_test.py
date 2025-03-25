@@ -194,52 +194,59 @@ def validate():
 
     model = transformers.AutoModelForCausalLM.from_pretrained(
         model_args.model_name_or_path,
-        torch_dtype=torch.float16,
-        attn_implementation="sdpa"
+        #torch_dtype=torch.float16,
+        #attn_implementation="sdpa"
     )
 
     #model.gradient_checkpointing_enable()
 
     tokenizer = transformers.AutoTokenizer.from_pretrained(
         "mistralai/Mistral-7B-v0.1",
-        cache_dir=training_args.cache_dir,
-        model_max_length=training_args.model_max_length,
-        padding_side="left",
-        use_fast=False,
+        #cache_dir=training_args.cache_dir,
+        #model_max_length=training_args.model_max_length,
+        padding_side="left"
+        #use_fast=False,
     )
     model = model.to('xpu')
     model.eval()
 
-    test_dataset = json.load(open("../test_dataset.json", encoding='utf-8'))
-    
-    max_token_size = 0
-    sizes = []
-    for i, input_text in enumerate(test_dataset):
-        #inputs = tokenizer(input_text["Instruction"]+str(input_text["Response"][-1]), return_tensors="pt")
-        inputs = tokenizer(input_text, return_tensors="pt")
-        if inputs["input_ids"].shape[-1] > max_token_size:
-            max_token_size = len(inputs["input_ids"])
-        print(i)
-        print("token size : ", inputs["input_ids"].shape[-1])
-        sizes.append(inputs["input_ids"].shape[-1])
-        #with open("a"+str(i), "a") as f:
-        #    for i in range(inputs["input_ids"].shape[-1]):
-        #        encode_value = inputs["input_ids"][0, i]
-        #        decode_string = tokenizer.decode(encode_value, skip_special_tokens=True)
-        #        out_string = "["+decode_string+"]"
-        #        f.write(out_string)
-    print("max_token_size: ", max_token_size)
-    sizes.sort()
-    print(sizes[-10:])
+    #test_dataset = json.load(open("../dataset/Resyn27k.json", encoding='utf-8'))
+    test_dataset = [json.loads(l) for l in open("../dataset/Resyn27k.json", "r")]
+    print(len(test_dataset))
 
-    for input_text in test_dataset:
+    
+    #max_token_size = 0
+    #sizes = []
+    #for i, input_text in enumerate(test_dataset):
+    #    inputs = tokenizer(input_text["Instruction"]+str(input_text["Response"][-1]), return_tensors="pt")
+    #    #inputs = tokenizer(input_text, return_tensors="pt")
+    #    if inputs["input_ids"].shape[-1] > max_token_size:
+    #        max_token_size = len(inputs["input_ids"])
+    #    print(i)
+    #    print("token size : ", inputs["input_ids"].shape[-1])
+    #    sizes.append(inputs["input_ids"].shape[-1])
+    #    #with open("a"+str(i), "a") as f:
+    #    #    for i in range(inputs["input_ids"].shape[-1]):
+    #    #        encode_value = inputs["input_ids"][0, i]
+    #    #        decode_string = tokenizer.decode(encode_value, skip_special_tokens=True)
+    #    #        out_string = "["+decode_string+"]"
+    #    #        f.write(out_string)
+    #print("max_token_size: ", max_token_size)
+    #sizes.sort()
+    #print(sizes[-10:])
+    #exclude_size = [item for item in sizes if item > 8192]
+    #print(exclude_size)
+    #print(len(exclude_size))
+
+    for i, input_text in enumerate(test_dataset):
         #input_text = "In January-September 2009 , the Group 's net interest income increased to EUR 112.4 mn from EUR 74.3 mn in January-September 2008 ."
-        inputs = tokenizer(input_text, return_tensors="pt").to("xpu")
+        inputs = tokenizer(input_text["Instruction"], return_tensors="pt").to("xpu")
         outputs = model.generate(input_ids=inputs["input_ids"], max_new_tokens=2048)
-        print("input sentence: ", input_text)
+        print("input sentence: ", input_text["Instruction"])
         print("================================================================")
         print(" output prediction: ", tokenizer.batch_decode(outputs.detach().cpu().numpy(), skip_special_tokens=True))
         print("================================================================")
+        break
 
 if __name__ == "__main__":
     validate()

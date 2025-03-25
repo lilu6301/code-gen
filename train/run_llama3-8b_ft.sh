@@ -32,6 +32,7 @@ main() {
 
     #model='meta-llama/Meta-Llama-3-8B'
     model='mistralai/Mistral-7B-v0.1'
+    #model=/root/llm/fine-tuning/RTL-Coder/train/output
 
    # Run_llama3-8b_peft_singlecard
     Run_llama3-8b_peft_fsdp
