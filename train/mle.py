@@ -223,7 +223,8 @@ def train():
                 no_dist=True,
             )
     model.load_state_dict(state_dict["model"])
-    
+    model.save_pretrained("saved-model")
+    quit()
 
     
     test_dataset = json.load(open("../test_dataset.json", encoding='utf-8'))

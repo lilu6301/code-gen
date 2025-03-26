@@ -210,8 +210,8 @@ def validate():
     model = model.to('xpu')
     model.eval()
 
-    #test_dataset = json.load(open("../dataset/Resyn27k.json", encoding='utf-8'))
-    test_dataset = [json.loads(l) for l in open("../dataset/Resyn27k.json", "r")]
+    test_dataset = json.load(open("../test_dataset.json", encoding='utf-8'))
+    #test_dataset = [json.loads(l) for l in open("../test_dataset.json", "r")]
     print(len(test_dataset))
 
     
@@ -237,16 +237,29 @@ def validate():
     #exclude_size = [item for item in sizes if item > 8192]
     #print(exclude_size)
     #print(len(exclude_size))
-
+    
+    black_list = [13, 15]
     for i, input_text in enumerate(test_dataset):
         #input_text = "In January-September 2009 , the Group 's net interest income increased to EUR 112.4 mn from EUR 74.3 mn in January-September 2008 ."
-        inputs = tokenizer(input_text["Instruction"], return_tensors="pt").to("xpu")
+        #inputs = tokenizer(input_text["Instruction"], return_tensors="pt").to("xpu")
+        if i in black_list:
+            continue
+        inputs = tokenizer(input_text, return_tensors="pt").to("xpu")
         outputs = model.generate(input_ids=inputs["input_ids"], max_new_tokens=2048)
-        print("input sentence: ", input_text["Instruction"])
+        print("input sentence: ", input_text)
         print("================================================================")
-        print(" output prediction: ", tokenizer.batch_decode(outputs.detach().cpu().numpy(), skip_special_tokens=True))
-        print("================================================================")
-        break
+        result = tokenizer.batch_decode(outputs.detach().cpu().numpy(), skip_special_tokens=True)[0]
+        print(result)
+        result = result[len(input_text):]
+        try:
+            json_result = json.loads(result)
+            print(" output prediction: ", json_result)
+            with open("result"+ str(i)+".json", "w") as f:
+                json.dump(json_result, f, indent=4)
+            print("================================================================")
+        except:
+            continue
+
 
 if __name__ == "__main__":
     validate()
