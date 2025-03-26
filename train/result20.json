@@ -1,0 +1,43 @@
+[
+    {
+        "name": "CustomizedDispatcherApp",
+        "models": [
+            {
+                "name": "Producer",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "Consumer",
+                "type": "cofluent:Function"
+            }
+        ],
+        "relations": [
+            {
+                "name": "MsgQ",
+                "type": "cofluent:MessageQueue"
+            }
+        ]
+    },
+    {
+        "name": "Producer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQ",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            }
+        ]
+    },
+    {
+        "name": "Consumer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQ",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            }
+        ]
+    }
+]

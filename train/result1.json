@@ -1,0 +1,67 @@
+[
+    {
+        "name": "CoSimVCSUVMApp",
+        "models": [
+            {
+                "name": "Consumer",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "ProcessingFunction",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "Producer",
+                "type": "cofluent:Function"
+            }
+        ],
+        "relations": [
+            {
+                "name": "read",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "data",
+                "type": "cofluent:MessageQueue"
+            }
+        ]
+    },
+    {
+        "name": "Consumer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "read",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            }
+        ]
+    },
+    {
+        "name": "ProcessingFunction",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "read",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "data",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            }
+        ]
+    },
+    {
+        "name": "Producer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "data",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            }
+        ]
+    }
+]

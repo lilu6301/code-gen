@@ -1,0 +1,57 @@
+[
+    {
+        "name": "CoFluentAPIFromExternalIP",
+        "models": [
+            {
+                "name": "iUart",
+                "type": "cofluent:SystemCIP"
+            },
+            {
+                "name": "CoF_Initiator",
+                "type": "cofluent:Function"
+            }
+        ],
+        "relations": [
+            {
+                "name": "MsgFwQ",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "MsgBwQ",
+                "type": "cofluent:MessageQueue"
+            }
+        ]
+    },
+    {
+        "name": "iUart",
+        "type": "cofluent:SystemCIP",
+        "ports": [
+            {
+                "name": "p_mq_request",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "p_mq_response",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            }
+        ]
+    },
+    {
+        "name": "CoF_Initiator",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgFwQ",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "MsgBwQ",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            }
+        ]
+    }
+]

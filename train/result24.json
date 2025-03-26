@@ -1,0 +1,122 @@
+[
+    {
+        "name": "hwDeviceModel",
+        "models": [
+            {
+                "name": "hwDeviceTest",
+                "type": "cofluent:Function"
+            }
+        ],
+        "relations": [
+            {
+                "name": "inputStream",
+                "type": "cofluent:SharedVariable"
+            },
+            {
+                "name": "outputStream",
+                "type": "cofluent:SharedVariable"
+            }
+        ]
+    },
+    {
+        "name": "hwDeviceTest",
+        "type": "cofluent:Function",
+        "models": [
+            {
+                "name": "hwModel",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "hwTestBench",
+                "type": "cofluent:Function"
+            }
+        ],
+        "ports": [
+            {
+                "name": "inputStream",
+                "type": "SHARED_VARIABLE",
+                "direction": "OUT"
+            },
+            {
+                "name": "outputStream",
+                "type": "SHARED_VARIABLE",
+                "direction": "OUT"
+            }
+        ],
+        "relations": [
+            {
+                "name": "startProcess",
+                "type": "cofluent:Event"
+            },
+            {
+                "name": "inputFrame",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "outputFrame",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "processingMode",
+                "type": "cofluent:SharedVariable"
+            }
+        ]
+    },
+    {
+        "name": "hwModel",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "startProcess",
+                "type": "EVENT",
+                "direction": "IN"
+            },
+            {
+                "name": "inputFrame",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "outputFrame",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            }
+        ]
+    },
+    {
+        "name": "hwTestBench",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "startProcess",
+                "type": "EVENT",
+                "direction": "OUT"
+            },
+            {
+                "name": "inputFrame",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "processingMode",
+                "type": "SHARED_VARIABLE",
+                "direction": "OUT"
+            },
+            {
+                "name": "outputFrame",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "inputStream",
+                "type": "SHARED_VARIABLE",
+                "direction": "OUT"
+            },
+            {
+                "name": "outputStream",
+                "type": "SHARED_VARIABLE",
+                "direction": "OUT"
+            }
+        ]
+    }
+]

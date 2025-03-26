@@ -1,0 +1,23 @@
+[
+    {
+        "name": "Inheritance_example1App",
+        "models": [
+            {
+                "name": "F1",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "F2",
+                "type": "cofluent:Function"
+            }
+        ]
+    },
+    {
+        "name": "F1",
+        "type": "cofluent:Function"
+    },
+    {
+        "name": "F2",
+        "type": "cofluent:Function"
+    }
+]

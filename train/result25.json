@@ -1,0 +1,189 @@
+[
+    {
+        "name": "CompleteDevice",
+        "models": [
+            {
+                "name": "device",
+                "type": "cofluent:Device"
+            },
+            {
+                "name": "testBench",
+                "type": "cofluent:Function"
+            }
+        ],
+        "relations": [
+            {
+                "name": "dpv",
+                "type": "cofluent:MethodCallInterface"
+            },
+            {
+                "name": "newFrame",
+                "type": "cofluent:Event"
+            },
+            {
+                "name": "inputStream",
+                "type": "cofluent:SharedVariable"
+            },
+            {
+                "name": "outputStream",
+                "type": "cofluent:SharedVariable"
+            }
+        ]
+    },
+    {
+        "name": "device",
+        "type": "cofluent:DeviceProgrammersView",
+        "models": [
+            {
+                "name": "hwModel",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "swInterface",
+                "type": "cofluent:DeviceProgrammersView"
+            },
+            {
+                "name": "mqToCommand",
+                "type": "cofluent:Function"
+            }
+        ],
+        "ports": [
+            {
+                "name": "dpv",
+                "type": "METHOD_CALL_INTERFACE",
+                "direction": "IN"
+            },
+            {
+                "name": "newFrame",
+                "type": "EVENT",
+                "direction": "OUT"
+            }
+        ],
+        "relations": [
+            {
+                "name": "startProcess",
+                "type": "cofluent:Event"
+            },
+            {
+                "name": "inputFrame",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "outputFrame",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "processingMode",
+                "type": "cofluent:SharedVariable"
+            },
+            {
+                "name": "storeFrame",
+                "type": "cofluent:MethodCallInterface"
+            }
+        ]
+    },
+    {
+        "name": "testBench",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "dpv",
+                "type": "METHOD_CALL_INTERFACE",
+                "direction": "OUT"
+            },
+            {
+                "name": "newFrame",
+                "type": "EVENT",
+                "direction": "IN"
+            },
+            {
+                "name": "inputStream",
+                "type": "SHARED_VARIABLE",
+                "direction": "OUT"
+            },
+            {
+                "name": "outputStream",
+                "type": "SHARED_VARIABLE",
+                "direction": "OUT"
+            }
+        ]
+    },
+    {
+        "name": "hwModel",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "startProcess",
+                "type": "EVENT",
+                "direction": "IN"
+            },
+            {
+                "name": "inputFrame",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "outputFrame",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "processingMode",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN"
+            }
+        ]
+    },
+    {
+        "name": "swInterface",
+        "type": "cofluent:DeviceProgrammersView",
+        "ports": [
+            {
+                "name": "startProcess",
+                "type": "EVENT",
+                "direction": "OUT"
+            },
+            {
+                "name": "dpv",
+                "type": "METHOD_CALL_INTERFACE",
+                "direction": "IN"
+            },
+            {
+                "name": "inputFrame",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "newFrame",
+                "type": "EVENT",
+                "direction": "OUT"
+            },
+            {
+                "name": "processingMode",
+                "type": "SHARED_VARIABLE",
+                "direction": "OUT"
+            },
+            {
+                "name": "storeFrame",
+                "type": "METHOD_CALL_INTERFACE",
+                "direction": "IN"
+            }
+        ]
+    },
+    {
+        "name": "mqToCommand",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "outputFrame",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "storeFrame",
+                "type": "METHOD_CALL_INTERFACE",
+                "direction": "OUT"
+            }
+        ]
+    }
+]

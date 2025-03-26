@@ -1,0 +1,91 @@
+[
+    {
+        "name": "CoSimVerilatorChiselApp",
+        "models": [
+            {
+                "name": "Producer1",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "Producer2",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "adder",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "Consumer",
+                "type": "cofluent:Function"
+            }
+        ],
+        "relations": [
+            {
+                "name": "sum",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "data1",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "data2",
+                "type": "cofluent:MessageQueue"
+            }
+        ]
+    },
+    {
+        "name": "Producer1",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "data1",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            }
+        ]
+    },
+    {
+        "name": "Producer2",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "data2",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            }
+        ]
+    },
+    {
+        "name": "adder",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "data1",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "sum",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "data2",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            }
+        ]
+    },
+    {
+        "name": "Consumer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "sum",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            }
+        ]
+    }
+]

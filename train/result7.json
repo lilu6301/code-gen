@@ -1,0 +1,43 @@
+[
+    {
+        "name": "MapDataTypeAPIApp",
+        "models": [
+            {
+                "name": "ProducerMap",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "ConsumerMap",
+                "type": "cofluent:Function"
+            }
+        ],
+        "relations": [
+            {
+                "name": "MsgQMap",
+                "type": "cofluent:MessageQueue"
+            }
+        ]
+    },
+    {
+        "name": "ProducerMap",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQMap",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            }
+        ]
+    },
+    {
+        "name": "ConsumerMap",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQMap",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            }
+        ]
+    }
+]

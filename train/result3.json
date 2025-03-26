@@ -1,0 +1,43 @@
+[
+    {
+        "name": "CopyPayloadNonPod",
+        "models": [
+            {
+                "name": "Consumer",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "Producer",
+                "type": "cofluent:Function"
+            }
+        ],
+        "relations": [
+            {
+                "name": "MsgQ",
+                "type": "cofluent:MessageQueue"
+            }
+        ]
+    },
+    {
+        "name": "Consumer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQ",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            }
+        ]
+    },
+    {
+        "name": "Producer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQ",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            }
+        ]
+    }
+]

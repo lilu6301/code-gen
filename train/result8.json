@@ -1,0 +1,67 @@
+[
+    {
+        "name": "ApplicationVectorDataType",
+        "models": [
+            {
+                "name": "Producer",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "Processing",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "Consumer",
+                "type": "cofluent:Function"
+            }
+        ],
+        "relations": [
+            {
+                "name": "user_data_in",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "user_data_out",
+                "type": "cofluent:MessageQueue"
+            }
+        ]
+    },
+    {
+        "name": "Producer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "user_data_in",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            }
+        ]
+    },
+    {
+        "name": "Processing",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "user_data_in",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "user_data_out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            }
+        ]
+    },
+    {
+        "name": "Consumer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "user_data_out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            }
+        ]
+    }
+]

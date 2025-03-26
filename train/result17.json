@@ -1,0 +1,128 @@
+[
+    {
+        "name": "ApplicationModelRefinement",
+        "models": [
+            {
+                "name": "Producer",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "Receiver",
+                "type": "cofluent:Function"
+            }
+        ],
+        "relations": [
+            {
+                "name": "Ack",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "Msg",
+                "type": "cofluent:MessageQueue"
+            }
+        ]
+    },
+    {
+        "name": "Producer",
+        "type": "cofluent:Function",
+        "models": [
+            {
+                "name": "Sender",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "Generator",
+                "type": "cofluent:Function"
+            }
+        ],
+        "ports": [
+            {
+                "name": "Msg",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "Ack",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            }
+        ],
+        "relations": [
+            {
+                "name": "TestProd",
+                "type": "cofluent:SharedVariable"
+            },
+            {
+                "name": "Req",
+                "type": "cofluent:Event"
+            },
+            {
+                "name": "DataVar",
+                "type": "cofluent:SharedVariable"
+            }
+        ]
+    },
+    {
+        "name": "Receiver",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "Ack",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "Msg",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            }
+        ]
+    },
+    {
+        "name": "Sender",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "Req",
+                "type": "EVENT",
+                "direction": "IN"
+            },
+            {
+                "name": "Msg",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "Ack",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "DataVar",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN"
+            }
+        ]
+    },
+    {
+        "name": "Generator",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "Req",
+                "type": "EVENT",
+                "direction": "OUT"
+            },
+            {
+                "name": "DataVar",
+                "type": "SHARED_VARIABLE",
+                "direction": "OUT"
+            },
+            {
+                "name": "TestProd",
+                "type": "SHARED_VARIABLE",
+                "direction": "OUT"
+            }
+        ]
+    }
+]

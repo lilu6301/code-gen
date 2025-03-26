@@ -1,0 +1,67 @@
+[
+    {
+        "name": "MyModel",
+        "models": [
+            {
+                "name": "packet_in",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "packet_out",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "packet_process",
+                "type": "cofluent:Function"
+            }
+        ],
+        "relations": [
+            {
+                "name": "p_in",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "p_out",
+                "type": "cofluent:MessageQueue"
+            }
+        ]
+    },
+    {
+        "name": "packet_in",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "p_in",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            }
+        ]
+    },
+    {
+        "name": "packet_out",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "p_out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            }
+        ]
+    },
+    {
+        "name": "packet_process",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "p_in",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "p_out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            }
+        ]
+    }
+]

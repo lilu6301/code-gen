@@ -1,0 +1,249 @@
+[
+    {
+        "name": "TLM2AT",
+        "models": [
+            {
+                "name": "TLM2Platfom",
+                "type": "cofluent:SystemCIP"
+            },
+            {
+                "name": "Writer",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "Target",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "Reader",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "Target_2",
+                "type": "cofluent:Function"
+            }
+        ],
+        "relations": [
+            {
+                "name": "ReferenceQueue",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "InitiatorWriter",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "TargetWrapper",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "ReaderResponse",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "InitiatorReader",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "ReferenceQueue2",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "Sync",
+                "type": "cofluent:Event"
+            },
+            {
+                "name": "TargetRequest",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "TargetResponse",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "ReferenceQueue3",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "Sync2",
+                "type": "cofluent:Event"
+            },
+            {
+                "name": "Sync3",
+                "type": "cofluent:Event"
+            }
+        ]
+    },
+    {
+        "name": "TLM2Platfom",
+        "type": "cofluent:SystemCIP",
+        "ports": [
+            {
+                "name": "interconnect-&gt;targ_socket",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "interconnect-&gt;init_socket",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "interconnect-&gt:targ_socket",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "interconnect-&gt:init_socket",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "interconnect-&gt:targ_socket",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "interconnect-&gt:init_socket",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "interconnect-&gt:targ_socket",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "interconnect-&gt:init_socket",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "interconnect-&gt:targ_socket",
+                "direction": "IN"
+            },
+            {
+                "name": "interconnect-&gt:init_socket",
+                "direction": "OUT"
+            },
+            {
+                "name": "interconnect-&gt:targ_socket",
+                "direction": "IN"
+            }
+        ]
+    },
+    {
+        "name": "Writer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "ReferenceQueue",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "InitiatorWriter",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "ReferenceQueue2",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "Sync",
+                "type": "EVENT",
+                "direction": "IN"
+            },
+            {
+                "name": "ReferenceQueue3",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "Sync2",
+                "type": "EVENT",
+                "direction": "IN"
+            },
+            {
+                "name": "Sync3",
+                "type": "EVENT",
+                "direction": "IN"
+            }
+        ]
+    },
+    {
+        "name": "Target",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "ReferenceQueue2",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "TargetWrapper",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "Sync2",
+                "type": "EVENT",
+                "direction": "OUT"
+            }
+        ]
+    },
+    {
+        "name": "Reader",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "ReferenceQueue3",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "InitiatorReader",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "ReaderResponse",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "Sync",
+                "type": "EVENT",
+                "direction": "OUT"
+            }
+        ]
+    },
+    {
+        "name": "Target_2",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "TargetRequest",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "TargetResponse",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "ReferenceQueue",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "Sync3",
+                "type": "EVENT",
+                "direction": "OUT"
+            }
+        ]
+    }
+]

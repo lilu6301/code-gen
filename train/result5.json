@@ -1,0 +1,91 @@
+[
+    {
+        "name": "TransactionTrackerMsgQApp",
+        "models": [
+            {
+                "name": "Consumer1",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "Consumer2",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "Producer",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "MessageRouting",
+                "type": "cofluent:Function"
+            }
+        ],
+        "relations": [
+            {
+                "name": "MsgQOut2",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "MsgQIn",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "MsgQOut1",
+                "type": "cofluent:MessageQueue"
+            }
+        ]
+    },
+    {
+        "name": "Consumer1",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQOut1",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            }
+        ]
+    },
+    {
+        "name": "Consumer2",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQOut2",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            }
+        ]
+    },
+    {
+        "name": "Producer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQIn",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            }
+        ]
+    },
+    {
+        "name": "MessageRouting",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQIn",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "MsgQOut2",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "MsgQOut1",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            }
+        ]
+    }
+]

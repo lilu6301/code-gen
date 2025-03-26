@@ -210,40 +210,47 @@ def train():
     )
 
 
-   # model = model.to('xpu')
-   # model.eval()
-   # import torch.distributed._shard.checkpoint as dist_cp
-   # state_dict = {
-   #     "model": model.state_dict()
-   #     }
-   # dist_cp.load_state_dict(
-   #             state_dict=state_dict,
-   #             storage_reader= torch.distributed.checkpoint.FileSystemReader("/root/llm/fine-tuning/RTL-Coder/train/output/checkpoint-261/pytorch_model_fsdp_0"),
-   #             no_dist=True,
-   #         )
-   # model.load_state_dict(state_dict["model"])
-   # 
+    model = model.to('xpu')
+    model.eval()
+    import torch.distributed._shard.checkpoint as dist_cp
+    state_dict = {
+        "model": model.state_dict()
+        }
+    dist_cp.load_state_dict(
+                state_dict=state_dict,
+                #storage_reader= torch.distributed.checkpoint.FileSystemReader("/root/llm/fine-tuning/RTL-Coder/train/output/checkpoint-261/pytorch_model_fsdp_0"),
+                storage_reader= torch.distributed.checkpoint.FileSystemReader("/root/llm/fine-tuning/RTL-Coder/train/output/checkpoint-252/pytorch_model_fsdp_0"),
+                no_dist=True,
+            )
+    model.load_state_dict(state_dict["model"])
+    
 
-   # 
-   # test_dataset = json.load(open("../test_dataset.json", encoding='utf-8'))
-   # #test_dataset = [json.loads(l) for l in open("../dataset/Resyn27k.json", "r")]
-   # for i, input_text in enumerate(test_dataset):
-   #     #input_text = "In January-September 2009 , the Group 's net interest income increased to EUR 112.4 mn from EUR 74.3 mn in January-September 2008 ."
-   #     #inputs = tokenizer(input_text["Instruction"], return_tensors="pt").to("xpu")
-   #     inputs = tokenizer(input_text, return_tensors="pt").to("xpu")
-   #     outputs = model.generate(input_ids=inputs["input_ids"], max_new_tokens=2048)
-   #     print("input sentence: ", input_text)
-   #     print("================================================================")
-   #     result = tokenizer.batch_decode(outputs.detach().cpu().numpy(), skip_special_tokens=True)[0]
-   #     print(result)
-   #     result = result[len(input_text):]
-   #     print(" output prediction: ", result)
-   #     json_result = json.loads(result)
-   #     print(" output prediction: ", json_result)
-   #     with open("result"+ str(i)+".json", "w") as f:
-   #         json.dump(json_result, f, indent=4)
-   #     print("================================================================")
-   # quit()
+    
+    test_dataset = json.load(open("../test_dataset.json", encoding='utf-8'))
+    #test_dataset = [json.loads(l) for l in open("../dataset/Resyn27k.json", "r")]
+    black_list = [13, 15]
+    for i, input_text in enumerate(test_dataset):
+        #input_text = "In January-September 2009 , the Group 's net interest income increased to EUR 112.4 mn from EUR 74.3 mn in January-September 2008 ."
+        #inputs = tokenizer(input_text["Instruction"], return_tensors="pt").to("xpu")
+        if i in black_list:
+            continue
+        inputs = tokenizer(input_text, return_tensors="pt").to("xpu")
+        outputs = model.generate(input_ids=inputs["input_ids"], max_new_tokens=2048)
+        print("input sentence: ", input_text)
+        print("================================================================")
+        result = tokenizer.batch_decode(outputs.detach().cpu().numpy(), skip_special_tokens=True)[0]
+        print(result)
+        result = result[len(input_text):]
+        print(" output prediction: ", result)
+        try:
+            json_result = json.loads(result)
+            print(" output prediction: ", json_result)
+            with open("result"+ str(i)+".json", "w") as f:
+                json.dump(json_result, f, indent=4)
+            print("================================================================")
+        except:
+            continue
+    quit()
 
     if tokenizer.pad_token is None:
         smart_tokenizer_and_embedding_resize(

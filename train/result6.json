@@ -1,0 +1,91 @@
+[
+    {
+        "name": "ProtocolMapDataTypeApp",
+        "models": [
+            {
+                "name": "ProtocolSend",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "Consumer",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "Producer",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "ProtocolReceive",
+                "type": "cofluent:Function"
+            }
+        ],
+        "relations": [
+            {
+                "name": "protocol_data",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "user_data_in",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "user_data_out",
+                "type": "cofluent:MessageQueue"
+            }
+        ]
+    },
+    {
+        "name": "ProtocolSend",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "protocol_data",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "user_data_in",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            }
+        ]
+    },
+    {
+        "name": "Consumer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "user_data_out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            }
+        ]
+    },
+    {
+        "name": "Producer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "user_data_in",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            }
+        ]
+    },
+    {
+        "name": "ProtocolReceive",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "protocol_data",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "user_data_out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            }
+        ]
+    }
+]

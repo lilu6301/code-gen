@@ -1,0 +1,139 @@
+[
+    {
+        "name": "AutomatedPayloadTrackers",
+        "models": [
+            {
+                "name": "C2",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "F2",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "F12",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "P1",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "P2",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "C1",
+                "type": "cofluent:Function"
+            }
+        ],
+        "relations": [
+            {
+                "name": "M1_1",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "M1_3",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "M2_1",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "M2_2",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "M1_2",
+                "type": "cofluent:MessageQueue"
+            }
+        ]
+    },
+    {
+        "name": "C2",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "M2_2",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            }
+        ]
+    },
+    {
+        "name": "F2",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "M1_2",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "M1_3",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            }
+        ]
+    },
+    {
+        "name": "F12",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "M1_1",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "M2_1",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "M1_2",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "M2_2",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            }
+        ]
+    },
+    {
+        "name": "P1",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "M1_1",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            }
+        ]
+    },
+    {
+        "name": "P2",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "M2_1",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            }
+        ]
+    },
+    {
+        "name": "C1",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "M1_3",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            }
+        ]
+    }
+]

@@ -1,0 +1,43 @@
+[
+    {
+        "name": "VectorDataTypeAPIApp",
+        "models": [
+            {
+                "name": "ProducerVector",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "ConsumerVector",
+                "type": "cofluent:Function"
+            }
+        ],
+        "relations": [
+            {
+                "name": "MsgQVector",
+                "type": "cofluent:MessageQueue"
+            }
+        ]
+    },
+    {
+        "name": "ProducerVector",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQVector",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            }
+        ]
+    },
+    {
+        "name": "ConsumerVector",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQVector",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            }
+        ]
+    }
+]
