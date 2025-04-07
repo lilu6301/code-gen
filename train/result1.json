@@ -18,11 +18,13 @@
         "relations": [
             {
                 "name": "read",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "default"
             },
             {
                 "name": "data",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "default"
             }
         ]
     },
@@ -33,7 +35,8 @@
             {
                 "name": "read",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "default"
             }
         ]
     },
@@ -44,12 +47,14 @@
             {
                 "name": "read",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "default"
             },
             {
                 "name": "data",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "default"
             }
         ]
     },
@@ -60,7 +65,8 @@
             {
                 "name": "data",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "default"
             }
         ]
     }

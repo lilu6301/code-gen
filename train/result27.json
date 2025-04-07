@@ -1,0 +1,111 @@
+[
+    {
+        "name": "OPP_UseCase",
+        "models": [
+            {
+                "name": "StartFunc",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "UnusedFunc",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "Master",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "Slave",
+                "type": "cofluent:Function"
+            }
+        ],
+        "relations": [
+            {
+                "name": "StartEv",
+                "type": "cofluent:Event"
+            },
+            {
+                "name": "UnusedEv",
+                "type": "cofluent:Event"
+            },
+            {
+                "name": "M2S",
+                "type": "cofluent:MessageQueue",
+                "dataType": "DefBaseBand"
+            },
+            {
+                "name": "S2M",
+                "type": "cofluent:MessageQueue",
+                "dataType": "DefBaseBand"
+            }
+        ]
+    },
+    {
+        "name": "StartFunc",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "StartEv",
+                "type": "EVENT",
+                "direction": "OUT"
+            }
+        ]
+    },
+    {
+        "name": "UnusedFunc",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "UnusedEv",
+                "type": "EVENT",
+                "direction": "OUT"
+            }
+        ]
+    },
+    {
+        "name": "Master",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "BaseBand_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefBaseBand"
+            },
+            {
+                "name": "BaseBand_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefBaseBand"
+            },
+            {
+                "name": "startEv",
+                "type": "EVENT",
+                "direction": "IN"
+            }
+        ]
+    },
+    {
+        "name": "Slave",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "BaseBand_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefBaseBand"
+            },
+            {
+                "name": "BaseBand_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefBaseBand"
+            },
+            {
+                "name": "startEv",
+                "type": "EVENT",
+                "direction": "IN"
+            }
+        ]
+    }
+]

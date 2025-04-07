@@ -18,11 +18,13 @@
         "relations": [
             {
                 "name": "p_in",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "DefPacket"
             },
             {
                 "name": "p_out",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "DefPacket"
             }
         ]
     },
@@ -33,7 +35,8 @@
             {
                 "name": "p_in",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "DefPacket"
             }
         ]
     },
@@ -44,7 +47,8 @@
             {
                 "name": "p_out",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "DefPacket"
             }
         ]
     },
@@ -55,12 +59,14 @@
             {
                 "name": "p_in",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "DefPacket"
             },
             {
                 "name": "p_out",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "DefPacket"
             }
         ]
     }

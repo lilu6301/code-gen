@@ -4,7 +4,8 @@
         "models": [
             {
                 "name": "Consumer",
-                "type": "cofluent:Function"
+                "type": "cofluent:Function",
+                "vector": "0, 1"
             },
             {
                 "name": "OS",
@@ -12,13 +13,16 @@
             },
             {
                 "name": "Producer",
-                "type": "cofluent:Function"
+                "type": "cofluent:Function",
+                "vector": "0, 1"
             }
         ],
         "relations": [
             {
                 "name": "MsgQ",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "vector": "0, 1",
+                "dataType": "default"
             }
         ]
     },
@@ -29,7 +33,8 @@
             {
                 "name": "MsgQ",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "default"
             }
         ]
     },
@@ -44,7 +49,8 @@
             {
                 "name": "MsgQ",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "default"
             }
         ]
     }

@@ -22,15 +22,18 @@
         "relations": [
             {
                 "name": "MsgQOut2",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "default"
             },
             {
                 "name": "MsgQIn",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "default"
             },
             {
                 "name": "MsgQOut1",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "default"
             }
         ]
     },
@@ -41,7 +44,8 @@
             {
                 "name": "MsgQOut1",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "default"
             }
         ]
     },
@@ -52,7 +56,8 @@
             {
                 "name": "MsgQOut2",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "default"
             }
         ]
     },
@@ -63,7 +68,8 @@
             {
                 "name": "MsgQIn",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "default"
             }
         ]
     },
@@ -74,17 +80,20 @@
             {
                 "name": "MsgQIn",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "default"
             },
             {
                 "name": "MsgQOut2",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "default"
             },
             {
                 "name": "MsgQOut1",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "default"
             }
         ]
     }

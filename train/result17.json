@@ -1,6 +1,6 @@
 [
     {
-        "name": "ApplicationModelRefinement",
+        "name": "ApplicationModelRef",
         "models": [
             {
                 "name": "Producer",
@@ -14,11 +14,13 @@
         "relations": [
             {
                 "name": "Ack",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "DefAck"
             },
             {
                 "name": "Msg",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "DefMsg"
             }
         ]
     },
@@ -39,18 +41,21 @@
             {
                 "name": "Msg",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "DefMsg"
             },
             {
                 "name": "Ack",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "DefAck"
             }
         ],
         "relations": [
             {
                 "name": "TestProd",
-                "type": "cofluent:SharedVariable"
+                "type": "cofluent:SharedVariable",
+                "dataType": "DefTestProd"
             },
             {
                 "name": "Req",
@@ -58,7 +63,8 @@
             },
             {
                 "name": "DataVar",
-                "type": "cofluent:SharedVariable"
+                "type": "cofluent:SharedVariable",
+                "dataType": "DefDataVar"
             }
         ]
     },
@@ -69,12 +75,14 @@
             {
                 "name": "Ack",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "DefAck"
             },
             {
                 "name": "Msg",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "DefMsg"
             }
         ]
     },
@@ -90,17 +98,20 @@
             {
                 "name": "Msg",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "DefMsg"
             },
             {
                 "name": "Ack",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "DefAck"
             },
             {
                 "name": "DataVar",
                 "type": "SHARED_VARIABLE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "DefDataVar"
             }
         ]
     },
@@ -116,12 +127,14 @@
             {
                 "name": "DataVar",
                 "type": "SHARED_VARIABLE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "DefDataVar"
             },
             {
                 "name": "TestProd",
                 "type": "SHARED_VARIABLE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "DefTestProd"
             }
         ]
     }

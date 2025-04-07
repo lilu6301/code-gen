@@ -30,23 +30,28 @@
         "relations": [
             {
                 "name": "M1_1",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "default"
             },
             {
                 "name": "M1_3",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "default"
             },
             {
                 "name": "M2_1",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "default"
             },
             {
                 "name": "M2_2",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "default"
             },
             {
                 "name": "M1_2",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "default"
             }
         ]
     },
@@ -57,7 +62,8 @@
             {
                 "name": "M2_2",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "default"
             }
         ]
     },
@@ -68,12 +74,14 @@
             {
                 "name": "M1_2",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "default"
             },
             {
                 "name": "M1_3",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "default"
             }
         ]
     },
@@ -84,22 +92,26 @@
             {
                 "name": "M1_1",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "default"
             },
             {
                 "name": "M2_1",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "default"
             },
             {
                 "name": "M1_2",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "default"
             },
             {
                 "name": "M2_2",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "default"
             }
         ]
     },
@@ -110,7 +122,8 @@
             {
                 "name": "M1_1",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "default"
             }
         ]
     },
@@ -121,7 +134,8 @@
             {
                 "name": "M2_1",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "default"
             }
         ]
     },
@@ -132,7 +146,8 @@
             {
                 "name": "M1_3",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "default"
             }
         ]
     }

@@ -237,7 +237,8 @@ def validate():
     #exclude_size = [item for item in sizes if item > 8192]
     #print(exclude_size)
     #print(len(exclude_size))
-    
+    #quit()
+
     black_list = [13, 15]
     for i, input_text in enumerate(test_dataset):
         #input_text = "In January-September 2009 , the Group 's net interest income increased to EUR 112.4 mn from EUR 74.3 mn in January-September 2008 ."
@@ -245,11 +246,11 @@ def validate():
         if i in black_list:
             continue
         inputs = tokenizer(input_text, return_tensors="pt").to("xpu")
-        outputs = model.generate(input_ids=inputs["input_ids"], max_new_tokens=2048)
+        outputs = model.generate(input_ids=inputs["input_ids"], max_new_tokens=4096)
         print("input sentence: ", input_text)
         print("================================================================")
         result = tokenizer.batch_decode(outputs.detach().cpu().numpy(), skip_special_tokens=True)[0]
-        print(result)
+        #print(result)
         result = result[len(input_text):]
         try:
             json_result = json.loads(result)
@@ -257,7 +258,9 @@ def validate():
             with open("result"+ str(i)+".json", "w") as f:
                 json.dump(json_result, f, indent=4)
             print("================================================================")
-        except:
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}")
+            print("result : ", result)
             continue
 
 

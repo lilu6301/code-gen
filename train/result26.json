@@ -1,0 +1,329 @@
+[
+    {
+        "name": "bluetooth_ref",
+        "models": [
+            {
+                "name": "Sl_Stub",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "BT_System",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "Start",
+                "type": "cofluent:Function"
+            }
+        ],
+        "relations": [
+            {
+                "name": "BaseBand_Out",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "startEv",
+                "type": "cofluent:Event"
+            },
+            {
+                "name": "BaseBand_In",
+                "type": "cofluent:MessageQueue"
+            }
+        ]
+    },
+    {
+        "name": "Sl_Stub",
+        "type": "cofluent:Function",
+        "models": [
+            {
+                "name": "In_Stub",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "Out_Stub",
+                "type": "cofluent:Function"
+            }
+        ],
+        "ports": [
+            {
+                "name": "BaseBand_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "BaseBand_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            }
+        ],
+        "relations": [
+            {
+                "name": "RFC_Data",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "RFC_Cdts",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "RFC_Out1",
+                "type": "cofluent:MessageQueue"
+            },
+            {
+                "name": "RFC_Out2",
+                "type": "cofluent:MessageQueue"
+            }
+        ]
+    },
+    {
+        "name": "BT_System",
+        "type": "cofluent:Function",
+        "models": [
+            {
+                "name": "FileSystem",
+                "type": "cofluent:Function"
+            }
+        ],
+        "ports": [
+            {
+                "name": "BaseBand_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "BaseBand_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "startEv",
+                "type": "EVENT",
+                "direction": "IN"
+            }
+        ]
+    },
+    {
+        "name": "Start",
+        "type": "cofluent:Function",
+        "models": [
+            {
+                "name": "In_Start",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "Out_Start",
+                "type": "cofluent:Function"
+            }
+        ],
+        "ports": [
+            {
+                "name": "startEv",
+                "type": "EVENT",
+                "direction": "OUT"
+            }
+        ]
+    },
+    {
+        "name": "In_Stub",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "BaseBand_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "RFC_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            }
+        ]
+    },
+    {
+        "name": "Out_Stub",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "BaseBand_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "RFC_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            }
+        ]
+    },
+    {
+        "name": "FileSystem",
+        "type": "cofluent:Function",
+        "models": [
+            {
+                "name": "OBEX_Layer",
+                "type": "cofluent:Function"
+            }
+        ],
+        "ports": [
+            {
+                "name": "Data",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "WrOK",
+                "type": "EVENT",
+                "direction": "OUT"
+            },
+            {
+                "name": "DataOut",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "DataIn",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            }
+        ]
+    },
+    {
+        "name": "In_Start",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "RFC_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "OBEX_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            }
+        ]
+    },
+    {
+        "name": "Out_Start",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "RFC_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "DataOut",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            }
+        ]
+    },
+    {
+        "name": "OBEX_Layer",
+        "type": "cofluent:Function",
+        "models": [
+            {
+                "name": "OBEX_Send",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "OBEX_Receive",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "OB_Out",
+                "type": "cofluent:Function"
+            }
+        ],
+        "ports": [
+            {
+                "name": "RFC_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "RFC_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "WrOK",
+                "type": "EVENT",
+                "direction": "IN"
+            },
+            {
+                "name": "DataOut",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "DataIn",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            }
+        ]
+    },
+    {
+        "name": "OBEX_Send",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "RFC_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "OB_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            },
+            {
+                "name": "RFC_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "DataOut",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "StartEv",
+                "type": "EVENT",
+                "direction": "IN"
+            }
+        ]
+    },
+    {
+        "name": "OBEX_Receive",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "RFC_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "OB_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            }
+        ]
+    },
+    {
+        "name": "OB_Out",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "OB_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN"
+            },
+            {
+                "name": "RFC_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT"
+            }
+        ]
+    }
+]

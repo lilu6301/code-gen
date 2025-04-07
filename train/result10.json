@@ -22,15 +22,18 @@
         "relations": [
             {
                 "name": "sum",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "Defsum"
             },
             {
                 "name": "data1",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "Defdata1"
             },
             {
                 "name": "data2",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "Defdata1"
             }
         ]
     },
@@ -41,7 +44,8 @@
             {
                 "name": "data1",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "Defdata1"
             }
         ]
     },
@@ -52,7 +56,8 @@
             {
                 "name": "data2",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "Defdata1"
             }
         ]
     },
@@ -63,17 +68,20 @@
             {
                 "name": "data1",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "Defdata1"
             },
             {
                 "name": "sum",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "Defsum"
             },
             {
                 "name": "data2",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "Defdata1"
             }
         ]
     },
@@ -84,7 +92,8 @@
             {
                 "name": "sum",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "Defsum"
             }
         ]
     }

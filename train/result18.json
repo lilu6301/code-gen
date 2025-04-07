@@ -18,7 +18,8 @@
         "relations": [
             {
                 "name": "MsgQ",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "default"
             }
         ]
     },
@@ -29,7 +30,8 @@
             {
                 "name": "MsgQ",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "default"
             }
         ]
     },
@@ -40,7 +42,8 @@
             {
                 "name": "MsgQ",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "default"
             }
         ]
     },

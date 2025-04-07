@@ -1,6 +1,6 @@
 [
     {
-        "name": "hwDeviceModel",
+        "name": "HwDeviceModel",
         "models": [
             {
                 "name": "hwDeviceTest",
@@ -10,11 +10,13 @@
         "relations": [
             {
                 "name": "inputStream",
-                "type": "cofluent:SharedVariable"
+                "type": "cofluent:SharedVariable",
+                "dataType": "DefFrame"
             },
             {
                 "name": "outputStream",
-                "type": "cofluent:SharedVariable"
+                "type": "cofluent:SharedVariable",
+                "dataType": "DefFrame"
             }
         ]
     },
@@ -35,12 +37,14 @@
             {
                 "name": "inputStream",
                 "type": "SHARED_VARIABLE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "DefFrame"
             },
             {
                 "name": "outputStream",
                 "type": "SHARED_VARIABLE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "DefFrame"
             }
         ],
         "relations": [
@@ -50,15 +54,18 @@
             },
             {
                 "name": "inputFrame",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "DefFrame"
             },
             {
                 "name": "outputFrame",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "DefFrame"
             },
             {
                 "name": "processingMode",
-                "type": "cofluent:SharedVariable"
+                "type": "cofluent:SharedVariable",
+                "dataType": "DefProcessingMode"
             }
         ]
     },
@@ -74,12 +81,20 @@
             {
                 "name": "inputFrame",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "DefFrame"
             },
             {
                 "name": "outputFrame",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "DefFrame"
+            },
+            {
+                "name": "processingMode",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN",
+                "dataType": "DefProcessingMode"
             }
         ]
     },
@@ -95,27 +110,32 @@
             {
                 "name": "inputFrame",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "DefFrame"
             },
             {
                 "name": "processingMode",
                 "type": "SHARED_VARIABLE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "DefProcessingMode"
             },
             {
                 "name": "outputFrame",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "DefFrame"
             },
             {
                 "name": "inputStream",
                 "type": "SHARED_VARIABLE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "DefFrame"
             },
             {
                 "name": "outputStream",
                 "type": "SHARED_VARIABLE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "DefFrame"
             }
         ]
     }
