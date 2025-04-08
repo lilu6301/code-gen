@@ -1,24 +1,21 @@
 [
     {
-        "name": "bluetooth_ref",
+        "name": "Bluetooth_IPU_System",
         "models": [
             {
-                "name": "Sl_Stub",
+                "name": "Slave_Stub",
                 "type": "cofluent:Function"
             },
             {
                 "name": "BT_System",
-                "type": "cofluent:Function"
-            },
-            {
-                "name": "Start",
                 "type": "cofluent:Function"
             }
         ],
         "relations": [
             {
                 "name": "BaseBand_Out",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "DefBaseBand"
             },
             {
                 "name": "startEv",
@@ -26,20 +23,21 @@
             },
             {
                 "name": "BaseBand_In",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "DefBaseBand"
             }
         ]
     },
     {
-        "name": "Sl_Stub",
+        "name": "Slave_Stub",
         "type": "cofluent:Function",
         "models": [
             {
-                "name": "In_Stub",
+                "name": "In_Stuff",
                 "type": "cofluent:Function"
             },
             {
-                "name": "Out_Stub",
+                "name": "Out_Stuff",
                 "type": "cofluent:Function"
             }
         ],
@@ -47,30 +45,40 @@
             {
                 "name": "BaseBand_Out",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "DefBaseBand"
             },
             {
                 "name": "BaseBand_In",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "DefBaseBand"
             }
         ],
         "relations": [
             {
-                "name": "RFC_Data",
-                "type": "cofluent:MessageQueue"
+                "name": "DataOut",
+                "type": "cofluent:MessageQueue",
+                "dataType": "DefDataOut"
             },
             {
-                "name": "RFC_Cdts",
-                "type": "cofluent:MessageQueue"
+                "name": "WrOK",
+                "type": "cofluent:Event"
             },
             {
-                "name": "RFC_Out1",
-                "type": "cofluent:MessageQueue"
+                "name": "Data",
+                "type": "cofluent:SharedVariable",
+                "dataType": "DefData"
             },
             {
-                "name": "RFC_Out2",
-                "type": "cofluent:MessageQueue"
+                "name": "DataIn",
+                "type": "cofluent:MessageQueue",
+                "dataType": "DefDataIn"
+            },
+            {
+                "name": "ReadWrite",
+                "type": "cofluent:SharedVariable",
+                "dataType": "DefReadWrite"
             }
         ]
     },
@@ -81,18 +89,24 @@
             {
                 "name": "FileSystem",
                 "type": "cofluent:Function"
+            },
+            {
+                "name": "BT_Stack",
+                "type": "cofluent:Function"
             }
         ],
         "ports": [
             {
                 "name": "BaseBand_Out",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "DefBaseBand"
             },
             {
                 "name": "BaseBand_In",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "DefBaseBand"
             },
             {
                 "name": "startEv",
@@ -102,54 +116,35 @@
         ]
     },
     {
-        "name": "Start",
-        "type": "cofluent:Function",
-        "models": [
-            {
-                "name": "In_Start",
-                "type": "cofluent:Function"
-            },
-            {
-                "name": "Out_Start",
-                "type": "cofluent:Function"
-            }
-        ],
-        "ports": [
-            {
-                "name": "startEv",
-                "type": "EVENT",
-                "direction": "OUT"
-            }
-        ]
-    },
-    {
-        "name": "In_Stub",
+        "name": "In_Stuff",
         "type": "cofluent:Function",
         "ports": [
             {
                 "name": "BaseBand_In",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "IN",
+                "dataType": "DefBaseBand"
             },
             {
-                "name": "RFC_In",
-                "type": "MESSAGE_QUEUE",
+                "name": "WrOK",
+                "type": "EVENT",
                 "direction": "IN"
             }
         ]
     },
     {
-        "name": "Out_Stub",
+        "name": "Out_Stuff",
         "type": "cofluent:Function",
         "ports": [
             {
                 "name": "BaseBand_Out",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "OUT",
+                "dataType": "DefBaseBand"
             },
             {
-                "name": "RFC_Out",
-                "type": "MESSAGE_QUEUE",
+                "name": "WrOK",
+                "type": "EVENT",
                 "direction": "OUT"
             }
         ]
@@ -159,67 +154,37 @@
         "type": "cofluent:Function",
         "models": [
             {
-                "name": "OBEX_Layer",
+                "name": "OF_Send",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "OF_Receive",
                 "type": "cofluent:Function"
             }
         ],
         "ports": [
             {
-                "name": "Data",
-                "type": "MESSAGE_QUEUE",
-                "direction": "IN"
-            },
-            {
-                "name": "WrOK",
-                "type": "EVENT",
-                "direction": "OUT"
-            },
-            {
                 "name": "DataOut",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "DefDataOut"
             },
             {
                 "name": "DataIn",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
-            }
-        ]
-    },
-    {
-        "name": "In_Start",
-        "type": "cofluent:Function",
-        "ports": [
-            {
-                "name": "RFC_In",
-                "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "DefData"
             },
             {
-                "name": "OBEX_In",
-                "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN",
+                "dataType": "DefReadWrite"
             }
         ]
     },
     {
-        "name": "Out_Start",
-        "type": "cofluent:Function",
-        "ports": [
-            {
-                "name": "RFC_Out",
-                "type": "MESSAGE_QUEUE",
-                "direction": "IN"
-            },
-            {
-                "name": "DataOut",
-                "type": "MESSAGE_QUEUE",
-                "direction": "IN"
-            }
-        ]
-    },
-    {
-        "name": "OBEX_Layer",
+        "name": "BT_Stack",
         "type": "cofluent:Function",
         "models": [
             {
@@ -229,37 +194,73 @@
             {
                 "name": "OBEX_Receive",
                 "type": "cofluent:Function"
-            },
-            {
-                "name": "OB_Out",
-                "type": "cofluent:Function"
             }
         ],
         "ports": [
             {
-                "name": "RFC_Out",
+                "name": "BaseBand_Out",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "DefBaseBand"
             },
             {
-                "name": "RFC_In",
+                "name": "BaseBand_In",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "DefBaseBand"
             },
             {
-                "name": "WrOK",
-                "type": "EVENT",
-                "direction": "IN"
-            },
-            {
-                "name": "DataOut",
-                "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN",
+                "dataType": "DefReadWrite"
             },
             {
                 "name": "DataIn",
                 "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefDataIn"
+            },
+            {
+                "name": "Start",
+                "type": "EVENT",
                 "direction": "IN"
+            }
+        ]
+    },
+    {
+        "name": "OF_Send",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN",
+                "dataType": "DefReadWrite"
+            },
+            {
+                "name": "DataOut",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefDataOut"
+            }
+        ]
+    },
+    {
+        "name": "OF_Receive",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN",
+                "dataType": "DefReadWrite"
+            },
+            {
+                "name": "L2CAP_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefL2CAP_In"
             }
         ]
     },
@@ -268,29 +269,16 @@
         "type": "cofluent:Function",
         "ports": [
             {
-                "name": "RFC_Out",
-                "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
-            },
-            {
-                "name": "OB_Out",
-                "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
-            },
-            {
-                "name": "RFC_In",
-                "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN",
+                "dataType": "DefReadWrite"
             },
             {
                 "name": "DataOut",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
-            },
-            {
-                "name": "StartEv",
-                "type": "EVENT",
-                "direction": "IN"
+                "direction": "OUT",
+                "dataType": "DefDataOut"
             }
         ]
     },
@@ -299,30 +287,616 @@
         "type": "cofluent:Function",
         "ports": [
             {
-                "name": "RFC_In",
-                "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN",
+                "dataType": "DefReadWrite"
             },
             {
-                "name": "OB_In",
+                "name": "L2CAP_In",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "DefL2CAP_In"
             }
         ]
     },
     {
-        "name": "OB_Out",
+        "name": "L2CAP_Layer",
+        "type": "cofluent:Function",
+        "models": [
+            {
+                "name": "L2CAP_Receive",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "L2CAP_Send",
+                "type": "cofluent:Function"
+            }
+        ],
+        "ports": [
+            {
+                "name": "BaseBand_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefBaseBand"
+            },
+            {
+                "name": "L2CAP_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefL2CAP_In"
+            },
+            {
+                "name": "RFCOMM_Out",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN",
+                "dataType": "DefRFCOMM_Out"
+            },
+            {
+                "name": "RFCOMM_In",
+                "type": "SHARED_VARIABLE",
+                "direction": "OUT",
+                "dataType": "DefRFCOMM_In"
+            }
+        ]
+    },
+    {
+        "name": "L2CAP_Receive",
         "type": "cofluent:Function",
         "ports": [
             {
-                "name": "OB_Out",
-                "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "OUT",
+                "dataType": "DefReadWrite"
             },
             {
-                "name": "RFC_Out",
+                "name": "L2CAP_In",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "IN",
+                "dataType": "DefL2CAP_In"
+            }
+        ]
+    },
+    {
+        "name": "L2CAP_Send",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN",
+                "dataType": "DefReadWrite"
+            },
+            {
+                "name": "L2CAP_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefL2CAP_Out"
+            }
+        ]
+    },
+    {
+        "name": "BaseBand_Layer",
+        "type": "cofluent:Function",
+        "models": [
+            {
+                "name": "BB_Receive",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "BB_Send",
+                "type": "cofluent:Function"
+            }
+        ],
+        "ports": [
+            {
+                "name": "BaseBand_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefBaseBand"
+            },
+            {
+                "name": "L2CAP_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefL2CAP_In"
+            },
+            {
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN",
+                "dataType": "DefReadWrite"
+            },
+            {
+                "name": "BaseBand_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefBaseBand"
+            },
+            {
+                "name": "BaseBand_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefBaseBand"
+            }
+        ]
+    },
+    {
+        "name": "L2CAP_Receive",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "OUT",
+                "dataType": "DefReadWrite"
+            },
+            {
+                "name": "L2CAP_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefL2CAP_In"
+            }
+        ]
+    },
+    {
+        "name": "L2CAP_Send",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN",
+                "dataType": "DefReadWrite"
+            },
+            {
+                "name": "L2CAP_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefL2CAP_Out"
+            }
+        ]
+    },
+    {
+        "name": "BB_Receive",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN",
+                "dataType": "DefReadWrite"
+            },
+            {
+                "name": "L2CAP_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefL2CAP_In"
+            }
+        ]
+    },
+    {
+        "name": "BB_Send",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN",
+                "dataType": "DefReadWrite"
+            },
+            {
+                "name": "L2CAP_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefL2CAP_Out"
+            }
+        ]
+    },
+    {
+        "name": "BaseBand_Layer",
+        "type": "cofluent:Function",
+        "models": [
+            {
+                "name": "OF_Send",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "OF_Receive",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "BaseBand_Layer",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "L2CAP_Layer",
+                "type": "cofluent:Function"
+            }
+        ],
+        "ports": [
+            {
+                "name": "BaseBand_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefBaseBand"
+            },
+            {
+                "name": "L2CAP_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefL2CAP_In"
+            },
+            {
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN",
+                "dataType": "DefReadWrite"
+            },
+            {
+                "name": "BaseBand_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefBaseBand"
+            },
+            {
+                "name": "BaseBand_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefBaseBand"
+            }
+        ]
+    },
+    {
+        "name": "L2CAP_Receive",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "OUT",
+                "dataType": "DefReadWrite"
+            },
+            {
+                "name": "L2CAP_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefL2CAP_In"
+            }
+        ]
+    },
+    {
+        "name": "L2CAP_Send",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN",
+                "dataType": "DefReadWrite"
+            },
+            {
+                "name": "L2CAP_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefL2CAP_Out"
+            }
+        ]
+    },
+    {
+        "name": "OF_Send",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN",
+                "dataType": "DefReadWrite"
+            },
+            {
+                "name": "DataOut",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefDataOut"
+            }
+        ]
+    },
+    {
+        "name": "OF_Receive",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN",
+                "dataType": "DefReadWrite"
+            },
+            {
+                "name": "L2CAP_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefL2CAP_In"
+            }
+        ]
+    },
+    {
+        "name": "BaseBand_Layer",
+        "type": "cofluent:Function",
+        "models": [
+            {
+                "name": "BB_Receive",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "BB_Send",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "OF_Send",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "OF_Receive",
+                "type": "cofluent:Function"
+            }
+        ],
+        "ports": [
+            {
+                "name": "BaseBand_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefBaseBand"
+            },
+            {
+                "name": "L2CAP_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefL2CAP_In"
+            },
+            {
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN",
+                "dataType": "DefReadWrite"
+            },
+            {
+                "name": "BaseBand_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefBaseBand"
+            },
+            {
+                "name": "BaseBand_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefBaseBand"
+            }
+        ]
+    },
+    {
+        "name": "L2CAP_Layer",
+        "type": "cofluent:Function",
+        "models": [
+            {
+                "name": "L2CAP_Receive",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "L2CAP_Send",
+                "type": "cofluent:Function"
+            }
+        ],
+        "ports": [
+            {
+                "name": "BaseBand_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefBaseBand"
+            },
+            {
+                "name": "L2CAP_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefL2CAP_In"
+            },
+            {
+                "name": "RFCOMM_Out",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN",
+                "dataType": "DefRFCOMM_Out"
+            },
+            {
+                "name": "RFCOMM_In",
+                "type": "SHARED_VARIABLE",
+                "direction": "OUT",
+                "dataType": "DefRFCOMM_In"
+            },
+            {
+                "name": "L2CAP_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefL2CAP_Out"
+            }
+        ]
+    },
+    {
+        "name": "BB_Receive",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "OUT",
+                "dataType": "DefReadWrite"
+            },
+            {
+                "name": "L2CAP_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefL2CAP_In"
+            }
+        ]
+    },
+    {
+        "name": "BB_Send",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN",
+                "dataType": "DefReadWrite"
+            },
+            {
+                "name": "L2CAP_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefL2CAP_Out"
+            }
+        ]
+    },
+    {
+        "name": "OF_Send",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN",
+                "dataType": "DefReadWrite"
+            },
+            {
+                "name": "DataOut",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefDataOut"
+            }
+        ]
+    },
+    {
+        "name": "OF_Receive",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN",
+                "dataType": "DefReadWrite"
+            },
+            {
+                "name": "L2CAP_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefL2CAP_In"
+            }
+        ]
+    },
+    {
+        "name": "BB_Receive",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "OUT",
+                "dataType": "DefReadWrite"
+            },
+            {
+                "name": "L2CAP_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefL2CAP_In"
+            }
+        ]
+    },
+    {
+        "name": "BB_Send",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN",
+                "dataType": "DefReadWrite"
+            },
+            {
+                "name": "L2CAP_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefL2CAP_Out"
+            }
+        ]
+    },
+    {
+        "name": "OF_Send",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN",
+                "dataType": "DefReadWrite"
+            },
+            {
+                "name": "DataOut",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefDataOut"
+            }
+        ]
+    },
+    {
+        "name": "OF_Receive",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN",
+                "dataType": "DefReadWrite"
+            },
+            {
+                "name": "L2CAP_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefL2CAP_In"
+            }
+        ]
+    },
+    {
+        "name": "L2CAP_Receive",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "OUT",
+                "dataType": "DefReadWrite"
+            },
+            {
+                "name": "L2CAP_In",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefL2CAP_In"
+            }
+        ]
+    },
+    {
+        "name": "L2CAP_Send",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "ReadWrite",
+                "type": "SHARED_VARIABLE",
+                "direction": "IN",
+                "dataType": "DefReadWrite"
+            },
+            {
+                "name": "L2CAP_Out",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefL2CAP_Out"
             }
         ]
     }

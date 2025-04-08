@@ -26,27 +26,33 @@
         "relations": [
             {
                 "name": "ReferenceQueue",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "DefData"
             },
             {
                 "name": "InitiatorWriter",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "Initiator"
             },
             {
                 "name": "TargetWrapper",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "Target"
             },
             {
                 "name": "ReaderResponse",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "Target"
             },
             {
                 "name": "InitiatorReader",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "Initiator"
             },
             {
                 "name": "ReferenceQueue2",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "DefData"
             },
             {
                 "name": "Sync",
@@ -54,15 +60,18 @@
             },
             {
                 "name": "TargetRequest",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "Target"
             },
             {
                 "name": "TargetResponse",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "Target"
             },
             {
                 "name": "ReferenceQueue3",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "DefMsgQ"
             },
             {
                 "name": "Sync2",
@@ -79,56 +88,40 @@
         "type": "cofluent:SystemCIP",
         "ports": [
             {
-                "name": "interconnect-&gt;targ_socket",
+                "name": "interconnect_&gt;targ_socket",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "Initiator"
             },
             {
-                "name": "interconnect-&gt;init_socket",
+                "name": "interconnect_&gt;init_socket",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "Target"
             },
             {
-                "name": "interconnect-&gt:targ_socket",
+                "name": "interconnect_&gt;targ_socket",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "Initiator"
             },
             {
-                "name": "interconnect-&gt:init_socket",
+                "name": "interconnect_&gt:targ_socket",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "Target"
             },
             {
-                "name": "interconnect-&gt:targ_socket",
+                "name": "interconnect_&gt:init_socket",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "OUT",
+                "dataType": "Target"
             },
             {
-                "name": "interconnect-&gt:init_socket",
+                "name": "interconnect_&gt:init_socket",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
-            },
-            {
-                "name": "interconnect-&gt:targ_socket",
-                "type": "MESSAGE_QUEUE",
-                "direction": "IN"
-            },
-            {
-                "name": "interconnect-&gt:init_socket",
-                "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
-            },
-            {
-                "name": "interconnect-&gt:targ_socket",
-                "direction": "IN"
-            },
-            {
-                "name": "interconnect-&gt:init_socket",
-                "direction": "OUT"
-            },
-            {
-                "name": "interconnect-&gt:targ_socket",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "Target"
             }
         ]
     },
@@ -139,17 +132,20 @@
             {
                 "name": "ReferenceQueue",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "DefData"
             },
             {
                 "name": "InitiatorWriter",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "Initiator"
             },
             {
                 "name": "ReferenceQueue2",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "DefData"
             },
             {
                 "name": "Sync",
@@ -159,7 +155,8 @@
             {
                 "name": "ReferenceQueue3",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "DefMsgQ"
             },
             {
                 "name": "Sync2",
@@ -180,12 +177,14 @@
             {
                 "name": "ReferenceQueue2",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "DefData"
             },
             {
                 "name": "TargetWrapper",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "Target"
             },
             {
                 "name": "Sync2",
@@ -201,17 +200,20 @@
             {
                 "name": "ReferenceQueue3",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "DefMsgQ"
             },
             {
                 "name": "InitiatorReader",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "Initiator"
             },
             {
                 "name": "ReaderResponse",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "Target"
             },
             {
                 "name": "Sync",
@@ -227,17 +229,20 @@
             {
                 "name": "TargetRequest",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "Target"
             },
             {
                 "name": "TargetResponse",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "Target"
             },
             {
                 "name": "ReferenceQueue",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "DefData"
             },
             {
                 "name": "Sync3",

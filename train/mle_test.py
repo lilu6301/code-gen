@@ -194,7 +194,7 @@ def validate():
 
     model = transformers.AutoModelForCausalLM.from_pretrained(
         model_args.model_name_or_path,
-        #torch_dtype=torch.float16,
+        torch_dtype=torch.float16,
         #attn_implementation="sdpa"
     )
 
@@ -203,7 +203,7 @@ def validate():
     tokenizer = transformers.AutoTokenizer.from_pretrained(
         "mistralai/Mistral-7B-v0.1",
         #cache_dir=training_args.cache_dir,
-        #model_max_length=training_args.model_max_length,
+        model_max_length=training_args.model_max_length,
         padding_side="left"
         #use_fast=False,
     )
@@ -239,14 +239,14 @@ def validate():
     #print(len(exclude_size))
     #quit()
 
-    black_list = [13, 15]
+    black_list = []
     for i, input_text in enumerate(test_dataset):
         #input_text = "In January-September 2009 , the Group 's net interest income increased to EUR 112.4 mn from EUR 74.3 mn in January-September 2008 ."
         #inputs = tokenizer(input_text["Instruction"], return_tensors="pt").to("xpu")
         if i in black_list:
             continue
         inputs = tokenizer(input_text, return_tensors="pt").to("xpu")
-        outputs = model.generate(input_ids=inputs["input_ids"], max_new_tokens=4096)
+        outputs = model.generate(input_ids=inputs["input_ids"], max_new_tokens=8192)
         print("input sentence: ", input_text)
         print("================================================================")
         result = tokenizer.batch_decode(outputs.detach().cpu().numpy(), skip_special_tokens=True)[0]

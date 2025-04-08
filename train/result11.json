@@ -16,7 +16,7 @@
             },
             {
                 "name": "TLM2Platfom",
-                "type": "cofluent:SystemCIP"
+                "type": "cofluent:Function"
             },
             {
                 "name": "Target_2",
@@ -26,23 +26,28 @@
         "relations": [
             {
                 "name": "ReferenceQueue",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "DefData"
             },
             {
                 "name": "ReferenceQueue2",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "DefData"
             },
             {
                 "name": "InitiatorWriter",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "Initiator"
             },
             {
                 "name": "TargetWrapper",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "Target"
             },
             {
                 "name": "InitiatorReader",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "Initiator"
             },
             {
                 "name": "Sync",
@@ -50,19 +55,23 @@
             },
             {
                 "name": "ReaderResponse",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "Target"
             },
             {
                 "name": "TargetRequest",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "Target"
             },
             {
                 "name": "TargetResponse",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "Target"
             },
             {
                 "name": "ReferenceQueue3",
-                "type": "cofluent:MessageQueue"
+                "type": "cofluent:MessageQueue",
+                "dataType": "DefMsgQ"
             },
             {
                 "name": "Sync2",
@@ -81,22 +90,26 @@
             {
                 "name": "InitiatorWriter",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "Initiator"
             },
             {
                 "name": "ReferenceQueue",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "DefData"
             },
             {
                 "name": "ReferenceQueue2",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "DefData"
             },
             {
                 "name": "ReferenceQueue3",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "DefMsgQ"
             },
             {
                 "name": "Sync",
@@ -122,12 +135,14 @@
             {
                 "name": "ReferenceQueue2",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "DefData"
             },
             {
                 "name": "TargetWrapper",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "Target"
             },
             {
                 "name": "Sync2",
@@ -143,17 +158,20 @@
             {
                 "name": "ReferenceQueue3",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "DefMsgQ"
             },
             {
                 "name": "InitiatorReader",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "Initiator"
             },
             {
                 "name": "ReaderResponse",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "Target"
             },
             {
                 "name": "Sync",
@@ -164,47 +182,43 @@
     },
     {
         "name": "TLM2Platfom",
-        "type": "cofluent:SystemCIP",
+        "type": "cofluent:Function",
         "ports": [
             {
                 "name": "m_bus.target_socket[2",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "Initiator"
             },
             {
                 "name": "m_bus.initiator_socket[2",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "Target"
             },
             {
                 "name": "m_bus.target_socket[3",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "Initiator"
             },
             {
-                "name": "m_bus.initiator_socket[3",
+                "name": "m_bus_target_socket[3",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "Target"
             },
             {
-                "name": "m_bus.target_socket[5",
+                "name": "m_bus_initiator_socket[3",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "OUT",
+                "dataType": "Target"
             },
             {
-                "name": "m_bus.initiator_socket[5",
+                "name": "m_bus_initiator_socket[3",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
-            },
-            {
-                "name": "m_bus.target_socket[6",
-                "type": "MESSAGE_QUEUE",
-                "direction": "IN"
-            },
-            {
-                "name": "m_bus.initiator_socket[6",
-                "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "IN",
+                "dataType": "Target"
             }
         ]
     },
@@ -215,17 +229,20 @@
             {
                 "name": "TargetRequest",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "Target"
             },
             {
                 "name": "TargetResponse",
                 "type": "MESSAGE_QUEUE",
-                "direction": "OUT"
+                "direction": "OUT",
+                "dataType": "Target"
             },
             {
                 "name": "ReferenceQueue",
                 "type": "MESSAGE_QUEUE",
-                "direction": "IN"
+                "direction": "IN",
+                "dataType": "DefData"
             },
             {
                 "name": "Sync3",

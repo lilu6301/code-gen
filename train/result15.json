@@ -1,0 +1,1191 @@
+[
+    {
+        "name": "datacenter",
+        "models": [
+            {
+                "name": "ServerRoom",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "DataCenterSwitch",
+                "type": "cofluent:Function"
+            }
+        ],
+        "relations": [
+            {
+                "name": "MsgQToDataCenterSwitch",
+                "type": "cofluent:MessageQueue",
+                "vector": "0, dpServerRoomNb",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToServerRoom",
+                "type": "cofluent:MessageQueue",
+                "vector": "0, dpServerRoomNb",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "ServerRoom",
+        "type": "cofluent:Function",
+        "models": [
+            {
+                "name": "Server",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "Consumer",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "ToRack",
+                "type": "cofluent:Function"
+            }
+        ],
+        "ports": [
+            {
+                "name": "MsgQToServerRoom",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ],
+        "relations": [
+            {
+                "name": "MsgQToAggSwitch",
+                "type": "cofluent:MessageQueue",
+                "vector": "0, dpRackNb",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToRack",
+                "type": "cofluent:MessageQueue",
+                "vector": "0, dpRackNb",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "DataCenterSwitch",
+        "type": "cofluent:Function",
+        "models": [
+            {
+                "name": "Inbound",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "Outbound",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "RoutingFunction",
+                "type": "cofluent:RoutingFunction"
+            }
+        ],
+        "ports": [
+            {
+                "name": "MsgQToDataCenterSwitch",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToServerRoom",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            }
+        ],
+        "relations": [
+            {
+                "name": "MsgQToAggSwitch",
+                "type": "cofluent:MessageQueue",
+                "vector": "0, dpRackNb",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToRack",
+                "type": "cofluent:MessageQueue",
+                "vector": "0, dpRackNb",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "Server",
+        "type": "cofluent:Function",
+        "models": [
+            {
+                "name": "Producer",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "Consumer",
+                "type": "cofluent:Function"
+            }
+        ],
+        "ports": [
+            {
+                "name": "MsgQToServerRoom",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "Consumer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQToServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "ToRack",
+        "type": "cofluent:Function",
+        "models": [
+            {
+                "name": "InboundRackNb",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "OutboundRackNb",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "ToRack",
+                "type": "cofluent:Function"
+            }
+        ],
+        "ports": [
+            {
+                "name": "MsgQToRack",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToAggSwitch",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "Inbound",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQInbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToDataCenterSwitch",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "Outbound",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQOutbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQOutboundServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "RoutingFunction",
+        "type": "cofluent:RoutingFunction",
+        "ports": [
+            {
+                "name": "MsgQInbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQOutbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "Producer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQToServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "Consumer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQToServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "InboundRackNb",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQInbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToRack",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "OutboundRackNb",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQOutbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQOutboundServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "ToTack",
+        "type": "cofluent:Function",
+        "models": [
+            {
+                "name": "InboundServer",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "OutboundServer",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "InboundAGGSwitch",
+                "type": "cofluent:Function"
+            },
+            {
+                "name": "OutboundAGGSwitch",
+                "type": "cofluent:Function"
+            }
+        ],
+        "ports": [
+            {
+                "name": "MsgQToAggSwitch",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToRack",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            }
+        ],
+        "relations": [
+            {
+                "name": "MsgQToAggSwitch",
+                "type": "cofluent:MessageQueue",
+                "vector": "0, dpRackNb",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToRack",
+                "type": "cofluent:MessageQueue",
+                "vector": "0, dpRackNb",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "InboundServer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQInbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "OutboundServer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQOutbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQOutboundServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "InboundAGGSwitch",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQInbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToAggSwitch",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "OutboundAGGSwitch",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQOutbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToAggSwitch",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "InboundServer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQInbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "OutboundServer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQOutbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQOutboundServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "InboundAGGSwitch",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQInbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToAggSwitch",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "OutboundAGGSwitch",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQOutbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToAggSwitch",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "InboundServer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQInbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "OutboundServer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQOutbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQOutboundServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "InboundAGGSwitch",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQInbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToAggSwitch",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "OutboundAGGSwitch",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQOutbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToAggSwitch",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "InboundServer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQInbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "OutboundServer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQOutbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQOutboundServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "InboundAGGSwitch",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQInbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToAggSwitch",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "OutboundAGGSwitch",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQOutbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToAggSwitch",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "InboundServer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQInbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "OutboundServer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQOutbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQOutboundServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "InboundAGGSwitch",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQInbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToAggSwitch",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "OutboundAGGSwitch",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQOutbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToAggSwitch",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "InboundServer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQInbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "OutboundServer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQOutbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQOutboundServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "InboundAGGSwitch",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQInbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToAggSwitch",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "OutboundAGGSwitch",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQOutbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToAggSwitch",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "InboundServer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQInbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "OutboundServer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQOutbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQOutboundServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "InboundAGGSwitch",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQInbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToAggSwitch",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "OutboundAGGSwitch",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQOutbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToAggSwitch",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "InboundServer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQInbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "OutboundServer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQOutbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQOutboundServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "InboundAGGSwitch",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQInbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToAggSwitch",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "OutboundAGGSwitch",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQOutbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToAggSwitch",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "InboundServer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQInbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "OutboundServer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQOutbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQOutboundServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "InboundAGGSwitch",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQInbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToAggSwitch",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "OutboundAGGSwitch",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQOutbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToAggSwitch",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "InboundServer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQInbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "OutboundServer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQOutbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQOutboundServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "InboundAGGSwitch",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQInbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToAggSwitch",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "OutboundAGGSwitch",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQOutbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToAggSwitch",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "InboundServer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQInbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "OutboundServer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQOutbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQOutboundServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "InboundAGGSwitch",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQInbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToAggSwitch",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "OutboundAGGSwitch",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQOutbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToAggSwitch",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "InboundServer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQInbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQToServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    },
+    {
+        "name": "OutboundServer",
+        "type": "cofluent:Function",
+        "ports": [
+            {
+                "name": "MsgQOutbound",
+                "type": "MESSAGE_QUEUE",
+                "direction": "OUT",
+                "dataType": "DefPacket"
+            },
+            {
+                "name": "MsgQOutboundServer",
+                "type": "MESSAGE_QUEUE",
+                "direction": "IN",
+                "dataType": "DefPacket"
+            }
+        ]
+    }
+]
