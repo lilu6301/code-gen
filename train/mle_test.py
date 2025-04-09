@@ -210,7 +210,7 @@ def validate():
     model = model.to('xpu')
     model.eval()
 
-    test_dataset = json.load(open("../stage2_test_dataset.json", encoding='utf-8'))
+    test_dataset = json.load(open("../test_dataset.json", encoding='utf-8'))
     #test_dataset = [json.loads(l) for l in open("../test_dataset.json", "r")]
     print(len(test_dataset))
 
@@ -241,28 +241,27 @@ def validate():
 
     black_list = []
     for i, input_text in enumerate(test_dataset):
-        input_text["Instruction"] = "In January-September 2009 , the Group 's net interest income increased to EUR 112.4 mn from EUR 74.3 mn in January-September 2008 ."
+        #input_text["Instruction"] = "In January-September 2009 , the Group 's net interest income increased to EUR 112.4 mn from EUR 74.3 mn in January-September 2008 ."
         #inputs = tokenizer(input_text["Instruction"], return_tensors="pt").to("xpu")
         if i in black_list:
             continue
-        inputs = tokenizer(input_text["Instruction"], return_tensors="pt").to("xpu")
+        inputs = tokenizer(input_text, return_tensors="pt").to("xpu")
         outputs = model.generate(input_ids=inputs["input_ids"], max_new_tokens=8192)
-        print("input sentence: ", input_text["Instruction"])
+        print("input sentence: ", input_text)
         print("================================================================")
         result = tokenizer.batch_decode(outputs.detach().cpu().numpy(), skip_special_tokens=True)[0]
         #print(result)
-        result = result[len(input_text["Instruction"]):]
-        print("result: ", result)
-        #try:
-        #    json_result = json.loads(result)
-        #    print(" output prediction: ", json_result)
-        #    with open("result"+ str(i)+".json", "w") as f:
-        #        json.dump(json_result, f, indent=4)
-        #    print("================================================================")
-        #except Exception as e:
-        #    print(f"An unexpected error occurred: {e}")
-        #    print("result : ", result)
-        #    continue
+        result = result[len(input_text):]
+        try:
+            json_result = json.loads(result)
+            print(" output prediction: ", json_result)
+            with open("result"+ str(i)+".json", "w") as f:
+                json.dump(json_result, f, indent=4)
+            print("================================================================")
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}")
+            print("result : ", result)
+            continue
 
 
 if __name__ == "__main__":

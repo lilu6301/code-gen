@@ -219,11 +219,11 @@ def train():
     #dist_cp.load_state_dict(
     #            state_dict=state_dict,
     #            #storage_reader= torch.distributed.checkpoint.FileSystemReader("/root/llm/fine-tuning/RTL-Coder/train/output/checkpoint-261/pytorch_model_fsdp_0"),
-    #            storage_reader= torch.distributed.checkpoint.FileSystemReader("/root/llm/fine-tuning/RTL-Coder/train/output/checkpoint-252/pytorch_model_fsdp_0"),
+    #            storage_reader= torch.distributed.checkpoint.FileSystemReader("/root/llm/fine-tuning/RTL-Coder/train/output/checkpoint-576/pytorch_model_fsdp_0"),
     #            no_dist=True,
     #        )
     #model.load_state_dict(state_dict["model"])
-    #model.save_pretrained("saved-model")
+    #model.save_pretrained("saved-stage2-model")
     #quit()
 
     #
@@ -275,28 +275,28 @@ def train():
         trainer.accelerator.state.fsdp_plugin.set_state_dict_type("FULL_STATE_DICT")
     trainer.save_model(output_dir=training_args.output_dir)
     
-    model.to("cpu")
-    model.save_pretrained("saved_pretraind_model")
-    quit()
-    model.eval()
-    test_dataset = json.load(open("../test_dataset.json", encoding='utf-8'))
-    #test_dataset = [json.loads(l) for l in open("../dataset/Resyn27k.json", "r")]
-    for i, input_text in enumerate(test_dataset):
-        #input_text = "In January-September 2009 , the Group 's net interest income increased to EUR 112.4 mn from EUR 74.3 mn in January-September 2008 ."
-        #inputs = tokenizer(input_text["Instruction"], return_tensors="pt").to("xpu")
-        inputs = tokenizer(input_text, return_tensors="pt").to("xpu")
-        outputs = model.generate(input_ids=inputs["input_ids"], max_new_tokens=4096)
-        print("input sentence: ", input_text)
-        print("================================================================")
-        result = tokenizer.batch_decode(outputs.detach().cpu().numpy(), skip_special_tokens=True)[0]
-        print(result)
-        result = result[len(input_text):]
-        print(" output prediction: ", result)
-        json_result = json.loads(result)
-        print(" output prediction: ", json_result)
-        with open("result"+ str(i)+".json", "w") as f:
-            json.dump(json_result, f, indent=4)
-        print("================================================================")
+    #model.to("cpu")
+    #model.save_pretrained("saved_pretraind_model")
+
+    #model.eval()
+    #test_dataset = json.load(open("../test_dataset.json", encoding='utf-8'))
+    ##test_dataset = [json.loads(l) for l in open("../dataset/Resyn27k.json", "r")]
+    #for i, input_text in enumerate(test_dataset):
+    #    #input_text = "In January-September 2009 , the Group 's net interest income increased to EUR 112.4 mn from EUR 74.3 mn in January-September 2008 ."
+    #    #inputs = tokenizer(input_text["Instruction"], return_tensors="pt").to("xpu")
+    #    inputs = tokenizer(input_text, return_tensors="pt").to("xpu")
+    #    outputs = model.generate(input_ids=inputs["input_ids"], max_new_tokens=4096)
+    #    print("input sentence: ", input_text)
+    #    print("================================================================")
+    #    result = tokenizer.batch_decode(outputs.detach().cpu().numpy(), skip_special_tokens=True)[0]
+    #    print(result)
+    #    result = result[len(input_text):]
+    #    print(" output prediction: ", result)
+    #    json_result = json.loads(result)
+    #    print(" output prediction: ", json_result)
+    #    with open("result"+ str(i)+".json", "w") as f:
+    #        json.dump(json_result, f, indent=4)
+    #    print("================================================================")
 
 
 if __name__ == "__main__":
