@@ -76,15 +76,15 @@ void cfm_mymodel::cb_end_of_simulation(void) {
 void cfm_mymodel::cb_init_attributes() {
 
 	cfa_cycle_period.init(cf_expr_time(10, CF_NS));
-	mq_p_in.cfa_send_time.init(cf_expr_duration(1, CF_MS));
-	mq_p_in.cfa_receive_time.init(cf_expr_duration(1, CF_MS));
+	mq_p_in.cfa_send_time.init(cf_expr_duration(1, CF_NS));
+	mq_p_in.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
 	mq_p_in.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
 	mq_p_in.cfa_queue_capacity.init((cf_nonzero_count) 1);
 	mq_p_in.cfa_concurrency.init((cf_nonzero_count) 1);
 	mq_p_in.cfa_send_threshold.init((cf_nonzero_count) 1);
 	mq_p_in.cfa_receive_threshold.init((cf_nonzero_count) 1);
-	mq_p_out.cfa_send_time.init(cf_expr_duration(1, CF_MS));
-	mq_p_out.cfa_receive_time.init(cf_expr_duration(1, CF_MS));
+	mq_p_out.cfa_send_time.init(cf_expr_duration(1, CF_NS));
+	mq_p_out.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
 	mq_p_out.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
 	mq_p_out.cfa_queue_capacity.init((cf_nonzero_count) 1);
 	mq_p_out.cfa_concurrency.init((cf_nonzero_count) 1);

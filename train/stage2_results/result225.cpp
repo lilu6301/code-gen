@@ -62,7 +62,7 @@ void cfm_outbounddatacenterswitch::cb_init_local_vars(void) {
 
 	server_room_id = get_container()->get_container()->get_cp_index();
 	rack_id = get_container()->get_container()->get_cp_index();
-	server_id = get_container()->get_cp_index();
+	server_id = get_container()->get_container()->get_cp_index();
 	latency = cf_dt::cf_time(0, CF_SEC);
 }
 

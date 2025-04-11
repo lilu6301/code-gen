@@ -21,10 +21,12 @@
 
 class cfm_softwaredefinedradioapp: public cf_core::cf_application, public cfm_softwaredefinedradioapp_dp_if {
 public:
-	typedef cf_core::cf_message_queue<cft_defcall> mq_NetToDVB_t;
-	typedef cf_core::cf_message_queue<cft_defcall> mq_NetToUMTS_t;
-	typedef cf_core::cf_message_queue<cft_defvideo> mq_UMTSToNet_t;
+	typedef cf_core::cf_message_queue<cft_defvideo> mq_NetToDVB_t;
+	typedef cf_core::cf_message_queue<cft_defvideo> mq_NetToUMTS_t;
+	typedef cf_core::cf_message_queue<cft_defcall> mq_Response_t;
+	typedef cf_core::cf_message_queue<cft_defcall> mq_Request_t;
 	typedef cf_core::cf_message_queue<cft_defvideo> mq_Video_t;
+	typedef cf_core::cf_message_queue<cft_defcall> mq_UMTSToNet_t;
 
 
 	cfm_softwaredefinedradioapp(sc_core::sc_module_name name);
@@ -47,8 +49,10 @@ protected:
 public:
 	mq_NetToDVB_t mq_NetToDVB;
 	mq_NetToUMTS_t mq_NetToUMTS;
-	mq_UMTSToNet_t mq_UMTSToNet;
+	mq_Response_t mq_Response;
+	mq_Request_t mq_Request;
 	mq_Video_t mq_Video;
+	mq_UMTSToNet_t mq_UMTSToNet;
 
 
 

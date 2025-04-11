@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_applicationmodel
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,6 +8,7 @@
 #ifndef COFS_MODEL_APPLICATIONMODEL
 #define COFS_MODEL_APPLICATIONMODEL
 
+/// Model Header includes start
 #include "cfm_applicationmodel_global.h"
 #include "cfm_applicationmodel_global_types.h"
 #include "cofluent.h"
@@ -15,16 +17,31 @@
 #include "dt/cft_defmsg.h"
 #include "dt/cft_defack.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'ApplicationModel includes' algorithm generated code
 
+//End of 'ApplicationModel includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgApplicationModel Function ApplicationModel
+//@{
+///        \page dxpApplicationModel
+//@{
+///    \brief ApplicationModel function model start
 class cfm_applicationmodel: public cf_core::cf_application {
 public:
+	/// cfm_applicationmodel type define start
+	/// relations typedef
 	typedef cf_core::cf_message_queue<cft_defack> mq_Ack_t;
 	typedef cf_core::cf_message_queue<cft_defmsg> mq_Msg_t;
 
+	/// cfm_applicationmodel type define end
 
+	/// constructor
 	cfm_applicationmodel(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_applicationmodel(void);
 	virtual void cb_before_elaboration(void);
 
@@ -32,21 +49,40 @@ public:
 	void cb_end_of_simulation(void);
 
 public:
+	/// \name functions
+	//@{
 	cfm_producer* Producer;
 	cfm_receiver* Receiver;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	mq_Ack_t mq_Ack;
 	mq_Msg_t mq_Msg;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'ApplicationModel local declarations' algorithm generated code
 
+	//End of 'ApplicationModel local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief ApplicationModel function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_APPLICATIONMODEL
 
+//<#!@READ-ONLY-SECTION-END@!#>

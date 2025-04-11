@@ -153,7 +153,7 @@ void cfm_rack::cb_init_attributes() {
 		(*mq_MsgQToServer_vec[i]).cfa_send_time.init(cf_expr_duration(0, CF_NS));
 		(*mq_MsgQToServer_vec[i]).cfa_receive_time.init(cf_expr_duration(0, CF_NS));
 		(*mq_MsgQToServer_vec[i]).cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
-		(*mq_MsgQToServer_vec[i]).cfa_queue_capacity.init((cf_nonzero_count) dpToRSwitchToServerBufferSize);
+		(*mq_MsgQToServer_vec[i]).cfa_queue_capacity.init((cf_nonzero_count) dpServerToToRSwitchBufferSize);
 		(*mq_MsgQToServer_vec[i]).cfa_concurrency.init((cf_nonzero_count) 1);
 		(*mq_MsgQToServer_vec[i]).cfa_send_threshold.init((cf_nonzero_count) 1);
 		(*mq_MsgQToServer_vec[i]).cfa_receive_threshold.init((cf_nonzero_count) 1);

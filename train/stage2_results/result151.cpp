@@ -19,6 +19,12 @@ cf_application(name)
 )
 , mq_BRESPchn("BRESPchn"
 )
+, mq_CDATAchn("CDATAchn"
+)
+, mq_DSKchn("DSKchn"
+)
+, mq_NWDATAchn("NWDATAchn"
+)
 , mq_RDATAchn("RDATAchn"
 )
 , mq_WDATAchn("WDATAchn"
@@ -31,10 +37,6 @@ cf_application(name)
 	Target = new cfm_target
 	("Target");
 
-	ClientSide->p_mq_WDATAchn
-	(mq_WDATAchn
-			.p_target_socket
-	);
 	ClientSide->p_mq_ARADDRchn
 	(mq_ARADDRchn
 			.p_target_socket
@@ -43,13 +45,45 @@ cf_application(name)
 	(mq_BRESPchn
 			.p_target_socket
 	);
+	ClientSide->p_mq_CDATAchn
+	(mq_CDATAchn
+			.p_target_socket
+	);
+	ClientSide->p_mq_DSKchn
+	(mq_DSKchn
+			.p_target_socket
+	);
+	ClientSide->p_mq_NWDATAchn
+	(mq_NWDATAchn
+			.p_target_socket
+	);
 	ClientSide->p_mq_RDATAchn
 	(mq_RDATAchn
 			.p_target_socket
 	);
+	ClientSide->p_mq_WDATAchn
+	(mq_WDATAchn
+			.p_target_socket
+	);
 
-	Target->p_mq_AWADDRchn
-	(mq_AWADDRchn
+	Target->p_mq_ARADDRchn
+	(mq_ARADDRchn
+			.p_target_socket
+	);
+	Target->p_mq_BRESPchn
+	(mq_BRESPchn
+			.p_target_socket
+	);
+	Target->p_mq_CDATAchn
+	(mq_CDATAchn
+			.p_target_socket
+	);
+	Target->p_mq_DSKchn
+	(mq_DSKchn
+			.p_target_socket
+	);
+	Target->p_mq_NWDATAchn
+	(mq_NWDATAchn
 			.p_target_socket
 	);
 	Target->p_mq_RDATAchn
@@ -58,10 +92,6 @@ cf_application(name)
 	);
 	Target->p_mq_WDATAchn
 	(mq_WDATAchn
-			.p_target_socket
-	);
-	Target->p_mq_BRESPchn
-	(mq_BRESPchn
 			.p_target_socket
 	);
 
@@ -93,29 +123,43 @@ void cfm_ddrmemory::cb_init_attributes() {
 	cfa_cycle_period.init(cf_expr_time(10, CF_NS));
 	mq_ARADDRchn.cfa_send_time.init(cf_expr_duration(0, CF_NS));
 	mq_ARADDRchn.cfa_receive_time.init(cf_expr_duration(0, CF_NS));
-	mq_ARADDRchn.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
-	mq_ARADDRchn.cfa_queue_capacity.init((cf_nonzero_count) 1);
+	mq_ARADDRchn.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_INFINITE);
 	mq_ARADDRchn.cfa_concurrency.init((cf_nonzero_count) 1);
 	mq_ARADDRchn.cfa_send_threshold.init((cf_nonzero_count) 1);
 	mq_ARADDRchn.cfa_receive_threshold.init((cf_nonzero_count) 1);
 	mq_BRESPchn.cfa_send_time.init(cf_expr_duration(0, CF_NS));
 	mq_BRESPchn.cfa_receive_time.init(cf_expr_duration(0, CF_NS));
-	mq_BRESPchn.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
-	mq_BRESPchn.cfa_queue_capacity.init((cf_nonzero_count) 1);
+	mq_BRESPchn.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_INFINITE);
 	mq_BRESPchn.cfa_concurrency.init((cf_nonzero_count) 1);
 	mq_BRESPchn.cfa_send_threshold.init((cf_nonzero_count) 1);
 	mq_BRESPchn.cfa_receive_threshold.init((cf_nonzero_count) 1);
+	mq_CDATAchn.cfa_send_time.init(cf_expr_duration(0, CF_NS));
+	mq_CDATAchn.cfa_receive_time.init(cf_expr_duration(0, CF_NS));
+	mq_CDATAchn.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_INFINITE);
+	mq_CDATAchn.cfa_concurrency.init((cf_nonzero_count) 1);
+	mq_CDATAchn.cfa_send_threshold.init((cf_nonzero_count) 1);
+	mq_CDATAchn.cfa_receive_threshold.init((cf_nonzero_count) 1);
+	mq_DSKchn.cfa_send_time.init(cf_expr_duration(0, CF_NS));
+	mq_DSKchn.cfa_receive_time.init(cf_expr_duration(0, CF_NS));
+	mq_DSKchn.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_INFINITE);
+	mq_DSKchn.cfa_concurrency.init((cf_nonzero_count) 1);
+	mq_DSKchn.cfa_send_threshold.init((cf_nonzero_count) 1);
+	mq_DSKchn.cfa_receive_threshold.init((cf_nonzero_count) 1);
+	mq_NWDATAchn.cfa_send_time.init(cf_expr_duration(0, CF_NS));
+	mq_NWDATAchn.cfa_receive_time.init(cf_expr_duration(0, CF_NS));
+	mq_NWDATAchn.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_INFINITE);
+	mq_NWDATAchn.cfa_concurrency.init((cf_nonzero_count) 1);
+	mq_NWDATAchn.cfa_send_threshold.init((cf_nonzero_count) 1);
+	mq_NWDATAchn.cfa_receive_threshold.init((cf_nonzero_count) 1);
 	mq_RDATAchn.cfa_send_time.init(cf_expr_duration(0, CF_NS));
 	mq_RDATAchn.cfa_receive_time.init(cf_expr_duration(0, CF_NS));
-	mq_RDATAchn.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
-	mq_RDATAchn.cfa_queue_capacity.init((cf_nonzero_count) 1);
+	mq_RDATAchn.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_INFINITE);
 	mq_RDATAchn.cfa_concurrency.init((cf_nonzero_count) 1);
 	mq_RDATAchn.cfa_send_threshold.init((cf_nonzero_count) 1);
 	mq_RDATAchn.cfa_receive_threshold.init((cf_nonzero_count) 1);
 	mq_WDATAchn.cfa_send_time.init(cf_expr_duration(0, CF_NS));
 	mq_WDATAchn.cfa_receive_time.init(cf_expr_duration(0, CF_NS));
-	mq_WDATAchn.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
-	mq_WDATAchn.cfa_queue_capacity.init((cf_nonzero_count) 1);
+	mq_WDATAchn.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_INFINITE);
 	mq_WDATAchn.cfa_concurrency.init((cf_nonzero_count) 1);
 	mq_WDATAchn.cfa_send_threshold.init((cf_nonzero_count) 1);
 	mq_WDATAchn.cfa_receive_threshold.init((cf_nonzero_count) 1);

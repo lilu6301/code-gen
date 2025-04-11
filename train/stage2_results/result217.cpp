@@ -8,7 +8,7 @@
 #ifdef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #undef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #endif
-#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_serverroom
+#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_datacenter
 #ifdef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #undef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #endif
@@ -78,23 +78,12 @@ cf_function_container(name)
 		CF_ASSERT( module )
 		p_mq_MsgQToDataCenterSwitch_vec.push_back(module);
 	}
-	InboundDataCenterSwitch->p_mq_MsgQToServerRoom
-	((*p_mq_MsgQToServerRoom_vec[
-							i
-							]
-			)
-	);
-	InboundDataCenterSwitch->p_mq_MsgQInboundDataCenterSwitch
-	(mq_MsgQInboundDataCenterSwitch
-			.p_target_socket
-	);
-	for (cf_count i = 0; i < (cf_count)(dpRackNb + 1); i++) {
-		InboundDataCenterSwitch->p_mq_MsgQInboundRack
-		(mq_MsgQInboundRack_vec[i]
-				->p_target_socket
-		);
+	for (cf_count i = 0; i < (cf_count)(dpRackNb+1); i++)
+	{
+		p_mq_MsgQToAggSwitch_t* module=new p_mq_MsgQToAggSwitch_t(cf_string("p_mq_MsgQToAggSwitch[%d]", i).c_str());
+		CF_ASSERT( module )
+		p_mq_MsgQToAggSwitch_vec.push_back(module);
 	}
-
 	for (cf_count i = 0; i < (cf_count)(dpRackNb + 1); i++) {
 		cfm_inboundrack* module
 		=InboundRack_vec[i];
@@ -112,25 +101,22 @@ cf_function_container(name)
 							]
 					)
 			);
+			module->p_mq_MsgQToDataCenterSwitch
+			((*p_mq_MsgQToDataCenterSwitch_vec[
+							i
+							]
+					)
+			);
 		}
 	}
 
-	OutboundDataCenterSwitch->p_mq_MsgQOutboundDataCenterSwitch
-	(mq_MsgQOutboundDataCenterSwitch
+	InboundDataCenterSwitch->p_mq_MsgQInboundDataCenterSwitch
+	(mq_MsgQInboundDataCenterSwitch
 			.p_target_socket
 	);
-	OutboundDataCenterSwitch->p_mq_MsgQToDataCenterSwitch
-	((*p_mq_MsgQToDataCenterSwitch_vec[
-							i
-							]
-			)
+	InboundDataCenterSwitch->p_mq_MsgQToDataCenterSwitch
+	(p_mq_MsgQToDataCenterSwitch
 	);
-	for (cf_count i = 0; i < (cf_count)(dpRackNb + 1); i++) {
-		OutboundDataCenterSwitch->p_mq_MsgQOutboundRack
-		(mq_MsgQOutboundRack_vec[i]
-				->p_target_socket
-		);
-	}
 
 	for (cf_count i = 0; i < (cf_count)(dpRackNb + 1); i++) {
 		cfm_outboundrack* module
@@ -143,14 +129,22 @@ cf_function_container(name)
 						->p_target_socket
 				);
 			}
-			module->p_mq_MsgQToDataCenterSwitch
-			((*p_mq_MsgQToDataCenterSwitch_vec[
+			module->p_mq_MsgQToAggSwitch
+			((*p_mq_MsgQToAggSwitch_vec[
 							i
 							]
 					)
 			);
 		}
 	}
+
+	OutboundDataCenterSwitch->p_mq_MsgQOutboundDataCenterSwitch
+	(mq_MsgQOutboundDataCenterSwitch
+			.p_target_socket
+	);
+	OutboundDataCenterSwitch->p_mq_MsgQToDataCenterSwitch
+	(p_mq_MsgQToDataCenterSwitch
+	);
 
 	for (cf_count i = 0; i < (cf_count)(dpRackNb + 1); i++) {
 		RoutingFunction->p_mq_MsgQInboundRack
@@ -164,11 +158,13 @@ cf_function_container(name)
 				->p_target_socket
 		);
 	}
-	RoutingFunction->p_mq_MsgQToAggSwitch
-	(p_mq_MsgQToAggSwitch
+	RoutingFunction->p_mq_MsgQInboundDataCenterSwitch
+	(mq_MsgQInboundDataCenterSwitch
+			.p_target_socket
 	);
-	RoutingFunction->p_mq_MsgQToRack
-	(p_mq_MsgQToRack
+	RoutingFunction->p_mq_MsgQOutboundDataCenterSwitch
+	(mq_MsgQOutboundDataCenterSwitch
+			.p_target_socket
 	);
 
 
@@ -196,6 +192,9 @@ cfm_aggswitch::~cfm_aggswitch(void) {
 	for (vector<p_mq_MsgQToDataCenterSwitch_t*>::const_iterator vi = p_mq_MsgQToDataCenterSwitch_vec.begin(); vi != p_mq_MsgQToDataCenterSwitch_vec.end(); vi++) {
 		delete (*vi);
 	}
+	for (vector<p_mq_MsgQToAggSwitch_t*>::const_iterator vi = p_mq_MsgQToAggSwitch_vec.begin(); vi != p_mq_MsgQToAggSwitch_vec.end(); vi++) {
+		delete (*vi);
+	}
 	delete InboundDataCenterSwitch;	///ddd
 	delete OutboundDataCenterSwitch;	///ddd
 	delete RoutingFunction;	///ddd
@@ -218,7 +217,7 @@ void cfm_aggswitch::cb_init_attributes() {
 	mq_MsgQInboundDataCenterSwitch.cfa_send_time.init(cf_expr_duration(1, CF_NS));
 	mq_MsgQInboundDataCenterSwitch.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
 	mq_MsgQInboundDataCenterSwitch.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
-	mq_MsgQInboundDataCenterSwitch.cfa_queue_capacity.init((cf_nonzero_count) dpAggSwitchPortBufferSize);
+	mq_MsgQInboundDataCenterSwitch.cfa_queue_capacity.init((cf_nonzero_count) dpDataCenterSwitchPortBufferSize);
 	mq_MsgQInboundDataCenterSwitch.cfa_concurrency.init((cf_nonzero_count) 1);
 	mq_MsgQInboundDataCenterSwitch.cfa_send_threshold.init((cf_nonzero_count) 1);
 	mq_MsgQInboundDataCenterSwitch.cfa_receive_threshold.init((cf_nonzero_count) 1);
@@ -226,7 +225,7 @@ void cfm_aggswitch::cb_init_attributes() {
 		(*mq_MsgQInboundRack_vec[i]).cfa_send_time.init(cf_expr_duration(1, CF_NS));
 		(*mq_MsgQInboundRack_vec[i]).cfa_receive_time.init(cf_expr_duration(1, CF_NS));
 		(*mq_MsgQInboundRack_vec[i]).cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
-		(*mq_MsgQInboundRack_vec[i]).cfa_queue_capacity.init((cf_nonzero_count) dpAggSwitchPortBufferSize);
+		(*mq_MsgQInboundRack_vec[i]).cfa_queue_capacity.init((cf_nonzero_count) dpDataCenterSwitchPortBufferSize);
 		(*mq_MsgQInboundRack_vec[i]).cfa_concurrency.init((cf_nonzero_count) 1);
 		(*mq_MsgQInboundRack_vec[i]).cfa_send_threshold.init((cf_nonzero_count) 1);
 		(*mq_MsgQInboundRack_vec[i]).cfa_receive_threshold.init((cf_nonzero_count) 1);
@@ -234,7 +233,7 @@ void cfm_aggswitch::cb_init_attributes() {
 	mq_MsgQOutboundDataCenterSwitch.cfa_send_time.init(cf_expr_duration(1, CF_NS));
 	mq_MsgQOutboundDataCenterSwitch.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
 	mq_MsgQOutboundDataCenterSwitch.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
-	mq_MsgQOutboundDataCenterSwitch.cfa_queue_capacity.init((cf_nonzero_count) dpAggSwitchPortBufferSize);
+	mq_MsgQOutboundDataCenterSwitch.cfa_queue_capacity.init((cf_nonzero_count) dpDataCenterSwitchPortBufferSize);
 	mq_MsgQOutboundDataCenterSwitch.cfa_concurrency.init((cf_nonzero_count) 1);
 	mq_MsgQOutboundDataCenterSwitch.cfa_send_threshold.init((cf_nonzero_count) 1);
 	mq_MsgQOutboundDataCenterSwitch.cfa_receive_threshold.init((cf_nonzero_count) 1);
@@ -242,7 +241,7 @@ void cfm_aggswitch::cb_init_attributes() {
 		(*mq_MsgQOutboundRack_vec[i]).cfa_send_time.init(cf_expr_duration(1, CF_NS));
 		(*mq_MsgQOutboundRack_vec[i]).cfa_receive_time.init(cf_expr_duration(1, CF_NS));
 		(*mq_MsgQOutboundRack_vec[i]).cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
-		(*mq_MsgQOutboundRack_vec[i]).cfa_queue_capacity.init((cf_nonzero_count) dpAggSwitchPortBufferSize);
+		(*mq_MsgQOutboundRack_vec[i]).cfa_queue_capacity.init((cf_nonzero_count) dpDataCenterSwitchPortBufferSize);
 		(*mq_MsgQOutboundRack_vec[i]).cfa_concurrency.init((cf_nonzero_count) 1);
 		(*mq_MsgQOutboundRack_vec[i]).cfa_send_threshold.init((cf_nonzero_count) 1);
 		(*mq_MsgQOutboundRack_vec[i]).cfa_receive_threshold.init((cf_nonzero_count) 1);

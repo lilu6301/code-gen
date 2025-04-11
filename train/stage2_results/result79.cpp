@@ -89,22 +89,22 @@ void cfm_transactiontrackermsgqapp::cb_end_of_simulation(void) {
 void cfm_transactiontrackermsgqapp::cb_init_attributes() {
 
 	cfa_cycle_period.init(cf_expr_time(10, CF_NS));
-	mq_MsgQIn.cfa_send_time.init(cf_expr_duration(10, CF_NS));
-	mq_MsgQIn.cfa_receive_time.init(cf_expr_duration(10, CF_NS));
+	mq_MsgQIn.cfa_send_time.init(cf_expr_duration(1, CF_NS));
+	mq_MsgQIn.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
 	mq_MsgQIn.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
 	mq_MsgQIn.cfa_queue_capacity.init((cf_nonzero_count) 1);
 	mq_MsgQIn.cfa_concurrency.init((cf_nonzero_count) 1);
 	mq_MsgQIn.cfa_send_threshold.init((cf_nonzero_count) 1);
 	mq_MsgQIn.cfa_receive_threshold.init((cf_nonzero_count) 1);
-	mq_MsgQOut1.cfa_send_time.init(cf_expr_duration(10, CF_NS));
-	mq_MsgQOut1.cfa_receive_time.init(cf_expr_duration(10, CF_NS));
+	mq_MsgQOut1.cfa_send_time.init(cf_expr_duration(1, CF_NS));
+	mq_MsgQOut1.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
 	mq_MsgQOut1.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
 	mq_MsgQOut1.cfa_queue_capacity.init((cf_nonzero_count) 1);
 	mq_MsgQOut1.cfa_concurrency.init((cf_nonzero_count) 1);
 	mq_MsgQOut1.cfa_send_threshold.init((cf_nonzero_count) 1);
 	mq_MsgQOut1.cfa_receive_threshold.init((cf_nonzero_count) 1);
-	mq_MsgQOut2.cfa_send_time.init(cf_expr_duration(10, CF_NS));
-	mq_MsgQOut2.cfa_receive_time.init(cf_expr_duration(10, CF_NS));
+	mq_MsgQOut2.cfa_send_time.init(cf_expr_duration(1, CF_NS));
+	mq_MsgQOut2.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
 	mq_MsgQOut2.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
 	mq_MsgQOut2.cfa_queue_capacity.init((cf_nonzero_count) 1);
 	mq_MsgQOut2.cfa_concurrency.init((cf_nonzero_count) 1);

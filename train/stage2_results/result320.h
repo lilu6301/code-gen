@@ -19,8 +19,8 @@
 
 class cfm_completedevice: public cf_core::cf_application, public cfm_completedevice_dp_if {
 public:
-	typedef cf_core::cf_shared_variable<cft_defframe> sv_inputStream_t;
 	typedef cf_core::cf_event ev_newFrame_t;
+	typedef cf_core::cf_shared_variable<cft_defframe> sv_inputStream_t;
 	typedef cf_core::cf_shared_variable<cft_defframe> sv_outputStream_t;
 
 
@@ -41,8 +41,8 @@ protected:
 	void cb_init_local_vars(void);
 
 public:
-	sv_inputStream_t sv_inputStream;
 	ev_newFrame_t ev_newFrame;
+	sv_inputStream_t sv_inputStream;
 	sv_outputStream_t sv_outputStream;
 
 

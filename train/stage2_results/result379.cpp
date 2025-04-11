@@ -17,9 +17,9 @@ cfm_opp_usecase::cfm_opp_usecase(sc_core::sc_module_name name)
 cf_application(name)
 , mq_M2S("M2S"
 )
-, ev_StartEv("StartEv"
-)
 , mq_S2M("S2M"
+)
+, ev_StartEv("StartEv"
 )
 , ev_UnusedEv("UnusedEv"
 )
@@ -39,49 +39,25 @@ cf_application(name)
 	(mq_M2S
 			.p_target_socket
 	);
-	Master->p_ev_UnusedEv
-	(ev_UnusedEv
-			.p_target_socket
-	);
 	Master->p_ev_StartEv
 	(ev_StartEv
 			.p_target_socket
 	);
-	Master->p_mq_S2M
-	(mq_S2M
-			.p_target_socket
-	);
 
-	Slave->p_mq_M2S
-	(mq_M2S
-			.p_target_socket
-	);
-	Slave->p_ev_StartEv
-	(ev_StartEv
-			.p_target_socket
-	);
 	Slave->p_mq_S2M
 	(mq_S2M
 			.p_target_socket
 	);
-
-	StartFunc->p_mq_M2S
-	(mq_M2S
-			.p_target_socket
-	);
-	StartFunc->p_ev_UnusedEv
+	Slave->p_ev_UnusedEv
 	(ev_UnusedEv
 			.p_target_socket
 	);
+
 	StartFunc->p_ev_StartEv
 	(ev_StartEv
 			.p_target_socket
 	);
 
-	UnusedFunc->p_mq_M2S
-	(mq_M2S
-			.p_target_socket
-	);
 	UnusedFunc->p_ev_UnusedEv
 	(ev_UnusedEv
 			.p_target_socket
@@ -115,25 +91,25 @@ void cfm_opp_usecase::cb_end_of_simulation(void) {
 void cfm_opp_usecase::cb_init_attributes() {
 
 	cfa_cycle_period.init(cf_expr_time(10, CF_NS));
-	mq_M2S.cfa_send_time.init(cf_expr_duration(1, CF_NS));
-	mq_M2S.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
+	mq_M2S.cfa_send_time.init(cf_expr_duration(10, CF_US));
+	mq_M2S.cfa_receive_time.init(cf_expr_duration(10, CF_US));
 	mq_M2S.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
 	mq_M2S.cfa_queue_capacity.init((cf_nonzero_count) 1);
 	mq_M2S.cfa_concurrency.init((cf_nonzero_count) 1);
 	mq_M2S.cfa_send_threshold.init((cf_nonzero_count) 1);
 	mq_M2S.cfa_receive_threshold.init((cf_nonzero_count) 1);
-	ev_StartEv.cfa_set_time.init(cf_expr_duration(1, CF_NS));
-	ev_StartEv.cfa_get_time.init(cf_expr_duration(1, CF_NS));
-	ev_StartEv.cfa_event_policy.init(CF_EV_POLICY_BOOLEAN);
-	mq_S2M.cfa_send_time.init(cf_expr_duration(1, CF_NS));
-	mq_S2M.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
+	mq_S2M.cfa_send_time.init(cf_expr_duration(10, CF_US));
+	mq_S2M.cfa_receive_time.init(cf_expr_duration(10, CF_US));
 	mq_S2M.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
 	mq_S2M.cfa_queue_capacity.init((cf_nonzero_count) 1);
 	mq_S2M.cfa_concurrency.init((cf_nonzero_count) 1);
 	mq_S2M.cfa_send_threshold.init((cf_nonzero_count) 1);
 	mq_S2M.cfa_receive_threshold.init((cf_nonzero_count) 1);
-	ev_UnusedEv.cfa_set_time.init(cf_expr_duration(1, CF_NS));
-	ev_UnusedEv.cfa_get_time.init(cf_expr_duration(1, CF_NS));
+	ev_StartEv.cfa_set_time.init(cf_expr_duration(10, CF_US));
+	ev_StartEv.cfa_get_time.init(cf_expr_duration(10, CF_US));
+	ev_StartEv.cfa_event_policy.init(CF_EV_POLICY_BOOLEAN);
+	ev_UnusedEv.cfa_set_time.init(cf_expr_duration(10, CF_US));
+	ev_UnusedEv.cfa_get_time.init(cf_expr_duration(10, CF_US));
 	ev_UnusedEv.cfa_event_policy.init(CF_EV_POLICY_BOOLEAN);
 
 	return;

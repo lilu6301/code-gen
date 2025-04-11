@@ -10,7 +10,7 @@
 #include "cfm_hwdevicemodel_global.h"
 #include "cfm_hwdevicemodel_global_types.h"
 #include "cofluent.h"
-#include "cfm_hwdevice test.h"
+#include "cfm_hwdevicetest.h"
 #include "dt/cft_defframe.h"
 
 
@@ -30,7 +30,7 @@ public:
 	void cb_end_of_simulation(void);
 
 public:
-	cfm_hwdevice test* hwDeviceTest;
+	cfm_hwdevicetest* hwDeviceTest;
 
 protected:
 	void cb_init_attributes(void);

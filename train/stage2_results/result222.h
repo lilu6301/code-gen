@@ -37,7 +37,7 @@ protected:
 	void cb_init_local_vars(void);
 
 
-
+	/*int outIndex;*/
 
 };
 

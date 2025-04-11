@@ -8,7 +8,7 @@
 #ifdef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #undef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #endif
-#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_serverroom
+#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_datacenterswitch
 #ifdef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #undef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #endif
@@ -39,12 +39,20 @@ cf_function_container(name)
 	("InboundAGGSwitch");
 	OutboundAGGSwitch = new cfm_outboundaggswitch
 	("OutboundAGGSwitch");
+	RoutingFunction = new cfm_torswitch_routingfunction
+	("RoutingFunction");
 
 	for (cf_count i = 0; i < (cf_count)(dpServerPerRackNb + 1); i++)
 	{
-		cfm_torswitch_routingfunction* module=new cfm_torswitch_routingfunction(cf_string("RoutingFunction[%d]", i).c_str());
+		cfm_inboundserver* module=new cfm_inboundserver(cf_string("InboundServer[%d]", i).c_str());
 		CF_ASSERT( module )
-		RoutingFunction_vec.push_back(module);
+		InboundServer_vec.push_back(module);
+	}
+	for (cf_count i = 0; i < (cf_count)(dpServerPerRackNb + 1); i++)
+	{
+		cfm_outboundserver* module=new cfm_outboundserver(cf_string("OutboundServer[%d]", i).c_str());
+		CF_ASSERT( module )
+		OutboundServer_vec.push_back(module);
 	}
 	for (cf_count i = 0; i < (cf_count)(dpServerPerRackNb + 1); i++)
 	{
@@ -60,12 +68,6 @@ cf_function_container(name)
 	}
 	for (cf_count i = 0; i < (cf_count)(dpServerPerRackNb+1); i++)
 	{
-		p_mq_MsgQServerToToRSwitch_t* module=new p_mq_MsgQServerToToRSwitch_t(cf_string("p_mq_MsgQServerToToRSwitch[%d]", i).c_str());
-		CF_ASSERT( module )
-		p_mq_MsgQServerToToRSwitch_vec.push_back(module);
-	}
-	for (cf_count i = 0; i < (cf_count)(dpServerPerRackNb+1); i++)
-	{
 		p_mq_MsgQToServer_t* module=new p_mq_MsgQToServer_t(cf_string("p_mq_MsgQToServer[%d]", i).c_str());
 		CF_ASSERT( module )
 		p_mq_MsgQToServer_vec.push_back(module);
@@ -76,6 +78,32 @@ cf_function_container(name)
 		CF_ASSERT( module )
 		p_mq_MsgQToAggSwitch_vec.push_back(module);
 	}
+	for (cf_count i = 0; i < (cf_count)(dpServerPerRackNb + 1); i++) {
+		cfm_inboundserver* module
+		=InboundServer_vec[i];
+		if(module
+				!= nullptr) {
+			for (cf_count j = 0; j < (cf_count)(dpServerPerRackNb + 1); j++) {
+				module->p_mq_MsgQInboundServer
+				(mq_MsgQInboundServer_vec[j]
+						->p_target_socket
+				);
+			}
+			module->p_mq_MsgQToServer
+			((*p_mq_MsgQToServer_vec[
+							i
+							]
+					)
+			);
+			module->p_mq_MsgQToAggSwitch
+			((*p_mq_MsgQToAggSwitch_vec[
+							i
+							]
+					)
+			);
+		}
+	}
+
 	InboundAGGSwitch->p_mq_MsgQInboundAGGSwitch
 	(mq_MsgQInboundAGGSwitch
 			.p_target_socket
@@ -85,22 +113,10 @@ cf_function_container(name)
 	);
 
 	for (cf_count i = 0; i < (cf_count)(dpServerPerRackNb + 1); i++) {
-		cfm_torswitch_routingfunction* module
-		=RoutingFunction_vec[i];
+		cfm_outboundserver* module
+		=OutboundServer_vec[i];
 		if(module
 				!= nullptr) {
-			module->p_mq_MsgQToAggSwitch
-			((*p_mq_MsgQToAggSwitch_vec[
-							i
-							]
-					)
-			);
-			for (cf_count j = 0; j < (cf_count)(dpServerPerRackNb + 1); j++) {
-				module->p_mq_MsgQInboundServer
-				(mq_MsgQInboundServer_vec[j]
-						->p_target_socket
-				);
-			}
 			for (cf_count j = 0; j < (cf_count)(dpServerPerRackNb + 1); j++) {
 				module->p_mq_MsgQOutboundServer
 				(mq_MsgQOutboundServer_vec[j]
@@ -113,39 +129,6 @@ cf_function_container(name)
 							]
 					)
 			);
-		}
-	}
-
-	OutboundAGGSwitch->p_mq_MsgQOutboundAGGSwitch
-	(mq_MsgQOutboundAGGSwitch
-			.p_target_socket
-	);
-	OutboundAGGSwitch->p_mq_MsgQToServer
-	((*p_mq_MsgQToServer_vec[
-							i
-							]
-			)
-	);
-
-	for (cf_count i = 0; i < (cf_count)(dpServerPerRackNb + 1); i++) {
-		cfm_torswitch_routingfunction* module
-		=RoutingFunction_vec[i];
-		if(module
-				!= nullptr) {
-			for (cf_count j = 0; j < (cf_count)(dpServerPerRackNb + 1); j++) {
-				module->p_mq_MsgQToServer
-				((*p_mq_MsgQToServer_vec[
-							j
-							]
-						)
-				);
-			}
-			for (cf_count j = 0; j < (cf_count)(dpServerPerRackNb + 1); j++) {
-				module->p_mq_MsgQInboundServer
-				(mq_MsgQInboundServer_vec[j]
-						->p_target_socket
-				);
-			}
 			module->p_mq_MsgQToAggSwitch
 			((*p_mq_MsgQToAggSwitch_vec[
 							i
@@ -155,6 +138,35 @@ cf_function_container(name)
 		}
 	}
 
+	OutboundAGGSwitch->p_mq_MsgQOutboundAGGSwitch
+	(mq_MsgQOutboundAGGSwitch
+			.p_target_socket
+	);
+	OutboundAGGSwitch->p_mq_MsgQToRack
+	(p_mq_MsgQToRack
+	);
+
+	for (cf_count i = 0; i < (cf_count)(dpServerPerRackNb + 1); i++) {
+		RoutingFunction->p_mq_MsgQInboundServer
+		(mq_MsgQInboundServer_vec[i]
+				->p_target_socket
+		);
+	}
+	for (cf_count i = 0; i < (cf_count)(dpServerPerRackNb + 1); i++) {
+		RoutingFunction->p_mq_MsgQOutboundServer
+		(mq_MsgQOutboundServer_vec[i]
+				->p_target_socket
+		);
+	}
+	RoutingFunction->p_mq_MsgQInboundAGGSwitch
+	(mq_MsgQInboundAGGSwitch
+			.p_target_socket
+	);
+	RoutingFunction->p_mq_MsgQOutboundAGGSwitch
+	(mq_MsgQOutboundAGGSwitch
+			.p_target_socket
+	);
+
 
 
 	cf_function_container::elab_end();
@@ -162,16 +174,16 @@ cf_function_container(name)
 
 cfm_torswitch::~cfm_torswitch(void) {
 
-	for (vector<cfm_torswitch_routingfunction*>::const_iterator vi = RoutingFunction_vec.begin(); vi != RoutingFunction_vec.end(); vi++) {
+	for (vector<cfm_inboundserver*>::const_iterator vi = InboundServer_vec.begin(); vi != InboundServer_vec.end(); vi++) {
+		delete (*vi);
+	}
+	for (vector<cfm_outboundserver*>::const_iterator vi = OutboundServer_vec.begin(); vi != OutboundServer_vec.end(); vi++) {
 		delete (*vi);
 	}
 	for (vector<mq_MsgQInboundServer_t*>::const_iterator vi = mq_MsgQInboundServer_vec.begin(); vi != mq_MsgQInboundServer_vec.end(); vi++) {
 		delete (*vi);
 	}
 	for (vector<mq_MsgQOutboundServer_t*>::const_iterator vi = mq_MsgQOutboundServer_vec.begin(); vi != mq_MsgQOutboundServer_vec.end(); vi++) {
-		delete (*vi);
-	}
-	for (vector<p_mq_MsgQServerToToRSwitch_t*>::const_iterator vi = p_mq_MsgQServerToToRSwitch_vec.begin(); vi != p_mq_MsgQServerToToRSwitch_vec.end(); vi++) {
 		delete (*vi);
 	}
 	for (vector<p_mq_MsgQToServer_t*>::const_iterator vi = p_mq_MsgQToServer_vec.begin(); vi != p_mq_MsgQToServer_vec.end(); vi++) {
@@ -182,6 +194,7 @@ cfm_torswitch::~cfm_torswitch(void) {
 	}
 	delete InboundAGGSwitch;	///ddd
 	delete OutboundAGGSwitch;	///ddd
+	delete RoutingFunction;	///ddd
 }
 
 void cfm_torswitch::cb_before_elaboration(void) {

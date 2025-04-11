@@ -7,8 +7,8 @@
 #ifndef COFS_MODEL_AUTOMATICPAYLOADTRACKER
 #define COFS_MODEL_AUTOMATICPAYLOADTRACKER
 
-#include "cfm_automaticpayloadtrackers_global.h"
-#include "cfm_automaticpayloadtrackers_global_types.h"
+#include "cfm_automatedpayloadtrackers_global.h"
+#include "cfm_automatedpayloadtrackers_global_types.h"
 #include "cofluent.h"
 #include "cfm_c1.h"
 #include "cfm_c2.h"
@@ -19,7 +19,7 @@
 
 
 
-class cfm_automaticpayloadtrackers: public cf_core::cf_application {
+class cfm_automatedpayloadtrackers: public cf_core::cf_application {
 public:
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_M1_1_t;
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_M1_2_t;
@@ -28,9 +28,9 @@ public:
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_M2_2_t;
 
 
-	cfm_automaticpayloadtrackers(sc_core::sc_module_name name);
+	cfm_automatedpayloadtrackers(sc_core::sc_module_name name);
 
-	virtual ~cfm_automaticpayloadtrackers(void);
+	virtual ~cfm_automatedpayloadtrackers(void);
 	virtual void cb_before_elaboration(void);
 
 	void cb_end_of_elaboration(void);

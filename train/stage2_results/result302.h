@@ -10,14 +10,13 @@
 #include "cfm_tlm2at_global.h"
 #include "cfm_tlm2at_global_types.h"
 #include "cofluent.h"
-#include "cfm_initiatorreader.h"
-#include "cfm_initiatorwriter.h"
-#include "cfm_platform.h"
+#include "cfm_reader.h"
 #include "cfm_target.h"
 #include "cfm_target_2.h"
 #include "cfm_writer.h"
 #include "dt/cft_defdata.h"
 #include "dt/cft_initiator.h"
+#include "dt/cft_target.h"
 #include "dt/cft_defmsgq.h"
 
 
@@ -25,16 +24,16 @@
 class cfm_tlm2at: public cf_core::cf_application {
 public:
 	typedef cf_core::cf_message_queue<cft_defdata> mq_InitiatorReader_t;
-	typedef cf_core::cf_message_queue<cft_initiator> mq_InitiatorWriter_t;
-	typedef cf_core::cf_message_queue<cft_defmsgq> mq_ReferenceQueue_t;
-	typedef cf_core::cf_message_queue<cft_defmsgq> mq_ReferenceQueue2_t;
-	typedef cf_core::cf_message_queue<cft_defmsgq> mq_ReferenceQueue3_t;
+	typedef cf_core::cf_message_queue<cft_defdata> mq_InitiatorWriter_t;
+	typedef cf_core::cf_message_queue<cft_target> mq_MessageQueue_t;
+	typedef cf_core::cf_message_queue<cft_defmsgq> mq_MessageQueue2_t;
+	typedef cf_core::cf_message_queue<cft_defmsgq> mq_MessageQueue3_t;
 	typedef cf_core::cf_event ev_Sync_t;
 	typedef cf_core::cf_event ev_Sync2_t;
 	typedef cf_core::cf_event ev_Sync3_t;
 	typedef cf_core::cf_message_queue<cft_target> mq_TargetRequest_t;
 	typedef cf_core::cf_message_queue<cft_target> mq_TargetResponse_t;
-	typedef cf_core::cf_message_queue<cft_target_2> mq_TargetWrapper_t;
+	typedef cf_core::cf_message_queue<cft_defdata> mq_TargetWrapper_t;
 
 
 	cfm_tlm2at(sc_core::sc_module_name name);
@@ -46,12 +45,10 @@ public:
 	void cb_end_of_simulation(void);
 
 public:
-	cfm_initiatorreader* Reader;
-	cfm_initiatorwriter* Writer;
-	cfm_platform* TLM2Platfom;
+	cfm_reader* Reader;
 	cfm_target* Target;
 	cfm_target_2* Target_2;
-	cfm_writer* Writer_2;
+	cfm_writer* Writer;
 
 protected:
 	void cb_init_attributes(void);
@@ -60,9 +57,9 @@ protected:
 public:
 	mq_InitiatorReader_t mq_InitiatorReader;
 	mq_InitiatorWriter_t mq_InitiatorWriter;
-	mq_ReferenceQueue_t mq_ReferenceQueue;
-	mq_ReferenceQueue2_t mq_ReferenceQueue2;
-	mq_ReferenceQueue3_t mq_ReferenceQueue3;
+	mq_MessageQueue_t mq_MessageQueue;
+	mq_MessageQueue2_t mq_MessageQueue2;
+	mq_MessageQueue3_t mq_MessageQueue3;
 	ev_Sync_t ev_Sync;
 	ev_Sync2_t ev_Sync2;
 	ev_Sync3_t ev_Sync3;

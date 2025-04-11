@@ -38,10 +38,6 @@ cf_application(name)
 	(sv_inputStream
 			.p_target_socket
 	);
-	device->p_sv_outputStream
-	(sv_outputStream
-			.p_target_socket
-	);
 
 	testBench
 	->dpv(device
@@ -86,15 +82,15 @@ void cfm_completedevice::cb_end_of_simulation(void) {
 void cfm_completedevice::cb_init_attributes() {
 
 	cfa_cycle_period.init(cf_expr_time(10, CF_NS));
-	ev_newFrame.cfa_set_time.init(cf_expr_duration(10, CF_US));
-	ev_newFrame.cfa_get_time.init(cf_expr_duration(10, CF_US));
+	ev_newFrame.cfa_set_time.init(cf_expr_duration(1, CF_NS));
+	ev_newFrame.cfa_get_time.init(cf_expr_duration(1, CF_NS));
 	ev_newFrame.cfa_event_policy.init(CF_EV_POLICY_BOOLEAN);
-	sv_inputStream.cfa_write_time.init(cf_expr_duration(10, CF_US));
-	sv_inputStream.cfa_read_time.init(cf_expr_duration(10, CF_US));
+	sv_inputStream.cfa_write_time.init(cf_expr_duration(1, CF_NS));
+	sv_inputStream.cfa_read_time.init(cf_expr_duration(1, CF_NS));
 	sv_inputStream.cfa_semaphore.init(false);
 	sv_inputStream.cfa_concurrency.init((cf_nonzero_count) 1);
-	sv_outputStream.cfa_write_time.init(cf_expr_duration(10, CF_US));
-	sv_outputStream.cfa_read_time.init(cf_expr_duration(10, CF_US));
+	sv_outputStream.cfa_write_time.init(cf_expr_duration(1, CF_NS));
+	sv_outputStream.cfa_read_time.init(cf_expr_duration(1, CF_NS));
 	sv_outputStream.cfa_semaphore.init(false);
 	sv_outputStream.cfa_concurrency.init((cf_nonzero_count) 1);
 

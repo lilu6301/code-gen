@@ -22,10 +22,10 @@
 
 class cfm_ddrmemory: public cf_core::cf_application {
 public:
-	typedef cf_core::cf_message_queue<cft_defaraddrchn> mq_ARADDRchn_t;
-	typedef cf_core::cf_message_queue<cft_defwdatachn> mq_WDATAchn_t;
+	typedef cf_core::cf_message_queue<cft_defwdatachn> mq_ARADDRchn_t;
 	typedef cf_core::cf_message_queue<cft_defbrespchn> mq_BRESPchn_t;
-	typedef cf_core::cf_message_queue<cft_defrdatachn> mq_RDATAchn_t;
+	typedef cf_core::cf_message_queue<cft_defwdatachn> mq_RDATAchn_t;
+	typedef cf_core::cf_message_queue<cft_defwdatachn> mq_WDATAchn_t;
 
 
 	cfm_ddrmemory(sc_core::sc_module_name name);
@@ -46,9 +46,9 @@ protected:
 
 public:
 	mq_ARADDRchn_t mq_ARADDRchn;
-	mq_WDATAchn_t mq_WDATAchn;
 	mq_BRESPchn_t mq_BRESPchn;
 	mq_RDATAchn_t mq_RDATAchn;
+	mq_WDATAchn_t mq_WDATAchn;
 
 
 

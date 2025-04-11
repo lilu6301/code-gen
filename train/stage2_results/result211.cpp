@@ -41,16 +41,34 @@ cf_application(name)
 		mq_MsgQToServerRoom_vec.push_back(module);
 	}
 	for (cf_count i = 0; i < (cf_count)(dpServerRoomNb + 1); i++) {
-		DataCenterSwitch->p_mq_MsgQToDataCenterSwitch
-		(mq_MsgQToDataCenterSwitch_vec[i]
-				->p_target_socket
-		);
+		for (cf_count j = 0; j < (cf_count)DataCenterSwitch
+				->p_mq_MsgQToDataCenterSwitch_vec.size(); j++)
+		{
+			cfm_datacenterswitch
+			::p_mq_MsgQToDataCenterSwitch_t* port= DataCenterSwitch
+			->p_mq_MsgQToDataCenterSwitch_vec[j]
+			;
+			if(port != nullptr) {
+				port->bind(mq_MsgQToDataCenterSwitch_vec[i]
+						->p_target_socket
+				);
+			}
+		}
 	}
 	for (cf_count i = 0; i < (cf_count)(dpServerRoomNb + 1); i++) {
-		DataCenterSwitch->p_mq_MsgQToServerRoom
-		(mq_MsgQToServerRoom_vec[i]
-				->p_target_socket
-		);
+		for (cf_count j = 0; j < (cf_count)DataCenterSwitch
+				->p_mq_MsgQToServerRoom_vec.size(); j++)
+		{
+			cfm_datacenterswitch
+			::p_mq_MsgQToServerRoom_t* port= DataCenterSwitch
+			->p_mq_MsgQToServerRoom_vec[j]
+			;
+			if(port != nullptr) {
+				port->bind(mq_MsgQToServerRoom_vec[i]
+						->p_target_socket
+				);
+			}
+		}
 	}
 
 	for (cf_count i = 0; i < (cf_count)(dpServerRoomNb + 1); i++) {
@@ -111,7 +129,7 @@ void cfm_datacenter::cb_init_attributes() {
 		(*mq_MsgQToDataCenterSwitch_vec[i]).cfa_send_time.init(cf_expr_duration(0, CF_NS));
 		(*mq_MsgQToDataCenterSwitch_vec[i]).cfa_receive_time.init(cf_expr_duration(0, CF_NS));
 		(*mq_MsgQToDataCenterSwitch_vec[i]).cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
-		(*mq_MsgQToDataCenterSwitch_vec[i]).cfa_queue_capacity.init((cf_nonzero_count) dpDataCenterSwitchBufferSize);
+		(*mq_MsgQToDataCenterSwitch_vec[i]).cfa_queue_capacity.init((cf_nonzero_count) 1);
 		(*mq_MsgQToDataCenterSwitch_vec[i]).cfa_concurrency.init((cf_nonzero_count) 1);
 		(*mq_MsgQToDataCenterSwitch_vec[i]).cfa_send_threshold.init((cf_nonzero_count) 1);
 		(*mq_MsgQToDataCenterSwitch_vec[i]).cfa_receive_threshold.init((cf_nonzero_count) 1);
@@ -120,7 +138,7 @@ void cfm_datacenter::cb_init_attributes() {
 		(*mq_MsgQToServerRoom_vec[i]).cfa_send_time.init(cf_expr_duration(0, CF_NS));
 		(*mq_MsgQToServerRoom_vec[i]).cfa_receive_time.init(cf_expr_duration(0, CF_NS));
 		(*mq_MsgQToServerRoom_vec[i]).cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
-		(*mq_MsgQToServerRoom_vec[i]).cfa_queue_capacity.init((cf_nonzero_count) dpServerRoomBufferSize);
+		(*mq_MsgQToServerRoom_vec[i]).cfa_queue_capacity.init((cf_nonzero_count) 1);
 		(*mq_MsgQToServerRoom_vec[i]).cfa_concurrency.init((cf_nonzero_count) 1);
 		(*mq_MsgQToServerRoom_vec[i]).cfa_send_threshold.init((cf_nonzero_count) 1);
 		(*mq_MsgQToServerRoom_vec[i]).cfa_receive_threshold.init((cf_nonzero_count) 1);

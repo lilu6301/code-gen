@@ -8,7 +8,7 @@
 #ifdef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #undef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #endif
-#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_datacenters
+#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_datacenter
 #ifdef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #undef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #endif
@@ -77,35 +77,86 @@ cf_function_container(name)
 						->p_target_socket
 				);
 			}
+			module->p_mq_MsgQToDataCenterSwitch
+			((*p_mq_MsgQToDataCenterSwitch_vec[
+							i
+							]
+					)
+			);
+			module->p_mq_MsgQToServerRoom
+			((*p_mq_MsgQToServerRoom_vec[
+							i
+							]
+					)
+			);
 		}
 	}
 
 	AGGSwitch->p_mq_MsgQToServerRoom
 	((*p_mq_MsgQToServerRoom_vec[
-							i
+							0
 							]
 			)
 	);
+	for (cf_count i = 0; i < (cf_count)(dpRackNb + 1); i++) {
+		for (cf_count j = 0; j < (cf_count)AGGSwitch
+				->p_mq_MsgQToAggSwitch_vec.size(); j++)
+		{
+			cfm_aggswitch
+			::p_mq_MsgQToAggSwitch_t* port= AGGSwitch
+			->p_mq_MsgQToAggSwitch_vec[j]
+			;
+			if(port != nullptr) {
+				port->bind(mq_MsgQToAggSwitch_vec[i]
+						->p_target_socket
+				);
+			}
+		}
+	}
+	for (cf_count i = 0; i < (cf_count)(dpRackNb + 1); i++) {
+		for (cf_count j = 0; j < (cf_count)AGGSwitch
+				->p_mq_MsgQToRack_vec.size(); j++)
+		{
+			cfm_aggswitch
+			::p_mq_MsgQToRack_t* port= AGGSwitch
+			->p_mq_MsgQToRack_vec[j]
+			;
+			if(port != nullptr) {
+				port->bind(mq_MsgQToRack_vec[i]
+						->p_target_socket
+				);
+			}
+		}
+	}
 	AGGSwitch->p_mq_MsgQToDataCenterSwitch
 	((*p_mq_MsgQToDataCenterSwitch_vec[
-							i
+							0
 							]
 			)
 	);
+
+
+
 	for (cf_count i = 0; i < (cf_count)(dpRackNb + 1); i++) {
-		AGGSwitch->p_mq_MsgQToRack
-		(mq_MsgQToRack_vec[i]
-				->p_target_socket
+		CF_COMM_CB_MQ_SEND((*mq_MsgQToAggSwitch_vec[i]
+				)
+				, cfm_serverroom::mq_MsgQToAggSwitch_cb_send_time
+		);
+		CF_COMM_CB_MQ_RECEIVE((*mq_MsgQToAggSwitch_vec[i]
+				)
+				, cfm_serverroom::mq_MsgQToAggSwitch_cb_receive_time
 		);
 	}
 	for (cf_count i = 0; i < (cf_count)(dpRackNb + 1); i++) {
-		AGGSwitch->p_mq_MsgQToAggSwitch
-		(mq_MsgQToAggSwitch_vec[i]
-				->p_target_socket
+		CF_COMM_CB_MQ_SEND((*mq_MsgQToRack_vec[i]
+				)
+				, cfm_serverroom::mq_MsgQToRack_cb_send_time
+		);
+		CF_COMM_CB_MQ_RECEIVE((*mq_MsgQToRack_vec[i]
+				)
+				, cfm_serverroom::mq_MsgQToRack_cb_receive_time
 		);
 	}
-
-
 
 	cf_function_container::elab_end();
 }
@@ -145,19 +196,15 @@ void cfm_serverroom::cb_end_of_simulation(void) {
 void cfm_serverroom::cb_init_attributes() {
 
 	for (cf_count i = 0; i < (cf_count)(dpRackNb + 1); i++) {
-		(*mq_MsgQToAggSwitch_vec[i]).cfa_send_time.init(cf_expr_duration(1, CF_NS));
-		(*mq_MsgQToAggSwitch_vec[i]).cfa_receive_time.init(cf_expr_duration(1, CF_NS));
 		(*mq_MsgQToAggSwitch_vec[i]).cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
-		(*mq_MsgQToAggSwitch_vec[i]).cfa_queue_capacity.init((cf_nonzero_count) dpAggSwitchPortBufferSize);
+		(*mq_MsgQToAggSwitch_vec[i]).cfa_queue_capacity.init((cf_nonzero_count) dpToAggSwitchPortBufferSize);
 		(*mq_MsgQToAggSwitch_vec[i]).cfa_concurrency.init((cf_nonzero_count) 1);
 		(*mq_MsgQToAggSwitch_vec[i]).cfa_send_threshold.init((cf_nonzero_count) 1);
 		(*mq_MsgQToAggSwitch_vec[i]).cfa_receive_threshold.init((cf_nonzero_count) 1);
 	}
 	for (cf_count i = 0; i < (cf_count)(dpRackNb + 1); i++) {
-		(*mq_MsgQToRack_vec[i]).cfa_send_time.init(cf_expr_duration(1, CF_NS));
-		(*mq_MsgQToRack_vec[i]).cfa_receive_time.init(cf_expr_duration(1, CF_NS));
 		(*mq_MsgQToRack_vec[i]).cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
-		(*mq_MsgQToRack_vec[i]).cfa_queue_capacity.init((cf_nonzero_count) dpRackToAggSwitchBufferSize);
+		(*mq_MsgQToRack_vec[i]).cfa_queue_capacity.init((cf_nonzero_count) dpToRackPortBufferSize);
 		(*mq_MsgQToRack_vec[i]).cfa_concurrency.init((cf_nonzero_count) 1);
 		(*mq_MsgQToRack_vec[i]).cfa_send_threshold.init((cf_nonzero_count) 1);
 		(*mq_MsgQToRack_vec[i]).cfa_receive_threshold.init((cf_nonzero_count) 1);
@@ -169,6 +216,23 @@ void cfm_serverroom::cb_init_attributes() {
 void cfm_serverroom::cb_init_local_vars(void) {
 
 
+}
+
+cf_duration cfm_serverroom::mq_MsgQToAggSwitch_cb_send_time(cf_payload_b* _trans) {
+	CF_COMM_DEF_TRANS_REF(cft_defpacket, MsgQToAggSwitch_trans, _trans);
+	return cf_expr_duration(dpToAggSwitchPortBufferSize.get_value(), CF_US);
+}
+cf_duration cfm_serverroom::mq_MsgQToAggSwitch_cb_receive_time(cf_payload_b* _trans) {
+	CF_COMM_DEF_TRANS_REF(cft_defpacket, MsgQToAggSwitch_trans, _trans);
+	return cf_expr_duration(dpToAggSwitchPortBufferSize.get_value(), CF_US);
+}
+cf_duration cfm_serverroom::mq_MsgQToRack_cb_send_time(cf_payload_b* _trans) {
+	CF_COMM_DEF_TRANS_REF(cft_defpacket, MsgQToRack_trans, _trans);
+	return cf_expr_duration(dpToRackPortBufferSize.get_value(), CF_US);
+}
+cf_duration cfm_serverroom::mq_MsgQToRack_cb_receive_time(cf_payload_b* _trans) {
+	CF_COMM_DEF_TRANS_REF(cft_defpacket, MsgQToRack_trans, _trans);
+	return cf_expr_duration(dpToRackPortBufferSize.get_value(), CF_US);
 }
 
 

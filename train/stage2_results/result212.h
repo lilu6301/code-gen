@@ -35,7 +35,7 @@ public:
 
 public:
 	std::vector<p_mq_MsgQToDataCenterSwitch_t*> p_mq_MsgQToDataCenterSwitch_vec;
-	p_mq_MsgQToServerRoom_t p_mq_MsgQToServerRoom;
+	std::vector<p_mq_MsgQToServerRoom_t*> p_mq_MsgQToServerRoom_vec;
 
 public:
 	std::vector<cfm_aggswitch*> AGGSwitch_vec;

@@ -67,19 +67,6 @@ cf_application(name)
 		}
 	}
 
-	for (cf_count i = 0; i < (cf_count)2; i++) {
-		OS->p_mq_MsgQ_0
-		(mq_MsgQ_vec[i]
-				->p_target_socket
-		);
-	}
-	for (cf_count i = 0; i < (cf_count)2; i++) {
-		OS->p_mq_MsgQ_1
-		(mq_MsgQ_vec[i]
-				->p_target_socket
-		);
-	}
-
 
 
 	cf_application::elab_end();

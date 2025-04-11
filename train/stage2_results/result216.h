@@ -41,7 +41,7 @@ public:
 	virtual void cb_end_of_simulation(void);
 
 public:
-	std::vector<p_mq_MsgQToAggSwitch_t*> p_mq_MsgQToAggSwitch_vec;
+	p_mq_MsgQToAggSwitch_t p_mq_MsgQToAggSwitch;
 	std::vector<p_mq_MsgQToRack_t*> p_mq_MsgQToRack_vec;
 	p_mq_MsgQToServerRoom_t p_mq_MsgQToServerRoom;
 	p_mq_MsgQToDataCenterSwitch_t p_mq_MsgQToDataCenterSwitch;

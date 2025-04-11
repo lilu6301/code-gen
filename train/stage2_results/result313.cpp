@@ -60,12 +60,12 @@ void cfm_hwdevicemodel::cb_end_of_simulation(void) {
 void cfm_hwdevicemodel::cb_init_attributes() {
 
 	cfa_cycle_period.init(cf_expr_time(10, CF_NS));
-	sv_inputStream.cfa_write_time.init(cf_expr_duration(1, CF_NS));
-	sv_inputStream.cfa_read_time.init(cf_expr_duration(1, CF_NS));
+	sv_inputStream.cfa_write_time.init(cf_expr_duration(10, CF_US));
+	sv_inputStream.cfa_read_time.init(cf_expr_duration(10, CF_US));
 	sv_inputStream.cfa_semaphore.init(false);
 	sv_inputStream.cfa_concurrency.init((cf_nonzero_count) 1);
-	sv_outputStream.cfa_write_time.init(cf_expr_duration(1, CF_NS));
-	sv_outputStream.cfa_read_time.init(cf_expr_duration(1, CF_NS));
+	sv_outputStream.cfa_write_time.init(cf_expr_duration(10, CF_US));
+	sv_outputStream.cfa_read_time.init(cf_expr_duration(10, CF_US));
 	sv_outputStream.cfa_semaphore.init(false);
 	sv_outputStream.cfa_concurrency.init((cf_nonzero_count) 1);
 

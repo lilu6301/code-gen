@@ -24,24 +24,24 @@ cf_application(name)
 	cf_application::init();
 	CoF_Initiator = new cfm_cof_initiator
 	("CoF_Initiator");
-	iUart = new iUart_t
+	iUart = new SystemCIP_t
 	("iUart");
 
-	CoF_Initiator->p_mq_MsgFwQ
-	(mq_MsgFwQ
-			.p_target_socket
-	);
 	CoF_Initiator->p_mq_MsgBwQ
 	(mq_MsgBwQ
 			.p_target_socket
 	);
-
-	iUart->p_mq_MsgFwQ
+	CoF_Initiator->p_mq_MsgFwQ
 	(mq_MsgFwQ
 			.p_target_socket
 	);
+
 	iUart->p_mq_MsgBwQ
 	(mq_MsgBwQ
+			.p_target_socket
+	);
+	iUart->p_mq_MsgFwQ
+	(mq_MsgFwQ
 			.p_target_socket
 	);
 

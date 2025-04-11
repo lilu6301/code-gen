@@ -41,43 +41,31 @@ cf_application(name)
 	P2 = new cfm_p2
 	("P2");
 
-	C1->p_mq_M1_1
-	(mq_M1_1
-			.p_target_socket
-	);
-
-	C2->p_mq_M1_2
-	(mq_M1_2
-			.p_target_socket
-	);
-
-	F12->p_mq_M1_3
+	C1->p_mq_M1_3
 	(mq_M1_3
 			.p_target_socket
 	);
-	F12->p_mq_M2_2
+
+	C2->p_mq_M2_2
 	(mq_M2_2
+			.p_target_socket
+	);
+
+	F12->p_mq_M1_1
+	(mq_M1_1
 			.p_target_socket
 	);
 	F12->p_mq_M2_1
 	(mq_M2_1
 			.p_target_socket
 	);
-	F12->p_mq_M1_2
+
+	F2->p_mq_M1_2
 	(mq_M1_2
 			.p_target_socket
 	);
-	F12->p_mq_M1_1
-	(mq_M1_1
-			.p_target_socket
-	);
-	F12->p_mq_M1_3
+	F2->p_mq_M1_3
 	(mq_M1_3
-			.p_target_socket
-	);
-
-	F2->p_mq_M1_1
-	(mq_M1_1
 			.p_target_socket
 	);
 
@@ -86,8 +74,8 @@ cf_application(name)
 			.p_target_socket
 	);
 
-	P2->p_mq_M1_2
-	(mq_M1_2
+	P2->p_mq_M2_1
+	(mq_M2_1
 			.p_target_socket
 	);
 
@@ -121,36 +109,36 @@ void cfm_automatedpayloadtrackers::cb_end_of_simulation(void) {
 void cfm_automatedpayloadtrackers::cb_init_attributes() {
 
 	cfa_cycle_period.init(cf_expr_time(10, CF_NS));
-	mq_M1_1.cfa_send_time.init(cf_expr_duration(10, CF_NS));
-	mq_M1_1.cfa_receive_time.init(cf_expr_duration(10, CF_NS));
+	mq_M1_1.cfa_send_time.init(cf_expr_duration(5, CF_NS));
+	mq_M1_1.cfa_receive_time.init(cf_expr_duration(5, CF_NS));
 	mq_M1_1.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
 	mq_M1_1.cfa_queue_capacity.init((cf_nonzero_count) 1);
 	mq_M1_1.cfa_concurrency.init((cf_nonzero_count) 1);
 	mq_M1_1.cfa_send_threshold.init((cf_nonzero_count) 1);
 	mq_M1_1.cfa_receive_threshold.init((cf_nonzero_count) 1);
-	mq_M1_2.cfa_send_time.init(cf_expr_duration(10, CF_NS));
-	mq_M1_2.cfa_receive_time.init(cf_expr_duration(10, CF_NS));
+	mq_M1_2.cfa_send_time.init(cf_expr_duration(5, CF_NS));
+	mq_M1_2.cfa_receive_time.init(cf_expr_duration(5, CF_NS));
 	mq_M1_2.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
 	mq_M1_2.cfa_queue_capacity.init((cf_nonzero_count) 1);
 	mq_M1_2.cfa_concurrency.init((cf_nonzero_count) 1);
 	mq_M1_2.cfa_send_threshold.init((cf_nonzero_count) 1);
 	mq_M1_2.cfa_receive_threshold.init((cf_nonzero_count) 1);
-	mq_M1_3.cfa_send_time.init(cf_expr_duration(10, CF_NS));
-	mq_M1_3.cfa_receive_time.init(cf_expr_duration(10, CF_NS));
+	mq_M1_3.cfa_send_time.init(cf_expr_duration(5, CF_NS));
+	mq_M1_3.cfa_receive_time.init(cf_expr_duration(5, CF_NS));
 	mq_M1_3.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
 	mq_M1_3.cfa_queue_capacity.init((cf_nonzero_count) 1);
 	mq_M1_3.cfa_concurrency.init((cf_nonzero_count) 1);
 	mq_M1_3.cfa_send_threshold.init((cf_nonzero_count) 1);
 	mq_M1_3.cfa_receive_threshold.init((cf_nonzero_count) 1);
-	mq_M2_1.cfa_send_time.init(cf_expr_duration(10, CF_NS));
-	mq_M2_1.cfa_receive_time.init(cf_expr_duration(10, CF_NS));
+	mq_M2_1.cfa_send_time.init(cf_expr_duration(5, CF_NS));
+	mq_M2_1.cfa_receive_time.init(cf_expr_duration(5, CF_NS));
 	mq_M2_1.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
 	mq_M2_1.cfa_queue_capacity.init((cf_nonzero_count) 1);
 	mq_M2_1.cfa_concurrency.init((cf_nonzero_count) 1);
 	mq_M2_1.cfa_send_threshold.init((cf_nonzero_count) 1);
 	mq_M2_1.cfa_receive_threshold.init((cf_nonzero_count) 1);
-	mq_M2_2.cfa_send_time.init(cf_expr_duration(10, CF_NS));
-	mq_M2_2.cfa_receive_time.init(cf_expr_duration(10, CF_NS));
+	mq_M2_2.cfa_send_time.init(cf_expr_duration(5, CF_NS));
+	mq_M2_2.cfa_receive_time.init(cf_expr_duration(5, CF_NS));
 	mq_M2_2.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
 	mq_M2_2.cfa_queue_capacity.init((cf_nonzero_count) 1);
 	mq_M2_2.cfa_concurrency.init((cf_nonzero_count) 1);

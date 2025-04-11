@@ -16,7 +16,7 @@
 #include "cfm_serverroom.h"
 #include "dt/cft_defpacket.h"
 
-
+#include <chrono>
 
 class cfm_datacenter: public cf_core::cf_application, public cfm_datacenter_dp_if {
 public:
@@ -45,7 +45,7 @@ public:
 	std::vector<mq_MsgQToServerRoom_t*> mq_MsgQToServerRoom_vec;
 
 
-
+	std::chrono::high_resolution_clock::time_point t_start;
 
 };
 
