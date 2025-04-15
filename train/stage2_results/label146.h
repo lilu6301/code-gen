@@ -1,3 +1,4 @@
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_p2
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -6,35 +7,67 @@
 #ifndef COFS_MODEL_AUTOMATEDPAYLOADTRACKERS_P2
 #define COFS_MODEL_AUTOMATEDPAYLOADTRACKERS_P2
 
+/// Model Header includes start
 #include "cfm_automatedpayloadtrackers_global.h"
 #include "cfm_automatedpayloadtrackers_global_types.h"
 #include "cofluent.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'P2 includes' algorithm generated code
 
+//End of 'P2 includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgP2 Function P2
+//@{
+///        \page dxpP2
+//@{
+///    \brief P2 function model start
 class cfm_p2: public cf_core::cf_function {
 public:
+	/// cfm_p2 type define start
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_p2, cf_core::cf_payload_int> p_mq_M2_1_t;
+	/// cfm_p2 type define end
 
+	/// constructor
 	cfm_p2(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_p2(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_M2_1_t p_mq_M2_1;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'P2 local declarations' algorithm generated code
 
+	//End of 'P2 local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief P2 function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_AUTOMATEDPAYLOADTRACKERS_P2
 
+//<#!@READ-ONLY-SECTION-END@!#>

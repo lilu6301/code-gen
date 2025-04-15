@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_tlm2lt
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,34 +8,54 @@
 #ifndef COFS_MODEL_TLM2LT
 #define COFS_MODEL_TLM2LT
 
+/// Model Header includes start
 #include "cfm_tlm2lt_global.h"
 #include "cfm_tlm2lt_global_types.h"
 #include "cofluent.h"
 #include "cfm_reader.h"
 #include "cfm_target.h"
 #include "cfm_target_2.h"
-#include "cfm_tlm2platfom.h"
 #include "cfm_writer.h"
 #include "dt/cft_defdata.h"
-#include "dt/cft_initiator.h"
 #include "dt/cft_defmsgq.h"
+#include "dt/cft_initiator.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'TLM2LT includes' algorithm generated code
 
+//End of 'TLM2LT includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgTLM2LT Function TLM2LT
+//@{
+///        \page dxpTLM2LT
+//@{
+///    \brief TLM2LT function model start
 class cfm_tlm2lt: public cf_core::cf_application {
 public:
-	typedef cf_core::cf_message_queue<cft_defmsgq> mq_ReferenceQueue3_t;
-	typedef cf_core::cf_message_queue<cft_defdata> mq_ReferenceQueue_t;
-	typedef cf_core::cf_message_queue<cft_defdata> mq_ReferenceQueue2_t;
-	typedef cf_core::cf_message_queue<cft_defdata> mq_TargetResponse_t;
-	typedef cf_core::cf_message_queue<cft_defdata> mq_TargetRequest_t;
-	typedef cf_core::cf_message_queue<cft_defdata> mq_TargetWrapper_t;
+	/// cfm_tlm2lt type define start
+	/// systemC IPs typedef
+	typedef cfm_tlm2platfom SystemCIP_t;
+	/// relations typedef
+	typedef cf_core::cf_message_queue<cft_defdata> mq_InitiatorReader_t;
+	typedef cf_core::cf_message_queue<cft_defdata> mq_InitiatorWriter_t;
+	typedef cf_core::cf_event ev_Sync_t;
 	typedef cf_core::cf_event ev_Sync2_t;
 	typedef cf_core::cf_event ev_Sync3_t;
+	typedef cf_core::cf_message_queue<cft_defmsgq> mq_ReaderResponse_t;
+	typedef cf_core::cf_message_queue<cft_defmsgq> mq_TargetRequest_t;
+	typedef cf_core::cf_message_queue<cft_defmsgq> mq_TargetResponse_t;
+	typedef cf_core::cf_message_queue<cft_defdata> mq_ReferenceQueue_t;
+	typedef cf_core::cf_message_queue<cft_defdata> mq_ReferenceQueue2_t;
+	typedef cf_core::cf_message_queue<cft_defdata> mq_ReferenceQueue3_t;
 
+	/// cfm_tlm2lt type define end
 
+	/// constructor
 	cfm_tlm2lt(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_tlm2lt(void);
 	virtual void cb_before_elaboration(void);
 
@@ -42,30 +63,52 @@ public:
 	void cb_end_of_simulation(void);
 
 public:
+	/// \name functions
+	//@{
 	cfm_reader* Reader;
 	cfm_target* Target;
 	cfm_target_2* Target_2;
-	cfm_tlm2platfom* TLM2Platfom;
 	cfm_writer* Writer;
+	SystemCIP_t* SystemCIP;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
-	mq_ReferenceQueue3_t mq_ReferenceQueue3;
-	mq_ReferenceQueue_t mq_ReferenceQueue;
-	mq_ReferenceQueue2_t mq_ReferenceQueue2;
-	mq_TargetResponse_t mq_TargetResponse;
-	mq_TargetRequest_t mq_TargetRequest;
-	mq_TargetWrapper_t mq_TargetWrapper;
+	/// \name relations
+	//@{
+	mq_InitiatorReader_t mq_InitiatorReader;
+	mq_InitiatorWriter_t mq_InitiatorWriter;
+	ev_Sync_t ev_Sync;
 	ev_Sync2_t ev_Sync2;
 	ev_Sync3_t ev_Sync3;
+	mq_ReaderResponse_t mq_ReaderResponse;
+	mq_TargetRequest_t mq_TargetRequest;
+	mq_TargetResponse_t mq_TargetResponse;
+	mq_ReferenceQueue_t mq_ReferenceQueue;
+	mq_ReferenceQueue2_t mq_ReferenceQueue2;
+	mq_ReferenceQueue3_t mq_ReferenceQueue3;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'TLM2LT local declarations' algorithm generated code
 
+	//End of 'TLM2LT local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief TLM2LT function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_TLM2LT
 
+//<#!@READ-ONLY-SECTION-END@!#>

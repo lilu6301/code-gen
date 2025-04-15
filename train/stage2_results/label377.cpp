@@ -29,13 +29,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_l2cap_send::cfm_l2cap_send(sc_core::sc_module_name name)
-cf_function(name)
-, cfm_l2cap_send_dp_if()
-, p_mq_RFCOMM_Out("p_mq_RFCOMM_Out")
-, p_mq_L2CAP_Out("p_mq_L2CAP_Out")
-
-{
+cfm_l2cap_send::cfm_l2cap_send(sc_core::sc_module_name name) :
+		cf_function(name), cfm_l2cap_send_dp_if(), p_mq_RFCOMM_Out(
+				"p_mq_RFCOMM_Out"), p_mq_L2CAP_Out("p_mq_L2CAP_Out") {
 	cf_function::init();
 
 	//<#!@READ-ONLY-SECTION-END@!#>

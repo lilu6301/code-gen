@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_cosimverilatorchiselapp
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,6 +8,7 @@
 #ifndef COFS_MODEL_COSIMVERILATORCHISELAPP
 #define COFS_MODEL_COSIMVERILATORCHISELAPP
 
+/// Model Header includes start
 #include "cfm_cosimverilatorchiselapp_global.h"
 #include "cfm_cosimverilatorchiselapp_global_types.h"
 #include "cofluent.h"
@@ -17,17 +19,32 @@
 #include "dt/cft_defsum.h"
 #include "dt/cft_defdata1.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'CoSimVerilatorChiselApp includes' algorithm generated code
 
+//End of 'CoSimVerilatorChiselApp includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgCoSimVerilatorChiselApp Function CoSimVerilatorChiselApp
+//@{
+///        \page dxpCoSimVerilatorChiselApp
+//@{
+///    \brief CoSimVerilatorChiselApp function model start
 class cfm_cosimverilatorchiselapp: public cf_core::cf_application {
 public:
+	/// cfm_cosimverilatorchiselapp type define start
+	/// relations typedef
 	typedef cf_core::cf_message_queue<cft_defdata1> mq_data1_t;
 	typedef cf_core::cf_message_queue<cft_defdata1> mq_data2_t;
 	typedef cf_core::cf_message_queue<cft_defsum> mq_sum_t;
 
+	/// cfm_cosimverilatorchiselapp type define end
 
+	/// constructor
 	cfm_cosimverilatorchiselapp(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_cosimverilatorchiselapp(void);
 	virtual void cb_before_elaboration(void);
 
@@ -35,24 +52,43 @@ public:
 	void cb_end_of_simulation(void);
 
 public:
+	/// \name functions
+	//@{
 	cfm_adder* adder;
 	cfm_consumer* Consumer;
 	cfm_producer1* Producer1;
 	cfm_producer2* Producer2;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	mq_data1_t mq_data1;
 	mq_data2_t mq_data2;
 	mq_sum_t mq_sum;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'CoSimVerilatorChiselApp local declarations' algorithm generated code
 
+	//End of 'CoSimVerilatorChiselApp local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief CoSimVerilatorChiselApp function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_COSIMVERILATORCHISELAPP
 
+//<#!@READ-ONLY-SECTION-END@!#>

@@ -29,117 +29,45 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_bt_stack::cfm_bt_stack(sc_core::sc_module_name name)
-cf_function_container(name)
-, cfm_bt_stack_dp_if()
-, p_mq_BaseBand_Out("p_mq_BaseBand_Out")
-, p_mq_BaseBand_In("p_mq_BaseBand_In")
-, p_mq_ReadWrite_0("p_mq_ReadWrite_0")
-, p_mq_DataIn("p_mq_DataIn")
-, p_ev_WrOK("p_ev_WrOK")
-, p_mq_DataOut("p_mq_DataOut")
-, p_ev_startEv("p_ev_startEv")
-, p_mq_ReadWrite_1("p_mq_ReadWrite_1")
-, mq_L2CAP_In("L2CAP_In"
-)
-, mq_L2CAP_Out("L2CAP_Out"
-)
-, mq_OBEX_In("OBEX_In"
-)
-, mq_OBEX_Out("OBEX_Out"
-)
-, mq_RFCOMM_In("RFCOMM_In"
-)
-, mq_RFCOMM_Out("RFCOMM_Out"
-)
-
-{
+cfm_bt_stack::cfm_bt_stack(sc_core::sc_module_name name) :
+		cf_function_container(name), cfm_bt_stack_dp_if(), p_mq_BaseBand_Out(
+				"p_mq_BaseBand_Out"), p_mq_BaseBand_In("p_mq_BaseBand_In"), p_mq_ReadWrite_0(
+				"p_mq_ReadWrite_0"), p_mq_DataIn("p_mq_DataIn"), p_ev_WrOK(
+				"p_ev_WrOK"), p_mq_DataOut("p_mq_DataOut"), p_ev_startEv(
+				"p_ev_startEv"), p_mq_ReadWrite_1("p_mq_ReadWrite_1"), mq_L2CAP_In(
+				"L2CAP_In"), mq_L2CAP_Out("L2CAP_Out"), mq_OBEX_In("OBEX_In"), mq_OBEX_Out(
+				"OBEX_Out"), mq_RFCOMM_In("RFCOMM_In"), mq_RFCOMM_Out(
+				"RFCOMM_Out") {
 	cf_function_container::init();
-	BaseBand_Layer = new cfm_baseband_layer
-	("BaseBand_Layer");
-	L2CAP_Layer = new cfm_l2cap_layer
-	("L2CAP_Layer");
-	OBEX_Layer = new cfm_obex_layer
-	("OBEX_Layer");
-	RFCOMM_Layer = new cfm_rfcomm_layer
-	("RFCOMM_Layer");
+	BaseBand_Layer = new cfm_baseband_layer("BaseBand_Layer");
+	L2CAP_Layer = new cfm_l2cap_layer("L2CAP_Layer");
+	OBEX_Layer = new cfm_obex_layer("OBEX_Layer");
+	RFCOMM_Layer = new cfm_rfcomm_layer("RFCOMM_Layer");
 
 	// connections
-	BaseBand_Layer->p_mq_BaseBand_Out
-	(p_mq_BaseBand_Out
-	);
-	BaseBand_Layer->p_mq_L2CAP_Out
-	(mq_L2CAP_Out
-			.p_target_socket
-	);
-	BaseBand_Layer->p_mq_BaseBand_In
-	(p_mq_BaseBand_In
-	);
-	BaseBand_Layer->p_mq_L2CAP_In
-	(mq_L2CAP_In
-			.p_target_socket
-	);
+	BaseBand_Layer->p_mq_BaseBand_Out(p_mq_BaseBand_Out);
+	BaseBand_Layer->p_mq_L2CAP_Out(mq_L2CAP_Out.p_target_socket);
+	BaseBand_Layer->p_mq_BaseBand_In(p_mq_BaseBand_In);
+	BaseBand_Layer->p_mq_L2CAP_In(mq_L2CAP_In.p_target_socket);
 
-	L2CAP_Layer->p_mq_RFCOMM_Out
-	(mq_RFCOMM_Out
-			.p_target_socket
-	);
-	L2CAP_Layer->p_mq_RFCOMM_In
-	(mq_RFCOMM_In
-			.p_target_socket
-	);
-	L2CAP_Layer->p_mq_L2CAP_In
-	(mq_L2CAP_In
-			.p_target_socket
-	);
-	L2CAP_Layer->p_mq_L2CAP_Out
-	(mq_L2CAP_Out
-			.p_target_socket
-	);
+	L2CAP_Layer->p_mq_RFCOMM_Out(mq_RFCOMM_Out.p_target_socket);
+	L2CAP_Layer->p_mq_RFCOMM_In(mq_RFCOMM_In.p_target_socket);
+	L2CAP_Layer->p_mq_L2CAP_In(mq_L2CAP_In.p_target_socket);
+	L2CAP_Layer->p_mq_L2CAP_Out(mq_L2CAP_Out.p_target_socket);
 
-	OBEX_Layer->p_mq_ReadWrite_0
-	(p_mq_ReadWrite_0
-	);
-	OBEX_Layer->p_mq_DataIn
-	(p_mq_DataIn
-	);
-	OBEX_Layer->p_ev_WrOK
-	(p_ev_WrOK
-	);
-	OBEX_Layer->p_mq_DataOut
-	(p_mq_DataOut
-	);
-	OBEX_Layer->p_mq_OBEX_In
-	(mq_OBEX_In
-			.p_target_socket
-	);
-	OBEX_Layer->p_ev_startEv
-	(p_ev_startEv
-	);
-	OBEX_Layer->p_mq_OBEX_Out
-	(mq_OBEX_Out
-			.p_target_socket
-	);
-	OBEX_Layer->p_mq_ReadWrite_1
-	(p_mq_ReadWrite_1
-	);
+	OBEX_Layer->p_mq_ReadWrite_0(p_mq_ReadWrite_0);
+	OBEX_Layer->p_mq_DataIn(p_mq_DataIn);
+	OBEX_Layer->p_ev_WrOK(p_ev_WrOK);
+	OBEX_Layer->p_mq_DataOut(p_mq_DataOut);
+	OBEX_Layer->p_mq_OBEX_In(mq_OBEX_In.p_target_socket);
+	OBEX_Layer->p_ev_startEv(p_ev_startEv);
+	OBEX_Layer->p_mq_OBEX_Out(mq_OBEX_Out.p_target_socket);
+	OBEX_Layer->p_mq_ReadWrite_1(p_mq_ReadWrite_1);
 
-	RFCOMM_Layer->p_mq_OBEX_In
-	(mq_OBEX_In
-			.p_target_socket
-	);
-	RFCOMM_Layer->p_mq_OBEX_Out
-	(mq_OBEX_Out
-			.p_target_socket
-	);
-	RFCOMM_Layer->p_mq_RFCOMM_Out
-	(mq_RFCOMM_Out
-			.p_target_socket
-	);
-	RFCOMM_Layer->p_mq_RFCOMM_In
-	(mq_RFCOMM_In
-			.p_target_socket
-	);
+	RFCOMM_Layer->p_mq_OBEX_In(mq_OBEX_In.p_target_socket);
+	RFCOMM_Layer->p_mq_OBEX_Out(mq_OBEX_Out.p_target_socket);
+	RFCOMM_Layer->p_mq_RFCOMM_Out(mq_RFCOMM_Out.p_target_socket);
+	RFCOMM_Layer->p_mq_RFCOMM_In(mq_RFCOMM_In.p_target_socket);
 
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'BT_Stack constructor' algorithm generated code
@@ -159,10 +87,10 @@ cfm_bt_stack::~cfm_bt_stack(void) {
 
 	//End of 'BT_Stack destructor' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
-	delete BaseBand_Layer;	///ddd
-	delete L2CAP_Layer;	///ddd
-	delete OBEX_Layer;	///ddd
-	delete RFCOMM_Layer;	///ddd
+	delete BaseBand_Layer;
+	delete L2CAP_Layer;
+	delete OBEX_Layer;
+	delete RFCOMM_Layer;
 }
 //@}
 

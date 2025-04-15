@@ -1,3 +1,4 @@
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_customizedschedulerapp
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -6,6 +7,7 @@
 #ifndef COFS_MODEL_CUSTOMIZEDSCHEDULERAPP
 #define COFS_MODEL_CUSTOMIZEDSCHEDULERAPP
 
+/// Model Header includes start
 #include <vector>
 #include "cfm_customizedschedulerapp_global.h"
 #include "cfm_customizedschedulerapp_global_types.h"
@@ -13,15 +15,30 @@
 #include "cfm_consumer.h"
 #include "cfm_producer.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'CustomizedSchedulerApp includes' algorithm generated code
 
+//End of 'CustomizedSchedulerApp includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgCustomizedSchedulerApp Function CustomizedSchedulerApp
+//@{
+///        \page dxpCustomizedSchedulerApp
+//@{
+///    \brief CustomizedSchedulerApp function model start
 class cfm_customizedschedulerapp: public cf_core::cf_application {
 public:
+	/// cfm_customizedschedulerapp type define start
+	/// relations typedef
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_MsgQ_t;
 
+	/// cfm_customizedschedulerapp type define end
 
+	/// constructor
 	cfm_customizedschedulerapp(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_customizedschedulerapp(void);
 	virtual void cb_before_elaboration(void);
 
@@ -29,20 +46,39 @@ public:
 	void cb_end_of_simulation(void);
 
 public:
+	/// \name functions
+	//@{
 	std::vector<cfm_consumer*> Consumer_vec;
 	std::vector<cfm_producer*> Producer_vec;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	mq_MsgQ_t mq_MsgQ;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'CustomizedSchedulerApp local declarations' algorithm generated code
 
+	//End of 'CustomizedSchedulerApp local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief CustomizedSchedulerApp function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_CUSTOMIZEDSCHEDULERAPP
 
+//<#!@READ-ONLY-SECTION-END@!#>

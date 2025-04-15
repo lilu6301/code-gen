@@ -1,3 +1,4 @@
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_rack
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -6,6 +7,7 @@
 #ifndef COFS_MODEL_DATACENTER_RACK
 #define COFS_MODEL_DATACENTER_RACK
 
+/// Model Header includes start
 #include <vector>
 #include "cfm_datacenter_global.h"
 #include "cfm_datacenter_global_types.h"
@@ -15,48 +17,92 @@
 #include "cfm_torswitch.h"
 #include "dt/cft_defpacket.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'Rack includes' algorithm generated code
 
+//End of 'Rack includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgRack Function Rack
+//@{
+///        \page dxpRack
+//@{
+///    \brief Rack function model start
 class cfm_rack: public cf_core::cf_function_container, public cfm_rack_dp_if {
 public:
+	/// cfm_rack type define start
+	/// relations typedef
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQServerToToRSwitch_t;
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQToServer_t;
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_rack, cft_defpacket> p_mq_MsgQToRack_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_rack, cft_defpacket> p_mq_MsgQToAggSwitch_t;
+	/// cfm_rack type define end
 
+	/// constructor
 	cfm_rack(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_rack(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_MsgQToRack_t p_mq_MsgQToRack;
 	p_mq_MsgQToAggSwitch_t p_mq_MsgQToAggSwitch;
+	//@}
 
 public:
+	/// \name functions
+	//@{
 	std::vector<cfm_server*> Server_vec;
 	cfm_torswitch* ToRSwitch;
+	//@}
 
 public:
-	cf_dt::cf_duration mq_MsgQServerToToRSwitch_cb_receive_time(cf_core::cf_payload_b* _trans);
-	cf_dt::cf_duration mq_MsgQToServer_cb_send_time(cf_core::cf_payload_b* _trans);
-	cf_dt::cf_duration mq_MsgQToServer_cb_receive_time(cf_core::cf_payload_b* _trans);
+	/// Overload function for mq_MsgQServerToToRSwitch message queue receive time
+	cf_dt::cf_duration mq_MsgQServerToToRSwitch_cb_receive_time(
+			cf_core::cf_payload_b* _trans);
+	/// Overload function for mq_MsgQToServer message queue send time
+	cf_dt::cf_duration mq_MsgQToServer_cb_send_time(
+			cf_core::cf_payload_b* _trans);
+	/// Overload function for mq_MsgQToServer message queue receive time
+	cf_dt::cf_duration mq_MsgQToServer_cb_receive_time(
+			cf_core::cf_payload_b* _trans);
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	std::vector<mq_MsgQServerToToRSwitch_t*> mq_MsgQServerToToRSwitch_vec;
 	std::vector<mq_MsgQToServer_t*> mq_MsgQToServer_vec;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'Rack local declarations' algorithm generated code
 
+	//End of 'Rack local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief Rack function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_DATACENTER_RACK
 
+//<#!@READ-ONLY-SECTION-END@!#>

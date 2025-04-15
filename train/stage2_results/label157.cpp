@@ -29,42 +29,24 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_device::cfm_device(sc_core::sc_module_name name)
-cf_function_container(name)
-, cfm_device_dp_if()
-, p_mq_RDATAin("p_mq_RDATAin")
-, p_mq_BRESPin("p_mq_BRESPin")
-, p_mq_ARADDRchn("p_mq_ARADDRchn")
-, p_mq_WDATAchn("p_mq_WDATAchn")
-, p_mq_AWADDRchn("p_mq_AWADDRchn")
-
-{
+cfm_device::cfm_device(sc_core::sc_module_name name) :
+		cf_function_container(name), cfm_device_dp_if(), p_mq_RDATAin(
+				"p_mq_RDATAin"), p_mq_BRESPin("p_mq_BRESPin"), p_mq_ARADDRchn(
+				"p_mq_ARADDRchn"), p_mq_WDATAchn("p_mq_WDATAchn"), p_mq_AWADDRchn(
+				"p_mq_AWADDRchn") {
 	cf_function_container::init();
-	ReceiveWACK = new cfm_receivewack
-	("ReceiveWACK");
-	ReceiverRData = new cfm_receiverrdata
-	("ReceiverRData");
-	Sender = new cfm_sender
-	("Sender");
+	ReceiveWACK = new cfm_receivewack("ReceiveWACK");
+	ReceiverRData = new cfm_receiverrdata("ReceiverRData");
+	Sender = new cfm_sender("Sender");
 
 	// connections
-	ReceiveWACK->p_mq_BRESPin
-	(p_mq_BRESPin
-	);
+	ReceiveWACK->p_mq_BRESPin(p_mq_BRESPin);
 
-	ReceiverRData->p_mq_RDATAin
-	(p_mq_RDATAin
-	);
+	ReceiverRData->p_mq_RDATAin(p_mq_RDATAin);
 
-	Sender->p_mq_ARADDRchn
-	(p_mq_ARADDRchn
-	);
-	Sender->p_mq_WDATAchn
-	(p_mq_WDATAchn
-	);
-	Sender->p_mq_AWADDRchn
-	(p_mq_AWADDRchn
-	);
+	Sender->p_mq_ARADDRchn(p_mq_ARADDRchn);
+	Sender->p_mq_WDATAchn(p_mq_WDATAchn);
+	Sender->p_mq_AWADDRchn(p_mq_AWADDRchn);
 
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'Device constructor' algorithm generated code
@@ -84,9 +66,9 @@ cfm_device::~cfm_device(void) {
 
 	//End of 'Device destructor' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
-	delete ReceiveWACK;	///ddd
-	delete ReceiverRData;	///ddd
-	delete Sender;	///ddd
+	delete ReceiveWACK;
+	delete ReceiverRData;
+	delete Sender;
 }
 //@}
 

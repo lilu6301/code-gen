@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_protocolmapdatatypeapp
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,25 +8,41 @@
 #ifndef COFS_MODEL_PROTOCOLMAPDATATYPEAPP
 #define COFS_MODEL_PROTOCOLMAPDATATYPEAPP
 
+/// Model Header includes start
 #include "cfm_protocolmapdatatypeapp_global.h"
 #include "cfm_protocolmapdatatypeapp_global_types.h"
 #include "cofluent.h"
 #include "cfm_consumer.h"
+#include "cfm_producer.h"
 #include "cfm_protocolreceive.h"
 #include "cfm_protocolsend.h"
-#include "cfm_producer.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'ProtocolMapDataTypeApp includes' algorithm generated code
 
+//End of 'ProtocolMapDataTypeApp includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgProtocolMapDataTypeApp Function ProtocolMapDataTypeApp
+//@{
+///        \page dxpProtocolMapDataTypeApp
+//@{
+///    \brief ProtocolMapDataTypeApp function model start
 class cfm_protocolmapdatatypeapp: public cf_core::cf_application {
 public:
-	typedef cf_core::cf_message_queue<cf_core::cf_payload_map> mq_protocol_data_t;
+	/// cfm_protocolmapdatatypeapp type define start
+	/// relations typedef
+	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_protocol_data_t;
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_user_data_in_t;
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_user_data_out_t;
 
+	/// cfm_protocolmapdatatypeapp type define end
 
+	/// constructor
 	cfm_protocolmapdatatypeapp(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_protocolmapdatatypeapp(void);
 	virtual void cb_before_elaboration(void);
 
@@ -33,24 +50,43 @@ public:
 	void cb_end_of_simulation(void);
 
 public:
+	/// \name functions
+	//@{
 	cfm_consumer* Consumer;
+	cfm_producer* Producer;
 	cfm_protocolreceive* ProtocolReceive;
 	cfm_protocolsend* ProtocolSend;
-	cfm_producer* Producer;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	mq_protocol_data_t mq_protocol_data;
 	mq_user_data_in_t mq_user_data_in;
 	mq_user_data_out_t mq_user_data_out;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'ProtocolMapDataTypeApp local declarations' algorithm generated code
 
+	//End of 'ProtocolMapDataTypeApp local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief ProtocolMapDataTypeApp function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_PROTOCOLMAPDATATYPEAPP
 
+//<#!@READ-ONLY-SECTION-END@!#>

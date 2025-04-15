@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_packet_in
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,37 +8,69 @@
 #ifndef COFS_MODEL_MYMODEL_PACKET_IN
 #define COFS_MODEL_MYMODEL_PACKET_IN
 
+/// Model Header includes start
 #include "cfm_mymodel_global.h"
 #include "cfm_mymodel_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_packet_in_dp_if.h"
 #include "dt/cft_defpacket.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'packet_in includes' algorithm generated code
 
+//End of 'packet_in includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgpacket_in Function packet_in
+//@{
+///        \page dxppacket_in
+//@{
+///    \brief packet_in function model start
 class cfm_packet_in: public cf_core::cf_function, public cfm_packet_in_dp_if {
 public:
+	/// cfm_packet_in type define start
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_packet_in, cft_defpacket> p_mq_p_in_t;
+	/// cfm_packet_in type define end
 
+	/// constructor
 	cfm_packet_in(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_packet_in(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_p_in_t p_mq_p_in;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
-	bool packet_lost;
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'packet_in local declarations' algorithm generated code
+
+	//End of 'packet_in local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief packet_in function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_MYMODEL_PACKET_IN
 
+//<#!@READ-ONLY-SECTION-END@!#>

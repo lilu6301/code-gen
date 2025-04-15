@@ -1,3 +1,4 @@
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_mpetsl
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -6,39 +7,71 @@
 #ifndef COFS_MODEL_SOFTWAREDEFINEDRADIOAPP_MPETSL
 #define COFS_MODEL_SOFTWAREDEFINEDRADIOAPP_MPETSL
 
+/// Model Header includes start
 #include "cfm_softwaredefinedradioapp_global.h"
 #include "cfm_softwaredefinedradioapp_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_mpetsl_dp_if.h"
 #include "dt/cft_defvideo.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'MPETSL includes' algorithm generated code
 
+//End of 'MPETSL includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgMPETSL Function MPETSL
+//@{
+///        \page dxpMPETSL
+//@{
+///    \brief MPETSL function model start
 class cfm_mpetsl: public cf_core::cf_function, public cfm_mpetsl_dp_if {
 public:
+	/// cfm_mpetsl type define start
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_mpetsl, cft_defvideo> p_mq_NetToDVB_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_mpetsl, cft_defvideo> p_mq_MPEToIP_t;
+	/// cfm_mpetsl type define end
 
+	/// constructor
 	cfm_mpetsl(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_mpetsl(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_NetToDVB_t p_mq_NetToDVB;
 	p_mq_MPEToIP_t p_mq_MPEToIP;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'MPETSL local declarations' algorithm generated code
 
+	//End of 'MPETSL local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief MPETSL function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_SOFTWAREDEFINEDRADIOAPP_MPETSL
 
+//<#!@READ-ONLY-SECTION-END@!#>

@@ -29,81 +29,30 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_bt_system::cfm_bt_system(sc_core::sc_module_name name)
-cf_function_container(name)
-, cfm_bt_system_dp_if()
-, p_mq_BaseBand_Out("p_mq_BaseBand_Out")
-, p_mq_BaseBand_In("p_mq_BaseBand_In")
-, p_ev_startEv("p_ev_startEv")
-, sv_Data("Data"
-)
-, mq_DataIn("DataIn"
-)
-, mq_DataOut("DataOut"
-)
-, mq_ReadWrite("ReadWrite"
-)
-, ev_WrOK("WrOK"
-)
-
-{
+cfm_bt_system::cfm_bt_system(sc_core::sc_module_name name) :
+		cf_function_container(name), cfm_bt_system_dp_if(), p_mq_BaseBand_Out(
+				"p_mq_BaseBand_Out"), p_mq_BaseBand_In("p_mq_BaseBand_In"), p_ev_startEv(
+				"p_ev_startEv"), sv_Data("Data"), mq_DataIn("DataIn"), mq_DataOut(
+				"DataOut"), mq_ReadWrite("ReadWrite"), ev_WrOK("WrOK") {
 	cf_function_container::init();
-	BT_Stack = new cfm_bt_stack
-	("BT_Stack");
-	FileSystem = new cfm_filesystem
-	("FileSystem");
+	BT_Stack = new cfm_bt_stack("BT_Stack");
+	FileSystem = new cfm_filesystem("FileSystem");
 
 	// connections
-	BT_Stack->p_mq_BaseBand_Out
-	(p_mq_BaseBand_Out
-	);
-	BT_Stack->p_mq_BaseBand_In
-	(p_mq_BaseBand_In
-	);
-	BT_Stack->p_mq_ReadWrite_0
-	(mq_ReadWrite
-			.p_target_socket
-	);
-	BT_Stack->p_mq_DataIn
-	(mq_DataIn
-			.p_target_socket
-	);
-	BT_Stack->p_ev_WrOK
-	(ev_WrOK
-			.p_target_socket
-	);
-	BT_Stack->p_mq_DataOut
-	(mq_DataOut
-			.p_target_socket
-	);
-	BT_Stack->p_ev_startEv
-	(p_ev_startEv
-	);
-	BT_Stack->p_mq_ReadWrite_1
-	(mq_ReadWrite
-			.p_target_socket
-	);
+	BT_Stack->p_mq_BaseBand_Out(p_mq_BaseBand_Out);
+	BT_Stack->p_mq_BaseBand_In(p_mq_BaseBand_In);
+	BT_Stack->p_mq_ReadWrite_0(mq_ReadWrite.p_target_socket);
+	BT_Stack->p_mq_DataIn(mq_DataIn.p_target_socket);
+	BT_Stack->p_ev_WrOK(ev_WrOK.p_target_socket);
+	BT_Stack->p_mq_DataOut(mq_DataOut.p_target_socket);
+	BT_Stack->p_ev_startEv(p_ev_startEv);
+	BT_Stack->p_mq_ReadWrite_1(mq_ReadWrite.p_target_socket);
 
-	FileSystem->p_sv_Data
-	(sv_Data
-			.p_target_socket
-	);
-	FileSystem->p_ev_WrOK
-	(ev_WrOK
-			.p_target_socket
-	);
-	FileSystem->p_mq_DataOut
-	(mq_DataOut
-			.p_target_socket
-	);
-	FileSystem->p_mq_DataIn
-	(mq_DataIn
-			.p_target_socket
-	);
-	FileSystem->p_mq_ReadWrite
-	(mq_ReadWrite
-			.p_target_socket
-	);
+	FileSystem->p_sv_Data(sv_Data.p_target_socket);
+	FileSystem->p_ev_WrOK(ev_WrOK.p_target_socket);
+	FileSystem->p_mq_DataOut(mq_DataOut.p_target_socket);
+	FileSystem->p_mq_DataIn(mq_DataIn.p_target_socket);
+	FileSystem->p_mq_ReadWrite(mq_ReadWrite.p_target_socket);
 
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'BT_System constructor' algorithm generated code
@@ -123,8 +72,8 @@ cfm_bt_system::~cfm_bt_system(void) {
 
 	//End of 'BT_System destructor' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
-	delete BT_Stack;	///ddd
-	delete FileSystem;	///ddd
+	delete BT_Stack;
+	delete FileSystem;
 }
 //@}
 

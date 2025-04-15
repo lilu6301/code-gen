@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_device
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,6 +8,7 @@
 #ifndef COFS_MODEL_COMPLETEDEVICE_DEVICE
 #define COFS_MODEL_COMPLETEDEVICE_DEVICE
 
+/// Model Header includes start
 #include "cfm_completedevice_global.h"
 #include "cfm_completedevice_global_types.h"
 #include "cofluent.h"
@@ -18,48 +20,86 @@
 #include "dt/cft_defprocessingmode.h"
 
 #include "mci/cfm_dpv.h"
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'device includes' algorithm generated code
 
+//End of 'device includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgdevice Function device
+//@{
+///        \page dxpdevice
+//@{
+///    \brief device function model start
 class cfm_device: public cf_core::cf_function_container, public cfm_device_dp_if {
 public:
+	/// cfm_device type define start
+	/// relations typedef
 	typedef cf_core::cf_message_queue<cft_defframe> mq_inputFrame_t;
 	typedef cf_core::cf_message_queue<cft_defframe> mq_outputFrame_t;
 	typedef cf_core::cf_shared_variable<cft_defprocessingmode> sv_processingMode_t;
 	typedef cf_core::cf_event ev_startProcess_t;
 
+	/// ports typedef
 	typedef cf_core::cf_mci_port<cfm_dpv> dpv_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_device> p_ev_newFrame_t;
+	/// cfm_device type define end
 
+	/// constructor
 	cfm_device(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_device(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	dpv_t dpv;
 	p_ev_newFrame_t p_ev_newFrame;
+	//@}
 
 public:
+	/// \name functions
+	//@{
 	cfm_hwmodel* hwModel;
 	cfm_mqtocommand* mqToCommand;
 	cfm_swinterface* swInterface;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	mq_inputFrame_t mq_inputFrame;
 	mq_outputFrame_t mq_outputFrame;
 	sv_processingMode_t sv_processingMode;
 	ev_startProcess_t ev_startProcess;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'device local declarations' algorithm generated code
 
+	//End of 'device local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief device function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_COMPLETEDEVICE_DEVICE
 
+//<#!@READ-ONLY-SECTION-END@!#>

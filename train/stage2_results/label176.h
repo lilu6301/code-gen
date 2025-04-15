@@ -27,7 +27,8 @@
 ///        \page dxpRAddrDmux
 //@{
 ///    \brief RAddrDmux function model start
-class cfm_raddrdmux: public cf_core::cf_function_router, public cfm_raddrdmux_dp_if {
+class cfm_raddrdmux: public cf_core::cf_function_router,
+		public cfm_raddrdmux_dp_if {
 public:
 	/// cfm_raddrdmux type define start
 

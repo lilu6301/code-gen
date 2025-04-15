@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_callprotocolstack
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,69 +8,103 @@
 #ifndef COFS_MODEL_SOFTWAREDEFINEDRADIOAPP_CALLPROCESSSTACK
 #define COFS_MODEL_SOFTWAREDEFINEDRADIOAPP_CALLPROCESSSTACK
 
+/// Model Header includes start
 #include "cfm_softwaredefinedradioapp_global.h"
 #include "cfm_softwaredefinedradioapp_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_callprotocolstack_dp_if.h"
-#include "cfm_callprotocolstack_ipcall.h"
-#include "cfm_callprotocolstack_umts.h"
-#include "cfm_httptocall.h"
+#include "cfm_ipcall.h"
+#include "cfm_httptcp.h"
+#include "cfm_umts.h"
 #include "dt/cft_defcall.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'CallProtocolStack includes' algorithm generated code
 
+//End of 'CallProtocolStack includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
-class cfm_callprotocolstack: public cf_core::cf_function_container, public cfm_callprotocolstack_dp_if {
+///    \defgroup dxgCallProtocolStack Function CallProtocolStack
+//@{
+///        \page dxpCallProtocolStack
+//@{
+///    \brief CallProtocolStack function model start
+class cfm_callprotocolstack: public cf_core::cf_function_container,
+		public cfm_callprotocolstack_dp_if {
 public:
+	/// cfm_callprotocolstack type define start
+	/// relations typedef
 	typedef cf_core::cf_message_queue<cft_defcall> mq_IPToHTTP_t;
 	typedef cf_core::cf_message_queue<cft_defcall> mq_IPToUMTS_t;
-	typedef cf_core::cf_message_queue<cft_defcall> mq_MACToIP_t;
-	typedef cf_core::cf_message_queue<cft_defcall> mq_MEMToIP_t;
-	typedef cf_core::cf_message_queue<cft_defcall> mq_MEMToUMTS_t;
-	typedef cf_core::cf_message_queue<cft_defcall> mq_NETToUMTS_t;
 	typedef cf_core::cf_message_queue<cft_defcall> mq_UMTSToIP_t;
 	typedef cf_core::cf_message_queue<cft_defcall> mq_UMTSToNet_t;
+	typedef cf_core::cf_message_queue<cft_defcall> mq_HTTPToIP_t;
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_callprotocolstack, cft_defcall> p_mq_NetToUMTS_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_callprotocolstack, cft_defcall> p_mq_UMTSToNet_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_callprotocolstack, cft_defcall> p_mq_HTTPToApp_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_callprotocolstack, cft_defcall> p_mq_AppToHTTP_t;
+	/// cfm_callprotocolstack type define end
 
+	/// constructor
 	cfm_callprotocolstack(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_callprotocolstack(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_NetToUMTS_t p_mq_NetToUMTS;
 	p_mq_UMTSToNet_t p_mq_UMTSToNet;
 	p_mq_HTTPToApp_t p_mq_HTTPToApp;
 	p_mq_AppToHTTP_t p_mq_AppToHTTP;
+	//@}
 
 public:
-	cfm_callprotocolstack_ipcall* IPCall;
-	cfm_callprotocolstack_umts* UMTS;
-	cfm_httptocall* HTTPTCP;
+	/// \name functions
+	//@{
+	cfm_ipcall* IPCall;
+	cfm_httptcp* HTTPTCP;
+	cfm_umts* UMTS;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	mq_IPToHTTP_t mq_IPToHTTP;
 	mq_IPToUMTS_t mq_IPToUMTS;
-	mq_MACToIP_t mq_MACToIP;
-	mq_MEMToIP_t mq_MEMToIP;
-	mq_MEMToUMTS_t mq_MEMToUMTS;
-	mq_NETToUMTS_t mq_NETToUMTS;
 	mq_UMTSToIP_t mq_UMTSToIP;
 	mq_UMTSToNet_t mq_UMTSToNet;
+	mq_HTTPToIP_t mq_HTTPToIP;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'CallProtocolStack local declarations' algorithm generated code
 
+	//End of 'CallProtocolStack local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief CallProtocolStack function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_SOFTWAREDEFINEDRADIOAPP_CALLPROCESSSTACK
 
+//<#!@READ-ONLY-SECTION-END@!#>

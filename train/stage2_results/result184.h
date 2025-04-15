@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_bankdmuxer
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,39 +8,75 @@
 #ifndef COFS_MODEL_DDRMEMORY_BANKDMUXER
 #define COFS_MODEL_DDRMEMORY_BANKDMUXER
 
+/// Model Header includes start
 #include "cfm_ddrmemory_global.h"
-#include "cfm_ddrmemory_global_types.h"
+#include "cfm_ddermemory_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_bankdmuxer_dp_if.h"
 #include "dt/cft_defddrcommand.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'BankDmuxer includes' algorithm generated code
 
+//End of 'BankDmuxer includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgBankDmuxer Function BankDmuxer
+//@{
+///        \page dxpBankDmuxer
+//@{
+///    \brief BankDmuxer function model start
 class cfm_bankdmuxer: public cf_core::cf_function, public cfm_bankdmuxer_dp_if {
 public:
+	/// cfm_bankdmuxer type define start
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_bankdmuxer, cft_defddrcommand> p_mq_DDRAction_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_bankdmuxer, cft_defddrcommand> p_mq_DDRCommand_t;
+	/// cfm_bankdmuxer type define end
 
+	/// constructor
 	cfm_bankdmuxer(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_bankdmuxer(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_DDRAction_t p_mq_DDRAction;
 	p_mq_DDRCommand_t p_mq_DDRCommand;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
-
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'BankDmuxer local declarations' algorithm generated code
+	int remainingDataSize;
+	int transId;
+	int num_of_adm_channel;
+	int index;
+	int max_channel_size;
+	//End of 'BankDmuxer local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief BankDmuxer function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_DDRMEMORY_BANKDMUXER
 
+//<#!@READ-ONLY-SECTION-END@!#>

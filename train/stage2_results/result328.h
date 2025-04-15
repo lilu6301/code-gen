@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_swinterface
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,6 +8,7 @@
 #ifndef COFS_MODEL_COMPLETEDEVICE_SWINTERFACE
 #define COFS_MODEL_COMPLETEDEVICE_SWINTERFACE
 
+/// Model Header includes start
 #include "cfm_completedevice_global.h"
 #include "cfm_completedevice_global_types.h"
 #include "cofluent.h"
@@ -14,22 +16,43 @@
 #include "dt/cft_defframe.h"
 #include "dt/cft_defprocessingmode.h"
 
-#include "mci/cfm_startprocess.h"
+#include "mci/cfm_dpv.h"
 #include "mci/cfm_storeframe.h"
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'swInterface includes' algorithm generated code
 #include <list>
+//End of 'swInterface includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
-class cfm_swinterface: public cf_core::cf_dpv_container, public cfm_swinterface_dp_if, public virtual cfm_startprocess, public virtual cfm_storeframe {
+///    \defgroup dxgswInterface Function swInterface
+//@{
+///        \page dxpswInterface
+//@{
+///    \brief swInterface function model start
+class cfm_swinterface: public cf_core::cf_dpv_container,
+		public cfm_swinterface_dp_if,
+		public virtual cfm_dpv,
+		public virtual cfm_storeframe {
 public:
+	/// cfm_swinterface type define start
 
+	/// ports typedef
+	typedef cf_core::cf_ev_initiator_socket<cfm_swinterface> p_ev_startProcess_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_swinterface, cft_defframe> p_mq_inputFrame_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_swinterface> p_ev_newFrame_t;
-	typedef cf_core::cf_sv_initiator_socket<cfm_swinterface, cft_defprocessingmode> p_sv_processingMode_t;
+	typedef cf_core::cf_sv_initiator_socket<cfm_swinterface,
+			cft_defprocessingmode> p_sv_processingMode_t;
+	/// cfm_swinterface type define end
 
+	/// constructor
 	cfm_swinterface(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_swinterface(void);
 	virtual void cb_before_elaboration(void);
 
+	// default DPV interface implementation
 	CF_DPV_REGISTER_IF_IMPL;
 	CF_DPV_REGISTER_INT_IF_IMPL;
 	CF_DPV_INTERRUPT_IF_IMPL;
@@ -37,26 +60,44 @@ public:
 	CF_DPV_COMMAND_IF_IMPL;
 
 public:
+	/// \name input/output ports
+	//@{
+	p_ev_startProcess_t p_ev_startProcess;
 	p_mq_inputFrame_t p_mq_inputFrame;
 	p_ev_newFrame_t p_ev_newFrame;
 	p_sv_processingMode_t p_sv_processingMode;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'swInterface local declarations' algorithm generated code
 	std::list<DefFrame> frame_memory;
 	void storeOutputFrame(DefFrame* frame);
+	//End of 'swInterface local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 private:
 private:
+	// DPV ports
 	DefFrame inputFrame;
 	cft_defframe inputFrame_trans;
 	DefProcessingMode processingMode;
 	cft_defprocessingmode processingMode_trans;
 
 };
+///    \brief swInterface function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_COMPLETEDEVICE_SWINTERFACE
 
+//<#!@READ-ONLY-SECTION-END@!#>

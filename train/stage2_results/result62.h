@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_inheritance_example1app
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,20 +8,35 @@
 #ifndef COFS_MODEL_INHERITANCE_EXAMPLE1APP
 #define COFS_MODEL_INHERITANCE_EXAMPLE1APP
 
+/// Model Header includes start
 #include "cfm_inheritance_example1app_global.h"
 #include "cfm_inheritance_example1app_global_types.h"
 #include "cofluent.h"
 #include "cfm_f1.h"
 #include "cfm_f2.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'Inheritance_example1App includes' algorithm generated code
 
+//End of 'Inheritance_example1App includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgInheritance_example1App Function Inheritance_example1App
+//@{
+///        \page dxpInheritance_example1App
+//@{
+///    \brief Inheritance_example1App function model start
 class cfm_inheritance_example1app: public cf_core::cf_application {
 public:
+	/// cfm_inheritance_example1app type define start
 
+	/// cfm_inheritance_example1app type define end
 
+	/// constructor
 	cfm_inheritance_example1app(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_inheritance_example1app(void);
 	virtual void cb_before_elaboration(void);
 
@@ -28,17 +44,33 @@ public:
 	void cb_end_of_simulation(void);
 
 public:
+	/// \name functions
+	//@{
 	cfm_f1* F1;
 	cfm_f2* F2;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'Inheritance_example1App local declarations' algorithm generated code
 
+	//End of 'Inheritance_example1App local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief Inheritance_example1App function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_INHERITANCE_EXAMPLE1APP
 
+//<#!@READ-ONLY-SECTION-END@!#>

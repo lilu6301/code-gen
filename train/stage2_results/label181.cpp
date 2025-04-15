@@ -29,106 +29,52 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_backend::cfm_backend(sc_core::sc_module_name name)
-cf_function_container(name)
-, cfm_backend_dp_if()
-, p_mq_DQs("p_mq_DQs")
-, p_mq_DataRead("p_mq_DataRead")
-, p_mq_WriteAck_0("p_mq_WriteAck_0")
-, p_mq_MemReadRequest("p_mq_MemReadRequest")
-, p_mq_MemWriteRequest("p_mq_MemWriteRequest")
-, p_mq_DDRCommand("p_mq_DDRCommand")
-, p_mq_WriteAck_1("p_mq_WriteAck_1")
-, sv_ListRequestsPtr("ListRequestsPtr"
-)
-, ev_RequestCounter("RequestCounter"
-)
-, mq_RequestInformation("RequestInformation"
-)
-, mq_Requests2Memory("Requests2Memory"
-)
-
-{
+cfm_backend::cfm_backend(sc_core::sc_module_name name) :
+		cf_function_container(name), cfm_backend_dp_if(), p_mq_DQs("p_mq_DQs"), p_mq_DataRead(
+				"p_mq_DataRead"), p_mq_WriteAck_0("p_mq_WriteAck_0"), p_mq_MemReadRequest(
+				"p_mq_MemReadRequest"), p_mq_MemWriteRequest(
+				"p_mq_MemWriteRequest"), p_mq_DDRCommand("p_mq_DDRCommand"), p_mq_WriteAck_1(
+				"p_mq_WriteAck_1"), sv_ListRequestsPtr("ListRequestsPtr"), ev_RequestCounter(
+				"RequestCounter"), mq_RequestInformation("RequestInformation"), mq_Requests2Memory(
+				"Requests2Memory") {
 	cf_function_container::init();
-	Arbitration = new cfm_arbitration
-	("Arbitration");
-	CollectRequests = new cfm_collectrequests
-	("CollectRequests");
-	DDRCommandGeneration = new cfm_ddrcommandgeneration
-	("DDRCommandGeneration");
-	ResponseForward = new cfm_responseforward
-	("ResponseForward");
+	Arbitration = new cfm_arbitration("Arbitration");
+	CollectRequests = new cfm_collectrequests("CollectRequests");
+	DDRCommandGeneration = new cfm_ddrcommandgeneration("DDRCommandGeneration");
+	ResponseForward = new cfm_responseforward("ResponseForward");
 
 	// instantiation of sv_MemoryStatus_vec
-	for (cf_count i = 0; i < (cf_count)(M_Nbr + 1); i++)
-	{
-		sv_MemoryStatus_t* module=new sv_MemoryStatus_t(cf_string("MemoryStatus[%d]", i).c_str());
-		CF_ASSERT( module )
+	for (cf_count i = 0; i < (cf_count)(M_Nbr + 1); i++) {
+		sv_MemoryStatus_t* module = new sv_MemoryStatus_t(
+				cf_string("MemoryStatus[%d]", i).c_str());
+		CF_ASSERT (module)
 		sv_MemoryStatus_vec.push_back(module);
 	}
 	// connections
-	Arbitration->p_mq_WriteAck
-	(p_mq_WriteAck_1
-	);
-	Arbitration->p_mq_RequestInformation
-	(mq_RequestInformation
-			.p_target_socket
-	);
-	Arbitration->p_sv_ListRequestsPtr
-	(sv_ListRequestsPtr
-			.p_target_socket
-	);
-	Arbitration->p_mq_Requests2Memory
-	(mq_Requests2Memory
-			.p_target_socket
-	);
-	Arbitration->p_ev_RequestCounter
-	(ev_RequestCounter
-			.p_target_socket
-	);
+	Arbitration->p_mq_WriteAck(p_mq_WriteAck_1);
+	Arbitration->p_mq_RequestInformation(mq_RequestInformation.p_target_socket);
+	Arbitration->p_sv_ListRequestsPtr(sv_ListRequestsPtr.p_target_socket);
+	Arbitration->p_mq_Requests2Memory(mq_Requests2Memory.p_target_socket);
+	Arbitration->p_ev_RequestCounter(ev_RequestCounter.p_target_socket);
 
-	CollectRequests->p_sv_ListRequestsPtr
-	(sv_ListRequestsPtr
-			.p_target_socket
-	);
-	CollectRequests->p_ev_RequestCounter
-	(ev_RequestCounter
-			.p_target_socket
-	);
-	CollectRequests->p_mq_MemReadRequest
-	(p_mq_MemReadRequest
-	);
-	CollectRequests->p_mq_MemWriteRequest
-	(p_mq_MemWriteRequest
-	);
+	CollectRequests->p_sv_ListRequestsPtr(sv_ListRequestsPtr.p_target_socket);
+	CollectRequests->p_ev_RequestCounter(ev_RequestCounter.p_target_socket);
+	CollectRequests->p_mq_MemReadRequest(p_mq_MemReadRequest);
+	CollectRequests->p_mq_MemWriteRequest(p_mq_MemWriteRequest);
 
 	for (cf_count i = 0; i < (cf_count)(M_Nbr + 1); i++) {
-		DDRCommandGeneration->p_sv_MemoryStatus
-		(sv_MemoryStatus_vec[i]
-				->p_target_socket
-		);
+		DDRCommandGeneration->p_sv_MemoryStatus(
+				sv_MemoryStatus_vec[i]->p_target_socket);
 	}
-	DDRCommandGeneration->p_mq_Requests2Memory
-	(mq_Requests2Memory
-			.p_target_socket
-	);
-	DDRCommandGeneration->p_mq_DDRCommand
-	(p_mq_DDRCommand
-	);
+	DDRCommandGeneration->p_mq_Requests2Memory(
+			mq_Requests2Memory.p_target_socket);
+	DDRCommandGeneration->p_mq_DDRCommand(p_mq_DDRCommand);
 
-	ResponseForward->p_mq_DQs
-	(p_mq_DQs
-	);
-	ResponseForward->p_mq_RequestInformation
-	(mq_RequestInformation
-			.p_target_socket
-	);
-	ResponseForward->p_mq_DataRead
-	(p_mq_DataRead
-	);
-	ResponseForward->p_mq_WriteAck
-	(p_mq_WriteAck_0
-	);
+	ResponseForward->p_mq_DQs(p_mq_DQs);
+	ResponseForward->p_mq_RequestInformation(
+			mq_RequestInformation.p_target_socket);
+	ResponseForward->p_mq_DataRead(p_mq_DataRead);
+	ResponseForward->p_mq_WriteAck(p_mq_WriteAck_0);
 
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'BackEnd constructor' algorithm generated code
@@ -148,13 +94,15 @@ cfm_backend::~cfm_backend(void) {
 
 	//End of 'BackEnd destructor' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
-	for (vector<sv_MemoryStatus_t*>::const_iterator vi = sv_MemoryStatus_vec.begin(); vi != sv_MemoryStatus_vec.end(); vi++) {
+	for (vector<sv_MemoryStatus_t*>::const_iterator vi =
+			sv_MemoryStatus_vec.begin(); vi != sv_MemoryStatus_vec.end();
+			vi++) {
 		delete (*vi);
 	}
-	delete Arbitration;	///ddd
-	delete CollectRequests;	///ddd
-	delete DDRCommandGeneration;	///ddd
-	delete ResponseForward;	///ddd
+	delete Arbitration;
+	delete CollectRequests;
+	delete DDRCommandGeneration;
+	delete ResponseForward;
 }
 //@}
 
@@ -203,8 +151,10 @@ void cfm_backend::cb_init_attributes() {
 	sv_ListRequestsPtr.cfa_semaphore.init(false);
 	sv_ListRequestsPtr.cfa_concurrency.init((cf_nonzero_count) 1);
 	for (cf_count i = 0; i < (cf_count)(M_Nbr + 1); i++) {
-		(*sv_MemoryStatus_vec[i]).cfa_write_time.init(cf_expr_duration(0, CF_CYCLE));
-		(*sv_MemoryStatus_vec[i]).cfa_read_time.init(cf_expr_duration(0, CF_CYCLE));
+		(*sv_MemoryStatus_vec[i]).cfa_write_time.init(
+				cf_expr_duration(0, CF_CYCLE));
+		(*sv_MemoryStatus_vec[i]).cfa_read_time.init(
+				cf_expr_duration(0, CF_CYCLE));
 		(*sv_MemoryStatus_vec[i]).cfa_semaphore.init(false);
 		(*sv_MemoryStatus_vec[i]).cfa_concurrency.init((cf_nonzero_count) 1);
 	}

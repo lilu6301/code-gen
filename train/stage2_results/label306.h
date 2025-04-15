@@ -1,3 +1,4 @@
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_target
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -6,41 +7,73 @@
 #ifndef COFS_MODEL_TLM2AT_TARGET
 #define COFS_MODEL_TLM2AT_TARGET
 
+/// Model Header includes start
 #include "cfm_tlm2at_global.h"
 #include "cfm_tlm2at_global_types.h"
 #include "cofluent.h"
 #include "dt/cft_defdata.h"
 
 #include "communication/cf_payload_tlm2.h"
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'Target includes' algorithm generated code
 
+//End of 'Target includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgTarget Function Target
+//@{
+///        \page dxpTarget
+//@{
+///    \brief Target function model start
 class cfm_target: public cf_core::cf_function {
 public:
+	/// cfm_target type define start
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_target, cft_defdata> p_mq_ReferenceQueue2_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_target, cf_core::cf_payload_tlm2> p_mq_TargetWrapper_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_target> p_ev_Sync2_t;
+	/// cfm_target type define end
 
+	/// constructor
 	cfm_target(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_target(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_ReferenceQueue2_t p_mq_ReferenceQueue2;
 	p_mq_TargetWrapper_t p_mq_TargetWrapper;
 	p_ev_Sync2_t p_ev_Sync2;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'Target local declarations' algorithm generated code
 
+	//End of 'Target local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief Target function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_TLM2AT_TARGET
 
+//<#!@READ-ONLY-SECTION-END@!#>

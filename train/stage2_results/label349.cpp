@@ -29,84 +29,35 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_obex_layer::cfm_obex_layer(sc_core::sc_module_name name)
-cf_function_container(name)
-, cfm_obex_layer_dp_if()
-, p_mq_ReadWrite_0("p_mq_ReadWrite_0")
-, p_mq_DataIn("p_mq_DataIn")
-, p_ev_WrOK("p_ev_WrOK")
-, p_mq_DataOut("p_mq_DataOut")
-, p_mq_OBEX_In("p_mq_OBEX_In")
-, p_ev_startEv("p_ev_startEv")
-, p_mq_OBEX_Out("p_mq_OBEX_Out")
-, p_mq_ReadWrite_1("p_mq_ReadWrite_1")
-, mq_OB_Out1("OB_Out1"
-)
-, mq_OB_Out2("OB_Out2"
-)
-, ev_continueEv("continueEv"
-)
-
-{
+cfm_obex_layer::cfm_obex_layer(sc_core::sc_module_name name) :
+		cf_function_container(name), cfm_obex_layer_dp_if(), p_mq_ReadWrite_0(
+				"p_mq_ReadWrite_0"), p_mq_DataIn("p_mq_DataIn"), p_ev_WrOK(
+				"p_ev_WrOK"), p_mq_DataOut("p_mq_DataOut"), p_mq_OBEX_In(
+				"p_mq_OBEX_In"), p_ev_startEv("p_ev_startEv"), p_mq_OBEX_Out(
+				"p_mq_OBEX_Out"), p_mq_ReadWrite_1("p_mq_ReadWrite_1"), mq_OB_Out1(
+				"OB_Out1"), mq_OB_Out2("OB_Out2"), ev_continueEv("continueEv") {
 	cf_function_container::init();
-	OBEX_Receive = new cfm_obex_receive
-	("OBEX_Receive");
-	OBEX_Send = new cfm_obex_send
-	("OBEX_Send");
-	OB_Out = new cfm_ob_out
-	("OB_Out");
+	OBEX_Receive = new cfm_obex_receive("OBEX_Receive");
+	OBEX_Send = new cfm_obex_send("OBEX_Send");
+	OB_Out = new cfm_ob_out("OB_Out");
 
 	// connections
-	OBEX_Receive->p_ev_continueEv
-	(ev_continueEv
-			.p_target_socket
-	);
-	OBEX_Receive->p_mq_OB_Out1
-	(mq_OB_Out1
-			.p_target_socket
-	);
-	OBEX_Receive->p_mq_ReadWrite
-	(p_mq_ReadWrite_0
-	);
-	OBEX_Receive->p_mq_DataIn
-	(p_mq_DataIn
-	);
-	OBEX_Receive->p_ev_WrOK
-	(p_ev_WrOK
-	);
-	OBEX_Receive->p_mq_OBEX_In
-	(p_mq_OBEX_In
-	);
+	OBEX_Receive->p_ev_continueEv(ev_continueEv.p_target_socket);
+	OBEX_Receive->p_mq_OB_Out1(mq_OB_Out1.p_target_socket);
+	OBEX_Receive->p_mq_ReadWrite(p_mq_ReadWrite_0);
+	OBEX_Receive->p_mq_DataIn(p_mq_DataIn);
+	OBEX_Receive->p_ev_WrOK(p_ev_WrOK);
+	OBEX_Receive->p_mq_OBEX_In(p_mq_OBEX_In);
 
-	OBEX_Send->p_ev_continueEv
-	(ev_continueEv
-			.p_target_socket
-	);
-	OBEX_Send->p_mq_OB_Out2
-	(mq_OB_Out2
-			.p_target_socket
-	);
-	OBEX_Send->p_mq_ReadWrite
-	(p_mq_ReadWrite_1
-	);
-	OBEX_Send->p_mq_DataOut
-	(p_mq_DataOut
-	);
-	OBEX_Send->p_ev_startEv
-	(p_ev_startEv
-	);
+	OBEX_Send->p_ev_continueEv(ev_continueEv.p_target_socket);
+	OBEX_Send->p_mq_OB_Out2(mq_OB_Out2.p_target_socket);
+	OBEX_Send->p_mq_ReadWrite(p_mq_ReadWrite_1);
+	OBEX_Send->p_mq_DataOut(p_mq_DataOut);
+	OBEX_Send->p_ev_startEv(p_ev_startEv);
 
-	OB_Out->p_mq_OB_Out2
-	(mq_OB_Out2
-			.p_target_socket
-	);
-	OB_Out->p_mq_OB_Out1
-	(mq_OB_Out1
-			.p_target_socket
-	);
-	OB_Out->p_mq_OBEX_Out
-	(p_mq_OBEX_Out
-	);
+	OB_Out->p_mq_OB_Out2(mq_OB_Out2.p_target_socket);
+	OB_Out->p_mq_OB_Out1(mq_OB_Out1.p_target_socket);
+	OB_Out->p_mq_OBEX_Out(p_mq_OBEX_Out);
 
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'OBEX_Layer constructor' algorithm generated code
@@ -126,9 +77,9 @@ cfm_obex_layer::~cfm_obex_layer(void) {
 
 	//End of 'OBEX_Layer destructor' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
-	delete OBEX_Receive;	///ddd
-	delete OBEX_Send;	///ddd
-	delete OB_Out;	///ddd
+	delete OBEX_Receive;
+	delete OBEX_Send;
+	delete OB_Out;
 }
 //@}
 

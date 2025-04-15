@@ -12,7 +12,6 @@
 #include "cfm_applicationmodel_global.h"
 #include "cfm_applicationmodel_global_types.h"
 #include "cofluent.h"
-#include "dp/cfm_producer_dp_if.h"
 #include "cfm_generator.h"
 #include "cfm_sender.h"
 #include "dt/cft_defmsg.h"
@@ -32,7 +31,7 @@
 ///        \page dxpProducer
 //@{
 ///    \brief Producer function model start
-class cfm_producer: public cf_core::cf_function_container, public cfm_producer_dp_if {
+class cfm_producer: public cf_core::cf_function_container {
 public:
 	/// cfm_producer type define start
 	/// relations typedef

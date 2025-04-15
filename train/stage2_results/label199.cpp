@@ -29,16 +29,13 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_arbitration::cfm_arbitration(sc_core::sc_module_name name)
-cf_function(name)
-, cfm_arbitration_dp_if()
-, p_mq_WriteAck("p_mq_WriteAck")
-, p_mq_RequestInformation("p_mq_RequestInformation")
-, p_sv_ListRequestsPtr("p_sv_ListRequestsPtr")
-, p_mq_Requests2Memory("p_mq_Requests2Memory")
-, p_ev_RequestCounter("p_ev_RequestCounter")
-
-{
+cfm_arbitration::cfm_arbitration(sc_core::sc_module_name name) :
+		cf_function(name), cfm_arbitration_dp_if(), p_mq_WriteAck(
+				"p_mq_WriteAck"), p_mq_RequestInformation(
+				"p_mq_RequestInformation"), p_sv_ListRequestsPtr(
+				"p_sv_ListRequestsPtr"), p_mq_Requests2Memory(
+				"p_mq_Requests2Memory"), p_ev_RequestCounter(
+				"p_ev_RequestCounter") {
 	cf_function::init();
 
 	//<#!@READ-ONLY-SECTION-END@!#>

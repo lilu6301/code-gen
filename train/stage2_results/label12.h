@@ -1,3 +1,4 @@
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_videoprotocolstack
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -6,6 +7,7 @@
 #ifndef COFS_MODEL_SOFTWAREDEFINEDRADIOAPP_VIDEOPROTOCOLSTACK
 #define COFS_MODEL_SOFTWAREDEFINEDRADIOAPP_VIDEOPROTOCOLSTACK
 
+/// Model Header includes start
 #include "cfm_softwaredefinedradioapp_global.h"
 #include "cfm_softwaredefinedradioapp_global_types.h"
 #include "cofluent.h"
@@ -15,44 +17,83 @@
 #include "cfm_rtpudp.h"
 #include "dt/cft_defvideo.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'VideoProtocolStack includes' algorithm generated code
 
+//End of 'VideoProtocolStack includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
-class cfm_videoprotocolstack: public cf_core::cf_function_container, public cfm_videoprotocolstack_dp_if {
+///    \defgroup dxgVideoProtocolStack Function VideoProtocolStack
+//@{
+///        \page dxpVideoProtocolStack
+//@{
+///    \brief VideoProtocolStack function model start
+class cfm_videoprotocolstack: public cf_core::cf_function_container,
+		public cfm_videoprotocolstack_dp_if {
 public:
+	/// cfm_videoprotocolstack type define start
+	/// relations typedef
 	typedef cf_core::cf_message_queue<cft_defvideo> mq_IPToRTP_t;
 	typedef cf_core::cf_message_queue<cft_defvideo> mq_MPEToIP_t;
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_videoprotocolstack, cft_defvideo> p_mq_NetToDVB_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_videoprotocolstack, cft_defvideo> p_mq_RTPToApp_t;
+	/// cfm_videoprotocolstack type define end
 
+	/// constructor
 	cfm_videoprotocolstack(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_videoprotocolstack(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_NetToDVB_t p_mq_NetToDVB;
 	p_mq_RTPToApp_t p_mq_RTPToApp;
+	//@}
 
 public:
+	/// \name functions
+	//@{
 	cfm_ipvideo* IPVideo;
 	cfm_mpetsl* MPETSL;
 	cfm_rtpudp* RTPUDP;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	mq_IPToRTP_t mq_IPToRTP;
 	mq_MPEToIP_t mq_MPEToIP;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'VideoProtocolStack local declarations' algorithm generated code
 
+	//End of 'VideoProtocolStack local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief VideoProtocolStack function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_SOFTWAREDEFINEDRADIOAPP_VIDEOPROTOCOLSTACK
 
+//<#!@READ-ONLY-SECTION-END@!#>

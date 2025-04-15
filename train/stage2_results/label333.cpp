@@ -21,52 +21,24 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_bluetooth_ips::cfm_bluetooth_ips(sc_core::sc_module_name name)
-cf_application(name)
-, cfm_bluetooth_ips_dp_if()
-, mq_BaseBand_In("BaseBand_In"
-)
-, mq_BaseBand_Out("BaseBand_Out"
-)
-, ev_startEv("startEv"
-)
-
-{
+cfm_bluetooth_ips::cfm_bluetooth_ips(sc_core::sc_module_name name) :
+		cf_application(name), cfm_bluetooth_ips_dp_if(), mq_BaseBand_In(
+				"BaseBand_In"), mq_BaseBand_Out("BaseBand_Out"), ev_startEv(
+				"startEv") {
 	cf_application::init();
-	BT_System = new cfm_bt_system
-	("BT_System");
-	Slave_Stub = new cfm_slave_stub
-	("Slave_Stub");
-	Start = new cfm_start
-	("Start");
+	BT_System = new cfm_bt_system("BT_System");
+	Slave_Stub = new cfm_slave_stub("Slave_Stub");
+	Start = new cfm_start("Start");
 
 	// connections
-	BT_System->p_mq_BaseBand_Out
-	(mq_BaseBand_Out
-			.p_target_socket
-	);
-	BT_System->p_mq_BaseBand_In
-	(mq_BaseBand_In
-			.p_target_socket
-	);
-	BT_System->p_ev_startEv
-	(ev_startEv
-			.p_target_socket
-	);
+	BT_System->p_mq_BaseBand_Out(mq_BaseBand_Out.p_target_socket);
+	BT_System->p_mq_BaseBand_In(mq_BaseBand_In.p_target_socket);
+	BT_System->p_ev_startEv(ev_startEv.p_target_socket);
 
-	Slave_Stub->p_mq_BaseBand_In
-	(mq_BaseBand_In
-			.p_target_socket
-	);
-	Slave_Stub->p_mq_BaseBand_Out
-	(mq_BaseBand_Out
-			.p_target_socket
-	);
+	Slave_Stub->p_mq_BaseBand_In(mq_BaseBand_In.p_target_socket);
+	Slave_Stub->p_mq_BaseBand_Out(mq_BaseBand_Out.p_target_socket);
 
-	Start->p_ev_startEv
-	(ev_startEv
-			.p_target_socket
-	);
+	Start->p_ev_startEv(ev_startEv.p_target_socket);
 
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'Bluetooth_IPs constructor' algorithm generated code
@@ -86,9 +58,9 @@ cfm_bluetooth_ips::~cfm_bluetooth_ips(void) {
 
 	//End of 'Bluetooth_IPs destructor' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
-	delete BT_System;	///ddd
-	delete Slave_Stub;	///ddd
-	delete Start;	///ddd
+	delete BT_System;
+	delete Slave_Stub;
+	delete Start;
 }
 //@}
 

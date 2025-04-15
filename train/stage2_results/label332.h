@@ -29,7 +29,8 @@
 ///        \page dxpBluetooth_IPs
 //@{
 ///    \brief Bluetooth_IPs function model start
-class cfm_bluetooth_ips: public cf_core::cf_application, public cfm_bluetooth_ips_dp_if {
+class cfm_bluetooth_ips: public cf_core::cf_application,
+		public cfm_bluetooth_ips_dp_if {
 public:
 	/// cfm_bluetooth_ips type define start
 	/// relations typedef

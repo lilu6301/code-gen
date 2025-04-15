@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_serverroom
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,6 +8,7 @@
 #ifndef COFS_MODEL_DATACENTER_SERVERROOM
 #define COFS_MODEL_DATACENTER_SERVERROOM
 
+/// Model Header includes start
 #include <vector>
 #include "cfm_datacenter_global.h"
 #include "cfm_datacenter_global_types.h"
@@ -16,43 +18,82 @@
 #include "cfm_rack.h"
 #include "dt/cft_defpacket.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'ServerRoom includes' algorithm generated code
 
+//End of 'ServerRoom includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
-class cfm_serverroom: public cf_core::cf_function_container, public cfm_serverroom_dp_if {
+///    \defgroup dxgServerRoom Function ServerRoom
+//@{
+///        \page dxpServerRoom
+//@{
+///    \brief ServerRoom function model start
+class cfm_serverroom: public cf_core::cf_function_container,
+		public cfm_serverroom_dp_if {
 public:
+	/// cfm_serverroom type define start
+	/// relations typedef
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQToAggSwitch_t;
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQToRack_t;
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_serverroom, cft_defpacket> p_mq_MsgQToDataCenterSwitch_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_serverroom, cft_defpacket> p_mq_MsgQToServerRoom_t;
+	/// cfm_serverroom type define end
 
+	/// constructor
 	cfm_serverroom(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_serverroom(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
-	std::vector<p_mq_MsgQToDataCenterSwitch_t*> p_mq_MsgQToDataCenterSwitch_vec;
-	std::vector<p_mq_MsgQToServerRoom_t*> p_mq_MsgQToServerRoom_vec;
+	/// \name input/output ports
+	//@{
+	p_mq_MsgQToDataCenterSwitch_t p_mq_MsgQToDataCenterSwitch;
+	p_mq_MsgQToServerRoom_t p_mq_MsgQToServerRoom;
+	//@}
 
 public:
-	std::vector<cfm_aggswitch*> AGGSwitch_vec;
+	/// \name functions
+	//@{
+	cfm_aggswitch* AGGSwitch;
 	std::vector<cfm_rack*> Rack_vec;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	std::vector<mq_MsgQToAggSwitch_t*> mq_MsgQToAggSwitch_vec;
 	std::vector<mq_MsgQToRack_t*> mq_MsgQToRack_vec;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'ServerRoom local declarations' algorithm generated code
 
+	//End of 'ServerRoom local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief ServerRoom function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_DATACENTER_SERVERROOM
 
+//<#!@READ-ONLY-SECTION-END@!#>

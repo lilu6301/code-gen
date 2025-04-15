@@ -21,114 +21,56 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_ddrmemory::cfm_ddrmemory(sc_core::sc_module_name name)
-cf_application(name)
-, cfm_ddrmemory_dp_if()
-, mq_ARADDRchn("ARADDRchn"
-)
-, mq_AWADDRchn("AWADDRchn"
-)
-, mq_BRESPchn("BRESPchn"
-)
-, mq_RDATAchn("RDATAchn"
-)
-, mq_WDATAchn("WDATAchn"
-)
-
-{
+cfm_ddrmemory::cfm_ddrmemory(sc_core::sc_module_name name) :
+		cf_application(name), cfm_ddrmemory_dp_if(), mq_ARADDRchn("ARADDRchn"), mq_AWADDRchn(
+				"AWADDRchn"), mq_BRESPchn("BRESPchn"), mq_RDATAchn("RDATAchn"), mq_WDATAchn(
+				"WDATAchn") {
 	cf_application::init();
-	ClientSide = new cfm_clientside
-	("ClientSide");
-	Target = new cfm_target
-	("Target");
+	ClientSide = new cfm_clientside("ClientSide");
+	Target = new cfm_target("Target");
 
 	// connections
-	ClientSide->p_mq_RDATAchn
-	(mq_RDATAchn
-			.p_target_socket
-	);
-	for (cf_count i = 0; i < (cf_count)ClientSide
-			->p_mq_ARADDRchn_vec.size(); i++)
-	{
-		cfm_clientside
-		::p_mq_ARADDRchn_t* port= ClientSide
-		->p_mq_ARADDRchn_vec[i]
-		;
-		if(port != nullptr) {
-			port->bind(mq_ARADDRchn
-					.p_target_socket
-			);
+	ClientSide->p_mq_RDATAchn(mq_RDATAchn.p_target_socket);
+	for (cf_count i = 0; i < (cf_count) ClientSide->p_mq_ARADDRchn_vec.size();
+			i++) {
+		cfm_clientside::p_mq_ARADDRchn_t* port =
+				ClientSide->p_mq_ARADDRchn_vec[i];
+		if (port != nullptr) {
+			port->bind(mq_ARADDRchn.p_target_socket);
 		}
 	}
-	ClientSide->p_mq_BRESPchn
-	(mq_BRESPchn
-			.p_target_socket
-	);
-	for (cf_count i = 0; i < (cf_count)ClientSide
-			->p_mq_WDATAchn_vec.size(); i++)
-	{
-		cfm_clientside
-		::p_mq_WDATAchn_t* port= ClientSide
-		->p_mq_WDATAchn_vec[i]
-		;
-		if(port != nullptr) {
-			port->bind(mq_WDATAchn
-					.p_target_socket
-			);
+	ClientSide->p_mq_BRESPchn(mq_BRESPchn.p_target_socket);
+	for (cf_count i = 0; i < (cf_count) ClientSide->p_mq_WDATAchn_vec.size();
+			i++) {
+		cfm_clientside::p_mq_WDATAchn_t* port = ClientSide->p_mq_WDATAchn_vec[i];
+		if (port != nullptr) {
+			port->bind(mq_WDATAchn.p_target_socket);
 		}
 	}
-	for (cf_count i = 0; i < (cf_count)ClientSide
-			->p_mq_AWADDRchn_vec.size(); i++)
-	{
-		cfm_clientside
-		::p_mq_AWADDRchn_t* port= ClientSide
-		->p_mq_AWADDRchn_vec[i]
-		;
-		if(port != nullptr) {
-			port->bind(mq_AWADDRchn
-					.p_target_socket
-			);
+	for (cf_count i = 0; i < (cf_count) ClientSide->p_mq_AWADDRchn_vec.size();
+			i++) {
+		cfm_clientside::p_mq_AWADDRchn_t* port =
+				ClientSide->p_mq_AWADDRchn_vec[i];
+		if (port != nullptr) {
+			port->bind(mq_AWADDRchn.p_target_socket);
 		}
 	}
 
-	for (cf_count i = 0; i < (cf_count)Target
-			->p_mq_RDATAchn_vec.size(); i++)
-	{
-		cfm_target
-		::p_mq_RDATAchn_t* port= Target
-		->p_mq_RDATAchn_vec[i]
-		;
-		if(port != nullptr) {
-			port->bind(mq_RDATAchn
-					.p_target_socket
-			);
+	for (cf_count i = 0; i < (cf_count) Target->p_mq_RDATAchn_vec.size(); i++) {
+		cfm_target::p_mq_RDATAchn_t* port = Target->p_mq_RDATAchn_vec[i];
+		if (port != nullptr) {
+			port->bind(mq_RDATAchn.p_target_socket);
 		}
 	}
-	Target->p_mq_ARADDRchn
-	(mq_ARADDRchn
-			.p_target_socket
-	);
-	for (cf_count i = 0; i < (cf_count)Target
-			->p_mq_BRESPchn_vec.size(); i++)
-	{
-		cfm_target
-		::p_mq_BRESPchn_t* port= Target
-		->p_mq_BRESPchn_vec[i]
-		;
-		if(port != nullptr) {
-			port->bind(mq_BRESPchn
-					.p_target_socket
-			);
+	Target->p_mq_ARADDRchn(mq_ARADDRchn.p_target_socket);
+	for (cf_count i = 0; i < (cf_count) Target->p_mq_BRESPchn_vec.size(); i++) {
+		cfm_target::p_mq_BRESPchn_t* port = Target->p_mq_BRESPchn_vec[i];
+		if (port != nullptr) {
+			port->bind(mq_BRESPchn.p_target_socket);
 		}
 	}
-	Target->p_mq_WDATAchn
-	(mq_WDATAchn
-			.p_target_socket
-	);
-	Target->p_mq_AWADDRchn
-	(mq_AWADDRchn
-			.p_target_socket
-	);
+	Target->p_mq_WDATAchn(mq_WDATAchn.p_target_socket);
+	Target->p_mq_AWADDRchn(mq_AWADDRchn.p_target_socket);
 
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'DDRMemory constructor' algorithm generated code
@@ -136,9 +78,7 @@ cf_application(name)
 	//End of 'DDRMemory constructor' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 
-	CF_COMM_CB_MQ_SEND(mq_WDATAchn
-			, cfm_ddrmemory::mq_WDATAchn_cb_send_time
-	);
+	CF_COMM_CB_MQ_SEND(mq_WDATAchn, cfm_ddrmemory::mq_WDATAchn_cb_send_time);
 
 	cf_application::elab_end();
 }
@@ -152,8 +92,8 @@ cfm_ddrmemory::~cfm_ddrmemory(void) {
 
 	//End of 'DDRMemory destructor' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
-	delete ClientSide;	///ddd
-	delete Target;	///ddd
+	delete ClientSide;
+	delete Target;
 }
 //@}
 
@@ -188,17 +128,22 @@ void cfm_ddrmemory::cb_end_of_simulation(void) {
 	AverageWriteLatency = TotalWriteLatency / NbTotalWriteRequests;
 	AverageWriteBandwidth = TotalWriteData * 1000 / TotalWriteLatency;
 	AverageReadBandwidth = TotalReadData * 1000 / TotalReadLatency;
-	AverageCombinedBandwidth = (TotalWriteData + TotalReadData) * 1000 / (TotalReadLatency + TotalWriteLatency);
+	AverageCombinedBandwidth = (TotalWriteData + TotalReadData) * 1000
+			/ (TotalReadLatency + TotalWriteLatency);
 	cf_trace_gui_f_t("AverageReadLatency", AverageReadLatency);
-	cf_trace_report("AverageReadLatency = %f ns, %f Cycles", AverageReadLatency, (AverageReadLatency / (CyclePeriod)));
+	cf_trace_report("AverageReadLatency = %f ns, %f Cycles", AverageReadLatency,
+			(AverageReadLatency / (CyclePeriod)));
 	cf_trace_gui_f_t("AverageWriteLatency", AverageWriteLatency, "ns");
-	cf_trace_report("AverageWriteLatency = %f ns, %f Cycles", AverageWriteLatency, (AverageWriteLatency / (CyclePeriod)));
+	cf_trace_report("AverageWriteLatency = %f ns, %f Cycles",
+			AverageWriteLatency, (AverageWriteLatency / (CyclePeriod)));
 	cf_trace_gui_f_t("AverageReadBandwidth", AverageReadBandwidth, "Mb/s");
 	cf_trace_gui_f_t("AverageWriteBandwidth", AverageWriteBandwidth, "Mb/s");
-	cf_trace_gui_f_t("AverageCombinedBandwidth", AverageCombinedBandwidth, "Mb/s");
+	cf_trace_gui_f_t("AverageCombinedBandwidth", AverageCombinedBandwidth,
+			"Mb/s");
 	cf_trace_report("AverageReadBandwidth = %f Mb/s", AverageReadBandwidth);
 	cf_trace_report("AverageWriteBandwidth = %f Mb/s", AverageWriteBandwidth);
-	cf_trace_report("AverageCombinedBandwidth = %f Mb/s", AverageCombinedBandwidth);
+	cf_trace_report("AverageCombinedBandwidth = %f Mb/s",
+			AverageCombinedBandwidth);
 	//End of 'DDRMemory post simulation' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 }

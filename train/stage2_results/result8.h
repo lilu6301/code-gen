@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_applicationlayer
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,6 +8,7 @@
 #ifndef COFS_MODEL_SOFTWAREDEFINEDRADIOAPP_APPLICATIONLAYER
 #define COFS_MODEL_SOFTWAREDEFINEDRADIOAPP_APPLICATIONLAYER
 
+/// Model Header includes start
 #include "cfm_softwaredefinedradioapp_global.h"
 #include "cfm_softwaredefinedradioapp_global_types.h"
 #include "cofluent.h"
@@ -16,11 +18,24 @@
 #include "dt/cft_defvideo.h"
 #include "dt/cft_defcall.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'ApplicationLayer includes' algorithm generated code
 
+//End of 'ApplicationLayer includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
-class cfm_applicationlayer: public cf_core::cf_function_container, public cfm_applicationlayer_dp_if {
+///    \defgroup dxgApplicationLayer Function ApplicationLayer
+//@{
+///        \page dxpApplicationLayer
+//@{
+///    \brief ApplicationLayer function model start
+class cfm_applicationlayer: public cf_core::cf_function_container,
+		public cfm_applicationlayer_dp_if {
 public:
+	/// cfm_applicationlayer type define start
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defvideo> p_mq_Video_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defvideo> p_mq_RTPToApp_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defcall> p_mq_AppToCtrl_t;
@@ -28,15 +43,20 @@ public:
 	typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defcall> p_mq_AppToHTTP_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defcall> p_mq_Response_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defcall> p_mq_Request_t;
+	/// cfm_applicationlayer type define end
 
+	/// constructor
 	cfm_applicationlayer(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_applicationlayer(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_Video_t p_mq_Video;
 	p_mq_RTPToApp_t p_mq_RTPToApp;
 	p_mq_AppToCtrl_t p_mq_AppToCtrl;
@@ -44,19 +64,36 @@ public:
 	p_mq_AppToHTTP_t p_mq_AppToHTTP;
 	p_mq_Response_t p_mq_Response;
 	p_mq_Request_t p_mq_Request;
+	//@}
 
 public:
+	/// \name functions
+	//@{
 	cfm_callapplication* CallApplication;
 	cfm_videoapplication* VideoApplication;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'ApplicationLayer local declarations' algorithm generated code
 
+	//End of 'ApplicationLayer local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief ApplicationLayer function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_SOFTWAREDEFINEDRADIOAPP_APPLICATIONLAYER
 
+//<#!@READ-ONLY-SECTION-END@!#>

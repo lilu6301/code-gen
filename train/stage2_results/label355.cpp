@@ -29,35 +29,20 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_l2cap_layer::cfm_l2cap_layer(sc_core::sc_module_name name)
-cf_function_container(name)
-, cfm_l2cap_layer_dp_if()
-, p_mq_RFCOMM_Out("p_mq_RFCOMM_Out")
-, p_mq_RFCOMM_In("p_mq_RFCOMM_In")
-, p_mq_L2CAP_In("p_mq_L2CAP_In")
-, p_mq_L2CAP_Out("p_mq_L2CAP_Out")
-
-{
+cfm_l2cap_layer::cfm_l2cap_layer(sc_core::sc_module_name name) :
+		cf_function_container(name), cfm_l2cap_layer_dp_if(), p_mq_RFCOMM_Out(
+				"p_mq_RFCOMM_Out"), p_mq_RFCOMM_In("p_mq_RFCOMM_In"), p_mq_L2CAP_In(
+				"p_mq_L2CAP_In"), p_mq_L2CAP_Out("p_mq_L2CAP_Out") {
 	cf_function_container::init();
-	L2CAP_Receive = new cfm_l2cap_receive
-	("L2CAP_Receive");
-	L2CAP_Send = new cfm_l2cap_send
-	("L2CAP_Send");
+	L2CAP_Receive = new cfm_l2cap_receive("L2CAP_Receive");
+	L2CAP_Send = new cfm_l2cap_send("L2CAP_Send");
 
 	// connections
-	L2CAP_Receive->p_mq_RFCOMM_In
-	(p_mq_RFCOMM_In
-	);
-	L2CAP_Receive->p_mq_L2CAP_In
-	(p_mq_L2CAP_In
-	);
+	L2CAP_Receive->p_mq_RFCOMM_In(p_mq_RFCOMM_In);
+	L2CAP_Receive->p_mq_L2CAP_In(p_mq_L2CAP_In);
 
-	L2CAP_Send->p_mq_RFCOMM_Out
-	(p_mq_RFCOMM_Out
-	);
-	L2CAP_Send->p_mq_L2CAP_Out
-	(p_mq_L2CAP_Out
-	);
+	L2CAP_Send->p_mq_RFCOMM_Out(p_mq_RFCOMM_Out);
+	L2CAP_Send->p_mq_L2CAP_Out(p_mq_L2CAP_Out);
 
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'L2CAP_Layer constructor' algorithm generated code
@@ -77,8 +62,8 @@ cfm_l2cap_layer::~cfm_l2cap_layer(void) {
 
 	//End of 'L2CAP_Layer destructor' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
-	delete L2CAP_Receive;	///ddd
-	delete L2CAP_Send;	///ddd
+	delete L2CAP_Receive;
+	delete L2CAP_Send;
 }
 //@}
 

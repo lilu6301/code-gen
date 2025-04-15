@@ -26,7 +26,8 @@
 ///        \page dxpReceiverRData
 //@{
 ///    \brief ReceiverRData function model start
-class cfm_receiverrdata: public cf_core::cf_function, public cfm_receiverrdata_dp_if {
+class cfm_receiverrdata: public cf_core::cf_function,
+		public cfm_receiverrdata_dp_if {
 public:
 	/// cfm_receiverrdata type define start
 

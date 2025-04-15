@@ -1,3 +1,4 @@
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_datacenterswitch
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -6,6 +7,7 @@
 #ifndef COFS_MODEL_DATACENTER_DATACENTERSWITCH
 #define COFS_MODEL_DATACENTER_DATACENTERSWITCH
 
+/// Model Header includes start
 #include <vector>
 #include "cfm_datacenter_global.h"
 #include "cfm_datacenter_global_types.h"
@@ -16,44 +18,83 @@
 #include "cfm_outbound.h"
 #include "dt/cft_defpacket.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'DataCenterSwitch includes' algorithm generated code
 
+//End of 'DataCenterSwitch includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
-class cfm_datacenterswitch: public cf_core::cf_function_container, public cfm_datacenterswitch_dp_if {
+///    \defgroup dxgDataCenterSwitch Function DataCenterSwitch
+//@{
+///        \page dxpDataCenterSwitch
+//@{
+///    \brief DataCenterSwitch function model start
+class cfm_datacenterswitch: public cf_core::cf_function_container,
+		public cfm_datacenterswitch_dp_if {
 public:
+	/// cfm_datacenterswitch type define start
+	/// relations typedef
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQRouting_in_t;
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQRouting_out_t;
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_datacenterswitch, cft_defpacket> p_mq_MsgQToDataCenterSwitch_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_datacenterswitch, cft_defpacket> p_mq_MsgQToServerRoom_t;
+	/// cfm_datacenterswitch type define end
 
+	/// constructor
 	cfm_datacenterswitch(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_datacenterswitch(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	std::vector<p_mq_MsgQToDataCenterSwitch_t*> p_mq_MsgQToDataCenterSwitch_vec;
 	std::vector<p_mq_MsgQToServerRoom_t*> p_mq_MsgQToServerRoom_vec;
+	//@}
 
 public:
+	/// \name functions
+	//@{
 	std::vector<cfm_inbound*> Inbound_vec;
 	std::vector<cfm_outbound*> Outbound_vec;
 	cfm_datacenterswitch_routingfunction* RoutingFunction;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	std::vector<mq_MsgQRouting_in_t*> mq_MsgQRouting_in_vec;
 	std::vector<mq_MsgQRouting_out_t*> mq_MsgQRouting_out_vec;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'DataCenterSwitch local declarations' algorithm generated code
 
+	//End of 'DataCenterSwitch local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief DataCenterSwitch function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_DATACENTER_DATACENTERSWITCH
 
+//<#!@READ-ONLY-SECTION-END@!#>

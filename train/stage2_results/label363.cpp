@@ -29,14 +29,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_rfcomm_receive::cfm_rfcomm_receive(sc_core::sc_module_name name)
-cf_function(name)
-, cfm_rfcomm_receive_dp_if()
-, p_mq_RFC_Data("p_mq_RFC_Data")
-, p_mq_RFC_Out1("p_mq_RFC_Out1")
-, p_mq_OBEX_In("p_mq_OBEX_In")
-
-{
+cfm_rfcomm_receive::cfm_rfcomm_receive(sc_core::sc_module_name name) :
+		cf_function(name), cfm_rfcomm_receive_dp_if(), p_mq_RFC_Data(
+				"p_mq_RFC_Data"), p_mq_RFC_Out1("p_mq_RFC_Out1"), p_mq_OBEX_In(
+				"p_mq_OBEX_In") {
 	cf_function::init();
 
 	//<#!@READ-ONLY-SECTION-END@!#>

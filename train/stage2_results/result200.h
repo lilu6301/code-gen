@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_ddrcommandgeneration
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,6 +8,7 @@
 #ifndef COFS_MODEL_DDRMEMORY_DDRCOMMANDGENERATION
 #define COFS_MODEL_DDRMEMORY_DDRCOMMANDGENERATION
 
+/// Model Header includes start
 #include "cfm_ddrmemory_global.h"
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
@@ -15,38 +17,87 @@
 #include "dt/cft_defrequests2memory.h"
 #include "dt/cft_defddrcommand.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'DDRCommandGeneration includes' algorithm generated code
 
+//End of 'DDRCommandGeneration includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
-class cfm_ddrcommandgeneration: public cf_core::cf_function, public cfm_ddrcommandgeneration_dp_if {
+///    \defgroup dxgDDRCommandGeneration Function DDRCommandGeneration
+//@{
+///        \page dxpDDRCommandGeneration
+//@{
+///    \brief DDRCommandGeneration function model start
+class cfm_ddrcommandgeneration: public cf_core::cf_function,
+		public cfm_ddrcommandgeneration_dp_if {
 public:
+	/// cfm_ddrcommandgeneration type define start
 
-	typedef cf_core::cf_sv_initiator_socket<cfm_ddrcommandgeneration, cft_defmemorystatus> p_sv_MemoryStatus_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_ddrcommandgeneration, cft_defrequests2memory> p_mq_Requests2Memory_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_ddrcommandgeneration, cft_defddrcommand> p_mq_DDRCommand_t;
+	/// ports typedef
+	typedef cf_core::cf_sv_initiator_socket<cfm_ddrcommandgeneration,
+			cft_defmemorystatus> p_sv_MemoryStatus_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_ddrcommandgeneration,
+			cft_defrequests2memory> p_mq_Requests2Memory_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_ddrcommandgeneration,
+			cft_defddrcommand> p_mq_DDRCommand_t;
+	/// cfm_ddrcommandgeneration type define end
 
+	/// constructor
 	cfm_ddrcommandgeneration(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_ddrcommandgeneration(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_sv_MemoryStatus_t p_sv_MemoryStatus;
 	p_mq_Requests2Memory_t p_mq_Requests2Memory;
 	p_mq_DDRCommand_t p_mq_DDRCommand;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
-	int DDRIndex;
-	int MemoryStatus;
-	int Requests2Memory;
-	int DDRCommand;
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'DDRCommandGeneration local declarations' algorithm generated code
+	int remainingDataSize;
+	int transId;
+	int numBatch;
+	int numByte;
+	double bus_throughput;
+	double bus_width;
+	double bus_efficiency;
+
+	cf_dt::cf_time send_time;
+	cf_dt::cf_time message_time_stamp;
+	cf_dt::cf_data_size message_size;
+	cf_dt::cf_throughput dma_throughput;
+	cf_dt::cf_time total_internal_bus_running_time;
+	double internal_bus_usage;
+	cf_dt::cf_data_size total_data_processed;
+	int total_nb_of_packets_processed;
+
+	int dma_size;
+	//End of 'DDRCommandGeneration local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief DDRCommandGeneration function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_DDRMEMORY_DDRCOMMANDGENERATION
 
+//<#!@READ-ONLY-SECTION-END@!#>

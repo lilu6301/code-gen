@@ -1,3 +1,4 @@
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_automatedpayloadtrackers
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -6,6 +7,7 @@
 #ifndef COFS_MODEL_AUTOMATEDPAYLOADTRACKERS
 #define COFS_MODEL_AUTOMATEDPAYLOADTRACKERS
 
+/// Model Header includes start
 #include "cfm_automatedpayloadtrackers_global.h"
 #include "cfm_automatedpayloadtrackers_global_types.h"
 #include "cofluent.h"
@@ -16,19 +18,34 @@
 #include "cfm_p1.h"
 #include "cfm_p2.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'AutomatedPayloadTrackers includes' algorithm generated code
 
+//End of 'AutomatedPayloadTrackers includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgAutomatedPayloadTrackers Function AutomatedPayloadTrackers
+//@{
+///        \page dxpAutomatedPayloadTrackers
+//@{
+///    \brief AutomatedPayloadTrackers function model start
 class cfm_automatedpayloadtrackers: public cf_core::cf_application {
 public:
+	/// cfm_automatedpayloadtrackers type define start
+	/// relations typedef
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_M1_1_t;
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_M1_2_t;
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_M1_3_t;
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_M2_1_t;
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_M2_2_t;
 
+	/// cfm_automatedpayloadtrackers type define end
 
+	/// constructor
 	cfm_automatedpayloadtrackers(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_automatedpayloadtrackers(void);
 	virtual void cb_before_elaboration(void);
 
@@ -36,28 +53,47 @@ public:
 	void cb_end_of_simulation(void);
 
 public:
+	/// \name functions
+	//@{
 	cfm_c1* C1;
 	cfm_c2* C2;
 	cfm_f12* F12;
 	cfm_f2* F2;
 	cfm_p1* P1;
 	cfm_p2* P2;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	mq_M1_1_t mq_M1_1;
 	mq_M1_2_t mq_M1_2;
 	mq_M1_3_t mq_M1_3;
 	mq_M2_1_t mq_M2_1;
 	mq_M2_2_t mq_M2_2;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'AutomatedPayloadTrackers local declarations' algorithm generated code
 
+	//End of 'AutomatedPayloadTrackers local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief AutomatedPayloadTrackers function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_AUTOMATEDPAYLOADTRACKERS
 
+//<#!@READ-ONLY-SECTION-END@!#>

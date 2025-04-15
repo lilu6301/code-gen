@@ -27,7 +27,8 @@
 ///        \page dxpWdataDmux
 //@{
 ///    \brief WdataDmux function model start
-class cfm_wdatadmux: public cf_core::cf_function_router, public cfm_wdatadmux_dp_if {
+class cfm_wdatadmux: public cf_core::cf_function_router,
+		public cfm_wdatadmux_dp_if {
 public:
 	/// cfm_wdatadmux type define start
 

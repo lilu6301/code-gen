@@ -28,14 +28,18 @@
 ///        \page dxpDDRCommandGeneration
 //@{
 ///    \brief DDRCommandGeneration function model start
-class cfm_ddrcommandgeneration: public cf_core::cf_function, public cfm_ddrcommandgeneration_dp_if {
+class cfm_ddrcommandgeneration: public cf_core::cf_function,
+		public cfm_ddrcommandgeneration_dp_if {
 public:
 	/// cfm_ddrcommandgeneration type define start
 
 	/// ports typedef
-	typedef cf_core::cf_sv_initiator_socket<cfm_ddrcommandgeneration, cft_defmemorystatus> p_sv_MemoryStatus_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_ddrcommandgeneration, cft_defrequests2memory> p_mq_Requests2Memory_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_ddrcommandgeneration, cft_defddrcommand> p_mq_DDRCommand_t;
+	typedef cf_core::cf_sv_initiator_socket<cfm_ddrcommandgeneration,
+			cft_defmemorystatus> p_sv_MemoryStatus_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_ddrcommandgeneration,
+			cft_defrequests2memory> p_mq_Requests2Memory_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_ddrcommandgeneration,
+			cft_defddrcommand> p_mq_DDRCommand_t;
 	/// cfm_ddrcommandgeneration type define end
 
 	/// constructor

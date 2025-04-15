@@ -29,14 +29,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_ddrcommandgeneration::cfm_ddrcommandgeneration(sc_core::sc_module_name name)
-cf_function(name)
-, cfm_ddrcommandgeneration_dp_if()
-, p_sv_MemoryStatus("p_sv_MemoryStatus")
-, p_mq_Requests2Memory("p_mq_Requests2Memory")
-, p_mq_DDRCommand("p_mq_DDRCommand")
-
-{
+cfm_ddrcommandgeneration::cfm_ddrcommandgeneration(sc_core::sc_module_name name) :
+		cf_function(name), cfm_ddrcommandgeneration_dp_if(), p_sv_MemoryStatus(
+				"p_sv_MemoryStatus"), p_mq_Requests2Memory(
+				"p_mq_Requests2Memory"), p_mq_DDRCommand("p_mq_DDRCommand") {
 	cf_function::init();
 
 	//<#!@READ-ONLY-SECTION-END@!#>

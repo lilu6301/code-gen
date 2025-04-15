@@ -30,7 +30,8 @@
 ///        \page dxpBaseBand_Layer
 //@{
 ///    \brief BaseBand_Layer function model start
-class cfm_baseband_layer: public cf_core::cf_function_container, public cfm_baseband_layer_dp_if {
+class cfm_baseband_layer: public cf_core::cf_function_container,
+		public cfm_baseband_layer_dp_if {
 public:
 	/// cfm_baseband_layer type define start
 

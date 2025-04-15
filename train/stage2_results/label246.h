@@ -1,3 +1,4 @@
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_outboundaggswitch
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -6,39 +7,72 @@
 #ifndef COFS_MODEL_DATACENTER_OUTBOUNDAGGSWITCH
 #define COFS_MODEL_DATACENTER_OUTBOUNDAGGSWITCH
 
+/// Model Header includes start
 #include "cfm_datacenter_global.h"
 #include "cfm_datacenter_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_outboundaggswitch_dp_if.h"
 #include "dt/cft_defpacket.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'OutboundAGGSwitch includes' algorithm generated code
 
+//End of 'OutboundAGGSwitch includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
-class cfm_outboundaggswitch: public cf_core::cf_function, public cfm_outboundaggswitch_dp_if {
+///    \defgroup dxgOutboundAGGSwitch Function OutboundAGGSwitch
+//@{
+///        \page dxpOutboundAGGSwitch
+//@{
+///    \brief OutboundAGGSwitch function model start
+class cfm_outboundaggswitch: public cf_core::cf_function,
+		public cfm_outboundaggswitch_dp_if {
 public:
+	/// cfm_outboundaggswitch type define start
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_outboundaggswitch, cft_defpacket> p_mq_MsgQOutboundAGGSwitch_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_outboundaggswitch, cft_defpacket> p_mq_MsgQToAggSwitch_t;
+	/// cfm_outboundaggswitch type define end
 
+	/// constructor
 	cfm_outboundaggswitch(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_outboundaggswitch(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_MsgQOutboundAGGSwitch_t p_mq_MsgQOutboundAGGSwitch;
 	p_mq_MsgQToAggSwitch_t p_mq_MsgQToAggSwitch;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'OutboundAGGSwitch local declarations' algorithm generated code
 	int rack_id;
+	//End of 'OutboundAGGSwitch local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief OutboundAGGSwitch function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_DATACENTER_OUTBOUNDAGGSWITCH
 
+//<#!@READ-ONLY-SECTION-END@!#>

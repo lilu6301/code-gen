@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_copypayloadnonpod
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,6 +8,7 @@
 #ifndef COFS_MODEL_COPYPAYLOADNONPOD
 #define COFS_MODEL_COPYPAYLOADNONPOD
 
+/// Model Header includes start
 #include "cfm_copypayloadnonpod_global.h"
 #include "cfm_copypayloadnonpod_global_types.h"
 #include "cofluent.h"
@@ -14,15 +16,30 @@
 #include "cfm_producer.h"
 #include "dt/cft_defmsgq.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'CopyPayloadNonPod includes' algorithm generated code
 
+//End of 'CopyPayloadNonPod includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgCopyPayloadNonPod Function CopyPayloadNonPod
+//@{
+///        \page dxpCopyPayloadNonPod
+//@{
+///    \brief CopyPayloadNonPod function model start
 class cfm_copypayloadnonpod: public cf_core::cf_application {
 public:
+	/// cfm_copypayloadnonpod type define start
+	/// relations typedef
 	typedef cf_core::cf_message_queue<cft_defmsgq> mq_MsgQ_t;
 
+	/// cfm_copypayloadnonpod type define end
 
+	/// constructor
 	cfm_copypayloadnonpod(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_copypayloadnonpod(void);
 	virtual void cb_before_elaboration(void);
 
@@ -30,20 +47,39 @@ public:
 	void cb_end_of_simulation(void);
 
 public:
+	/// \name functions
+	//@{
 	cfm_consumer* Consumer;
 	cfm_producer* Producer;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	mq_MsgQ_t mq_MsgQ;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'CopyPayloadNonPod local declarations' algorithm generated code
 
+	//End of 'CopyPayloadNonPod local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief CopyPayloadNonPod function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_COPYPAYLOADNONPOD
 
+//<#!@READ-ONLY-SECTION-END@!#>

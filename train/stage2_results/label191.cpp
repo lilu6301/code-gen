@@ -29,13 +29,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_sendwackdriver::cfm_sendwackdriver(sc_core::sc_module_name name)
-cf_function(name)
-, cfm_sendwackdriver_dp_if()
-, p_mq_WriteAck("p_mq_WriteAck")
-, p_mq_BRESPchn("p_mq_BRESPchn")
-
-{
+cfm_sendwackdriver::cfm_sendwackdriver(sc_core::sc_module_name name) :
+		cf_function(name), cfm_sendwackdriver_dp_if(), p_mq_WriteAck(
+				"p_mq_WriteAck"), p_mq_BRESPchn("p_mq_BRESPchn") {
 	cf_function::init();
 
 	//<#!@READ-ONLY-SECTION-END@!#>

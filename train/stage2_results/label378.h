@@ -29,7 +29,8 @@
 ///        \page dxpOPP_UseCase
 //@{
 ///    \brief OPP_UseCase function model start
-class cfm_opp_usecase: public cf_core::cf_application, public cfm_opp_usecase_dp_if {
+class cfm_opp_usecase: public cf_core::cf_application,
+		public cfm_opp_usecase_dp_if {
 public:
 	/// cfm_opp_usecase type define start
 	/// relations typedef

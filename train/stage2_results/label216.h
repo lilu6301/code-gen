@@ -1,3 +1,4 @@
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_aggswitch
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -6,6 +7,7 @@
 #ifndef COFS_MODEL_DATACENTER_AGGSWITCH
 #define COFS_MODEL_DATACENTER_AGGSWITCH
 
+/// Model Header includes start
 #include <vector>
 #include "cfm_datacenter_global.h"
 #include "cfm_datacenter_global_types.h"
@@ -18,54 +20,93 @@
 #include "cfm_outboundrack.h"
 #include "dt/cft_defpacket.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'AGGSwitch includes' algorithm generated code
 
+//End of 'AGGSwitch includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
-class cfm_aggswitch: public cf_core::cf_function_container, public cfm_aggswitch_dp_if {
+///    \defgroup dxgAGGSwitch Function AGGSwitch
+//@{
+///        \page dxpAGGSwitch
+//@{
+///    \brief AGGSwitch function model start
+class cfm_aggswitch: public cf_core::cf_function_container,
+		public cfm_aggswitch_dp_if {
 public:
+	/// cfm_aggswitch type define start
+	/// relations typedef
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQInboundDataCenterSwitch_t;
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQInboundRack_t;
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQOutboundDataCenterSwitch_t;
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQOutboundRack_t;
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_aggswitch, cft_defpacket> p_mq_MsgQToAggSwitch_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_aggswitch, cft_defpacket> p_mq_MsgQToRack_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_aggswitch, cft_defpacket> p_mq_MsgQToServerRoom_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_aggswitch, cft_defpacket> p_mq_MsgQToDataCenterSwitch_t;
+	/// cfm_aggswitch type define end
 
+	/// constructor
 	cfm_aggswitch(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_aggswitch(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	std::vector<p_mq_MsgQToAggSwitch_t*> p_mq_MsgQToAggSwitch_vec;
 	std::vector<p_mq_MsgQToRack_t*> p_mq_MsgQToRack_vec;
 	p_mq_MsgQToServerRoom_t p_mq_MsgQToServerRoom;
 	p_mq_MsgQToDataCenterSwitch_t p_mq_MsgQToDataCenterSwitch;
+	//@}
 
 public:
+	/// \name functions
+	//@{
 	cfm_inbounddatacenterswitch* InboundDataCenterSwitch;
 	std::vector<cfm_inboundrack*> InboundRack_vec;
 	cfm_outbounddatacenterswitch* OutboundDataCenterSwitch;
 	std::vector<cfm_outboundrack*> OutboundRack_vec;
 	cfm_aggswitch_routingfunction* RoutingFunction;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	mq_MsgQInboundDataCenterSwitch_t mq_MsgQInboundDataCenterSwitch;
 	std::vector<mq_MsgQInboundRack_t*> mq_MsgQInboundRack_vec;
 	mq_MsgQOutboundDataCenterSwitch_t mq_MsgQOutboundDataCenterSwitch;
 	std::vector<mq_MsgQOutboundRack_t*> mq_MsgQOutboundRack_vec;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'AGGSwitch local declarations' algorithm generated code
 
+	//End of 'AGGSwitch local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief AGGSwitch function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_DATACENTER_AGGSWITCH
 
+//<#!@READ-ONLY-SECTION-END@!#>

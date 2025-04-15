@@ -21,65 +21,27 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_opp_usecase::cfm_opp_usecase(sc_core::sc_module_name name)
-cf_application(name)
-, cfm_opp_usecase_dp_if()
-, mq_M2S("M2S"
-)
-, mq_S2M("S2M"
-)
-, ev_StartEv("StartEv"
-)
-, ev_UnusedEv("UnusedEv"
-)
-
-{
+cfm_opp_usecase::cfm_opp_usecase(sc_core::sc_module_name name) :
+		cf_application(name), cfm_opp_usecase_dp_if(), mq_M2S("M2S"), mq_S2M(
+				"S2M"), ev_StartEv("StartEv"), ev_UnusedEv("UnusedEv") {
 	cf_application::init();
-	Master = new cfm_bt_system
-	("Master");
-	Slave = new cfm_bt_system
-	("Slave");
-	StartFunc = new cfm_startfunc
-	("StartFunc");
-	UnusedFunc = new cfm_unusedfunc
-	("UnusedFunc");
+	Master = new cfm_bt_system("Master");
+	Slave = new cfm_bt_system("Slave");
+	StartFunc = new cfm_startfunc("StartFunc");
+	UnusedFunc = new cfm_unusedfunc("UnusedFunc");
 
 	// connections
-	Master->p_mq_BaseBand_Out
-	(mq_M2S
-			.p_target_socket
-	);
-	Master->p_mq_BaseBand_In
-	(mq_S2M
-			.p_target_socket
-	);
-	Master->p_ev_startEv
-	(ev_StartEv
-			.p_target_socket
-	);
+	Master->p_mq_BaseBand_Out(mq_M2S.p_target_socket);
+	Master->p_mq_BaseBand_In(mq_S2M.p_target_socket);
+	Master->p_ev_startEv(ev_StartEv.p_target_socket);
 
-	Slave->p_mq_BaseBand_Out
-	(mq_S2M
-			.p_target_socket
-	);
-	Slave->p_mq_BaseBand_In
-	(mq_M2S
-			.p_target_socket
-	);
-	Slave->p_ev_startEv
-	(ev_UnusedEv
-			.p_target_socket
-	);
+	Slave->p_mq_BaseBand_Out(mq_S2M.p_target_socket);
+	Slave->p_mq_BaseBand_In(mq_M2S.p_target_socket);
+	Slave->p_ev_startEv(ev_UnusedEv.p_target_socket);
 
-	StartFunc->p_ev_StartEv
-	(ev_StartEv
-			.p_target_socket
-	);
+	StartFunc->p_ev_StartEv(ev_StartEv.p_target_socket);
 
-	UnusedFunc->p_ev_UnusedEv
-	(ev_UnusedEv
-			.p_target_socket
-	);
+	UnusedFunc->p_ev_UnusedEv(ev_UnusedEv.p_target_socket);
 
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'OPP_UseCase constructor' algorithm generated code
@@ -99,10 +61,10 @@ cfm_opp_usecase::~cfm_opp_usecase(void) {
 
 	//End of 'OPP_UseCase destructor' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
-	delete Master;	///ddd
-	delete Slave;	///ddd
-	delete StartFunc;	///ddd
-	delete UnusedFunc;	///ddd
+	delete Master;
+	delete Slave;
+	delete StartFunc;
+	delete UnusedFunc;
 }
 //@}
 
@@ -142,7 +104,8 @@ void cfm_opp_usecase::cb_end_of_simulation(void) {
 	//Start of 'OPP_UseCase post simulation' algorithm generated code
 	//perf result computation
 	total_time = last_write_time - first_read_time; //in us
-	average_throughput = 1000000.0 * (double) File_Size * 8.0 / (double) total_time;
+	average_throughput = 1000000.0 * (double) File_Size * 8.0
+			/ (double) total_time;
 	cf_trace_gui_f_param("average_throughput", average_throughput, "kbits/s");
 
 	//print out results
@@ -152,27 +115,41 @@ void cfm_opp_usecase::cb_end_of_simulation(void) {
 		cf_trace_report("	File size: %d kBytes", (int) File_Size);
 		cf_trace_report("	Max file part size: %d Bytes", (int) OBEX_pl_size);
 		cf_trace_report("	Number of file parts: %d", nb_file_parts);
-		cf_trace_report("	--> Total time between first read and last write:%d us", total_time);
-		cf_trace_report("	--> Average throughput:%f kbits/s", average_throughput);
-		cf_trace_report("	--> Average delay between read and OBEX final packet (acknowledge) reception:%f us",
+		cf_trace_report(
+				"	--> Total time between first read and last write:%d us",
+				total_time);
+		cf_trace_report("	--> Average throughput:%f kbits/s",
+				average_throughput);
+		cf_trace_report(
+				"	--> Average delay between read and OBEX final packet (acknowledge) reception:%f us",
 				(double) total_delay_FILE / (double) nb_file_parts);
 		cf_trace_report("OBEX LEVEL:");
-		cf_trace_report("	Maximum frame size:%d Bytes", (int) OBEX_pl_size + OBEX_HDR_S);
+		cf_trace_report("	Maximum frame size:%d Bytes",
+				(int) OBEX_pl_size + OBEX_HDR_S);
 		cf_trace_report("	--> Number of data frames: %d", nb_OBEX_df);
-		cf_trace_report("	--> Average delay between data frame send and receive:%f us", (double) total_delay_OBEX / (double) nb_OBEX_df);
+		cf_trace_report(
+				"	--> Average delay between data frame send and receive:%f us",
+				(double) total_delay_OBEX / (double) nb_OBEX_df);
 		cf_trace_report("RFCOMM LEVEL:");
-		cf_trace_report("	Maximum frame size:%d Bytes", (int) RFCOMM_pl_size + RFCOMM_HDR_S);
+		cf_trace_report("	Maximum frame size:%d Bytes",
+				(int) RFCOMM_pl_size + RFCOMM_HDR_S);
 		cf_trace_report("	--> Number of data frames:%d", nb_RFCOMM_df);
-		cf_trace_report("	--> Average delay between data frame send and receive:%f us", (double) total_delay_RFCOMM / (double) nb_RFCOMM_df);
+		cf_trace_report(
+				"	--> Average delay between data frame send and receive:%f us",
+				(double) total_delay_RFCOMM / (double) nb_RFCOMM_df);
 		cf_trace_report("	Number of credits:%d", (int) RFCOMM_credits);
 		cf_trace_report("	Number of credit requests:%d", nb_cdts_req);
 		cf_trace_report("L2CAP LEVEL:");
-		cf_trace_report("	Maximum frame size:%d Bytes", (int) RFCOMM_pl_size + RFCOMM_HDR_S + L2CAP_HDR_S);
+		cf_trace_report("	Maximum frame size:%d Bytes",
+				(int) RFCOMM_pl_size + RFCOMM_HDR_S + L2CAP_HDR_S);
 		cf_trace_report("	--> Number of data frames:%d", nb_RFCOMM_df);
-		cf_trace_report("	--> Total amount of data exchanged:%d Bytes", total_L2CAP_data);
-		cf_trace_report("	--> Average load:%f kbits/s", 8000.0 * (float) total_L2CAP_data / (float) total_time);
+		cf_trace_report("	--> Total amount of data exchanged:%d Bytes",
+				total_L2CAP_data);
+		cf_trace_report("	--> Average load:%f kbits/s",
+				8000.0 * (float) total_L2CAP_data / (float) total_time);
 		cf_trace_report("BASEBAND LEVEL:");
-		cf_trace_report("	Average throughput:%d kbits/s", (int) Throughput_BaseBand);
+		cf_trace_report("	Average throughput:%d kbits/s",
+				(int) Throughput_BaseBand);
 	}
 	//End of 'OPP_UseCase post simulation' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>

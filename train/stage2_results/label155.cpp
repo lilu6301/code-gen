@@ -29,133 +29,92 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_target::cfm_target(sc_core::sc_module_name name)
-cf_function_container(name)
-, cfm_target_dp_if()
-, p_mq_ARADDRchn("p_mq_ARADDRchn")
-, p_mq_WDATAchn("p_mq_WDATAchn")
-, p_mq_AWADDRchn("p_mq_AWADDRchn")
-
-{
+cfm_target::cfm_target(sc_core::sc_module_name name) :
+		cf_function_container(name), cfm_target_dp_if(), p_mq_ARADDRchn(
+				"p_mq_ARADDRchn"), p_mq_WDATAchn("p_mq_WDATAchn"), p_mq_AWADDRchn(
+				"p_mq_AWADDRchn") {
 	cf_function_container::init();
-	MemoryController = new cfm_memorycontroller
-	("MemoryController");
+	MemoryController = new cfm_memorycontroller("MemoryController");
 
 	// instantiation of Memory_vec
-	for (cf_count i = 0; i < (cf_count)(M_Nbr + 1); i++)
-	{
-		cfm_memory* module=new cfm_memory(cf_string("Memory[%d]", i).c_str());
-		CF_ASSERT( module )
+	for (cf_count i = 0; i < (cf_count)(M_Nbr + 1); i++) {
+		cfm_memory* module = new cfm_memory(cf_string("Memory[%d]", i).c_str());
+		CF_ASSERT (module)
 		Memory_vec.push_back(module);
 	}
 	// instantiation of mq_DDRCommand_vec
-	for (cf_count i = 0; i < (cf_count)(M_Nbr + 1); i++)
-	{
-		mq_DDRCommand_t* module=new mq_DDRCommand_t(cf_string("DDRCommand[%d]", i).c_str());
-		CF_ASSERT( module )
+	for (cf_count i = 0; i < (cf_count)(M_Nbr + 1); i++) {
+		mq_DDRCommand_t* module = new mq_DDRCommand_t(
+				cf_string("DDRCommand[%d]", i).c_str());
+		CF_ASSERT (module)
 		mq_DDRCommand_vec.push_back(module);
 	}
 	// instantiation of mq_DQs_vec
-	for (cf_count i = 0; i < (cf_count)(M_Nbr + 1); i++)
-	{
-		mq_DQs_t* module=new mq_DQs_t(cf_string("DQs[%d]", i).c_str());
-		CF_ASSERT( module )
+	for (cf_count i = 0; i < (cf_count)(M_Nbr + 1); i++) {
+		mq_DQs_t* module = new mq_DQs_t(cf_string("DQs[%d]", i).c_str());
+		CF_ASSERT (module)
 		mq_DQs_vec.push_back(module);
 	}
 	// instantiation of p_mq_BRESPchn_vec
-	for (cf_count i = 0; i < (cf_count)MemoryController->p_mq_BRESPchn_vec.size(); i++)
-	{
-		p_mq_BRESPchn_t* module=new p_mq_BRESPchn_t(cf_string("p_mq_BRESPchn[%d]", i).c_str());
-		CF_ASSERT( module )
+	for (cf_count i = 0;
+			i < (cf_count) MemoryController->p_mq_BRESPchn_vec.size(); i++) {
+		p_mq_BRESPchn_t* module = new p_mq_BRESPchn_t(
+				cf_string("p_mq_BRESPchn[%d]", i).c_str());
+		CF_ASSERT (module)
 		p_mq_BRESPchn_vec.push_back(module);
 	}
 	// instantiation of p_mq_RDATAchn_vec
-	for (cf_count i = 0; i < (cf_count)MemoryController->p_mq_RDATAchn_vec.size(); i++)
-	{
-		p_mq_RDATAchn_t* module=new p_mq_RDATAchn_t(cf_string("p_mq_RDATAchn[%d]", i).c_str());
-		CF_ASSERT( module )
+	for (cf_count i = 0;
+			i < (cf_count) MemoryController->p_mq_RDATAchn_vec.size(); i++) {
+		p_mq_RDATAchn_t* module = new p_mq_RDATAchn_t(
+				cf_string("p_mq_RDATAchn[%d]", i).c_str());
+		CF_ASSERT (module)
 		p_mq_RDATAchn_vec.push_back(module);
 	}
 	// connections
 	for (cf_count i = 0; i < (cf_count)(M_Nbr + 1); i++) {
-		cfm_memory* module
-		=Memory_vec[i];
-		if(module
-				!= nullptr) {
+		cfm_memory* module = Memory_vec[i];
+		if (module != nullptr) {
 			for (cf_count j = 0; j < (cf_count)(M_Nbr + 1); j++) {
-				for (cf_count k = 0; k < (cf_count)module
-						->p_mq_DQs_vec.size(); k++)
-				{
-					cfm_memory
-					::p_mq_DQs_t* port= module
-					->p_mq_DQs_vec[k]
-					;
-					if(port != nullptr) {
-						port->bind(mq_DQs_vec[j]
-								->p_target_socket
-						);
+				for (cf_count k = 0; k < (cf_count) module->p_mq_DQs_vec.size();
+						k++) {
+					cfm_memory::p_mq_DQs_t* port = module->p_mq_DQs_vec[k];
+					if (port != nullptr) {
+						port->bind(mq_DQs_vec[j]->p_target_socket);
 					}
 				}
 			}
 			for (cf_count j = 0; j < (cf_count)(M_Nbr + 1); j++) {
-				module->p_mq_DDRCommand
-				(mq_DDRCommand_vec[j]
-						->p_target_socket
-				);
+				module->p_mq_DDRCommand(mq_DDRCommand_vec[j]->p_target_socket);
 			}
 		}
 	}
 
 	for (cf_count i = 0; i < (cf_count)(M_Nbr + 1); i++) {
-		MemoryController->p_mq_DQs
-		(mq_DQs_vec[i]
-				->p_target_socket
-		);
+		MemoryController->p_mq_DQs(mq_DQs_vec[i]->p_target_socket);
 	}
-	for (cf_count i = 0; i < (cf_count)MemoryController
-			->p_mq_RDATAchn_vec.size(); i++)
-	{
-		cfm_memorycontroller
-		::p_mq_RDATAchn_t* port= MemoryController
-		->p_mq_RDATAchn_vec[i]
-		;
-		if(port != nullptr) {
-			port->bind((*p_mq_RDATAchn_vec[
-							i
-							]
-					)
-			);
+	for (cf_count i = 0;
+			i < (cf_count) MemoryController->p_mq_RDATAchn_vec.size(); i++) {
+		cfm_memorycontroller::p_mq_RDATAchn_t* port =
+				MemoryController->p_mq_RDATAchn_vec[i];
+		if (port != nullptr) {
+			port->bind((*p_mq_RDATAchn_vec[i]));
 		}
 	}
-	MemoryController->p_mq_ARADDRchn
-	(p_mq_ARADDRchn
-	);
-	for (cf_count i = 0; i < (cf_count)MemoryController
-			->p_mq_BRESPchn_vec.size(); i++)
-	{
-		cfm_memorycontroller
-		::p_mq_BRESPchn_t* port= MemoryController
-		->p_mq_BRESPchn_vec[i]
-		;
-		if(port != nullptr) {
-			port->bind((*p_mq_BRESPchn_vec[
-							i
-							]
-					)
-			);
+	MemoryController->p_mq_ARADDRchn(p_mq_ARADDRchn);
+	for (cf_count i = 0;
+			i < (cf_count) MemoryController->p_mq_BRESPchn_vec.size(); i++) {
+		cfm_memorycontroller::p_mq_BRESPchn_t* port =
+				MemoryController->p_mq_BRESPchn_vec[i];
+		if (port != nullptr) {
+			port->bind((*p_mq_BRESPchn_vec[i]));
 		}
 	}
-	MemoryController->p_mq_WDATAchn
-	(p_mq_WDATAchn
-	);
-	MemoryController->p_mq_AWADDRchn
-	(p_mq_AWADDRchn
-	);
+	MemoryController->p_mq_WDATAchn(p_mq_WDATAchn);
+	MemoryController->p_mq_AWADDRchn(p_mq_AWADDRchn);
 	for (cf_count i = 0; i < (cf_count)(M_Nbr + 1); i++) {
-		MemoryController->p_mq_DDRCommand
-		(mq_DDRCommand_vec[i]
-				->p_target_socket
-		);
+		MemoryController->p_mq_DDRCommand(
+				mq_DDRCommand_vec[i]->p_target_socket);
 	}
 
 	//<#!@READ-ONLY-SECTION-END@!#>
@@ -165,10 +124,8 @@ cf_function_container(name)
 	//<#!@READ-ONLY-SECTION-START@!#>
 
 	for (cf_count i = 0; i < (cf_count)(M_Nbr + 1); i++) {
-		CF_COMM_CB_MQ_RECEIVE((*mq_DQs_vec[i]
-				)
-				, cfm_target::mq_DQs_cb_receive_time
-		);
+		CF_COMM_CB_MQ_RECEIVE((*mq_DQs_vec[i]),
+				cfm_target::mq_DQs_cb_receive_time);
 	}
 
 	cf_function_container::elab_end();
@@ -183,22 +140,27 @@ cfm_target::~cfm_target(void) {
 
 	//End of 'Target destructor' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
-	for (vector<cfm_memory*>::const_iterator vi = Memory_vec.begin(); vi != Memory_vec.end(); vi++) {
+	for (vector<cfm_memory*>::const_iterator vi = Memory_vec.begin();
+			vi != Memory_vec.end(); vi++) {
 		delete (*vi);
 	}
-	for (vector<mq_DDRCommand_t*>::const_iterator vi = mq_DDRCommand_vec.begin(); vi != mq_DDRCommand_vec.end(); vi++) {
+	for (vector<mq_DDRCommand_t*>::const_iterator vi =
+			mq_DDRCommand_vec.begin(); vi != mq_DDRCommand_vec.end(); vi++) {
 		delete (*vi);
 	}
-	for (vector<mq_DQs_t*>::const_iterator vi = mq_DQs_vec.begin(); vi != mq_DQs_vec.end(); vi++) {
+	for (vector<mq_DQs_t*>::const_iterator vi = mq_DQs_vec.begin();
+			vi != mq_DQs_vec.end(); vi++) {
 		delete (*vi);
 	}
-	for (vector<p_mq_BRESPchn_t*>::const_iterator vi = p_mq_BRESPchn_vec.begin(); vi != p_mq_BRESPchn_vec.end(); vi++) {
+	for (vector<p_mq_BRESPchn_t*>::const_iterator vi =
+			p_mq_BRESPchn_vec.begin(); vi != p_mq_BRESPchn_vec.end(); vi++) {
 		delete (*vi);
 	}
-	for (vector<p_mq_RDATAchn_t*>::const_iterator vi = p_mq_RDATAchn_vec.begin(); vi != p_mq_RDATAchn_vec.end(); vi++) {
+	for (vector<p_mq_RDATAchn_t*>::const_iterator vi =
+			p_mq_RDATAchn_vec.begin(); vi != p_mq_RDATAchn_vec.end(); vi++) {
 		delete (*vi);
 	}
-	delete MemoryController;	///ddd
+	delete MemoryController;
 }
 //@}
 
@@ -243,9 +205,12 @@ void cfm_target::cb_init_attributes() {
 	cfa_cycle_period.init(cf_expr_time(10, CF_NS));
 // initialize relations attributes
 	for (cf_count i = 0; i < (cf_count)(M_Nbr + 1); i++) {
-		(*mq_DDRCommand_vec[i]).cfa_send_time.init(cf_expr_duration(1, CF_CYCLE));
-		(*mq_DDRCommand_vec[i]).cfa_receive_time.init(cf_expr_duration(1, CF_CYCLE));
-		(*mq_DDRCommand_vec[i]).cfa_queue_policy.init(CF_MQ_POLICY_FIFO_INFINITE);
+		(*mq_DDRCommand_vec[i]).cfa_send_time.init(
+				cf_expr_duration(1, CF_CYCLE));
+		(*mq_DDRCommand_vec[i]).cfa_receive_time.init(
+				cf_expr_duration(1, CF_CYCLE));
+		(*mq_DDRCommand_vec[i]).cfa_queue_policy.init(
+				CF_MQ_POLICY_FIFO_INFINITE);
 		(*mq_DDRCommand_vec[i]).cfa_concurrency.init((cf_nonzero_count) 1);
 	}
 	for (cf_count i = 0; i < (cf_count)(M_Nbr + 1); i++) {

@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_reader
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,44 +8,77 @@
 #ifndef COFS_MODEL_TLM2LT_READER
 #define COFS_MODEL_TLM2LT_READER
 
+/// Model Header includes start
 #include "cfm_tlm2lt_global.h"
 #include "cfm_tlm2lt_global_types.h"
 #include "cofluent.h"
+#include "dp/cfm_reader_dp_if.h"
 #include "dt/cft_defmsgq.h"
 #include "dt/cft_initiator.h"
 #include "dt/cft_target.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'Reader includes' algorithm generated code
 
+//End of 'Reader includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
-class cfm_reader: public cf_core::cf_function {
+///    \defgroup dxgReader Function Reader
+//@{
+///        \page dxpReader
+//@{
+///    \brief Reader function model start
+class cfm_reader: public cf_core::cf_function, public cfm_reader_dp_if {
 public:
+	/// cfm_reader type define start
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_reader, cft_defmsgq> p_mq_ReferenceQueue3_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_reader, cft_initiator> p_mq_InitiatorReader_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_reader, cft_target> p_mq_ReaderResponse_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_reader> p_ev_Sync_t;
+	/// cfm_reader type define end
 
+	/// constructor
 	cfm_reader(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_reader(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_ReferenceQueue3_t p_mq_ReferenceQueue3;
 	p_mq_InitiatorReader_t p_mq_InitiatorReader;
 	p_mq_ReaderResponse_t p_mq_ReaderResponse;
 	p_ev_Sync_t p_ev_Sync;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'Reader local declarations' algorithm generated code
 
+	//End of 'Reader local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief Reader function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_TLM2LT_READER
 
+//<#!@READ-ONLY-SECTION-END@!#>

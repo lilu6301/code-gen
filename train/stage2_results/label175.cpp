@@ -21,13 +21,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_wdatadmux::cfm_wdatadmux(sc_core::sc_module_name name)
-cf_function_router(name)
-, cfm_wdatadmux_dp_if()
-, p_mq_WDATAin("p_mq_WDATAin")
-, p_mq_WDATAchn("p_mq_WDATAchn")
-
-{
+cfm_wdatadmux::cfm_wdatadmux(sc_core::sc_module_name name) :
+		cf_function_router(name), cfm_wdatadmux_dp_if(), p_mq_WDATAin(
+				"p_mq_WDATAin"), p_mq_WDATAchn("p_mq_WDATAchn") {
 	cf_function_router::init();
 
 	add_input_port (&p_mq_WDATAchn);

@@ -39,7 +39,8 @@
 ///        \page dxpBT_Stack
 //@{
 ///    \brief BT_Stack function model start
-class cfm_bt_stack: public cf_core::cf_function_container, public cfm_bt_stack_dp_if {
+class cfm_bt_stack: public cf_core::cf_function_container,
+		public cfm_bt_stack_dp_if {
 public:
 	/// cfm_bt_stack type define start
 	/// relations typedef

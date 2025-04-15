@@ -1,3 +1,4 @@
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_softwaredefinedradioapp
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -6,6 +7,7 @@
 #ifndef COFS_MODEL_SOFTWAREDEFINEDRADIOAPP
 #define COFS_MODEL_SOFTWAREDEFINEDRADIOAPP
 
+/// Model Header includes start
 #include "cfm_softwaredefinedradioapp_global.h"
 #include "cfm_softwaredefinedradioapp_global_types.h"
 #include "cofluent.h"
@@ -16,10 +18,23 @@
 #include "dt/cft_defcall.h"
 #include "dt/cft_defvideo.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'SoftwareDefinedRadioApp includes' algorithm generated code
 
+//End of 'SoftwareDefinedRadioApp includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
-class cfm_softwaredefinedradioapp: public cf_core::cf_application, public cfm_softwaredefinedradioapp_dp_if {
+///    \defgroup dxgSoftwareDefinedRadioApp Function SoftwareDefinedRadioApp
+//@{
+///        \page dxpSoftwareDefinedRadioApp
+//@{
+///    \brief SoftwareDefinedRadioApp function model start
+class cfm_softwaredefinedradioapp: public cf_core::cf_application,
+		public cfm_softwaredefinedradioapp_dp_if {
 public:
+	/// cfm_softwaredefinedradioapp type define start
+	/// relations typedef
 	typedef cf_core::cf_message_queue<cft_defvideo> mq_NetToDVB_t;
 	typedef cf_core::cf_message_queue<cft_defcall> mq_NetToUMTS_t;
 	typedef cf_core::cf_message_queue<cft_defcall> mq_Request_t;
@@ -27,9 +42,12 @@ public:
 	typedef cf_core::cf_message_queue<cft_defcall> mq_UMTSToNet_t;
 	typedef cf_core::cf_message_queue<cft_defvideo> mq_Video_t;
 
+	/// cfm_softwaredefinedradioapp type define end
 
+	/// constructor
 	cfm_softwaredefinedradioapp(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_softwaredefinedradioapp(void);
 	virtual void cb_before_elaboration(void);
 
@@ -37,26 +55,45 @@ public:
 	void cb_end_of_simulation(void);
 
 public:
+	/// \name functions
+	//@{
 	cfm_mobilephone* MobilePhone;
 	cfm_networks* Networks;
 	cfm_user* User;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	mq_NetToDVB_t mq_NetToDVB;
 	mq_NetToUMTS_t mq_NetToUMTS;
 	mq_Request_t mq_Request;
 	mq_Response_t mq_Response;
 	mq_UMTSToNet_t mq_UMTSToNet;
 	mq_Video_t mq_Video;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'SoftwareDefinedRadioApp local declarations' algorithm generated code
 
+	//End of 'SoftwareDefinedRadioApp local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief SoftwareDefinedRadioApp function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_SOFTWAREDEFINEDRADIOAPP
 
+//<#!@READ-ONLY-SECTION-END@!#>

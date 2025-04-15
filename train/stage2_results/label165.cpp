@@ -29,64 +29,45 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_memory::cfm_memory(sc_core::sc_module_name name)
-cf_function_container(name)
-, cfm_memory_dp_if()
-, p_mq_DDRCommand("p_mq_DDRCommand")
-
-{
+cfm_memory::cfm_memory(sc_core::sc_module_name name) :
+		cf_function_container(name), cfm_memory_dp_if(), p_mq_DDRCommand(
+				"p_mq_DDRCommand") {
 	cf_function_container::init();
-	BankDmuxer = new cfm_bankdmuxer
-	("BankDmuxer");
+	BankDmuxer = new cfm_bankdmuxer("BankDmuxer");
 
 	// instantiation of MemoryCommandExecution_vec
-	for (cf_count i = 0; i < (cf_count)(NbBanksperMemory + 1); i++)
-	{
-		cfm_memorycommandexecution* module=new cfm_memorycommandexecution(cf_string("MemoryCommandExecution[%d]", i).c_str());
-		CF_ASSERT( module )
+	for (cf_count i = 0; i < (cf_count)(NbBanksperMemory + 1); i++) {
+		cfm_memorycommandexecution* module = new cfm_memorycommandexecution(
+				cf_string("MemoryCommandExecution[%d]", i).c_str());
+		CF_ASSERT (module)
 		MemoryCommandExecution_vec.push_back(module);
 	}
 	// instantiation of mq_DDRAction_vec
-	for (cf_count i = 0; i < (cf_count)(NbBanksperMemory + 1); i++)
-	{
-		mq_DDRAction_t* module=new mq_DDRAction_t(cf_string("DDRAction[%d]", i).c_str());
-		CF_ASSERT( module )
+	for (cf_count i = 0; i < (cf_count)(NbBanksperMemory + 1); i++) {
+		mq_DDRAction_t* module = new mq_DDRAction_t(
+				cf_string("DDRAction[%d]", i).c_str());
+		CF_ASSERT (module)
 		mq_DDRAction_vec.push_back(module);
 	}
 	// instantiation of p_mq_DQs_vec
-	for (cf_count i = 0; i < (cf_count)(NbBanksperMemory+1); i++)
-	{
-		p_mq_DQs_t* module=new p_mq_DQs_t(cf_string("p_mq_DQs[%d]", i).c_str());
-		CF_ASSERT( module )
+	for (cf_count i = 0; i < (cf_count)(NbBanksperMemory + 1); i++) {
+		p_mq_DQs_t* module = new p_mq_DQs_t(
+				cf_string("p_mq_DQs[%d]", i).c_str());
+		CF_ASSERT (module)
 		p_mq_DQs_vec.push_back(module);
 	}
 	// connections
 	for (cf_count i = 0; i < (cf_count)(NbBanksperMemory + 1); i++) {
-		BankDmuxer->p_mq_DDRAction
-		(mq_DDRAction_vec[i]
-				->p_target_socket
-		);
+		BankDmuxer->p_mq_DDRAction(mq_DDRAction_vec[i]->p_target_socket);
 	}
-	BankDmuxer->p_mq_DDRCommand
-	(p_mq_DDRCommand
-	);
+	BankDmuxer->p_mq_DDRCommand(p_mq_DDRCommand);
 
 	for (cf_count i = 0; i < (cf_count)(NbBanksperMemory + 1); i++) {
-		cfm_memorycommandexecution* module
-		=MemoryCommandExecution_vec[i];
-		if(module
-				!= nullptr) {
-			module->p_mq_DQs
-			((*p_mq_DQs_vec[
-							i
-							]
-					)
-			);
+		cfm_memorycommandexecution* module = MemoryCommandExecution_vec[i];
+		if (module != nullptr) {
+			module->p_mq_DQs((*p_mq_DQs_vec[i]));
 			for (cf_count j = 0; j < (cf_count)(NbBanksperMemory + 1); j++) {
-				module->p_mq_DDRAction
-				(mq_DDRAction_vec[j]
-						->p_target_socket
-				);
+				module->p_mq_DDRAction(mq_DDRAction_vec[j]->p_target_socket);
 			}
 		}
 	}
@@ -109,16 +90,20 @@ cfm_memory::~cfm_memory(void) {
 
 	//End of 'Memory destructor' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
-	for (vector<cfm_memorycommandexecution*>::const_iterator vi = MemoryCommandExecution_vec.begin(); vi != MemoryCommandExecution_vec.end(); vi++) {
+	for (vector<cfm_memorycommandexecution*>::const_iterator vi =
+			MemoryCommandExecution_vec.begin();
+			vi != MemoryCommandExecution_vec.end(); vi++) {
 		delete (*vi);
 	}
-	for (vector<mq_DDRAction_t*>::const_iterator vi = mq_DDRAction_vec.begin(); vi != mq_DDRAction_vec.end(); vi++) {
+	for (vector<mq_DDRAction_t*>::const_iterator vi = mq_DDRAction_vec.begin();
+			vi != mq_DDRAction_vec.end(); vi++) {
 		delete (*vi);
 	}
-	for (vector<p_mq_DQs_t*>::const_iterator vi = p_mq_DQs_vec.begin(); vi != p_mq_DQs_vec.end(); vi++) {
+	for (vector<p_mq_DQs_t*>::const_iterator vi = p_mq_DQs_vec.begin();
+			vi != p_mq_DQs_vec.end(); vi++) {
 		delete (*vi);
 	}
-	delete BankDmuxer;	///ddd
+	delete BankDmuxer;
 }
 //@}
 
@@ -164,7 +149,8 @@ void cfm_memory::cb_init_attributes() {
 // initialize relations attributes
 	for (cf_count i = 0; i < (cf_count)(NbBanksperMemory + 1); i++) {
 		(*mq_DDRAction_vec[i]).cfa_send_time.init(cf_expr_duration(10, CF_NS));
-		(*mq_DDRAction_vec[i]).cfa_receive_time.init(cf_expr_duration(0, CF_CYCLE));
+		(*mq_DDRAction_vec[i]).cfa_receive_time.init(
+				cf_expr_duration(0, CF_CYCLE));
 		(*mq_DDRAction_vec[i]).cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
 		(*mq_DDRAction_vec[i]).cfa_queue_capacity.init((cf_nonzero_count) 1);
 		(*mq_DDRAction_vec[i]).cfa_concurrency.init((cf_nonzero_count) 1);

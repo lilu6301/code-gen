@@ -31,7 +31,8 @@
 ///        \page dxpL2CAP_Layer
 //@{
 ///    \brief L2CAP_Layer function model start
-class cfm_l2cap_layer: public cf_core::cf_function_container, public cfm_l2cap_layer_dp_if {
+class cfm_l2cap_layer: public cf_core::cf_function_container,
+		public cfm_l2cap_layer_dp_if {
 public:
 	/// cfm_l2cap_layer type define start
 

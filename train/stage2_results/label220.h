@@ -1,3 +1,4 @@
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_inbound
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -6,39 +7,71 @@
 #ifndef COFS_MODEL_DATACENTER_INBOUND
 #define COFS_MODEL_DATACENTER_INBOUND
 
+/// Model Header includes start
 #include "cfm_datacenter_global.h"
 #include "cfm_datacenter_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_inbound_dp_if.h"
 #include "dt/cft_defpacket.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'Inbound includes' algorithm generated code
 
+//End of 'Inbound includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgInbound Function Inbound
+//@{
+///        \page dxpInbound
+//@{
+///    \brief Inbound function model start
 class cfm_inbound: public cf_core::cf_function, public cfm_inbound_dp_if {
 public:
+	/// cfm_inbound type define start
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_inbound, cft_defpacket> p_mq_MsgQRouting_in_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_inbound, cft_defpacket> p_mq_MsgQToDataCenterSwitch_t;
+	/// cfm_inbound type define end
 
+	/// constructor
 	cfm_inbound(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_inbound(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_MsgQRouting_in_t p_mq_MsgQRouting_in;
 	p_mq_MsgQToDataCenterSwitch_t p_mq_MsgQToDataCenterSwitch;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'Inbound local declarations' algorithm generated code
 
+	//End of 'Inbound local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief Inbound function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_DATACENTER_INBOUND
 
+//<#!@READ-ONLY-SECTION-END@!#>

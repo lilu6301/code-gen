@@ -30,14 +30,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_sender::cfm_sender(sc_core::sc_module_name name)
-cf_function(name)
-, p_ev_Req("p_ev_Req")
-, p_mq_Msg("p_mq_Msg")
-, p_mq_Ack("p_mq_Ack")
-, p_sv_DataVar("p_sv_DataVar")
-
-{
+cfm_sender::cfm_sender(sc_core::sc_module_name name) :
+		cf_function(name), p_ev_Req("p_ev_Req"), p_mq_Msg("p_mq_Msg"), p_mq_Ack(
+				"p_mq_Ack"), p_sv_DataVar("p_sv_DataVar") {
 	cf_function::init();
 
 	//<#!@READ-ONLY-SECTION-END@!#>

@@ -1,3 +1,4 @@
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_tlm2lt
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -6,6 +7,7 @@
 #ifndef COFS_MODEL_TLM2LT
 #define COFS_MODEL_TLM2LT
 
+/// Model Header includes start
 #include "cfm_tlm2lt_global.h"
 #include "cfm_tlm2lt_global_types.h"
 #include "cofluent.h"
@@ -22,11 +24,24 @@
 #include "dt/cft_defmsgq.h"
 
 #include "communication/cf_payload_tlm2.h"
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'TLM2LT includes' algorithm generated code
 
+//End of 'TLM2LT includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgTLM2LT Function TLM2LT
+//@{
+///        \page dxpTLM2LT
+//@{
+///    \brief TLM2LT function model start
 class cfm_tlm2lt: public cf_core::cf_application {
 public:
+	/// cfm_tlm2lt type define start
+	/// systemC IPs typedef
 	typedef lt_top TLM2Platfom_t;
+	/// relations typedef
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_tlm2> mq_InitiatorReader_t;
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_tlm2> mq_InitiatorWriter_t;
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_tlm2> mq_ReaderResponse_t;
@@ -40,9 +55,12 @@ public:
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_tlm2> mq_TargetResponse_t;
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_tlm2> mq_TargetWrapper_t;
 
+	/// cfm_tlm2lt type define end
 
+	/// constructor
 	cfm_tlm2lt(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_tlm2lt(void);
 	virtual void cb_before_elaboration(void);
 
@@ -50,17 +68,24 @@ public:
 	void cb_end_of_simulation(void);
 
 public:
+	/// \name functions
+	//@{
 	cfm_reader* Reader;
 	TLM2Platfom_t* TLM2Platfom;
 	cfm_target* Target;
 	cfm_target_2* Target_2;
 	cfm_writer* Writer;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	mq_InitiatorReader_t mq_InitiatorReader;
 	mq_InitiatorWriter_t mq_InitiatorWriter;
 	mq_ReaderResponse_t mq_ReaderResponse;
@@ -73,17 +98,32 @@ public:
 	mq_TargetRequest_t mq_TargetRequest;
 	mq_TargetResponse_t mq_TargetResponse;
 	mq_TargetWrapper_t mq_TargetWrapper;
+	//@}
 
 protected:
+	/// \name wrappers
+	//@{
 	cfm_initiatorreader_tlm2_lt_initiator initiatorreader_tlm2_lt_initiator;
 	cfm_initiatorwriter_tlm2_lt_initiator initiatorwriter_tlm2_lt_initiator;
 	cfm_targetrequest_tlm2_lt_target targetrequest_tlm2_lt_target;
 	cfm_targetwrapper_tlm2_lt_target targetwrapper_tlm2_lt_target;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'TLM2LT local declarations' algorithm generated code
 
+	//End of 'TLM2LT local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief TLM2LT function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_TLM2LT
 
+//<#!@READ-ONLY-SECTION-END@!#>

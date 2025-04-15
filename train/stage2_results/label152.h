@@ -34,7 +34,8 @@
 ///        \page dxpClientSide
 //@{
 ///    \brief ClientSide function model start
-class cfm_clientside: public cf_core::cf_function_container, public cfm_clientside_dp_if {
+class cfm_clientside: public cf_core::cf_function_container,
+		public cfm_clientside_dp_if {
 public:
 	/// cfm_clientside type define start
 	/// relations typedef

@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_torswitch
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,6 +8,7 @@
 #ifndef COFS_MODEL_DATACENTER_TORSWITCH
 #define COFS_MODEL_DATACENTER_TORSWITCH
 
+/// Model Header includes start
 #include <vector>
 #include "cfm_datacenter_global.h"
 #include "cfm_datacenter_global_types.h"
@@ -19,54 +21,93 @@
 #include "cfm_torswitch_routingfunction.h"
 #include "dt/cft_defpacket.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'ToRSwitch includes' algorithm generated code
 
+//End of 'ToRSwitch includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
-class cfm_torswitch: public cf_core::cf_function_container, public cfm_torswitch_dp_if {
+///    \defgroup dxgToRSwitch Function ToRSwitch
+//@{
+///        \page dxpToRSwitch
+//@{
+///    \brief ToRSwitch function model start
+class cfm_torswitch: public cf_core::cf_function_container,
+		public cfm_torswitch_dp_if {
 public:
+	/// cfm_torswitch type define start
+	/// relations typedef
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQInboundAGGSwitch_t;
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQInboundServer_t;
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQOutboundAGGSwitch_t;
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQOutboundServer_t;
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_torswitch, cft_defpacket> p_mq_MsgQToRack_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_torswitch, cft_defpacket> p_mq_MsgQServerToToRSwitch_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_torswitch, cft_defpacket> p_mq_MsgQToServer_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_torswitch, cft_defpacket> p_mq_MsgQToAggSwitch_t;
+	/// cfm_torswitch type define end
 
+	/// constructor
 	cfm_torswitch(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_torswitch(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_MsgQToRack_t p_mq_MsgQToRack;
 	std::vector<p_mq_MsgQServerToToRSwitch_t*> p_mq_MsgQServerToToRSwitch_vec;
 	std::vector<p_mq_MsgQToServer_t*> p_mq_MsgQToServer_vec;
 	p_mq_MsgQToAggSwitch_t p_mq_MsgQToAggSwitch;
+	//@}
 
 public:
+	/// \name functions
+	//@{
 	cfm_inboundaggswitch* InboundAGGSwitch;
 	std::vector<cfm_inboundserver*> InboundServer_vec;
 	cfm_outboundaggswitch* OutboundAGGSwitch;
 	std::vector<cfm_outboundserver*> OutboundServer_vec;
 	cfm_torswitch_routingfunction* RoutingFunction;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	mq_MsgQInboundAGGSwitch_t mq_MsgQInboundAGGSwitch;
 	std::vector<mq_MsgQInboundServer_t*> mq_MsgQInboundServer_vec;
 	mq_MsgQOutboundAGGSwitch_t mq_MsgQOutboundAGGSwitch;
 	std::vector<mq_MsgQOutboundServer_t*> mq_MsgQOutboundServer_vec;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'ToRSwitch local declarations' algorithm generated code
 
+	//End of 'ToRSwitch local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief ToRSwitch function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_DATACENTER_TORSWITCH
 
+//<#!@READ-ONLY-SECTION-END@!#>

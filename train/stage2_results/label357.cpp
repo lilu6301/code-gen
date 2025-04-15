@@ -29,16 +29,11 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_obex_send::cfm_obex_send(sc_core::sc_module_name name)
-cf_function(name)
-, cfm_obex_send_dp_if()
-, p_ev_continueEv("p_ev_continueEv")
-, p_mq_OB_Out2("p_mq_OB_Out2")
-, p_mq_ReadWrite("p_mq_ReadWrite")
-, p_mq_DataOut("p_mq_DataOut")
-, p_ev_startEv("p_ev_startEv")
-
-{
+cfm_obex_send::cfm_obex_send(sc_core::sc_module_name name) :
+		cf_function(name), cfm_obex_send_dp_if(), p_ev_continueEv(
+				"p_ev_continueEv"), p_mq_OB_Out2("p_mq_OB_Out2"), p_mq_ReadWrite(
+				"p_mq_ReadWrite"), p_mq_DataOut("p_mq_DataOut"), p_ev_startEv(
+				"p_ev_startEv") {
 	cf_function::init();
 
 	//<#!@READ-ONLY-SECTION-END@!#>

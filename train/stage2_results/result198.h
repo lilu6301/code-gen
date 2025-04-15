@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_arbitration
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,55 +8,84 @@
 #ifndef COFS_MODEL_DDRMEMORY_ARBITRATION
 #define COFS_MODEL_DDRMEMORY_ARBITRATION
 
+/// Model Header includes start
 #include "cfm_ddrmemory_global.h"
-#include "cfm_ddrmemory_global_types.h"
+#include "cfm_ddermemory_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_arbitration_dp_if.h"
 #include "dt/cft_defwriteack.h"
 #include "dt/cft_defrequestinformation.h"
-#include "dt/cft_deflistrequestsptr.h"
+#include "dt/cft_deflatlistrequestsptr.h"
 #include "dt/cft_defrequests2memory.h"
+#include "dt/cft_defcounter.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'Arbitration includes' algorithm generated code
 
+//End of 'Arbitration includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgArbitration Function Arbitration
+//@{
+///        \page dxpArbitration
+//@{
+///    \brief Arbitration function model start
 class cfm_arbitration: public cf_core::cf_function, public cfm_arbitration_dp_if {
 public:
+	/// cfm_arbitration type define start
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_arbitration, cft_defwriteack> p_mq_WriteAck_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_arbitration, cft_defrequestinformation> p_mq_RequestInformation_t;
-	typedef cf_core::cf_sv_initiator_socket<cfm_arbitration, cft_deflistrequestsptr> p_sv_ListRequestsPtr_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_arbitration, cft_defrequests2memory> p_mq_Requests2Memory_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_arbitration,
+			cft_defrequestinformation> p_mq_RequestInformation_t;
+	typedef cf_core::cf_sv_initiator_socket<cfm_arbitration,
+			cft_deflatlistrequestsptr> p_sv_ListRequestsPtr_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_arbitration,
+			cft_defrequests2memory> p_mq_Requests2Memory_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_arbitration> p_ev_RequestCounter_t;
+	/// cfm_arbitration type define end
 
+	/// constructor
 	cfm_arbitration(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_arbitration(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_WriteAck_t p_mq_WriteAck;
 	p_mq_RequestInformation_t p_mq_RequestInformation;
 	p_sv_ListRequestsPtr_t p_sv_ListRequestsPtr;
 	p_mq_Requests2Memory_t p_mq_Requests2Memory;
 	p_ev_RequestCounter_t p_ev_RequestCounter;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
-	int counter;
-	int requests_memory_size;
-	int remaining_data;
-	unsigned long tid;
-	int dma_size;
-	cf_time send_time;
-	cf_time total_send_time;
-	cf_throughput bus_throughput;
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'Arbitration local declarations' algorithm generated code
+
+	//End of 'Arbitration local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief Arbitration function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_DDRMEMORY_ARBITRATION
 
+//<#!@READ-ONLY-SECTION-END@!#>

@@ -29,12 +29,8 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_start::cfm_start(sc_core::sc_module_name name)
-cf_function(name)
-, cfm_start_dp_if()
-, p_ev_startEv("p_ev_startEv")
-
-{
+cfm_start::cfm_start(sc_core::sc_module_name name) :
+		cf_function(name), cfm_start_dp_if(), p_ev_startEv("p_ev_startEv") {
 	cf_function::init();
 
 	//<#!@READ-ONLY-SECTION-END@!#>

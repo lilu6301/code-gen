@@ -26,7 +26,8 @@
 ///        \page dxpCreditsOrData
 //@{
 ///    \brief CreditsOrData function model start
-class cfm_creditsordata: public cf_core::cf_function, public cfm_creditsordata_dp_if {
+class cfm_creditsordata: public cf_core::cf_function,
+		public cfm_creditsordata_dp_if {
 public:
 	/// cfm_creditsordata type define start
 

@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_mqtocommand
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,6 +8,7 @@
 #ifndef COFS_MODEL_COMPLETEDEVICE_MQTOCOMMAND
 #define COFS_MODEL_COMPLETEDEVICE_MQTOCOMMAND
 
+/// Model Header includes start
 #include "cfm_completedevice_global.h"
 #include "cfm_completedevice_global_types.h"
 #include "cofluent.h"
@@ -14,33 +16,64 @@
 #include "dt/cft_defframe.h"
 
 #include "mci/cfm_storeframe.h"
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'mqToCommand includes' algorithm generated code
 
+//End of 'mqToCommand includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgmqToCommand Function mqToCommand
+//@{
+///        \page dxpmqToCommand
+//@{
+///    \brief mqToCommand function model start
 class cfm_mqtocommand: public cf_core::cf_function, public cfm_mqtocommand_dp_if {
 public:
+	/// cfm_mqtocommand type define start
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_mqtocommand, cft_defframe> p_mq_outputFrame_t;
 	typedef cf_core::cf_mci_port<cfm_storeframe> storeFrame_t;
+	/// cfm_mqtocommand type define end
 
+	/// constructor
 	cfm_mqtocommand(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_mqtocommand(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_outputFrame_t p_mq_outputFrame;
 	storeFrame_t storeFrame;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'mqToCommand local declarations' algorithm generated code
 
+	//End of 'mqToCommand local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief mqToCommand function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_COMPLETEDEVICE_MQTOCOMMAND
 
+//<#!@READ-ONLY-SECTION-END@!#>

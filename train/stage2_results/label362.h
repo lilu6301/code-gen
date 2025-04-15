@@ -28,13 +28,15 @@
 ///        \page dxpRFCOMM_Receive
 //@{
 ///    \brief RFCOMM_Receive function model start
-class cfm_rfcomm_receive: public cf_core::cf_function, public cfm_rfcomm_receive_dp_if {
+class cfm_rfcomm_receive: public cf_core::cf_function,
+		public cfm_rfcomm_receive_dp_if {
 public:
 	/// cfm_rfcomm_receive type define start
 
 	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_rfcomm_receive, cft_defrfcomm_in> p_mq_RFC_Data_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_rfcomm_receive, cft_defrfcomm_out> p_mq_RFC_Out1_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_rfcomm_receive,
+			cft_defrfcomm_out> p_mq_RFC_Out1_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_rfcomm_receive, cft_defobex_in> p_mq_OBEX_In_t;
 	/// cfm_rfcomm_receive type define end
 

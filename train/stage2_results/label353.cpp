@@ -29,35 +29,20 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_baseband_layer::cfm_baseband_layer(sc_core::sc_module_name name)
-cf_function_container(name)
-, cfm_baseband_layer_dp_if()
-, p_mq_BaseBand_Out("p_mq_BaseBand_Out")
-, p_mq_L2CAP_Out("p_mq_L2CAP_Out")
-, p_mq_BaseBand_In("p_mq_BaseBand_In")
-, p_mq_L2CAP_In("p_mq_L2CAP_In")
-
-{
+cfm_baseband_layer::cfm_baseband_layer(sc_core::sc_module_name name) :
+		cf_function_container(name), cfm_baseband_layer_dp_if(), p_mq_BaseBand_Out(
+				"p_mq_BaseBand_Out"), p_mq_L2CAP_Out("p_mq_L2CAP_Out"), p_mq_BaseBand_In(
+				"p_mq_BaseBand_In"), p_mq_L2CAP_In("p_mq_L2CAP_In") {
 	cf_function_container::init();
-	BB_Receive = new cfm_bb_receive
-	("BB_Receive");
-	BB_Send = new cfm_bb_send
-	("BB_Send");
+	BB_Receive = new cfm_bb_receive("BB_Receive");
+	BB_Send = new cfm_bb_send("BB_Send");
 
 	// connections
-	BB_Receive->p_mq_BaseBand_In
-	(p_mq_BaseBand_In
-	);
-	BB_Receive->p_mq_L2CAP_In
-	(p_mq_L2CAP_In
-	);
+	BB_Receive->p_mq_BaseBand_In(p_mq_BaseBand_In);
+	BB_Receive->p_mq_L2CAP_In(p_mq_L2CAP_In);
 
-	BB_Send->p_mq_BaseBand_Out
-	(p_mq_BaseBand_Out
-	);
-	BB_Send->p_mq_L2CAP_Out
-	(p_mq_L2CAP_Out
-	);
+	BB_Send->p_mq_BaseBand_Out(p_mq_BaseBand_Out);
+	BB_Send->p_mq_L2CAP_Out(p_mq_L2CAP_Out);
 
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'BaseBand_Layer constructor' algorithm generated code
@@ -77,8 +62,8 @@ cfm_baseband_layer::~cfm_baseband_layer(void) {
 
 	//End of 'BaseBand_Layer destructor' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
-	delete BB_Receive;	///ddd
-	delete BB_Send;	///ddd
+	delete BB_Receive;
+	delete BB_Send;
 }
 //@}
 

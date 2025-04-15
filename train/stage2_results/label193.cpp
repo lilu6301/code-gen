@@ -29,13 +29,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_readdatadriver::cfm_readdatadriver(sc_core::sc_module_name name)
-cf_function(name)
-, cfm_readdatadriver_dp_if()
-, p_mq_RDATAchn("p_mq_RDATAchn")
-, p_mq_DataRead("p_mq_DataRead")
-
-{
+cfm_readdatadriver::cfm_readdatadriver(sc_core::sc_module_name name) :
+		cf_function(name), cfm_readdatadriver_dp_if(), p_mq_RDATAchn(
+				"p_mq_RDATAchn"), p_mq_DataRead("p_mq_DataRead") {
 	cf_function::init();
 
 	//<#!@READ-ONLY-SECTION-END@!#>

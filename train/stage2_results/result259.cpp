@@ -22,38 +22,19 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_applicationmodelrefinement::cfm_applicationmodelrefinement(sc_core::sc_module_name name)
-cf_application(name)
-, mq_Ack("Ack"
-)
-, mq_Msg("Msg"
-)
-
-{
+cfm_applicationmodelrefinement::cfm_applicationmodelrefinement(
+		sc_core::sc_module_name name) :
+		cf_application(name), mq_Ack("Ack"), mq_Msg("Msg") {
 	cf_application::init();
-	Producer = new cfm_producer
-	("Producer");
-	Receiver = new cfm_receiver
-	("Receiver");
+	Producer = new cfm_producer("Producer");
+	Receiver = new cfm_receiver("Receiver");
 
 	// connections
-	Producer->p_mq_Msg
-	(mq_Msg
-			.p_target_socket
-	);
-	Producer->p_mq_Ack
-	(mq_Ack
-			.p_target_socket
-	);
+	Producer->p_mq_Msg(mq_Msg.p_target_socket);
+	Producer->p_mq_Ack(mq_Ack.p_target_socket);
 
-	Receiver->p_mq_Msg
-	(mq_Msg
-			.p_target_socket
-	);
-	Receiver->p_mq_Ack
-	(mq_Ack
-			.p_target_socket
-	);
+	Receiver->p_mq_Msg(mq_Msg.p_target_socket);
+	Receiver->p_mq_Ack(mq_Ack.p_target_socket);
 
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'ApplicationModelRefinement constructor' algorithm generated code
@@ -73,8 +54,8 @@ cfm_applicationmodelrefinement::~cfm_applicationmodelrefinement(void) {
 
 	//End of 'ApplicationModelRefinement destructor' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
-	delete Producer;	///ddd
-	delete Receiver;	///ddd
+	delete Producer;
+	delete Receiver;
 }
 //@}
 

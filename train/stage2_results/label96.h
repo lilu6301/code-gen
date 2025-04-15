@@ -1,3 +1,4 @@
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_protocolreceive
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -6,37 +7,71 @@
 #ifndef COFS_MODEL_PROTOCOLMAPDATATYPEAPP_PROTOCOLRECEIVE
 #define COFS_MODEL_PROTOCOLMAPDATATYPEAPP_PROTOCOLRECEIVE
 
+/// Model Header includes start
 #include "cfm_protocolmapdatatypeapp_global.h"
 #include "cfm_protocolmapdatatypeapp_global_types.h"
 #include "cofluent.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'ProtocolReceive includes' algorithm generated code
 
+//End of 'ProtocolReceive includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgProtocolReceive Function ProtocolReceive
+//@{
+///        \page dxpProtocolReceive
+//@{
+///    \brief ProtocolReceive function model start
 class cfm_protocolreceive: public cf_core::cf_function {
 public:
+	/// cfm_protocolreceive type define start
 
-	typedef cf_core::cf_mq_initiator_socket<cfm_protocolreceive, cf_core::cf_payload_map> p_mq_protocol_data_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_protocolreceive, cf_core::cf_payload_map> p_mq_user_data_out_t;
+	/// ports typedef
+	typedef cf_core::cf_mq_initiator_socket<cfm_protocolreceive,
+			cf_core::cf_payload_map> p_mq_protocol_data_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_protocolreceive,
+			cf_core::cf_payload_map> p_mq_user_data_out_t;
+	/// cfm_protocolreceive type define end
 
+	/// constructor
 	cfm_protocolreceive(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_protocolreceive(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_protocol_data_t p_mq_protocol_data;
 	p_mq_user_data_out_t p_mq_user_data_out;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'ProtocolReceive local declarations' algorithm generated code
 	int number_of_packets;
+	//End of 'ProtocolReceive local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief ProtocolReceive function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_PROTOCOLMAPDATATYPEAPP_PROTOCOLRECEIVE
 
+//<#!@READ-ONLY-SECTION-END@!#>

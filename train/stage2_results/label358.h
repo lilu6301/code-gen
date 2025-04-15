@@ -29,7 +29,8 @@
 ///        \page dxpOBEX_Receive
 //@{
 ///    \brief OBEX_Receive function model start
-class cfm_obex_receive: public cf_core::cf_function, public cfm_obex_receive_dp_if {
+class cfm_obex_receive: public cf_core::cf_function,
+		public cfm_obex_receive_dp_if {
 public:
 	/// cfm_obex_receive type define start
 

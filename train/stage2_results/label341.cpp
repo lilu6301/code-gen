@@ -29,12 +29,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_in_stub::cfm_in_stub(sc_core::sc_module_name name)
-cf_function(name)
-, cfm_in_stub_dp_if()
-, p_mq_BaseBand_In("p_mq_BaseBand_In")
-
-{
+cfm_in_stub::cfm_in_stub(sc_core::sc_module_name name) :
+		cf_function(name), cfm_in_stub_dp_if(), p_mq_BaseBand_In(
+				"p_mq_BaseBand_In") {
 	cf_function::init();
 
 	//<#!@READ-ONLY-SECTION-END@!#>

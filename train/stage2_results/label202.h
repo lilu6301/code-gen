@@ -1,3 +1,4 @@
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_inheritance_example3app
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -6,6 +7,7 @@
 #ifndef COFS_MODEL_INHERITANCE_EXAMPLE3APP
 #define COFS_MODEL_INHERITANCE_EXAMPLE3APP
 
+/// Model Header includes start
 #include <vector>
 #include "cfm_inheritance_example3app_global.h"
 #include "cfm_inheritance_example3app_global_types.h"
@@ -14,15 +16,30 @@
 #include "cfm_os.h"
 #include "cfm_producer.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'Inheritance_example3App includes' algorithm generated code
 
+//End of 'Inheritance_example3App includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgInheritance_example3App Function Inheritance_example3App
+//@{
+///        \page dxpInheritance_example3App
+//@{
+///    \brief Inheritance_example3App function model start
 class cfm_inheritance_example3app: public cf_core::cf_application {
 public:
+	/// cfm_inheritance_example3app type define start
+	/// relations typedef
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_MsgQ_t;
 
+	/// cfm_inheritance_example3app type define end
 
+	/// constructor
 	cfm_inheritance_example3app(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_inheritance_example3app(void);
 	virtual void cb_before_elaboration(void);
 
@@ -30,21 +47,40 @@ public:
 	void cb_end_of_simulation(void);
 
 public:
+	/// \name functions
+	//@{
 	std::vector<cfm_consumer*> Consumer_vec;
 	cfm_os* OS;
 	std::vector<cfm_producer*> Producer_vec;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	std::vector<mq_MsgQ_t*> mq_MsgQ_vec;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'Inheritance_example3App local declarations' algorithm generated code
 
+	//End of 'Inheritance_example3App local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief Inheritance_example3App function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_INHERITANCE_EXAMPLE3APP
 
+//<#!@READ-ONLY-SECTION-END@!#>

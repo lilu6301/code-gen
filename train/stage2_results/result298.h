@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_packet_out
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,37 +8,69 @@
 #ifndef COFS_MODEL_MYMODEL_PACKET_OUT
 #define COFS_MODEL_MYMODEL_PACKET_OUT
 
+/// Model Header includes start
 #include "cfm_mymodel_global.h"
 #include "cfm_mymodel_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_packet_out_dp_if.h"
 #include "dt/cft_defpacket.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'packet_out includes' algorithm generated code
 
+//End of 'packet_out includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgpacket_out Function packet_out
+//@{
+///        \page dxppacket_out
+//@{
+///    \brief packet_out function model start
 class cfm_packet_out: public cf_core::cf_function, public cfm_packet_out_dp_if {
 public:
+	/// cfm_packet_out type define start
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_packet_out, cft_defpacket> p_mq_p_out_t;
+	/// cfm_packet_out type define end
 
+	/// constructor
 	cfm_packet_out(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_packet_out(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_p_out_t p_mq_p_out;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
-	int data_size;
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'packet_out local declarations' algorithm generated code
+
+	//End of 'packet_out local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief packet_out function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_MYMODEL_PACKET_OUT
 
+//<#!@READ-ONLY-SECTION-END@!#>

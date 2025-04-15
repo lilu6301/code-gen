@@ -1,3 +1,4 @@
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_cosimvcsuvmapp
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -6,6 +7,7 @@
 #ifndef COFS_MODEL_COSIMVCSUVMAPP
 #define COFS_MODEL_COSIMVCSUVMAPP
 
+/// Model Header includes start
 #include "cfm_cosimvcsuvmapp_global.h"
 #include "cfm_cosimvcsuvmapp_global_types.h"
 #include "cofluent.h"
@@ -16,16 +18,31 @@
 #include "wrappers/cfm_read_tlm2_lt_target.h"
 
 #include "communication/cf_payload_tlm2.h"
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'CoSimVCSUVMApp includes' algorithm generated code
 
+//End of 'CoSimVCSUVMApp includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgCoSimVCSUVMApp Function CoSimVCSUVMApp
+//@{
+///        \page dxpCoSimVCSUVMApp
+//@{
+///    \brief CoSimVCSUVMApp function model start
 class cfm_cosimvcsuvmapp: public cf_core::cf_application {
 public:
+	/// cfm_cosimvcsuvmapp type define start
+	/// relations typedef
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_data_t;
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_read_t;
 
+	/// cfm_cosimvcsuvmapp type define end
 
+	/// constructor
 	cfm_cosimvcsuvmapp(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_cosimvcsuvmapp(void);
 	virtual void cb_before_elaboration(void);
 
@@ -33,25 +50,47 @@ public:
 	void cb_end_of_simulation(void);
 
 public:
+	/// \name functions
+	//@{
 	cfm_consumer* Consumer;
 	cfm_producer* Producer;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	mq_data_t mq_data;
 	mq_read_t mq_read;
+	//@}
 
 protected:
+	/// \name wrappers
+	//@{
 	cfm_data_tlm2_lt_initiator data_tlm2_lt_initiator;
 	cfm_read_tlm2_lt_target read_tlm2_lt_target;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'CoSimVCSUVMApp local declarations' algorithm generated code
 
+	//End of 'CoSimVCSUVMApp local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief CoSimVCSUVMApp function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_COSIMVCSUVMAPP
 
+//<#!@READ-ONLY-SECTION-END@!#>

@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_target
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,6 +8,7 @@
 #ifndef COFS_MODEL_DDRMEMORY_TARGET
 #define COFS_MODEL_DDRMEMORY_TARGET
 
+/// Model Header includes start
 #include <vector>
 #include "cfm_ddrmemory_global.h"
 #include "cfm_ddrmemory_global_types.h"
@@ -19,53 +21,90 @@
 #include "dt/cft_defbrespchn.h"
 #include "dt/cft_defwdatachn.h"
 #include "dt/cft_defawaddrchn.h"
-#include "dt/cft_deffluent.h"
 #include "dt/cft_defdqs.h"
 #include "dt/cft_defddrcommand.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'Target includes' algorithm generated code
 
+//End of 'Target includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgTarget Function Target
+//@{
+///        \page dxpTarget
+//@{
+///    \brief Target function model start
 class cfm_target: public cf_core::cf_function_container, public cfm_target_dp_if {
 public:
-	typedef cf_core::cf_message_queue<cft_deffluent> mq_DDRCommand_t;
-	typedef cf_core::cf_message_queue<cft_defdqs> mq_DQs_t;
+	/// cfm_target type define start
+	/// relations typedef
+	typedef cf_core::cf_simple_message_queue<cft_defdqs> mq_DQs_t;
+	typedef cf_core::cf_simple_message_queue<cft_defddrcommand> mq_DDRCommand_t;
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_target, cft_defrdatachn> p_mq_RDATAchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_target, cft_defaraddrchn> p_mq_ARADDRchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_target, cft_defbrespchn> p_mq_BRESPchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_target, cft_defwdatachn> p_mq_WDATAchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_target, cft_defawaddrchn> p_mq_AWADDRchn_t;
+	/// cfm_target type define end
 
+	/// constructor
 	cfm_target(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_target(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	std::vector<p_mq_RDATAchn_t*> p_mq_RDATAchn_vec;
 	std::vector<p_mq_ARADDRchn_t*> p_mq_ARADDRchn_vec;
 	std::vector<p_mq_BRESPchn_t*> p_mq_BRESPchn_vec;
 	std::vector<p_mq_WDATAchn_t*> p_mq_WDATAchn_vec;
 	std::vector<p_mq_AWADDRchn_t*> p_mq_AWADDRchn_vec;
+	//@}
 
 public:
+	/// \name functions
+	//@{
 	std::vector<cfm_memory*> Memory_vec;
 	cfm_memorycontroller* MemoryController;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
-	std::vector<mq_DDRCommand_t*> mq_DDRCommand_vec;
+	/// \name relations
+	//@{
 	std::vector<mq_DQs_t*> mq_DQs_vec;
+	std::vector<mq_DDRCommand_t*> mq_DDRCommand_vec;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'Target local declarations' algorithm generated code
 
+	//End of 'Target local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief Target function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_DDRMEMORY_TARGET
 
+//<#!@READ-ONLY-SECTION-END@!#>

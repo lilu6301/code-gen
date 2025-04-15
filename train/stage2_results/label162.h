@@ -42,7 +42,8 @@
 ///        \page dxpMemoryController
 //@{
 ///    \brief MemoryController function model start
-class cfm_memorycontroller: public cf_core::cf_function_container, public cfm_memorycontroller_dp_if {
+class cfm_memorycontroller: public cf_core::cf_function_container,
+		public cfm_memorycontroller_dp_if {
 public:
 	/// cfm_memorycontroller type define start
 	/// relations typedef
@@ -56,12 +57,18 @@ public:
 
 	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defdqs> p_mq_DQs_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defrdatachn> p_mq_RDATAchn_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defaraddrchn> p_mq_ARADDRchn_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defbrespchn> p_mq_BRESPchn_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defwdatachn> p_mq_WDATAchn_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defawaddrchn> p_mq_AWADDRchn_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defddrcommand> p_mq_DDRCommand_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
+			cft_defrdatachn> p_mq_RDATAchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
+			cft_defaraddrchn> p_mq_ARADDRchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
+			cft_defbrespchn> p_mq_BRESPchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
+			cft_defwdatachn> p_mq_WDATAchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
+			cft_defawaddrchn> p_mq_AWADDRchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
+			cft_defddrcommand> p_mq_DDRCommand_t;
 	/// cfm_memorycontroller type define end
 
 	/// constructor

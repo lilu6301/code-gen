@@ -21,13 +21,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_raddrdmux::cfm_raddrdmux(sc_core::sc_module_name name)
-cf_function_router(name)
-, cfm_raddrdmux_dp_if()
-, p_mq_ARADDRin("p_mq_ARADDRin")
-, p_mq_ARADDRchn("p_mq_ARADDRchn")
-
-{
+cfm_raddrdmux::cfm_raddrdmux(sc_core::sc_module_name name) :
+		cf_function_router(name), cfm_raddrdmux_dp_if(), p_mq_ARADDRin(
+				"p_mq_ARADDRin"), p_mq_ARADDRchn("p_mq_ARADDRchn") {
 	cf_function_router::init();
 
 	add_input_port (&p_mq_ARADDRchn);

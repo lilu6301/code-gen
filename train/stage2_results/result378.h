@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_opp_usecase
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,6 +8,7 @@
 #ifndef COFS_MODEL_OPP_USECASE
 #define COFS_MODEL_OPP_USECASE
 
+/// Model Header includes start
 #include "cfm_opp_usecase_global.h"
 #include "cfm_opp_usecase_global_types.h"
 #include "cofluent.h"
@@ -16,18 +18,33 @@
 #include "cfm_unusedfunc.h"
 #include "dt/cft_defbaseband.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'OPP_UseCase includes' algorithm generated code
 
+//End of 'OPP_UseCase includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgOPP_UseCase Function OPP_UseCase
+//@{
+///        \page dxpOPP_UseCase
+//@{
+///    \brief OPP_UseCase function model start
 class cfm_opp_usecase: public cf_core::cf_application {
 public:
-	typedef cf_core::cf_message_queue<cft_defbaseband> mq_M2S_t;
-	typedef cf_core::cf_message_queue<cft_defbaseband> mq_S2M_t;
+	/// cfm_opp_usecase type define start
+	/// relations typedef
 	typedef cf_core::cf_event ev_StartEv_t;
 	typedef cf_core::cf_event ev_UnusedEv_t;
+	typedef cf_core::cf_message_queue<cft_defbaseband> mq_M2S_t;
+	typedef cf_core::cf_message_queue<cft_defbaseband> mq_S2M_t;
 
+	/// cfm_opp_usecase type define end
 
+	/// constructor
 	cfm_opp_usecase(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_opp_usecase(void);
 	virtual void cb_before_elaboration(void);
 
@@ -35,25 +52,44 @@ public:
 	void cb_end_of_simulation(void);
 
 public:
+	/// \name functions
+	//@{
 	cfm_master* Master;
 	cfm_slave* Slave;
 	cfm_startfunc* StartFunc;
 	cfm_unusedfunc* UnusedFunc;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
-	mq_M2S_t mq_M2S;
-	mq_S2M_t mq_S2M;
+	/// \name relations
+	//@{
 	ev_StartEv_t ev_StartEv;
 	ev_UnusedEv_t ev_UnusedEv;
+	mq_M2S_t mq_M2S;
+	mq_S2M_t mq_S2M;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'OPP_UseCase local declarations' algorithm generated code
 
+	//End of 'OPP_UseCase local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief OPP_UseCase function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_OPP_USECASE
 
+//<#!@READ-ONLY-SECTION-END@!#>

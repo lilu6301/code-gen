@@ -69,8 +69,7 @@ protected:
 	/// \name user-defined local declarations
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'Sender local declarations' algorithm generated code
-	DefData PreviousData;
-	DefDataSize DataVarSize;
+
 	//End of 'Sender local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 

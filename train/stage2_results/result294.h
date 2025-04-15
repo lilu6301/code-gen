@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_mymodel
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,6 +8,7 @@
 #ifndef COFS_MODEL_MYMODEL
 #define COFS_MODEL_MYMODEL
 
+/// Model Header includes start
 #include "cfm_mymodel_global.h"
 #include "cfm_mymodel_global_types.h"
 #include "cofluent.h"
@@ -16,16 +18,31 @@
 #include "cfm_packet_process.h"
 #include "dt/cft_defpacket.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'MyModel includes' algorithm generated code
 
+//End of 'MyModel includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgMyModel Function MyModel
+//@{
+///        \page dxpMyModel
+//@{
+///    \brief MyModel function model start
 class cfm_mymodel: public cf_core::cf_application, public cfm_mymodel_dp_if {
 public:
+	/// cfm_mymodel type define start
+	/// relations typedef
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_p_in_t;
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_p_out_t;
 
+	/// cfm_mymodel type define end
 
+	/// constructor
 	cfm_mymodel(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_mymodel(void);
 	virtual void cb_before_elaboration(void);
 
@@ -33,22 +50,41 @@ public:
 	void cb_end_of_simulation(void);
 
 public:
+	/// \name functions
+	//@{
 	cfm_packet_in* packet_in;
 	cfm_packet_out* packet_out;
 	cfm_packet_process* packet_process;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	mq_p_in_t mq_p_in;
 	mq_p_out_t mq_p_out;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'MyModel local declarations' algorithm generated code
 
+	//End of 'MyModel local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief MyModel function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_MYMODEL
 
+//<#!@READ-ONLY-SECTION-END@!#>

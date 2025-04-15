@@ -29,12 +29,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_unusedfunc::cfm_unusedfunc(sc_core::sc_module_name name)
-cf_function(name)
-, cfm_unusedfunc_dp_if()
-, p_ev_UnusedEv("p_ev_UnusedEv")
-
-{
+cfm_unusedfunc::cfm_unusedfunc(sc_core::sc_module_name name) :
+		cf_function(name), cfm_unusedfunc_dp_if(), p_ev_UnusedEv(
+				"p_ev_UnusedEv") {
 	cf_function::init();
 
 	//<#!@READ-ONLY-SECTION-END@!#>

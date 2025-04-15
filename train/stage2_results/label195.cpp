@@ -29,15 +29,12 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_collectrequests::cfm_collectrequests(sc_core::sc_module_name name)
-cf_function(name)
-, cfm_collectrequests_dp_if()
-, p_sv_ListRequestsPtr("p_sv_ListRequestsPtr")
-, p_ev_RequestCounter("p_ev_RequestCounter")
-, p_mq_MemReadRequest("p_mq_MemReadRequest")
-, p_mq_MemWriteRequest("p_mq_MemWriteRequest")
-
-{
+cfm_collectrequests::cfm_collectrequests(sc_core::sc_module_name name) :
+		cf_function(name), cfm_collectrequests_dp_if(), p_sv_ListRequestsPtr(
+				"p_sv_ListRequestsPtr"), p_ev_RequestCounter(
+				"p_ev_RequestCounter"), p_mq_MemReadRequest(
+				"p_mq_MemReadRequest"), p_mq_MemWriteRequest(
+				"p_mq_MemWriteRequest") {
 	cf_function::init();
 
 	//<#!@READ-ONLY-SECTION-END@!#>

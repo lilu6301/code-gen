@@ -27,7 +27,8 @@
 ///        \page dxpSendWAckDriver
 //@{
 ///    \brief SendWAckDriver function model start
-class cfm_sendwackdriver: public cf_core::cf_function, public cfm_sendwackdriver_dp_if {
+class cfm_sendwackdriver: public cf_core::cf_function,
+		public cfm_sendwackdriver_dp_if {
 public:
 	/// cfm_sendwackdriver type define start
 

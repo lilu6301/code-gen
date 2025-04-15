@@ -1,3 +1,4 @@
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_clockgenerator
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -6,36 +7,69 @@
 #ifndef COFS_MODEL_SOFTWAREDEFINEDRADIOAPP_CLOCKGENERATOR
 #define COFS_MODEL_SOFTWAREDEFINEDRADIOAPP_CLOCKGENERATOR
 
+/// Model Header includes start
 #include "cfm_softwaredefinedradioapp_global.h"
 #include "cfm_softwaredefinedradioapp_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_clockgenerator_dp_if.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'ClockGenerator includes' algorithm generated code
 
+//End of 'ClockGenerator includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
-class cfm_clockgenerator: public cf_core::cf_function, public cfm_clockgenerator_dp_if {
+///    \defgroup dxgClockGenerator Function ClockGenerator
+//@{
+///        \page dxpClockGenerator
+//@{
+///    \brief ClockGenerator function model start
+class cfm_clockgenerator: public cf_core::cf_function,
+		public cfm_clockgenerator_dp_if {
 public:
+	/// cfm_clockgenerator type define start
 
+	/// ports typedef
 	typedef cf_core::cf_ev_initiator_socket<cfm_clockgenerator> p_ev_BurstClock_t;
+	/// cfm_clockgenerator type define end
 
+	/// constructor
 	cfm_clockgenerator(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_clockgenerator(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_ev_BurstClock_t p_ev_BurstClock;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'ClockGenerator local declarations' algorithm generated code
 
+	//End of 'ClockGenerator local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief ClockGenerator function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_SOFTWAREDEFINEDRADIOAPP_CLOCKGENERATOR
 
+//<#!@READ-ONLY-SECTION-END@!#>

@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_sender
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,6 +8,7 @@
 #ifndef COFS_MODEL_DDRMEMORY_SENDER
 #define COFS_MODEL_DDRMEMORY_SENDER
 
+/// Model Header includes start
 #include "cfm_ddrmemory_global.h"
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
@@ -14,51 +16,66 @@
 #include "dt/cft_defwdatachn.h"
 #include "dt/cft_defawaddrchn.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'Sender includes' algorithm generated code
 
+//End of 'Sender includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgSender Function Sender
+//@{
+///        \page dxpSender
+//@{
+///    \brief Sender function model start
 class cfm_sender: public cf_core::cf_function {
 public:
+	/// cfm_sender type define start
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_sender, cft_defaraddrchn> p_mq_ARADDRchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_sender, cft_defwdatachn> p_mq_WDATAchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_sender, cft_defawaddrchn> p_mq_AWADDRchn_t;
+	/// cfm_sender type define end
 
+	/// constructor
 	cfm_sender(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_sender(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_ARADDRchn_t p_mq_ARADDRchn;
 	p_mq_WDATAchn_t p_mq_WDATAchn;
 	p_mq_AWADDRchn_t p_mq_AWADDRchn;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
-	int channel_index1, channel_index2;
-	int number_cache_channel;
-	int dest;
-	int bus_width;
-	int request_data_size;
-	int transid;
-	int response_data_size;
-	DEVICEIDTYPE sourceid;
-	DEVICEIDTYPE targetid;
-	OPERATIONTYPE message_operation;
-	cf_dt::cf_time transfer_time;
-	cf_dt::cf_time latency_time;
-	cf_dt::cf_time message_time_stamp;
-	cf_dt::cf_data_size message_size;
-	cft_defaraddrchn* message;
-	cft_defwdatachn* message;
-	cft_defawaddrchn* message;
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'Sender local declarations' algorithm generated code
+
+	//End of 'Sender local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief Sender function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_DDRMEMORY_SENDER
 
+//<#!@READ-ONLY-SECTION-END@!#>

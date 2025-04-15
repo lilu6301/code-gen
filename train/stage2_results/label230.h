@@ -1,3 +1,4 @@
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_outboundrack
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -6,40 +7,73 @@
 #ifndef COFS_MODEL_DATACENTER_OUTBOUNDRACK
 #define COFS_MODEL_DATACENTER_OUTBOUNDRACK
 
+/// Model Header includes start
 #include "cfm_datacenter_global.h"
 #include "cfm_datacenter_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_outboundrack_dp_if.h"
 #include "dt/cft_defpacket.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'OutboundRack includes' algorithm generated code
 
+//End of 'OutboundRack includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
-class cfm_outboundrack: public cf_core::cf_function, public cfm_outboundrack_dp_if {
+///    \defgroup dxgOutboundRack Function OutboundRack
+//@{
+///        \page dxpOutboundRack
+//@{
+///    \brief OutboundRack function model start
+class cfm_outboundrack: public cf_core::cf_function,
+		public cfm_outboundrack_dp_if {
 public:
+	/// cfm_outboundrack type define start
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_outboundrack, cft_defpacket> p_mq_MsgQToRack_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_outboundrack, cft_defpacket> p_mq_MsgQOutboundRack_t;
+	/// cfm_outboundrack type define end
 
+	/// constructor
 	cfm_outboundrack(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_outboundrack(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_MsgQToRack_t p_mq_MsgQToRack;
 	p_mq_MsgQOutboundRack_t p_mq_MsgQOutboundRack;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'OutboundRack local declarations' algorithm generated code
 	int server_room_id;
 	int rack_id;
+	//End of 'OutboundRack local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief OutboundRack function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_DATACENTER_OUTBOUNDRACK
 
+//<#!@READ-ONLY-SECTION-END@!#>

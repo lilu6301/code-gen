@@ -27,7 +27,8 @@
 ///        \page dxpL2CAP_Receive
 //@{
 ///    \brief L2CAP_Receive function model start
-class cfm_l2cap_receive: public cf_core::cf_function, public cfm_l2cap_receive_dp_if {
+class cfm_l2cap_receive: public cf_core::cf_function,
+		public cfm_l2cap_receive_dp_if {
 public:
 	/// cfm_l2cap_receive type define start
 

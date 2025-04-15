@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_consumermap
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,35 +8,68 @@
 #ifndef COFS_MODEL_MAPDATATYPEAPIAPP_CONSUMERMAP
 #define COFS_MODEL_MAPDATATYPEAPIAPP_CONSUMERMAP
 
+/// Model Header includes start
 #include "cfm_mapdatatypeapiapp_global.h"
 #include "cfm_mapdatatypeapiapp_global_types.h"
 #include "cofluent.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'ConsumerMap includes' algorithm generated code
 
+//End of 'ConsumerMap includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgConsumerMap Function ConsumerMap
+//@{
+///        \page dxpConsumerMap
+//@{
+///    \brief ConsumerMap function model start
 class cfm_consumermap: public cf_core::cf_function {
 public:
+	/// cfm_consumermap type define start
 
-	typedef cf_core::cf_mq_initiator_socket<cfm_consumermap, cf_core::cf_payload_map> p_mq_MsgQMap_t;
+	/// ports typedef
+	typedef cf_core::cf_mq_initiator_socket<cfm_consumermap,
+			cf_core::cf_payload_map> p_mq_MsgQMap_t;
+	/// cfm_consumermap type define end
 
+	/// constructor
 	cfm_consumermap(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_consumermap(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_MsgQMap_t p_mq_MsgQMap;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'ConsumerMap local declarations' algorithm generated code
 
+	//End of 'ConsumerMap local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief ConsumerMap function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_MAPDATATYPEAPIAPP_CONSUMERMAP
 
+//<#!@READ-ONLY-SECTION-END@!#>

@@ -1,3 +1,4 @@
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_rtpudp
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -6,42 +7,74 @@
 #ifndef COFS_MODEL_SOFTWAREDEFINEDRADIOAPP_RTPUDP
 #define COFS_MODEL_SOFTWAREDEFINEDRADIOAPP_RTPUDP
 
+/// Model Header includes start
 #include "cfm_softwaredefinedradioapp_global.h"
 #include "cfm_softwaredefinedradioapp_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_rtpudp_dp_if.h"
 #include "dt/cft_defvideo.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'RTPUDP includes' algorithm generated code
 
+//End of 'RTPUDP includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgRTPUDP Function RTPUDP
+//@{
+///        \page dxpRTPUDP
+//@{
+///    \brief RTPUDP function model start
 class cfm_rtpudp: public cf_core::cf_function, public cfm_rtpudp_dp_if {
 public:
+	/// cfm_rtpudp type define start
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_rtpudp, cft_defvideo> p_mq_RTPToApp_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_rtpudp, cft_defvideo> p_mq_IPToRTP_t;
+	/// cfm_rtpudp type define end
 
+	/// constructor
 	cfm_rtpudp(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_rtpudp(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_RTPToApp_t p_mq_RTPToApp;
 	p_mq_IPToRTP_t p_mq_IPToRTP;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'RTPUDP local declarations' algorithm generated code
 	int SyncFramesDuration;
 	int DelayDuration;
 	int FramesInBurst;
 	int TimeDifference;
+	//End of 'RTPUDP local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief RTPUDP function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_SOFTWAREDEFINEDRADIOAPP_RTPUDP
 
+//<#!@READ-ONLY-SECTION-END@!#>

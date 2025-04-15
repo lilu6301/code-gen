@@ -29,12 +29,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_receiverrdata::cfm_receiverrdata(sc_core::sc_module_name name)
-cf_function(name)
-, cfm_receiverrdata_dp_if()
-, p_mq_RDATAin("p_mq_RDATAin")
-
-{
+cfm_receiverrdata::cfm_receiverrdata(sc_core::sc_module_name name) :
+		cf_function(name), cfm_receiverrdata_dp_if(), p_mq_RDATAin(
+				"p_mq_RDATAin") {
 	cf_function::init();
 
 	//<#!@READ-ONLY-SECTION-END@!#>

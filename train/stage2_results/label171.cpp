@@ -29,12 +29,8 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_receivewack::cfm_receivewack(sc_core::sc_module_name name)
-cf_function(name)
-, cfm_receivewack_dp_if()
-, p_mq_BRESPin("p_mq_BRESPin")
-
-{
+cfm_receivewack::cfm_receivewack(sc_core::sc_module_name name) :
+		cf_function(name), cfm_receivewack_dp_if(), p_mq_BRESPin("p_mq_BRESPin") {
 	cf_function::init();
 
 	//<#!@READ-ONLY-SECTION-END@!#>

@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_receiverrdata
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,36 +8,68 @@
 #ifndef COFS_MODEL_DDRMEMORY_RECEIVERRDATA
 #define COFS_MODEL_DDRMEMORY_RECEIVERRDATA
 
-#include "cfm_ddrmemory_global.h"
-#include "cfm_ddrmemory_global_types.h"
+/// Model Header includes start
+#include "cfm_ddermemory_global.h"
+#include "cfm_ddermemory_global_types.h"
 #include "cofluent.h"
 #include "dt/cft_defrdatachn.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'ReceiverRData includes' algorithm generated code
 
+//End of 'ReceiverRData includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgReceiverRData Function ReceiverRData
+//@{
+///        \page dxpReceiverRData
+//@{
+///    \brief ReceiverRData function model start
 class cfm_receiverrdata: public cf_core::cf_function {
 public:
+	/// cfm_receiverrdata type define start
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_receiverrdata, cft_defrdatachn> p_mq_RDATAin_t;
+	/// cfm_receiverrdata type define end
 
+	/// constructor
 	cfm_receiverrdata(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_receiverrdata(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_RDATAin_t p_mq_RDATAin;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
-	bool isReceiver;
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'ReceiverRData local declarations' algorithm generated code
+
+	//End of 'ReceiverRData local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief ReceiverRData function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_DDRMEMORY_RECEIVERRDATA
 
+//<#!@READ-ONLY-SECTION-END@!#>

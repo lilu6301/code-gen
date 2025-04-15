@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_responseforward
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,6 +8,7 @@
 #ifndef COFS_MODEL_DDRMEMORY_RESPONSEFORWARD
 #define COFS_MODEL_DDRMEMORY_RESPONSEFORWARD
 
+/// Model Header includes start
 #include "cfm_ddrmemory_global.h"
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
@@ -15,40 +17,70 @@
 #include "dt/cft_defdataread.h"
 #include "dt/cft_defwriteack.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'ResponseForward includes' algorithm generated code
 
+//End of 'ResponseForward includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgResponseForward Function ResponseForward
+//@{
+///        \page dxpResponseForward
+//@{
+///    \brief ResponseForward function model start
 class cfm_responseforward: public cf_core::cf_function {
 public:
+	/// cfm_responseforward type define start
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_responseforward, cft_defdqs> p_mq_DQs_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_responseforward, cft_defrequestinformation> p_mq_RequestInformation_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_responseforward,
+			cft_defrequestinformation> p_mq_RequestInformation_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_responseforward, cft_defdataread> p_mq_DataRead_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_responseforward, cft_defwriteack> p_mq_WriteAck_t;
+	/// cfm_responseforward type define end
 
+	/// constructor
 	cfm_responseforward(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_responseforward(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_DQs_t p_mq_DQs;
 	p_mq_RequestInformation_t p_mq_RequestInformation;
 	p_mq_DataRead_t p_mq_DataRead;
 	p_mq_WriteAck_t p_mq_WriteAck;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
-	int responseDataSize;
-	int transId;
-	int num_of_data_msg_pendingin_queue;
-	int num_of_request_msg_pendingin_queue;
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'ResponseForward local declarations' algorithm generated code
+	int index;
+	int max_channels;
+	//End of 'ResponseForward local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief ResponseForward function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_DDRMEMORY_RESPONSEFORWARD
 
+//<#!@READ-ONLY-SECTION-END@!#>

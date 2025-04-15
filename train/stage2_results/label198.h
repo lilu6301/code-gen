@@ -35,9 +35,12 @@ public:
 
 	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_arbitration, cft_defwriteack> p_mq_WriteAck_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_arbitration, cft_defrequestinformation> p_mq_RequestInformation_t;
-	typedef cf_core::cf_sv_initiator_socket<cfm_arbitration, cft_deflistrequestsptr> p_sv_ListRequestsPtr_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_arbitration, cft_defrequests2memory> p_mq_Requests2Memory_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_arbitration,
+			cft_defrequestinformation> p_mq_RequestInformation_t;
+	typedef cf_core::cf_sv_initiator_socket<cfm_arbitration,
+			cft_deflistrequestsptr> p_sv_ListRequestsPtr_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_arbitration,
+			cft_defrequests2memory> p_mq_Requests2Memory_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_arbitration> p_ev_RequestCounter_t;
 	/// cfm_arbitration type define end
 

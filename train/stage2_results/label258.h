@@ -1,3 +1,4 @@
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_applicationmodelrefinement
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -6,6 +7,7 @@
 #ifndef COFS_MODEL_APPLICATIONMODELREFINEMENT
 #define COFS_MODEL_APPLICATIONMODELREFINEMENT
 
+/// Model Header includes start
 #include "cfm_applicationmodelrefinement_global.h"
 #include "cfm_applicationmodelrefinement_global_types.h"
 #include "cofluent.h"
@@ -15,16 +17,32 @@
 #include "dt/cft_defack.h"
 #include "dt/cft_defmsg.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'ApplicationModelRefinement includes' algorithm generated code
 
+//End of 'ApplicationModelRefinement includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
-class cfm_applicationmodelrefinement: public cf_core::cf_application, public cfm_applicationmodelrefinement_dp_if {
+///    \defgroup dxgApplicationModelRefinement Function ApplicationModelRefinement
+//@{
+///        \page dxpApplicationModelRefinement
+//@{
+///    \brief ApplicationModelRefinement function model start
+class cfm_applicationmodelrefinement: public cf_core::cf_application,
+		public cfm_applicationmodelrefinement_dp_if {
 public:
+	/// cfm_applicationmodelrefinement type define start
+	/// relations typedef
 	typedef cf_core::cf_message_queue<cft_defack> mq_Ack_t;
 	typedef cf_core::cf_message_queue<cft_defmsg> mq_Msg_t;
 
+	/// cfm_applicationmodelrefinement type define end
 
+	/// constructor
 	cfm_applicationmodelrefinement(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_applicationmodelrefinement(void);
 	virtual void cb_before_elaboration(void);
 
@@ -32,21 +50,40 @@ public:
 	void cb_end_of_simulation(void);
 
 public:
+	/// \name functions
+	//@{
 	cfm_producer* Producer;
 	cfm_receiver* Receiver;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	mq_Ack_t mq_Ack;
 	mq_Msg_t mq_Msg;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'ApplicationModelRefinement local declarations' algorithm generated code
 
+	//End of 'ApplicationModelRefinement local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief ApplicationModelRefinement function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_APPLICATIONMODELREFINEMENT
 
+//<#!@READ-ONLY-SECTION-END@!#>

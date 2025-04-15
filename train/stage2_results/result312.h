@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_hwdevicemodel
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,22 +8,38 @@
 #ifndef COFS_MODEL_HWDEVICMODEL
 #define COFS_MODEL_HWDEVICMODEL
 
+/// Model Header includes start
 #include "cfm_hwdevicemodel_global.h"
 #include "cfm_hwdevicemodel_global_types.h"
 #include "cofluent.h"
-#include "cfm_hwdevicetest.h"
+#include "cfm_hwdeviceest.h"
 #include "dt/cft_defframe.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'HwDeviceModel includes' algorithm generated code
 
+//End of 'HwDeviceModel includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgHwDeviceModel Function HwDeviceModel
+//@{
+///        \page dxpHwDeviceModel
+//@{
+///    \brief HwDeviceModel function model start
 class cfm_hwdevicemodel: public cf_core::cf_application {
 public:
+	/// cfm_hwdevicemodel type define start
+	/// relations typedef
 	typedef cf_core::cf_shared_variable<cft_defframe> sv_inputStream_t;
 	typedef cf_core::cf_shared_variable<cft_defframe> sv_outputStream_t;
 
+	/// cfm_hwdevicemodel type define end
 
+	/// constructor
 	cfm_hwdevicemodel(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_hwdevicemodel(void);
 	virtual void cb_before_elaboration(void);
 
@@ -30,20 +47,39 @@ public:
 	void cb_end_of_simulation(void);
 
 public:
-	cfm_hwdevicetest* hwDeviceTest;
+	/// \name functions
+	//@{
+	cfm_hwdeviceest* hwDeviceTest;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	sv_inputStream_t sv_inputStream;
 	sv_outputStream_t sv_outputStream;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'HwDeviceModel local declarations' algorithm generated code
 
+	//End of 'HwDeviceModel local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief HwDeviceModel function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_HWDEVICMODEL
 
+//<#!@READ-ONLY-SECTION-END@!#>

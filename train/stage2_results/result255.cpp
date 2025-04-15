@@ -30,14 +30,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_generator::cfm_generator(sc_core::sc_module_name name)
-cf_function(name)
-, cfm_generator_dp_if()
-, p_ev_Req("p_ev_Req")
-, p_sv_DataVar("p_sv_DataVar")
-, p_sv_TestProd("p_sv_TestProd")
-
-{
+cfm_generator::cfm_generator(sc_core::sc_module_name name) :
+		cf_function(name), p_ev_Req("p_ev_Req"), p_sv_DataVar("p_sv_DataVar"), p_sv_TestProd(
+				"p_sv_TestProd") {
 	cf_function::init();
 
 	//<#!@READ-ONLY-SECTION-END@!#>

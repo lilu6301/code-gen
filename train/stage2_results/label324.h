@@ -1,3 +1,4 @@
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_testbench
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -6,40 +7,66 @@
 #ifndef COFS_MODEL_COMPLETEDEVICE_TESTBENCH
 #define COFS_MODEL_COMPLETEDEVICE_TESTBENCH
 
+/// Model Header includes start
 #include "cfm_completedevice_global.h"
 #include "cfm_completedevice_global_types.h"
 #include "cofluent.h"
 #include "dt/cft_defframe.h"
 
 #include "mci/cfm_dpv.h"
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'testBench includes' algorithm generated code
 
+//End of 'testBench includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgtestBench Function testBench
+//@{
+///        \page dxptestBench
+//@{
+///    \brief testBench function model start
 class cfm_testbench: public cf_core::cf_function {
 public:
+	/// cfm_testbench type define start
 
+	/// ports typedef
 	typedef cf_core::cf_mci_port<cfm_dpv> dpv_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_testbench> p_ev_newFrame_t;
 	typedef cf_core::cf_sv_initiator_socket<cfm_testbench, cft_defframe> p_sv_inputStream_t;
 	typedef cf_core::cf_sv_initiator_socket<cfm_testbench, cft_defframe> p_sv_outputStream_t;
+	/// cfm_testbench type define end
 
+	/// constructor
 	cfm_testbench(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_testbench(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	dpv_t dpv;
 	p_ev_newFrame_t p_ev_newFrame;
 	p_sv_inputStream_t p_sv_inputStream;
 	p_sv_outputStream_t p_sv_outputStream;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'testBench local declarations' algorithm generated code
 	/* Register address definition */
 #define PROCESSED_FRAME_COUNT_REGISTER_ADDR 0x200
 #define PROCESSING_MODE_REGISTER_ADDR 0x100
@@ -52,8 +79,14 @@ protected:
 	int VideoFrameNumber;
 	int new_mode;
 	int numread;
+	//End of 'testBench local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief testBench function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_COMPLETEDEVICE_TESTBENCH
 
+//<#!@READ-ONLY-SECTION-END@!#>

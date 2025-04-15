@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_target_2
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,43 +8,75 @@
 #ifndef COFS_MODEL_TLM2AT_TARGET_2
 #define COFS_MODEL_TLM2AT_TARGET_2
 
+/// Model Header includes start
 #include "cfm_tlm2at_global.h"
 #include "cfm_tlm2at_global_types.h"
 #include "cofluent.h"
 #include "dt/cft_target.h"
 #include "dt/cft_defdata.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'Target_2 includes' algorithm generated code
 
+//End of 'Target_2 includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgTarget_2 Function Target_2
+//@{
+///        \page dxpTarget_2
+//@{
+///    \brief Target_2 function model start
 class cfm_target_2: public cf_core::cf_function {
 public:
+	/// cfm_target_2 type define start
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_target_2, cft_target> p_mq_TargetRequest_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_target_2, cft_target> p_mq_TargetResponse_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_target_2, cft_defdata> p_mq_ReferenceQueue_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_target_2> p_ev_Sync3_t;
+	/// cfm_target_2 type define end
 
+	/// constructor
 	cfm_target_2(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_target_2(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_TargetRequest_t p_mq_TargetRequest;
 	p_mq_TargetResponse_t p_mq_TargetResponse;
 	p_mq_ReferenceQueue_t p_mq_ReferenceQueue;
 	p_ev_Sync3_t p_ev_Sync3;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'Target_2 local declarations' algorithm generated code
 
+	//End of 'Target_2 local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief Target_2 function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_TLM2AT_TARGET_2
 
+//<#!@READ-ONLY-SECTION-END@!#>

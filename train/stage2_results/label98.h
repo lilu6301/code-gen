@@ -1,3 +1,4 @@
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_mapdatatypeapiapp
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -6,21 +7,37 @@
 #ifndef COFS_MODEL_MAPDATATYPEAPIAPP
 #define COFS_MODEL_MAPDATATYPEAPIAPP
 
+/// Model Header includes start
 #include "cfm_mapdatatypeapiapp_global.h"
 #include "cfm_mapdatatypeapiapp_global_types.h"
 #include "cofluent.h"
 #include "cfm_consumermap.h"
 #include "cfm_producermap.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'MapDataTypeAPIApp includes' algorithm generated code
 
+//End of 'MapDataTypeAPIApp includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgMapDataTypeAPIApp Function MapDataTypeAPIApp
+//@{
+///        \page dxpMapDataTypeAPIApp
+//@{
+///    \brief MapDataTypeAPIApp function model start
 class cfm_mapdatatypeapiapp: public cf_core::cf_application {
 public:
+	/// cfm_mapdatatypeapiapp type define start
+	/// relations typedef
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_map> mq_MsgQMap_t;
 
+	/// cfm_mapdatatypeapiapp type define end
 
+	/// constructor
 	cfm_mapdatatypeapiapp(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_mapdatatypeapiapp(void);
 	virtual void cb_before_elaboration(void);
 
@@ -28,20 +45,39 @@ public:
 	void cb_end_of_simulation(void);
 
 public:
+	/// \name functions
+	//@{
 	cfm_consumermap* ConsumerMap;
 	cfm_producermap* ProducerMap;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	mq_MsgQMap_t mq_MsgQMap;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'MapDataTypeAPIApp local declarations' algorithm generated code
 
+	//End of 'MapDataTypeAPIApp local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief MapDataTypeAPIApp function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_MAPDATATYPEAPIAPP
 
+//<#!@READ-ONLY-SECTION-END@!#>

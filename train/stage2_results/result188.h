@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_readdriver
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,6 +8,7 @@
 #ifndef COFS_MODEL_DDRMEMORY_READDRIVER
 #define COFS_MODEL_DDRMEMORY_READDRIVER
 
+/// Model Header includes start
 #include "cfm_ddrmemory_global.h"
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
@@ -14,33 +16,75 @@
 #include "dt/cft_defmemreadrequest.h"
 #include "dt/cft_defaraddrchn.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'ReadDriver includes' algorithm generated code
 
+//End of 'ReadDriver includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgReadDriver Function ReadDriver
+//@{
+///        \page dxpReadDriver
+//@{
+///    \brief ReadDriver function model start
 class cfm_readdriver: public cf_core::cf_function, public cfm_readdriver_dp_if {
 public:
+	/// cfm_readdriver type define start
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_readdriver, cft_defmemreadrequest> p_mq_MemReadRequest_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_readdriver, cft_defaraddrchn> p_mq_ARADDRin_t;
+	/// cfm_readdriver type define end
 
+	/// constructor
 	cfm_readdriver(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_readdriver(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_MemReadRequest_t p_mq_MemReadRequest;
 	p_mq_ARADDRin_t p_mq_ARADDRin;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
-
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'ReadDriver local declarations' algorithm generated code
+	int remainingDataSize;
+	float req4kintervalns;
+	int transId;
+	float deadline;
+	int dma_size;
+	DEVICEIDTYPE message_targetid;
+	DEVICEIDTYPE message_sourceid;
+	OPERATIONTYPE message_operation;
+	cf_dt::cf_time transfer_time;
+	cf_dt::cf_time message_time_stamp;
+	cf_dt::cf_data_size message_size;
+	cf_dt::cf_throughput bus_throughput;
+	//End of 'ReadDriver local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief ReadDriver function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_DDRMEMORY_READDRIVER
 
+//<#!@READ-ONLY-SECTION-END@!#>

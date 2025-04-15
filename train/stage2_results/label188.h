@@ -32,7 +32,8 @@ public:
 	/// cfm_readdriver type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_readdriver, cft_defmemreadrequest> p_mq_MemReadRequest_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_readdriver,
+			cft_defmemreadrequest> p_mq_MemReadRequest_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_readdriver, cft_defaraddrchn> p_mq_ARADDRin_t;
 	/// cfm_readdriver type define end
 

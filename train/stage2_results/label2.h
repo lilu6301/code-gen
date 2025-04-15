@@ -1,3 +1,4 @@
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_mobilephone
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -6,6 +7,7 @@
 #ifndef COFS_MODEL_SOFTWAREDEFINEDRADIOAPP_MOBILEPHONE
 #define COFS_MODEL_SOFTWAREDEFINEDRADIOAPP_MOBILEPHONE
 
+/// Model Header includes start
 #include "cfm_softwaredefinedradioapp_global.h"
 #include "cfm_softwaredefinedradioapp_global_types.h"
 #include "cofluent.h"
@@ -17,57 +19,96 @@
 #include "dt/cft_defvideo.h"
 #include "dt/cft_defcall.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'MobilePhone includes' algorithm generated code
 
+//End of 'MobilePhone includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
-class cfm_mobilephone: public cf_core::cf_function_container, public cfm_mobilephone_dp_if {
+///    \defgroup dxgMobilePhone Function MobilePhone
+//@{
+///        \page dxpMobilePhone
+//@{
+///    \brief MobilePhone function model start
+class cfm_mobilephone: public cf_core::cf_function_container,
+		public cfm_mobilephone_dp_if {
 public:
+	/// cfm_mobilephone type define start
+	/// relations typedef
 	typedef cf_core::cf_message_queue<cft_defcall> mq_AppToCtrl_t;
 	typedef cf_core::cf_message_queue<cft_defcall> mq_AppToHTTP_t;
 	typedef cf_core::cf_message_queue<cft_defcall> mq_HTTPToApp_t;
 	typedef cf_core::cf_message_queue<cft_defvideo> mq_RTPToApp_t;
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_mobilephone, cft_defvideo> p_mq_NetToDVB_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_mobilephone, cft_defvideo> p_mq_Video_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_mobilephone, cft_defcall> p_mq_NetToUMTS_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_mobilephone, cft_defcall> p_mq_UMTSToNet_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_mobilephone, cft_defcall> p_mq_Response_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_mobilephone, cft_defcall> p_mq_Request_t;
+	/// cfm_mobilephone type define end
 
+	/// constructor
 	cfm_mobilephone(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_mobilephone(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_NetToDVB_t p_mq_NetToDVB;
 	p_mq_Video_t p_mq_Video;
 	p_mq_NetToUMTS_t p_mq_NetToUMTS;
 	p_mq_UMTSToNet_t p_mq_UMTSToNet;
 	p_mq_Response_t p_mq_Response;
 	p_mq_Request_t p_mq_Request;
+	//@}
 
 public:
+	/// \name functions
+	//@{
 	cfm_applicationlayer* ApplicationLayer;
 	cfm_callprotocolstack* CallProtocolStack;
 	cfm_controller* Controller;
 	cfm_videoprotocolstack* VideoProtocolStack;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	mq_AppToCtrl_t mq_AppToCtrl;
 	mq_AppToHTTP_t mq_AppToHTTP;
 	mq_HTTPToApp_t mq_HTTPToApp;
 	mq_RTPToApp_t mq_RTPToApp;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'MobilePhone local declarations' algorithm generated code
 
+	//End of 'MobilePhone local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief MobilePhone function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_SOFTWAREDEFINEDRADIOAPP_MOBILEPHONE
 
+//<#!@READ-ONLY-SECTION-END@!#>

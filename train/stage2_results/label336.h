@@ -32,7 +32,8 @@
 ///        \page dxpBT_System
 //@{
 ///    \brief BT_System function model start
-class cfm_bt_system: public cf_core::cf_function_container, public cfm_bt_system_dp_if {
+class cfm_bt_system: public cf_core::cf_function_container,
+		public cfm_bt_system_dp_if {
 public:
 	/// cfm_bt_system type define start
 	/// relations typedef

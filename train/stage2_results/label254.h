@@ -1,3 +1,4 @@
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_generator
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -6,6 +7,7 @@
 #ifndef COFS_MODEL_APPLICATIONMODEL_GENERATOR
 #define COFS_MODEL_APPLICATIONMODEL_GENERATOR
 
+/// Model Header includes start
 #include "cfm_applicationmodel_global.h"
 #include "cfm_applicationmodel_global_types.h"
 #include "cofluent.h"
@@ -13,35 +15,66 @@
 #include "dt/cft_defdatavar.h"
 #include "dt/cft_deftestprod.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'Generator includes' algorithm generated code
 
+//End of 'Generator includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgGenerator Function Generator
+//@{
+///        \page dxpGenerator
+//@{
+///    \brief Generator function model start
 class cfm_generator: public cf_core::cf_function, public cfm_generator_dp_if {
 public:
+	/// cfm_generator type define start
 
+	/// ports typedef
 	typedef cf_core::cf_ev_initiator_socket<cfm_generator> p_ev_Req_t;
 	typedef cf_core::cf_sv_initiator_socket<cfm_generator, cft_defdatavar> p_sv_DataVar_t;
 	typedef cf_core::cf_sv_initiator_socket<cfm_generator, cft_deftestprod> p_sv_TestProd_t;
+	/// cfm_generator type define end
 
+	/// constructor
 	cfm_generator(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_generator(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_ev_Req_t p_ev_Req;
 	p_sv_DataVar_t p_sv_DataVar;
 	p_sv_TestProd_t p_sv_TestProd;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'Generator local declarations' algorithm generated code
 
+	//End of 'Generator local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief Generator function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_APPLICATIONMODEL_GENERATOR
 
+//<#!@READ-ONLY-SECTION-END@!#>

@@ -33,7 +33,8 @@
 ///        \page dxpRFCOMM_Layer
 //@{
 ///    \brief RFCOMM_Layer function model start
-class cfm_rfcomm_layer: public cf_core::cf_function_container, public cfm_rfcomm_layer_dp_if {
+class cfm_rfcomm_layer: public cf_core::cf_function_container,
+		public cfm_rfcomm_layer_dp_if {
 public:
 	/// cfm_rfcomm_layer type define start
 	/// relations typedef

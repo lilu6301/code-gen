@@ -27,13 +27,16 @@
 ///        \page dxpMemoryCommandExecution
 //@{
 ///    \brief MemoryCommandExecution function model start
-class cfm_memorycommandexecution: public cf_core::cf_function, public cfm_memorycommandexecution_dp_if {
+class cfm_memorycommandexecution: public cf_core::cf_function,
+		public cfm_memorycommandexecution_dp_if {
 public:
 	/// cfm_memorycommandexecution type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycommandexecution, cft_defdqs> p_mq_DQs_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycommandexecution, cft_defddrcommand> p_mq_DDRAction_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycommandexecution,
+			cft_defdqs> p_mq_DQs_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycommandexecution,
+			cft_defddrcommand> p_mq_DDRAction_t;
 	/// cfm_memorycommandexecution type define end
 
 	/// constructor

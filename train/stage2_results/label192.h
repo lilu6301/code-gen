@@ -27,7 +27,8 @@
 ///        \page dxpReadDataDriver
 //@{
 ///    \brief ReadDataDriver function model start
-class cfm_readdatadriver: public cf_core::cf_function, public cfm_readdatadriver_dp_if {
+class cfm_readdatadriver: public cf_core::cf_function,
+		public cfm_readdatadriver_dp_if {
 public:
 	/// cfm_readdatadriver type define start
 

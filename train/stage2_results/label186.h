@@ -33,7 +33,8 @@ public:
 	/// cfm_writedriver type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_writedriver, cft_defmemwriterequest> p_mq_MemWriteRequest_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_writedriver,
+			cft_defmemwriterequest> p_mq_MemWriteRequest_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_writedriver, cft_defwdatachn> p_mq_WDATAin_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_writedriver, cft_defawaddrchn> p_mq_AWADDRin_t;
 	/// cfm_writedriver type define end

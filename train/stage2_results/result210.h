@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_datacenter
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,6 +8,7 @@
 #ifndef COFS_MODEL_DATACENTER
 #define COFS_MODEL_DATACENTER
 
+/// Model Header includes start
 #include <vector>
 #include "cfm_datacenter_global.h"
 #include "cfm_datacenter_global_types.h"
@@ -16,16 +18,32 @@
 #include "cfm_serverroom.h"
 #include "dt/cft_defpacket.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'datacenter includes' algorithm generated code
 #include <chrono>
+//End of 'datacenter includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
-class cfm_datacenter: public cf_core::cf_application, public cfm_datacenter_dp_if {
+///    \defgroup dxgdatacenter Function datacenter
+//@{
+///        \page dxpdatacenter
+//@{
+///    \brief datacenter function model start
+class cfm_datacenter: public cf_core::cf_application,
+		public cfm_datacenter_dp_if {
 public:
+	/// cfm_datacenter type define start
+	/// relations typedef
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQToDataCenterSwitch_t;
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQToServerRoom_t;
 
+	/// cfm_datacenter type define end
 
+	/// constructor
 	cfm_datacenter(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_datacenter(void);
 	virtual void cb_before_elaboration(void);
 
@@ -33,21 +51,40 @@ public:
 	void cb_end_of_simulation(void);
 
 public:
+	/// \name functions
+	//@{
 	cfm_datacenterswitch* DataCenterSwitch;
 	std::vector<cfm_serverroom*> ServerRoom_vec;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	std::vector<mq_MsgQToDataCenterSwitch_t*> mq_MsgQToDataCenterSwitch_vec;
 	std::vector<mq_MsgQToServerRoom_t*> mq_MsgQToServerRoom_vec;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'datacenter local declarations' algorithm generated code
 	std::chrono::high_resolution_clock::time_point t_start;
+	//End of 'datacenter local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief datacenter function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_DATACENTER
 
+//<#!@READ-ONLY-SECTION-END@!#>

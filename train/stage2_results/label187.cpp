@@ -29,14 +29,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_writedriver::cfm_writedriver(sc_core::sc_module_name name)
-cf_function(name)
-, cfm_writedriver_dp_if()
-, p_mq_MemWriteRequest("p_mq_MemWriteRequest")
-, p_mq_WDATAin("p_mq_WDATAin")
-, p_mq_AWADDRin("p_mq_AWADDRin")
-
-{
+cfm_writedriver::cfm_writedriver(sc_core::sc_module_name name) :
+		cf_function(name), cfm_writedriver_dp_if(), p_mq_MemWriteRequest(
+				"p_mq_MemWriteRequest"), p_mq_WDATAin("p_mq_WDATAin"), p_mq_AWADDRin(
+				"p_mq_AWADDRin") {
 	cf_function::init();
 
 	//<#!@READ-ONLY-SECTION-END@!#>

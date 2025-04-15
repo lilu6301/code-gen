@@ -30,52 +30,22 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_producer::cfm_producer(sc_core::sc_module_name name)
-cf_function_container(name)
-, p_mq_Msg("p_mq_Msg")
-, p_mq_Ack("p_mq_Ack")
-, sv_DataVar("DataVar"
-)
-, ev_Req("Req"
-)
-, sv_TestProd("TestProd"
-)
-
-{
+cfm_producer::cfm_producer(sc_core::sc_module_name name) :
+		cf_function_container(name), p_mq_Msg("p_mq_Msg"), p_mq_Ack("p_mq_Ack"), sv_DataVar(
+				"DataVar"), ev_Req("Req"), sv_TestProd("TestProd") {
 	cf_function_container::init();
-	Generator = new cfm_generator
-	("Generator");
-	Sender = new cfm_sender
-	("Sender");
+	Generator = new cfm_generator("Generator");
+	Sender = new cfm_sender("Sender");
 
 	// connections
-	Generator->p_sv_TestProd
-	(sv_TestProd
-			.p_target_socket
-	);
-	Generator->p_ev_Req
-	(ev_Req
-			.p_target_socket
-	);
-	Generator->p_sv_DataVar
-	(sv_DataVar
-			.p_target_socket
-	);
+	Generator->p_sv_TestProd(sv_TestProd.p_target_socket);
+	Generator->p_ev_Req(ev_Req.p_target_socket);
+	Generator->p_sv_DataVar(sv_DataVar.p_target_socket);
 
-	Sender->p_sv_DataVar
-	(sv_DataVar
-			.p_target_socket
-	);
-	Sender->p_ev_Req
-	(ev_Req
-			.p_target_socket
-	);
-	Sender->p_mq_Msg
-	(p_mq_Msg
-	);
-	Sender->p_mq_Ack
-	(p_mq_Ack
-	);
+	Sender->p_ev_Req(ev_Req.p_target_socket);
+	Sender->p_sv_DataVar(sv_DataVar.p_target_socket);
+	Sender->p_mq_Msg(p_mq_Msg);
+	Sender->p_mq_Ack(p_mq_Ack);
 
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'Producer constructor' algorithm generated code
@@ -95,8 +65,8 @@ cfm_producer::~cfm_producer(void) {
 
 	//End of 'Producer destructor' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
-	delete Generator;	///ddd
-	delete Sender;	///ddd
+	delete Generator;
+	delete Sender;
 }
 //@}
 
@@ -138,17 +108,16 @@ void cfm_producer::cb_end_of_simulation(void) {
 void cfm_producer::cb_init_attributes() {
 
 // initialize function attributes
-	cfa_cycle_period.init(cf_expr_time(10, CF_NS));
 // initialize relations attributes
-	sv_DataVar.cfa_write_time.init(cf_expr_duration(10, CF_US));
-	sv_DataVar.cfa_read_time.init(cf_expr_duration(10, CF_US));
+	sv_DataVar.cfa_write_time.init(cf_expr_duration(1, CF_NS));
+	sv_DataVar.cfa_read_time.init(cf_expr_duration(1, CF_NS));
 	sv_DataVar.cfa_semaphore.init(false);
 	sv_DataVar.cfa_concurrency.init((cf_nonzero_count) 1);
-	ev_Req.cfa_set_time.init(cf_expr_duration(5, CF_US));
-	ev_Req.cfa_get_time.init(cf_expr_duration(5, CF_US));
+	ev_Req.cfa_set_time.init(cf_expr_duration(1, CF_NS));
+	ev_Req.cfa_get_time.init(cf_expr_duration(1, CF_NS));
 	ev_Req.cfa_event_policy.init(CF_EV_POLICY_BOOLEAN);
-	sv_TestProd.cfa_write_time.init(cf_expr_duration(10, CF_US));
-	sv_TestProd.cfa_read_time.init(cf_expr_duration(10, CF_US));
+	sv_TestProd.cfa_write_time.init(cf_expr_duration(1, CF_NS));
+	sv_TestProd.cfa_read_time.init(cf_expr_duration(1, CF_NS));
 	sv_TestProd.cfa_semaphore.init(false);
 	sv_TestProd.cfa_concurrency.init((cf_nonzero_count) 1);
 

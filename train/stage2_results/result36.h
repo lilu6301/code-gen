@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_umts
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,6 +8,7 @@
 #ifndef COFS_MODEL_SOFTWAREDEFINEDRADIOAPP_UMTS
 #define COFS_MODEL_SOFTWAREDEFINEDRADIOAPP_UMTS
 
+/// Model Header includes start
 #include "cfm_softwaredefinedradioapp_global.h"
 #include "cfm_softwaredefinedradioapp_global_types.h"
 #include "cofluent.h"
@@ -15,41 +17,75 @@
 #include "cfm_umts_send.h"
 #include "dt/cft_defcall.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'UMTS includes' algorithm generated code
 
+//End of 'UMTS includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgUMTS Function UMTS
+//@{
+///        \page dxpUMTS
+//@{
+///    \brief UMTS function model start
 class cfm_umts: public cf_core::cf_function_container, public cfm_umts_dp_if {
 public:
+	/// cfm_umts type define start
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_umts, cft_defcall> p_mq_UMTSToIP_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_umts, cft_defcall> p_mq_NetToUMTS_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_umts, cft_defcall> p_mq_UMTSToNet_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_umts, cft_defcall> p_mq_IPToUMTS_t;
+	/// cfm_umts type define end
 
+	/// constructor
 	cfm_umts(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_umts(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_UMTSToIP_t p_mq_UMTSToIP;
 	p_mq_NetToUMTS_t p_mq_NetToUMTS;
 	p_mq_UMTSToNet_t p_mq_UMTSToNet;
 	p_mq_IPToUMTS_t p_mq_IPToUMTS;
+	//@}
 
 public:
-	cfm_umts_receive* Receive;
-	cfm_umts_send* Send;
+	/// \name functions
+	//@{
+	cfm_umts_receive* UMTS_Receive;
+	cfm_umts_send* UMTS_Send;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'UMTS local declarations' algorithm generated code
 
+	//End of 'UMTS local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief UMTS function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_SOFTWAREDEFINEDRADIOAPP_UMTS
 
+//<#!@READ-ONLY-SECTION-END@!#>

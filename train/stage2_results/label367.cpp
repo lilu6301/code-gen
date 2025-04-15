@@ -29,14 +29,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_creditsordata::cfm_creditsordata(sc_core::sc_module_name name)
-cf_function(name)
-, cfm_creditsordata_dp_if()
-, p_mq_RFC_Data("p_mq_RFC_Data")
-, p_mq_RFC_Cdts("p_mq_RFC_Cdts")
-, p_mq_RFCOMM_In("p_mq_RFCOMM_In")
-
-{
+cfm_creditsordata::cfm_creditsordata(sc_core::sc_module_name name) :
+		cf_function(name), cfm_creditsordata_dp_if(), p_mq_RFC_Data(
+				"p_mq_RFC_Data"), p_mq_RFC_Cdts("p_mq_RFC_Cdts"), p_mq_RFCOMM_In(
+				"p_mq_RFCOMM_In") {
 	cf_function::init();
 
 	//<#!@READ-ONLY-SECTION-END@!#>

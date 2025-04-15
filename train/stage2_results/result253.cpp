@@ -30,12 +30,8 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_receiver::cfm_receiver(sc_core::sc_module_name name)
-cf_function(name)
-, p_mq_Ack("p_mq_Ack")
-, p_mq_Msg("p_mq_Msg")
-
-{
+cfm_receiver::cfm_receiver(sc_core::sc_module_name name) :
+		cf_function(name), p_mq_Ack("p_mq_Ack"), p_mq_Msg("p_mq_Msg") {
 	cf_function::init();
 
 	//<#!@READ-ONLY-SECTION-END@!#>

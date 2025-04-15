@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_writer
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,6 +8,7 @@
 #ifndef COFS_MODEL_TLM2AT_WRITER
 #define COFS_MODEL_TLM2AT_WRITER
 
+/// Model Header includes start
 #include "cfm_tlm2at_global.h"
 #include "cfm_tlm2at_global_types.h"
 #include "cofluent.h"
@@ -14,11 +16,23 @@
 #include "dt/cft_initiator.h"
 #include "dt/cft_defmsgq.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'Writer includes' algorithm generated code
 
+//End of 'Writer includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgWriter Function Writer
+//@{
+///        \page dxpWriter
+//@{
+///    \brief Writer function model start
 class cfm_writer: public cf_core::cf_function {
 public:
+	/// cfm_writer type define start
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_writer, cft_defdata> p_mq_ReferenceQueue_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_writer, cft_initiator> p_mq_InitiatorWriter_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_writer, cft_defdata> p_mq_ReferenceQueue2_t;
@@ -26,15 +40,20 @@ public:
 	typedef cf_core::cf_mq_initiator_socket<cfm_writer, cft_defmsgq> p_mq_ReferenceQueue3_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_writer> p_ev_Sync2_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_writer> p_ev_Sync3_t;
+	/// cfm_writer type define end
 
+	/// constructor
 	cfm_writer(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_writer(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_ReferenceQueue_t p_mq_ReferenceQueue;
 	p_mq_InitiatorWriter_t p_mq_InitiatorWriter;
 	p_mq_ReferenceQueue2_t p_mq_ReferenceQueue2;
@@ -42,17 +61,29 @@ public:
 	p_mq_ReferenceQueue3_t p_mq_ReferenceQueue3;
 	p_ev_Sync2_t p_ev_Sync2;
 	p_ev_Sync3_t p_ev_Sync3;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
-	int SyncIndex;
-	int Sync2Index;
-	int Sync3Index;
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'Writer local declarations' algorithm generated code
+	int index;
+	//End of 'Writer local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief Writer function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_TLM2AT_WRITER
 
+//<#!@READ-ONLY-SECTION-END@!#>

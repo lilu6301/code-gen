@@ -29,61 +29,32 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_frontend::cfm_frontend(sc_core::sc_module_name name)
-cf_function_container(name)
-, cfm_frontend_dp_if()
-, p_mq_DataRead("p_mq_DataRead")
-, p_mq_WriteAck("p_mq_WriteAck")
-, p_mq_RDATAchn("p_mq_RDATAchn")
-, p_mq_BRESPchn("p_mq_BRESPchn")
-, p_mq_MemReadRequest("p_mq_MemReadRequest")
-, p_mq_MemWriteRequest("p_mq_MemWriteRequest")
-, p_mq_ARADDRin("p_mq_ARADDRin")
-, p_mq_WDATAin("p_mq_WDATAin")
-, p_mq_AWADDRin("p_mq_AWADDRin")
-
-{
+cfm_frontend::cfm_frontend(sc_core::sc_module_name name) :
+		cf_function_container(name), cfm_frontend_dp_if(), p_mq_DataRead(
+				"p_mq_DataRead"), p_mq_WriteAck("p_mq_WriteAck"), p_mq_RDATAchn(
+				"p_mq_RDATAchn"), p_mq_BRESPchn("p_mq_BRESPchn"), p_mq_MemReadRequest(
+				"p_mq_MemReadRequest"), p_mq_MemWriteRequest(
+				"p_mq_MemWriteRequest"), p_mq_ARADDRin("p_mq_ARADDRin"), p_mq_WDATAin(
+				"p_mq_WDATAin"), p_mq_AWADDRin("p_mq_AWADDRin") {
 	cf_function_container::init();
-	ReadDataDriver = new cfm_readdatadriver
-	("ReadDataDriver");
-	ReadDriver = new cfm_readdriver
-	("ReadDriver");
-	SendWAckDriver = new cfm_sendwackdriver
-	("SendWAckDriver");
-	WriteDriver = new cfm_writedriver
-	("WriteDriver");
+	ReadDataDriver = new cfm_readdatadriver("ReadDataDriver");
+	ReadDriver = new cfm_readdriver("ReadDriver");
+	SendWAckDriver = new cfm_sendwackdriver("SendWAckDriver");
+	WriteDriver = new cfm_writedriver("WriteDriver");
 
 	// connections
-	ReadDataDriver->p_mq_RDATAchn
-	(p_mq_RDATAchn
-	);
-	ReadDataDriver->p_mq_DataRead
-	(p_mq_DataRead
-	);
+	ReadDataDriver->p_mq_RDATAchn(p_mq_RDATAchn);
+	ReadDataDriver->p_mq_DataRead(p_mq_DataRead);
 
-	ReadDriver->p_mq_MemReadRequest
-	(p_mq_MemReadRequest
-	);
-	ReadDriver->p_mq_ARADDRin
-	(p_mq_ARADDRin
-	);
+	ReadDriver->p_mq_MemReadRequest(p_mq_MemReadRequest);
+	ReadDriver->p_mq_ARADDRin(p_mq_ARADDRin);
 
-	SendWAckDriver->p_mq_WriteAck
-	(p_mq_WriteAck
-	);
-	SendWAckDriver->p_mq_BRESPchn
-	(p_mq_BRESPchn
-	);
+	SendWAckDriver->p_mq_WriteAck(p_mq_WriteAck);
+	SendWAckDriver->p_mq_BRESPchn(p_mq_BRESPchn);
 
-	WriteDriver->p_mq_MemWriteRequest
-	(p_mq_MemWriteRequest
-	);
-	WriteDriver->p_mq_WDATAin
-	(p_mq_WDATAin
-	);
-	WriteDriver->p_mq_AWADDRin
-	(p_mq_AWADDRin
-	);
+	WriteDriver->p_mq_MemWriteRequest(p_mq_MemWriteRequest);
+	WriteDriver->p_mq_WDATAin(p_mq_WDATAin);
+	WriteDriver->p_mq_AWADDRin(p_mq_AWADDRin);
 
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'FrontEnd constructor' algorithm generated code
@@ -103,10 +74,10 @@ cfm_frontend::~cfm_frontend(void) {
 
 	//End of 'FrontEnd destructor' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
-	delete ReadDataDriver;	///ddd
-	delete ReadDriver;	///ddd
-	delete SendWAckDriver;	///ddd
-	delete WriteDriver;	///ddd
+	delete ReadDataDriver;
+	delete ReadDriver;
+	delete SendWAckDriver;
+	delete WriteDriver;
 }
 //@}
 

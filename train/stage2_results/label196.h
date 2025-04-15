@@ -29,13 +29,15 @@
 ///        \page dxpResponseForward
 //@{
 ///    \brief ResponseForward function model start
-class cfm_responseforward: public cf_core::cf_function, public cfm_responseforward_dp_if {
+class cfm_responseforward: public cf_core::cf_function,
+		public cfm_responseforward_dp_if {
 public:
 	/// cfm_responseforward type define start
 
 	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_responseforward, cft_defdqs> p_mq_DQs_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_responseforward, cft_defrequestinformation> p_mq_RequestInformation_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_responseforward,
+			cft_defrequestinformation> p_mq_RequestInformation_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_responseforward, cft_defdataread> p_mq_DataRead_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_responseforward, cft_defwriteack> p_mq_WriteAck_t;
 	/// cfm_responseforward type define end

@@ -29,13 +29,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_bankdmuxer::cfm_bankdmuxer(sc_core::sc_module_name name)
-cf_function(name)
-, cfm_bankdmuxer_dp_if()
-, p_mq_DDRAction("p_mq_DDRAction")
-, p_mq_DDRCommand("p_mq_DDRCommand")
-
-{
+cfm_bankdmuxer::cfm_bankdmuxer(sc_core::sc_module_name name) :
+		cf_function(name), cfm_bankdmuxer_dp_if(), p_mq_DDRAction(
+				"p_mq_DDRAction"), p_mq_DDRCommand("p_mq_DDRCommand") {
 	cf_function::init();
 
 	//<#!@READ-ONLY-SECTION-END@!#>

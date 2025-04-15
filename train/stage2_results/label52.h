@@ -1,3 +1,4 @@
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_umts_send
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -6,39 +7,71 @@
 #ifndef COFS_MODEL_SOFTWAREDEFINEDRADIOAPP_UMTS_SEND
 #define COFS_MODEL_SOFTWAREDEFINEDRADIOAPP_UMTS_SEND
 
+/// Model Header includes start
 #include "cfm_softwaredefinedradioapp_global.h"
 #include "cfm_softwaredefinedradioapp_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_umts_send_dp_if.h"
 #include "dt/cft_defcall.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'UMTS_Send includes' algorithm generated code
 
+//End of 'UMTS_Send includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgUMTS_Send Function UMTS_Send
+//@{
+///        \page dxpUMTS_Send
+//@{
+///    \brief UMTS_Send function model start
 class cfm_umts_send: public cf_core::cf_function, public cfm_umts_send_dp_if {
 public:
+	/// cfm_umts_send type define start
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_umts_send, cft_defcall> p_mq_IPToUMTS_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_umts_send, cft_defcall> p_mq_UMTSToNet_t;
+	/// cfm_umts_send type define end
 
+	/// constructor
 	cfm_umts_send(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_umts_send(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_IPToUMTS_t p_mq_IPToUMTS;
 	p_mq_UMTSToNet_t p_mq_UMTSToNet;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'UMTS_Send local declarations' algorithm generated code
 
+	//End of 'UMTS_Send local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief UMTS_Send function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_SOFTWAREDEFINEDRADIOAPP_UMTS_SEND
 
+//<#!@READ-ONLY-SECTION-END@!#>

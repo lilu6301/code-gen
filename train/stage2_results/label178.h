@@ -38,7 +38,8 @@
 ///        \page dxpFrontEnd
 //@{
 ///    \brief FrontEnd function model start
-class cfm_frontend: public cf_core::cf_function_container, public cfm_frontend_dp_if {
+class cfm_frontend: public cf_core::cf_function_container,
+		public cfm_frontend_dp_if {
 public:
 	/// cfm_frontend type define start
 

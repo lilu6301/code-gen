@@ -29,81 +29,34 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_rfcomm_layer::cfm_rfcomm_layer(sc_core::sc_module_name name)
-cf_function_container(name)
-, cfm_rfcomm_layer_dp_if()
-, p_mq_OBEX_In("p_mq_OBEX_In")
-, p_mq_OBEX_Out("p_mq_OBEX_Out")
-, p_mq_RFCOMM_Out("p_mq_RFCOMM_Out")
-, p_mq_RFCOMM_In("p_mq_RFCOMM_In")
-, mq_RFC_Cdts("RFC_Cdts"
-)
-, mq_RFC_Data("RFC_Data"
-)
-, mq_RFC_Out1("RFC_Out1"
-)
-, mq_RFC_Out2("RFC_Out2"
-)
-
-{
+cfm_rfcomm_layer::cfm_rfcomm_layer(sc_core::sc_module_name name) :
+		cf_function_container(name), cfm_rfcomm_layer_dp_if(), p_mq_OBEX_In(
+				"p_mq_OBEX_In"), p_mq_OBEX_Out("p_mq_OBEX_Out"), p_mq_RFCOMM_Out(
+				"p_mq_RFCOMM_Out"), p_mq_RFCOMM_In("p_mq_RFCOMM_In"), mq_RFC_Cdts(
+				"RFC_Cdts"), mq_RFC_Data("RFC_Data"), mq_RFC_Out1("RFC_Out1"), mq_RFC_Out2(
+				"RFC_Out2") {
 	cf_function_container::init();
-	CreditsOrData = new cfm_creditsordata
-	("CreditsOrData");
-	RFCOMM_Receive = new cfm_rfcomm_receive
-	("RFCOMM_Receive");
-	RFCOMM_Send = new cfm_rfcomm_send
-	("RFCOMM_Send");
-	RFC_Out = new cfm_rfc_out
-	("RFC_Out");
+	CreditsOrData = new cfm_creditsordata("CreditsOrData");
+	RFCOMM_Receive = new cfm_rfcomm_receive("RFCOMM_Receive");
+	RFCOMM_Send = new cfm_rfcomm_send("RFCOMM_Send");
+	RFC_Out = new cfm_rfc_out("RFC_Out");
 
 	// connections
-	CreditsOrData->p_mq_RFC_Data
-	(mq_RFC_Data
-			.p_target_socket
-	);
-	CreditsOrData->p_mq_RFC_Cdts
-	(mq_RFC_Cdts
-			.p_target_socket
-	);
-	CreditsOrData->p_mq_RFCOMM_In
-	(p_mq_RFCOMM_In
-	);
+	CreditsOrData->p_mq_RFC_Data(mq_RFC_Data.p_target_socket);
+	CreditsOrData->p_mq_RFC_Cdts(mq_RFC_Cdts.p_target_socket);
+	CreditsOrData->p_mq_RFCOMM_In(p_mq_RFCOMM_In);
 
-	RFCOMM_Receive->p_mq_RFC_Data
-	(mq_RFC_Data
-			.p_target_socket
-	);
-	RFCOMM_Receive->p_mq_RFC_Out1
-	(mq_RFC_Out1
-			.p_target_socket
-	);
-	RFCOMM_Receive->p_mq_OBEX_In
-	(p_mq_OBEX_In
-	);
+	RFCOMM_Receive->p_mq_RFC_Data(mq_RFC_Data.p_target_socket);
+	RFCOMM_Receive->p_mq_RFC_Out1(mq_RFC_Out1.p_target_socket);
+	RFCOMM_Receive->p_mq_OBEX_In(p_mq_OBEX_In);
 
-	RFCOMM_Send->p_mq_RFC_Cdts
-	(mq_RFC_Cdts
-			.p_target_socket
-	);
-	RFCOMM_Send->p_mq_RFC_Out2
-	(mq_RFC_Out2
-			.p_target_socket
-	);
-	RFCOMM_Send->p_mq_OBEX_Out
-	(p_mq_OBEX_Out
-	);
+	RFCOMM_Send->p_mq_RFC_Cdts(mq_RFC_Cdts.p_target_socket);
+	RFCOMM_Send->p_mq_RFC_Out2(mq_RFC_Out2.p_target_socket);
+	RFCOMM_Send->p_mq_OBEX_Out(p_mq_OBEX_Out);
 
-	RFC_Out->p_mq_RFC_Out1
-	(mq_RFC_Out1
-			.p_target_socket
-	);
-	RFC_Out->p_mq_RFC_Out2
-	(mq_RFC_Out2
-			.p_target_socket
-	);
-	RFC_Out->p_mq_RFCOMM_Out
-	(p_mq_RFCOMM_Out
-	);
+	RFC_Out->p_mq_RFC_Out1(mq_RFC_Out1.p_target_socket);
+	RFC_Out->p_mq_RFC_Out2(mq_RFC_Out2.p_target_socket);
+	RFC_Out->p_mq_RFCOMM_Out(p_mq_RFCOMM_Out);
 
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'RFCOMM_Layer constructor' algorithm generated code
@@ -123,10 +76,10 @@ cfm_rfcomm_layer::~cfm_rfcomm_layer(void) {
 
 	//End of 'RFCOMM_Layer destructor' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
-	delete CreditsOrData;	///ddd
-	delete RFCOMM_Receive;	///ddd
-	delete RFCOMM_Send;	///ddd
-	delete RFC_Out;	///ddd
+	delete CreditsOrData;
+	delete RFCOMM_Receive;
+	delete RFCOMM_Send;
+	delete RFC_Out;
 }
 //@}
 

@@ -29,27 +29,17 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_slave_stub::cfm_slave_stub(sc_core::sc_module_name name)
-cf_function_container(name)
-, cfm_slave_stub_dp_if()
-, p_mq_BaseBand_In("p_mq_BaseBand_In")
-, p_mq_BaseBand_Out("p_mq_BaseBand_Out")
-
-{
+cfm_slave_stub::cfm_slave_stub(sc_core::sc_module_name name) :
+		cf_function_container(name), cfm_slave_stub_dp_if(), p_mq_BaseBand_In(
+				"p_mq_BaseBand_In"), p_mq_BaseBand_Out("p_mq_BaseBand_Out") {
 	cf_function_container::init();
-	In_Stub = new cfm_in_stub
-	("In_Stub");
-	Out_Stub = new cfm_out_stub
-	("Out_Stub");
+	In_Stub = new cfm_in_stub("In_Stub");
+	Out_Stub = new cfm_out_stub("Out_Stub");
 
 	// connections
-	In_Stub->p_mq_BaseBand_In
-	(p_mq_BaseBand_In
-	);
+	In_Stub->p_mq_BaseBand_In(p_mq_BaseBand_In);
 
-	Out_Stub->p_mq_BaseBand_Out
-	(p_mq_BaseBand_Out
-	);
+	Out_Stub->p_mq_BaseBand_Out(p_mq_BaseBand_Out);
 
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'Slave_Stub constructor' algorithm generated code
@@ -69,8 +59,8 @@ cfm_slave_stub::~cfm_slave_stub(void) {
 
 	//End of 'Slave_Stub destructor' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
-	delete In_Stub;	///ddd
-	delete Out_Stub;	///ddd
+	delete In_Stub;
+	delete Out_Stub;
 }
 //@}
 

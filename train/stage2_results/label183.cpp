@@ -29,13 +29,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_memorycommandexecution::cfm_memorycommandexecution(sc_core::sc_module_name name)
-cf_function(name)
-, cfm_memorycommandexecution_dp_if()
-, p_mq_DQs("p_mq_DQs")
-, p_mq_DDRAction("p_mq_DDRAction")
-
-{
+cfm_memorycommandexecution::cfm_memorycommandexecution(
+		sc_core::sc_module_name name) :
+		cf_function(name), cfm_memorycommandexecution_dp_if(), p_mq_DQs(
+				"p_mq_DQs"), p_mq_DDRAction("p_mq_DDRAction") {
 	cf_function::init();
 
 	//<#!@READ-ONLY-SECTION-END@!#>

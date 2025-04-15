@@ -40,7 +40,8 @@
 ///        \page dxpBackEnd
 //@{
 ///    \brief BackEnd function model start
-class cfm_backend: public cf_core::cf_function_container, public cfm_backend_dp_if {
+class cfm_backend: public cf_core::cf_function_container,
+		public cfm_backend_dp_if {
 public:
 	/// cfm_backend type define start
 	/// relations typedef

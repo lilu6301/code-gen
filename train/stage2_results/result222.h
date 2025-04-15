@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_outbound
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,39 +8,71 @@
 #ifndef COFS_MODEL_DATACENTER_OUTBOUND
 #define COFS_MODEL_DATACENTER_OUTBOUND
 
+/// Model Header includes start
 #include "cfm_datacenter_global.h"
 #include "cfm_datacenter_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_outbound_dp_if.h"
 #include "dt/cft_defpacket.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'Outbound includes' algorithm generated code
 
+//End of 'Outbound includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgOutbound Function Outbound
+//@{
+///        \page dxpOutbound
+//@{
+///    \brief Outbound function model start
 class cfm_outbound: public cf_core::cf_function, public cfm_outbound_dp_if {
 public:
+	/// cfm_outbound type define start
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_outbound, cft_defpacket> p_mq_MsgQToServerRoom_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_outbound, cft_defpacket> p_mq_MsgQRouting_out_t;
+	/// cfm_outbound type define end
 
+	/// constructor
 	cfm_outbound(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_outbound(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_MsgQToServerRoom_t p_mq_MsgQToServerRoom;
 	p_mq_MsgQRouting_out_t p_mq_MsgQRouting_out;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
+	/// Model private fields start
+	/// Model private fields end
 
-	/*int outIndex;*/
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'Outbound local declarations' algorithm generated code
+
+	//End of 'Outbound local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief Outbound function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_DATACENTER_OUTBOUND
 
+//<#!@READ-ONLY-SECTION-END@!#>

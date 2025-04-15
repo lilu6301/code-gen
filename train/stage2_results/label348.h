@@ -33,7 +33,8 @@
 ///        \page dxpOBEX_Layer
 //@{
 ///    \brief OBEX_Layer function model start
-class cfm_obex_layer: public cf_core::cf_function_container, public cfm_obex_layer_dp_if {
+class cfm_obex_layer: public cf_core::cf_function_container,
+		public cfm_obex_layer_dp_if {
 public:
 	/// cfm_obex_layer type define start
 	/// relations typedef

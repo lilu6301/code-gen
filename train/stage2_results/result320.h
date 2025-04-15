@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_completedevice
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,6 +8,7 @@
 #ifndef COFS_MODEL_COMPLETEDEVICE
 #define COFS_MODEL_COMPLETEDEVICE
 
+/// Model Header includes start
 #include "cfm_completedevice_global.h"
 #include "cfm_completedevice_global_types.h"
 #include "cofluent.h"
@@ -15,17 +17,33 @@
 #include "cfm_testbench.h"
 #include "dt/cft_defframe.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'CompleteDevice includes' algorithm generated code
 
+//End of 'CompleteDevice includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
-class cfm_completedevice: public cf_core::cf_application, public cfm_completedevice_dp_if {
+///    \defgroup dxgCompleteDevice Function CompleteDevice
+//@{
+///        \page dxpCompleteDevice
+//@{
+///    \brief CompleteDevice function model start
+class cfm_completedevice: public cf_core::cf_application,
+		public cfm_completedevice_dp_if {
 public:
+	/// cfm_completedevice type define start
+	/// relations typedef
 	typedef cf_core::cf_event ev_newFrame_t;
 	typedef cf_core::cf_shared_variable<cft_defframe> sv_inputStream_t;
 	typedef cf_core::cf_shared_variable<cft_defframe> sv_outputStream_t;
 
+	/// cfm_completedevice type define end
 
+	/// constructor
 	cfm_completedevice(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_completedevice(void);
 	virtual void cb_before_elaboration(void);
 
@@ -33,22 +51,41 @@ public:
 	void cb_end_of_simulation(void);
 
 public:
+	/// \name functions
+	//@{
 	cfm_device* device;
 	cfm_testbench* testBench;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	ev_newFrame_t ev_newFrame;
 	sv_inputStream_t sv_inputStream;
 	sv_outputStream_t sv_outputStream;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'CompleteDevice local declarations' algorithm generated code
 
+	//End of 'CompleteDevice local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief CompleteDevice function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_COMPLETEDEVICE
 
+//<#!@READ-ONLY-SECTION-END@!#>

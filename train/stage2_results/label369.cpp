@@ -29,14 +29,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_rfc_out::cfm_rfc_out(sc_core::sc_module_name name)
-cf_function(name)
-, cfm_rfc_out_dp_if()
-, p_mq_RFC_Out1("p_mq_RFC_Out1")
-, p_mq_RFC_Out2("p_mq_RFC_Out2")
-, p_mq_RFCOMM_Out("p_mq_RFCOMM_Out")
-
-{
+cfm_rfc_out::cfm_rfc_out(sc_core::sc_module_name name) :
+		cf_function(name), cfm_rfc_out_dp_if(), p_mq_RFC_Out1("p_mq_RFC_Out1"), p_mq_RFC_Out2(
+				"p_mq_RFC_Out2"), p_mq_RFCOMM_Out("p_mq_RFCOMM_Out") {
 	cf_function::init();
 
 	//<#!@READ-ONLY-SECTION-END@!#>

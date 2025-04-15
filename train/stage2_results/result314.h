@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_hwdevicetest
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,6 +8,7 @@
 #ifndef COFS_MODEL_HWDEVICEMODEL_HWDEVICETEST
 #define COFS_MODEL_HWDEVICEMODEL_HWDEVICETEST
 
+/// Model Header includes start
 #include "cfm_hwdevicemodel_global.h"
 #include "cfm_hwdevicemodel_global_types.h"
 #include "cofluent.h"
@@ -16,47 +18,86 @@
 #include "dt/cft_defframe.h"
 #include "dt/cft_defprocessingmode.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'hwDeviceTest includes' algorithm generated code
 
+//End of 'hwDeviceTest includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
-class cfm_hwdevicetest: public cf_core::cf_function_container, public cfm_hwdevicetest_dp_if {
+///    \defgroup dxghwDeviceTest Function hwDeviceTest
+//@{
+///        \page dxphwDeviceTest
+//@{
+///    \brief hwDeviceTest function model start
+class cfm_hwdevicetest: public cf_core::cf_function_container,
+		public cfm_hwdevicetest_dp_if {
 public:
+	/// cfm_hwdevicetest type define start
+	/// relations typedef
 	typedef cf_core::cf_message_queue<cft_defframe> mq_inputFrame_t;
 	typedef cf_core::cf_message_queue<cft_defframe> mq_outputFrame_t;
-	typedef cf_core::cf_event ev_startProcess_t;
 	typedef cf_core::cf_shared_variable<cft_defprocessingmode> sv_processingMode_t;
+	typedef cf_core::cf_event ev_startProcess_t;
 
+	/// ports typedef
 	typedef cf_core::cf_sv_initiator_socket<cfm_hwdevicetest, cft_defframe> p_sv_inputStream_t;
 	typedef cf_core::cf_sv_initiator_socket<cfm_hwdevicetest, cft_defframe> p_sv_outputStream_t;
+	/// cfm_hwdevicetest type define end
 
+	/// constructor
 	cfm_hwdevicetest(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_hwdevicetest(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_sv_inputStream_t p_sv_inputStream;
 	p_sv_outputStream_t p_sv_outputStream;
+	//@}
 
 public:
+	/// \name functions
+	//@{
 	cfm_hwmodel* hwModel;
 	cfm_hwtestbench* hwTestBench;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	mq_inputFrame_t mq_inputFrame;
 	mq_outputFrame_t mq_outputFrame;
-	ev_startProcess_t ev_startProcess;
 	sv_processingMode_t sv_processingMode;
+	ev_startProcess_t ev_startProcess;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'hwDeviceTest local declarations' algorithm generated code
 
+	//End of 'hwDeviceTest local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief hwDeviceTest function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_HWDEVICEMODEL_HWDEVICETEST
 
+//<#!@READ-ONLY-SECTION-END@!#>

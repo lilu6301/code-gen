@@ -29,14 +29,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_sender::cfm_sender(sc_core::sc_module_name name)
-cf_function(name)
-, cfm_sender_dp_if()
-, p_mq_ARADDRchn("p_mq_ARADDRchn")
-, p_mq_WDATAchn("p_mq_WDATAchn")
-, p_mq_AWADDRchn("p_mq_AWADDRchn")
-
-{
+cfm_sender::cfm_sender(sc_core::sc_module_name name) :
+		cf_function(name), cfm_sender_dp_if(), p_mq_ARADDRchn("p_mq_ARADDRchn"), p_mq_WDATAchn(
+				"p_mq_WDATAchn"), p_mq_AWADDRchn("p_mq_AWADDRchn") {
 	cf_function::init();
 
 	//<#!@READ-ONLY-SECTION-END@!#>

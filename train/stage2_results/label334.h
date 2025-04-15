@@ -28,7 +28,8 @@
 ///        \page dxpSlave_Stub
 //@{
 ///    \brief Slave_Stub function model start
-class cfm_slave_stub: public cf_core::cf_function_container, public cfm_slave_stub_dp_if {
+class cfm_slave_stub: public cf_core::cf_function_container,
+		public cfm_slave_stub_dp_if {
 public:
 	/// cfm_slave_stub type define start
 

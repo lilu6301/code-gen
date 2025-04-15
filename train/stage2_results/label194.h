@@ -28,15 +28,19 @@
 ///        \page dxpCollectRequests
 //@{
 ///    \brief CollectRequests function model start
-class cfm_collectrequests: public cf_core::cf_function, public cfm_collectrequests_dp_if {
+class cfm_collectrequests: public cf_core::cf_function,
+		public cfm_collectrequests_dp_if {
 public:
 	/// cfm_collectrequests type define start
 
 	/// ports typedef
-	typedef cf_core::cf_sv_initiator_socket<cfm_collectrequests, cft_deflistrequestsptr> p_sv_ListRequestsPtr_t;
+	typedef cf_core::cf_sv_initiator_socket<cfm_collectrequests,
+			cft_deflistrequestsptr> p_sv_ListRequestsPtr_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_collectrequests> p_ev_RequestCounter_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_collectrequests, cft_defmemreadrequest> p_mq_MemReadRequest_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_collectrequests, cft_defmemwriterequest> p_mq_MemWriteRequest_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_collectrequests,
+			cft_defmemreadrequest> p_mq_MemReadRequest_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_collectrequests,
+			cft_defmemwriterequest> p_mq_MemWriteRequest_t;
 	/// cfm_collectrequests type define end
 
 	/// constructor

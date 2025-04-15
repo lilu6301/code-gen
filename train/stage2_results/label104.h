@@ -1,3 +1,4 @@
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_vectordatatypeapiapp
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -6,21 +7,37 @@
 #ifndef COFS_MODEL_VECTORDATATYPEAPIAPP
 #define COFS_MODEL_VECTORDATATYPEAPIAPP
 
+/// Model Header includes start
 #include "cfm_vectordatatypeapiapp_global.h"
 #include "cfm_vectordatatypeapiapp_global_types.h"
 #include "cofluent.h"
 #include "cfm_consumervector.h"
 #include "cfm_producervector.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'VectorDataTypeAPIApp includes' algorithm generated code
 
+//End of 'VectorDataTypeAPIApp includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
+///    \defgroup dxgVectorDataTypeAPIApp Function VectorDataTypeAPIApp
+//@{
+///        \page dxpVectorDataTypeAPIApp
+//@{
+///    \brief VectorDataTypeAPIApp function model start
 class cfm_vectordatatypeapiapp: public cf_core::cf_application {
 public:
+	/// cfm_vectordatatypeapiapp type define start
+	/// relations typedef
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_vector> mq_MsgQVector_t;
 
+	/// cfm_vectordatatypeapiapp type define end
 
+	/// constructor
 	cfm_vectordatatypeapiapp(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_vectordatatypeapiapp(void);
 	virtual void cb_before_elaboration(void);
 
@@ -28,20 +45,39 @@ public:
 	void cb_end_of_simulation(void);
 
 public:
+	/// \name functions
+	//@{
 	cfm_consumervector* ConsumerVector;
 	cfm_producervector* ProducerVector;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	mq_MsgQVector_t mq_MsgQVector;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'VectorDataTypeAPIApp local declarations' algorithm generated code
 
+	//End of 'VectorDataTypeAPIApp local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief VectorDataTypeAPIApp function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_VECTORDATATYPEAPIAPP
 
+//<#!@READ-ONLY-SECTION-END@!#>

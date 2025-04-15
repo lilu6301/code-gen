@@ -1,4 +1,5 @@
 
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_bt_stack
  * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -7,6 +8,7 @@
 #ifndef COFS_MODEL_BLUETHIP_BT_STACK
 #define COFS_MODEL_BLUETHIP_BT_STACK
 
+/// Model Header includes start
 #include "cfm_bluetooth_ips_global.h"
 #include "cfm_bluetooth_ips_global_types.h"
 #include "cofluent.h"
@@ -14,30 +16,43 @@
 #include "cfm_baseband_layer.h"
 #include "cfm_l2cap_layer.h"
 #include "cfm_obex_layer.h"
-#include "cfm_rfcomm_layer.h"
+#include "cfm_rfm_layer.h"
 #include "dt/cft_defbaseband.h"
 #include "dt/cft_defreadwrite.h"
 #include "dt/cft_defdatain.h"
 #include "dt/cft_defdataout.h"
-#include "dt/cft_defwf.h"
-#include "dt/cft_defl2cap_in.h"
-#include "dt/cft_defl2cap_out.h"
 #include "dt/cft_defobex_in.h"
 #include "dt/cft_defobex_out.h"
 #include "dt/cft_defrfcomm_in.h"
 #include "dt/cft_defrfcomm_out.h"
+#include "dt/cft_deflatcap_in.h"
+#include "dt/cft_deflatcap_out.h"
 
+//<#!@READ-ONLY-SECTION-END@!#>
+//Start of 'BT_Stack includes' algorithm generated code
 
+//End of 'BT_Stack includes' algorithm generated code
+//<#!@READ-ONLY-SECTION-START@!#>
+/// Model Header includes end
 
-class cfm_bt_stack: public cf_core::cf_function_container, public cfm_bt_stack_dp_if {
+///    \defgroup dxgBT_Stack Function BT_Stack
+//@{
+///        \page dxpBT_Stack
+//@{
+///    \brief BT_Stack function model start
+class cfm_bt_stack: public cf_core::cf_function_container,
+		public cfm_bt_stack_dp_if {
 public:
-	typedef cf_core::cf_message_queue<cft_defl2cap_in> mq_L2CAP_In_t;
-	typedef cf_core::cf_message_queue<cft_defl2cap_out> mq_L2CAP_Out_t;
+	/// cfm_bt_stack type define start
+	/// relations typedef
+	typedef cf_core::cf_message_queue<cft_deflatcap_in> mq_L2CAP_In_t;
+	typedef cf_core::cf_message_queue<cft_deflatcap_out> mq_L2CAP_Out_t;
 	typedef cf_core::cf_message_queue<cft_defobex_in> mq_OBEX_In_t;
 	typedef cf_core::cf_message_queue<cft_defobex_out> mq_OBEX_Out_t;
 	typedef cf_core::cf_message_queue<cft_defrfcomm_in> mq_RFCOMM_In_t;
 	typedef cf_core::cf_message_queue<cft_defrfcomm_out> mq_RFCOMM_Out_t;
 
+	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defbaseband> p_mq_BaseBand_Out_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defbaseband> p_mq_BaseBand_In_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defreadwrite> p_mq_ReadWrite_t;
@@ -45,15 +60,20 @@ public:
 	typedef cf_core::cf_ev_initiator_socket<cfm_bt_stack> p_ev_WrOK_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defdataout> p_mq_DataOut_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_bt_stack> p_ev_startEv_t;
+	/// cfm_bt_stack type define end
 
+	/// constructor
 	cfm_bt_stack(sc_core::sc_module_name name);
 
+	/// destructor
 	virtual ~cfm_bt_stack(void);
 	virtual void cb_before_elaboration(void);
 	virtual void cb_end_of_elaboration(void);
 	virtual void cb_end_of_simulation(void);
 
 public:
+	/// \name input/output ports
+	//@{
 	p_mq_BaseBand_Out_t p_mq_BaseBand_Out;
 	p_mq_BaseBand_In_t p_mq_BaseBand_In;
 	p_mq_ReadWrite_t p_mq_ReadWrite;
@@ -61,29 +81,49 @@ public:
 	p_ev_WrOK_t p_ev_WrOK;
 	p_mq_DataOut_t p_mq_DataOut;
 	p_ev_startEv_t p_ev_startEv;
+	//@}
 
 public:
+	/// \name functions
+	//@{
 	cfm_baseband_layer* BaseBand_Layer;
 	cfm_l2cap_layer* L2CAP_Layer;
 	cfm_obex_layer* OBEX_Layer;
-	cfm_rfcomm_layer* RFCOMM_Layer;
+	cfm_rfm_layer* RFCOMM_Layer;
+	//@}
 
 protected:
+	/// initialize attributes
 	void cb_init_attributes(void);
+	/// initialize definitions
 	void cb_init_local_vars(void);
 
 public:
+	/// \name relations
+	//@{
 	mq_L2CAP_In_t mq_L2CAP_In;
 	mq_L2CAP_Out_t mq_L2CAP_Out;
 	mq_OBEX_In_t mq_OBEX_In;
 	mq_OBEX_Out_t mq_OBEX_Out;
 	mq_RFCOMM_In_t mq_RFCOMM_In;
 	mq_RFCOMM_Out_t mq_RFCOMM_Out;
+	//@}
 
+	/// Model private fields start
+	/// Model private fields end
 
+	/// \name user-defined local declarations
+	//<#!@READ-ONLY-SECTION-END@!#>
+	//Start of 'BT_Stack local declarations' algorithm generated code
 
+	//End of 'BT_Stack local declarations' algorithm generated code
+	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
+///    \brief BT_Stack function model end
 
+//@}
+//@}
 #endif // COFS_MODEL_BLUETHIP_BT_STACK
 
+//<#!@READ-ONLY-SECTION-END@!#>
