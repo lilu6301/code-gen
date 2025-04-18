@@ -12,6 +12,7 @@
 #include "cfm_softwaredefinedradioapp_global.h"
 #include "cfm_softwaredefinedradioapp_global_types.h"
 #include "cofluent.h"
+#include "behavior/cf_function.h"
 #include "dp/cfm_clockgenerator_dp_if.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>

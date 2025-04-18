@@ -43,10 +43,10 @@ public:
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQOutboundServer_t;
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_torswitch, cft_defpacket> p_mq_MsgQToRack_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_torswitch, cft_defpacket> p_mq_MsgQServerToToRSwitch_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_torswitch, cft_defpacket> p_mq_MsgQToServer_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_torswitch, cft_defpacket> p_mq_MsgQToAggSwitch_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_torswitch, cft_defpacket> p_mq_MsgQToRack_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_torswitch, cft_defpacket> p_mq_MsgQToServer_t;
 	/// cfm_torswitch type define end
 
 	/// constructor
@@ -61,10 +61,10 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_MsgQToRack_t p_mq_MsgQToRack;
-	std::vector<p_mq_MsgQServerToToRSwitch_t*> p_mq_MsgQServerToToRSwitch_vec;
-	std::vector<p_mq_MsgQToServer_t*> p_mq_MsgQToServer_vec;
+	p_mq_MsgQServerToToRSwitch_t* p_mq_MsgQServerToToRSwitch;
 	p_mq_MsgQToAggSwitch_t p_mq_MsgQToAggSwitch;
+	p_mq_MsgQToRack_t p_mq_MsgQToRack;
+	p_mq_MsgQToServer_t* p_mq_MsgQToServer;
 	//@}
 
 public:

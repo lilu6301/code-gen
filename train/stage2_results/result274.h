@@ -12,6 +12,7 @@
 #include "cfm_hybridschedulingapp_global.h"
 #include "cfm_hybridschedulingapp_global_types.h"
 #include "cofluent.h"
+#include "dp/cfm_controller_dp_if.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'Controller includes' algorithm generated code
@@ -25,7 +26,7 @@
 ///        \page dxpController
 //@{
 ///    \brief Controller function model start
-class cfm_controller: public cf_core::cf_function {
+class cfm_controller: public cf_core::cf_function, public cfm_controller_dp_if {
 public:
 	/// cfm_controller type define start
 

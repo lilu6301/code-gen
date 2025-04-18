@@ -69,10 +69,10 @@ protected:
 public:
 	/// \name relations
 	//@{
-	mq_M2S_t mq_M2S;
-	mq_S2M_t mq_S2M;
 	ev_StartEv_t ev_StartEv;
 	ev_UnusedEv_t ev_UnusedEv;
+	mq_M2S_t mq_M2S;
+	mq_S2M_t mq_S2M;
 	//@}
 
 	/// Model private fields start

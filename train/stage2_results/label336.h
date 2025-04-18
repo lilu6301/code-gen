@@ -15,9 +15,9 @@
 #include "cfm_bt_stack.h"
 #include "cfm_filesystem.h"
 #include "dt/cft_defbaseband.h"
-#include "dt/cft_defdataout.h"
 #include "dt/cft_defdata.h"
 #include "dt/cft_defdatain.h"
+#include "dt/cft_defdataout.h"
 #include "dt/cft_defreadwrite.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -44,9 +44,9 @@ public:
 	typedef cf_core::cf_event ev_WrOK_t;
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_bt_system, cft_defbaseband> p_mq_BaseBand_Out_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_bt_system, cft_defbaseband> p_mq_BaseBand_In_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_bt_system> p_ev_startEv_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_bt_system, cft_defbaseband> p_mq_BaseBand_In_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_bt_system, cft_defbaseband> p_mq_BaseBand_Out_t;
 	/// cfm_bt_system type define end
 
 	/// constructor
@@ -61,9 +61,9 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_BaseBand_Out_t p_mq_BaseBand_Out;
-	p_mq_BaseBand_In_t p_mq_BaseBand_In;
 	p_ev_startEv_t p_ev_startEv;
+	p_mq_BaseBand_In_t p_mq_BaseBand_In;
+	p_mq_BaseBand_Out_t p_mq_BaseBand_Out;
 	//@}
 
 public:
@@ -82,11 +82,11 @@ protected:
 public:
 	/// \name relations
 	//@{
-	sv_Data_t sv_Data;
+	ev_WrOK_t ev_WrOK;
 	mq_DataIn_t mq_DataIn;
 	mq_DataOut_t mq_DataOut;
 	mq_ReadWrite_t mq_ReadWrite;
-	ev_WrOK_t ev_WrOK;
+	sv_Data_t sv_Data;
 	//@}
 
 	/// Model private fields start

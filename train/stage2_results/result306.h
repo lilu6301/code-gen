@@ -32,9 +32,9 @@ public:
 	/// cfm_target type define start
 
 	/// ports typedef
+	typedef cf_core::cf_ev_initiator_socket<cfm_target> p_ev_Sync2_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_target, cft_defdata> p_mq_ReferenceQueue2_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_target, cft_target> p_mq_TargetWrapper_t;
-	typedef cf_core::cf_ev_initiator_socket<cfm_target> p_ev_Sync2_t;
 	/// cfm_target type define end
 
 	/// constructor
@@ -49,9 +49,9 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+	p_ev_Sync2_t p_ev_Sync2;
 	p_mq_ReferenceQueue2_t p_mq_ReferenceQueue2;
 	p_mq_TargetWrapper_t p_mq_TargetWrapper;
-	p_ev_Sync2_t p_ev_Sync2;
 	//@}
 
 protected:

@@ -63,8 +63,8 @@ protected:
 public:
 	/// \name relations
 	//@{
-	sv_inputStream_t sv_inputStream;
 	ev_newFrame_t ev_newFrame;
+	sv_inputStream_t sv_inputStream;
 	sv_outputStream_t sv_outputStream;
 	//@}
 

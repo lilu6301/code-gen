@@ -12,9 +12,9 @@
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_writedriver_dp_if.h"
+#include "dt/cft_defawaddrchn.h"
 #include "dt/cft_defmemwriterequest.h"
 #include "dt/cft_defwdatachn.h"
-#include "dt/cft_defawaddrchn.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'WriteDriver includes' algorithm generated code
@@ -33,10 +33,10 @@ public:
 	/// cfm_writedriver type define start
 
 	/// ports typedef
+	typedef cf_core::cf_mq_initiator_socket<cfm_writedriver, cft_defawaddrchn> p_mq_AWADDRin_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_writedriver,
 			cft_defmemwriterequest> p_mq_MemWriteRequest_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_writedriver, cft_defwdatachn> p_mq_WDATAin_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_writedriver, cft_defawaddrchn> p_mq_AWADDRin_t;
 	/// cfm_writedriver type define end
 
 	/// constructor
@@ -51,9 +51,9 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+	p_mq_AWADDRin_t p_mq_AWADDRin;
 	p_mq_MemWriteRequest_t p_mq_MemWriteRequest;
 	p_mq_WDATAin_t p_mq_WDATAin;
-	p_mq_AWADDRin_t p_mq_AWADDRin;
 	//@}
 
 protected:

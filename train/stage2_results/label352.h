@@ -15,8 +15,8 @@
 #include "cfm_bb_receive.h"
 #include "cfm_bb_send.h"
 #include "dt/cft_defbaseband.h"
-#include "dt/cft_defl2cap_out.h"
 #include "dt/cft_defl2cap_in.h"
+#include "dt/cft_defl2cap_out.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'BaseBand_Layer includes' algorithm generated code
@@ -36,10 +36,10 @@ public:
 	/// cfm_baseband_layer type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_baseband_layer, cft_defbaseband> p_mq_BaseBand_Out_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_baseband_layer, cft_defl2cap_out> p_mq_L2CAP_Out_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_baseband_layer, cft_defbaseband> p_mq_BaseBand_In_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_baseband_layer, cft_defbaseband> p_mq_BaseBand_Out_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_baseband_layer, cft_defl2cap_in> p_mq_L2CAP_In_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_baseband_layer, cft_defl2cap_out> p_mq_L2CAP_Out_t;
 	/// cfm_baseband_layer type define end
 
 	/// constructor
@@ -54,10 +54,10 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_BaseBand_Out_t p_mq_BaseBand_Out;
-	p_mq_L2CAP_Out_t p_mq_L2CAP_Out;
 	p_mq_BaseBand_In_t p_mq_BaseBand_In;
+	p_mq_BaseBand_Out_t p_mq_BaseBand_Out;
 	p_mq_L2CAP_In_t p_mq_L2CAP_In;
+	p_mq_L2CAP_Out_t p_mq_L2CAP_Out;
 	//@}
 
 public:

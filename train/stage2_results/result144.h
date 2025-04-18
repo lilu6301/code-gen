@@ -12,6 +12,7 @@
 #include "cfm_automatedpayloadtrackers_global.h"
 #include "cfm_automatedpayloadtrackers_global_types.h"
 #include "cofluent.h"
+#include "dp/cfm_p1_dp_if.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'P1 includes' algorithm generated code
@@ -25,7 +26,7 @@
 ///        \page dxpP1
 //@{
 ///    \brief P1 function model start
-class cfm_p1: public cf_core::cf_function {
+class cfm_p1: public cf_core::cf_function, public cfm_p1_dp_if {
 public:
 	/// cfm_p1 type define start
 

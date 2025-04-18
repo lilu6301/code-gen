@@ -31,8 +31,8 @@ public:
 	/// cfm_cof_initiator type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_cof_initiator, cft_defmsgq> p_mq_MsgFwQ_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_cof_initiator, cft_defmsgq> p_mq_MsgBwQ_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_cof_initiator, cft_defmsgq> p_mq_MsgFwQ_t;
 	/// cfm_cof_initiator type define end
 
 	/// constructor
@@ -47,8 +47,8 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_MsgFwQ_t p_mq_MsgFwQ;
 	p_mq_MsgBwQ_t p_mq_MsgBwQ;
+	p_mq_MsgFwQ_t p_mq_MsgFwQ;
 	//@}
 
 protected:

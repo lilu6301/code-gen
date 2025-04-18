@@ -12,21 +12,22 @@
 #include "cfm_softwaredefinedradioapp_global.h"
 #include "cfm_softwaredefinedradioapp_global_types.h"
 #include "cofluent.h"
+#include "dp/cfm_reading_dp_if.h"
 #include "dt/cft_defcall.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
-//Start of 'Reading includes' algorithm generated code
+//Start of 'Readings includes' algorithm generated code
 
-//End of 'Reading includes' algorithm generated code
+//End of 'Readings includes' algorithm generated code
 //<#!@READ-ONLY-SECTION-START@!#>
 /// Model Header includes end
 
-///    \defgroup dxgReading Function Reading
+///    \defgroup dxgReadings Function Reading
 //@{
-///        \page dxpReading
+///        \page dxpReadings
 //@{
-///    \brief Reading function model start
-class cfm_reading: public cf_core::cf_function {
+///    \brief Readings function model start
+class cfm_reading: public cf_core::cf_function, public cfm_reading_dp_if {
 public:
 	/// cfm_reading type define start
 
@@ -62,13 +63,13 @@ protected:
 
 	/// \name user-defined local declarations
 	//<#!@READ-ONLY-SECTION-END@!#>
-	//Start of 'Reading local declarations' algorithm generated code
+	//Start of 'Readings local declarations' algorithm generated code
 
-	//End of 'Reading local declarations' algorithm generated code
+	//End of 'Readings local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
-///    \brief Reading function model end
+///    \brief Readings function model end
 
 //@}
 //@}

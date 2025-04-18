@@ -35,9 +35,9 @@ public:
 	/// cfm_swinterface type define start
 
 	/// ports typedef
+	typedef cf_core::cf_ev_initiator_socket<cfm_swinterface> p_ev_newFrame_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_swinterface> p_ev_startProcess_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_swinterface, cft_defframe> p_mq_inputFrame_t;
-	typedef cf_core::cf_ev_initiator_socket<cfm_swinterface> p_ev_newFrame_t;
 	typedef cf_core::cf_sv_initiator_socket<cfm_swinterface,
 			cft_defprocessingmode> p_sv_processingMode_t;
 	/// cfm_swinterface type define end
@@ -59,9 +59,9 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+	p_ev_newFrame_t p_ev_newFrame;
 	p_ev_startProcess_t p_ev_startProcess;
 	p_mq_inputFrame_t p_mq_inputFrame;
-	p_ev_newFrame_t p_ev_newFrame;
 	p_sv_processingMode_t p_sv_processingMode;
 	//@}
 

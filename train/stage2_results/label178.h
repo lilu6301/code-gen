@@ -16,15 +16,15 @@
 #include "cfm_readdriver.h"
 #include "cfm_sendwackdriver.h"
 #include "cfm_writedriver.h"
-#include "dt/cft_defdataread.h"
-#include "dt/cft_defwriteack.h"
-#include "dt/cft_defrdatachn.h"
+#include "dt/cft_defaraddrchn.h"
+#include "dt/cft_defawaddrchn.h"
 #include "dt/cft_defbrespchn.h"
+#include "dt/cft_defdataread.h"
 #include "dt/cft_defmemreadrequest.h"
 #include "dt/cft_defmemwriterequest.h"
-#include "dt/cft_defaraddrchn.h"
+#include "dt/cft_defrdatachn.h"
 #include "dt/cft_defwdatachn.h"
-#include "dt/cft_defawaddrchn.h"
+#include "dt/cft_defwriteack.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'FrontEnd includes' algorithm generated code
@@ -44,15 +44,15 @@ public:
 	/// cfm_frontend type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_frontend, cft_defdataread> p_mq_DataRead_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_frontend, cft_defwriteack> p_mq_WriteAck_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_frontend, cft_defrdatachn> p_mq_RDATAchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_frontend, cft_defaraddrchn> p_mq_ARADDRin_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_frontend, cft_defawaddrchn> p_mq_AWADDRin_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_frontend, cft_defbrespchn> p_mq_BRESPchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_frontend, cft_defdataread> p_mq_DataRead_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_frontend, cft_defmemreadrequest> p_mq_MemReadRequest_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_frontend, cft_defmemwriterequest> p_mq_MemWriteRequest_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_frontend, cft_defaraddrchn> p_mq_ARADDRin_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_frontend, cft_defrdatachn> p_mq_RDATAchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_frontend, cft_defwdatachn> p_mq_WDATAin_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_frontend, cft_defawaddrchn> p_mq_AWADDRin_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_frontend, cft_defwriteack> p_mq_WriteAck_t;
 	/// cfm_frontend type define end
 
 	/// constructor
@@ -67,15 +67,15 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_DataRead_t p_mq_DataRead;
-	p_mq_WriteAck_t p_mq_WriteAck;
-	p_mq_RDATAchn_t p_mq_RDATAchn;
+	p_mq_ARADDRin_t p_mq_ARADDRin;
+	p_mq_AWADDRin_t p_mq_AWADDRin;
 	p_mq_BRESPchn_t p_mq_BRESPchn;
+	p_mq_DataRead_t p_mq_DataRead;
 	p_mq_MemReadRequest_t p_mq_MemReadRequest;
 	p_mq_MemWriteRequest_t p_mq_MemWriteRequest;
-	p_mq_ARADDRin_t p_mq_ARADDRin;
+	p_mq_RDATAchn_t p_mq_RDATAchn;
 	p_mq_WDATAin_t p_mq_WDATAin;
-	p_mq_AWADDRin_t p_mq_AWADDRin;
+	p_mq_WriteAck_t p_mq_WriteAck;
 	//@}
 
 public:

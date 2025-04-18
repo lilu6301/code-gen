@@ -9,8 +9,8 @@
 #define COFS_MODEL_INHERITANCE_EXAMPLE3APP_PRODUCER
 
 /// Model Header includes start
-#include "cfm_inheritance_example3app_global.h"
-#include "cfm_inheritance_example3app_global_types.h"
+#include "cfm_inheritage_example3app_global.h"
+#include "cfm_inheritage_example3app_global_types.h"
 #include "cofluent.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -61,7 +61,7 @@ protected:
 	/// \name user-defined local declarations
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'Producer local declarations' algorithm generated code
-
+	int value;
 	//End of 'Producer local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 

@@ -12,9 +12,9 @@
 #include "cfm_applicationmodel_global.h"
 #include "cfm_applicationmodel_global_types.h"
 #include "cofluent.h"
-#include "dt/cft_defmsg.h"
 #include "dt/cft_defack.h"
 #include "dt/cft_defdatavar.h"
+#include "dt/cft_defmsg.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'Sender includes' algorithm generated code
@@ -34,8 +34,8 @@ public:
 
 	/// ports typedef
 	typedef cf_core::cf_ev_initiator_socket<cfm_sender> p_ev_Req_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_sender, cft_defmsg> p_mq_Msg_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_sender, cft_defack> p_mq_Ack_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_sender, cft_defmsg> p_mq_Msg_t;
 	typedef cf_core::cf_sv_initiator_socket<cfm_sender, cft_defdatavar> p_sv_DataVar_t;
 	/// cfm_sender type define end
 
@@ -52,8 +52,8 @@ public:
 	/// \name input/output ports
 	//@{
 	p_ev_Req_t p_ev_Req;
-	p_mq_Msg_t p_mq_Msg;
 	p_mq_Ack_t p_mq_Ack;
+	p_mq_Msg_t p_mq_Msg;
 	p_sv_DataVar_t p_sv_DataVar;
 	//@}
 

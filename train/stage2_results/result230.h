@@ -33,8 +33,8 @@ public:
 	/// cfm_outboundrack type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_outboundrack, cft_defpacket> p_mq_MsgQToRack_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_outboundrack, cft_defpacket> p_mq_MsgQOutboundRack_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_outboundrack, cft_defpacket> p_mq_MsgQToRack_t;
 	/// cfm_outboundrack type define end
 
 	/// constructor
@@ -49,8 +49,8 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_MsgQToRack_t p_mq_MsgQToRack;
 	p_mq_MsgQOutboundRack_t p_mq_MsgQOutboundRack;
+	p_mq_MsgQToRack_t p_mq_MsgQToRack;
 	//@}
 
 protected:

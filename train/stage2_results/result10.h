@@ -13,8 +13,8 @@
 #include "cfm_softwaredefinedradioapp_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_callprotocolstack_dp_if.h"
-#include "cfm_ipcall.h"
 #include "cfm_httptcp.h"
+#include "cfm_ipcall.h"
 #include "cfm_umts.h"
 #include "dt/cft_defcall.h"
 
@@ -35,17 +35,16 @@ class cfm_callprotocolstack: public cf_core::cf_function_container,
 public:
 	/// cfm_callprotocolstack type define start
 	/// relations typedef
+	typedef cf_core::cf_message_queue<cft_defcall> mq_HTTPToIP_t;
 	typedef cf_core::cf_message_queue<cft_defcall> mq_IPToHTTP_t;
 	typedef cf_core::cf_message_queue<cft_defcall> mq_IPToUMTS_t;
 	typedef cf_core::cf_message_queue<cft_defcall> mq_UMTSToIP_t;
-	typedef cf_core::cf_message_queue<cft_defcall> mq_UMTSToNet_t;
-	typedef cf_core::cf_message_queue<cft_defcall> mq_HTTPToIP_t;
 
 	/// ports typedef
+	typedef cf_core::cf_mq_initiator_socket<cfm_callprotocolstack, cft_defcall> p_mq_AppToHTTP_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_callprotocolstack, cft_defcall> p_mq_HTTPToApp_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_callprotocolstack, cft_defcall> p_mq_NetToUMTS_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_callprotocolstack, cft_defcall> p_mq_UMTSToNet_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_callprotocolstack, cft_defcall> p_mq_HTTPToApp_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_callprotocolstack, cft_defcall> p_mq_AppToHTTP_t;
 	/// cfm_callprotocolstack type define end
 
 	/// constructor
@@ -60,17 +59,17 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+	p_mq_AppToHTTP_t p_mq_AppToHTTP;
+	p_mq_HTTPToApp_t p_mq_HTTPToApp;
 	p_mq_NetToUMTS_t p_mq_NetToUMTS;
 	p_mq_UMTSToNet_t p_mq_UMTSToNet;
-	p_mq_HTTPToApp_t p_mq_HTTPToApp;
-	p_mq_AppToHTTP_t p_mq_AppToHTTP;
 	//@}
 
 public:
 	/// \name functions
 	//@{
-	cfm_ipcall* IPCall;
 	cfm_httptcp* HTTPTCP;
+	cfm_ipcall* IPCall;
 	cfm_umts* UMTS;
 	//@}
 
@@ -83,11 +82,10 @@ protected:
 public:
 	/// \name relations
 	//@{
+	mq_HTTPToIP_t mq_HTTPToIP;
 	mq_IPToHTTP_t mq_IPToHTTP;
 	mq_IPToUMTS_t mq_IPToUMTS;
 	mq_UMTSToIP_t mq_UMTSToIP;
-	mq_UMTSToNet_t mq_UMTSToNet;
-	mq_HTTPToIP_t mq_HTTPToIP;
 	//@}
 
 	/// Model private fields start

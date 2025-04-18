@@ -12,6 +12,7 @@
 #include "cfm_ddrmemory_global.h"
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
+#include "dp/cfm_receivewack_dp_if.h"
 #include "dt/cft_defbrespchn.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -26,7 +27,7 @@
 ///        \page dxpReceiveWACK
 //@{
 ///    \brief ReceiveWACK function model start
-class cfm_receivewack: public cf_core::cf_function {
+class cfm_receivewack: public cf_core::cf_function, public cfm_receivewack_dp_if {
 public:
 	/// cfm_receivewack type define start
 

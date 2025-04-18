@@ -12,8 +12,9 @@
 #include "cfm_ddrmemory_global.h"
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
-#include "dt/cft_defdqs.h"
+#include "dp/cfm_memorycommandexecution_dp_if.h"
 #include "dt/cft_defddrcommand.h"
+#include "dt/cft_defdqs.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'MemoryCommandExecution includes' algorithm generated code
@@ -27,15 +28,16 @@
 ///        \page dxpMemoryCommandExecution
 //@{
 ///    \brief MemoryCommandExecution function model start
-class cfm_memorycommandexecution: public cf_core::cf_function {
+class cfm_memorycommandexecution: public cf_core::cf_function,
+		public cfm_memorycommandexecution_dp_if {
 public:
 	/// cfm_memorycommandexecution type define start
 
 	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_memorycommandexecution,
-			cft_defdqs> p_mq_DQs_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycommandexecution,
 			cft_defddrcommand> p_mq_DDRAction_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycommandexecution,
+			cft_defdqs> p_mq_DQs_t;
 	/// cfm_memorycommandexecution type define end
 
 	/// constructor
@@ -50,8 +52,8 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_DQs_t p_mq_DQs;
 	p_mq_DDRAction_t p_mq_DDRAction;
+	p_mq_DQs_t p_mq_DQs;
 	//@}
 
 protected:
@@ -68,8 +70,14 @@ protected:
 	//Start of 'MemoryCommandExecution local declarations' algorithm generated code
 	int remainingDataSize;
 	int transId;
-	int num_of_dma_msg_pendingin_queue;
-	std::string hcp_name;
+	int dma_size;
+	DEVICEIDTYPE message_targetid;
+	DEVICEIDTYPE message_sourceid;
+	OPERATIONTYPE message_operation;
+	cf_dt::cf_time transfer_time;
+	cf_dt::cf_time message_time_stamp;
+	cf_dt::cf_data_size message_size;
+	cf_dt::cf_throughput bus_throughput;
 	//End of 'MemoryCommandExecution local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 

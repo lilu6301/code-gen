@@ -12,8 +12,8 @@
 #include "cfm_tlm2lt_global.h"
 #include "cfm_tlm2lt_global_types.h"
 #include "cofluent.h"
-#include "dt/cft_target.h"
 #include "dt/cft_defdata.h"
+#include "dt/cft_target.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'Target_2 includes' algorithm generated code
@@ -32,10 +32,10 @@ public:
 	/// cfm_target_2 type define start
 
 	/// ports typedef
+	typedef cf_core::cf_ev_initiator_socket<cfm_target_2> p_ev_Sync3_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_target_2, cft_defdata> p_mq_ReferenceQueue_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_target_2, cft_target> p_mq_TargetRequest_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_target_2, cft_target> p_mq_TargetResponse_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_target_2, cft_defdata> p_mq_ReferenceQueue_t;
-	typedef cf_core::cf_ev_initiator_socket<cfm_target_2> p_ev_Sync3_t;
 	/// cfm_target_2 type define end
 
 	/// constructor
@@ -50,10 +50,10 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+	p_ev_Sync3_t p_ev_Sync3;
+	p_mq_ReferenceQueue_t p_mq_ReferenceQueue;
 	p_mq_TargetRequest_t p_mq_TargetRequest;
 	p_mq_TargetResponse_t p_mq_TargetResponse;
-	p_mq_ReferenceQueue_t p_mq_ReferenceQueue;
-	p_ev_Sync3_t p_ev_Sync3;
 	//@}
 
 protected:

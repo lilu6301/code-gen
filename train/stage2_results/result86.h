@@ -32,8 +32,8 @@ public:
 
 	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_messagerouting, cft_null> p_mq_MsgQIn_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_messagerouting, cft_null> p_mq_MsgQOut2_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_messagerouting, cft_null> p_mq_MsgQOut1_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_messagerouting, cft_null> p_mq_MsgQOut2_t;
 	/// cfm_messagerouting type define end
 
 	/// constructor
@@ -49,8 +49,8 @@ public:
 	/// \name input/output ports
 	//@{
 	p_mq_MsgQIn_t p_mq_MsgQIn;
-	p_mq_MsgQOut2_t p_mq_MsgQOut2;
 	p_mq_MsgQOut1_t p_mq_MsgQOut1;
+	p_mq_MsgQOut2_t p_mq_MsgQOut2;
 	//@}
 
 protected:

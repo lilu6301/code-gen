@@ -55,8 +55,8 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	std::vector<p_mq_MsgQToDataCenterSwitch_t*> p_mq_MsgQToDataCenterSwitch_vec;
-	std::vector<p_mq_MsgQToServerRoom_t*> p_mq_MsgQToServerRoom_vec;
+	p_mq_MsgQToDataCenterSwitch_t* p_mq_MsgQToDataCenterSwitch;
+	p_mq_MsgQToServerRoom_t* p_mq_MsgQToServerRoom;
 	//@}
 
 public:

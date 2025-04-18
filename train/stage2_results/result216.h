@@ -45,9 +45,9 @@ public:
 
 	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_aggswitch, cft_defpacket> p_mq_MsgQToAggSwitch_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_aggswitch, cft_defpacket> p_mq_MsgQToDataCenterSwitch_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_aggswitch, cft_defpacket> p_mq_MsgQToRack_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_aggswitch, cft_defpacket> p_mq_MsgQToServerRoom_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_aggswitch, cft_defpacket> p_mq_MsgQToDataCenterSwitch_t;
 	/// cfm_aggswitch type define end
 
 	/// constructor
@@ -62,10 +62,10 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	std::vector<p_mq_MsgQToAggSwitch_t*> p_mq_MsgQToAggSwitch_vec;
-	std::vector<p_mq_MsgQToRack_t*> p_mq_MsgQToRack_vec;
-	p_mq_MsgQToServerRoom_t p_mq_MsgQToServerRoom;
+	p_mq_MsgQToAggSwitch_t* p_mq_MsgQToAggSwitch;
 	p_mq_MsgQToDataCenterSwitch_t p_mq_MsgQToDataCenterSwitch;
+	p_mq_MsgQToRack_t* p_mq_MsgQToRack;
+	p_mq_MsgQToServerRoom_t p_mq_MsgQToServerRoom;
 	//@}
 
 public:

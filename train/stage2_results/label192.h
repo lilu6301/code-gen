@@ -12,8 +12,8 @@
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_readdatadriver_dp_if.h"
-#include "dt/cft_defrdatachn.h"
 #include "dt/cft_defdataread.h"
+#include "dt/cft_defrdatachn.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'ReadDataDriver includes' algorithm generated code
@@ -33,8 +33,8 @@ public:
 	/// cfm_readdatadriver type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_readdatadriver, cft_defrdatachn> p_mq_RDATAchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_readdatadriver, cft_defdataread> p_mq_DataRead_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_readdatadriver, cft_defrdatachn> p_mq_RDATAchn_t;
 	/// cfm_readdatadriver type define end
 
 	/// constructor
@@ -49,8 +49,8 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_RDATAchn_t p_mq_RDATAchn;
 	p_mq_DataRead_t p_mq_DataRead;
+	p_mq_RDATAchn_t p_mq_RDATAchn;
 	//@}
 
 protected:

@@ -14,8 +14,8 @@
 #include "dp/cfm_applicationmodel_dp_if.h"
 #include "cfm_producer.h"
 #include "cfm_receiver.h"
-#include "dt/cft_defmsg.h"
 #include "dt/cft_defack.h"
+#include "dt/cft_defmsg.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'ApplicationModel includes' algorithm generated code

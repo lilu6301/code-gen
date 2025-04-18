@@ -32,8 +32,8 @@ public:
 	/// cfm_umts_receive type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_umts_receive, cft_defcall> p_mq_UMTSToIP_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_umts_receive, cft_defcall> p_mq_NetToUMTS_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_umts_receive, cft_defcall> p_mq_UMTSToIP_t;
 	/// cfm_umts_receive type define end
 
 	/// constructor
@@ -48,8 +48,8 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_UMTSToIP_t p_mq_UMTSToIP;
 	p_mq_NetToUMTS_t p_mq_NetToUMTS;
+	p_mq_UMTSToIP_t p_mq_UMTSToIP;
 	//@}
 
 protected:

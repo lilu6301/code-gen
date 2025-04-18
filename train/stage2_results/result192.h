@@ -9,11 +9,12 @@
 #define COFS_MODEL_DDRMEMORY_READDATADRIVER
 
 /// Model Header includes start
-#include "cfm_ddermemory_global.h"
-#include "cfm_ddermemory_global_types.h"
+#include "cfm_ddrmemory_global.h"
+#include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
-#include "dt/cft_defrdatachn.h"
+#include "dp/cfm_readdatadriver_dp_if.h"
 #include "dt/cft_defdataread.h"
+#include "dt/cft_defrdatachn.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'ReadDataDriver includes' algorithm generated code
@@ -27,13 +28,14 @@
 ///        \page dxpReadDataDriver
 //@{
 ///    \brief ReadDataDriver function model start
-class cfm_readdatadriver: public cf_core::cf_function {
+class cfm_readdatadriver: public cf_core::cf_function,
+		public cfm_readdatadriver_dp_if {
 public:
 	/// cfm_readdatadriver type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_readdatadriver, cft_defrdatachn> p_mq_RDATAchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_readdatadriver, cft_defdataread> p_mq_DataRead_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_readdatadriver, cft_defrdatachn> p_mq_RDATAchn_t;
 	/// cfm_readdatadriver type define end
 
 	/// constructor
@@ -48,8 +50,8 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_RDATAchn_t p_mq_RDATAchn;
 	p_mq_DataRead_t p_mq_DataRead;
+	p_mq_RDATAchn_t p_mq_RDATAchn;
 	//@}
 
 protected:
@@ -66,9 +68,29 @@ protected:
 	//Start of 'ReadDataDriver local declarations' algorithm generated code
 	int remainingDataSize;
 	int transId;
-	int num_of_adm_channel;
-	int index;
-	int max_channel_size;
+	int PCIeLane;
+	DEVICEIDTYPE requesterId;
+	int dma_size;
+	float write_gap;
+
+	cf_dt::cf_time send_time;
+	cf_dt::cf_time message_time_stamp;
+	cf_dt::cf_data_size message_size;
+	cf_dt::cf_throughput pcie_throughput;
+	cf_dt::cf_time total_pcie_running_time;
+	double pcie_bus_usage;
+	cf_dt::cf_data_size total_pcie_data_processed;
+
+	cf_dt::cf_time read_time;
+	cf_dt::cf_throughput memory_read_throughput;
+	cf_dt::cf_time total_memory_read_time;
+	cf_dt::cf_throughput memory_write_throughput;
+
+	float total_gbe_data;
+	int total_gbe_packets;
+	double bus_width;
+	double bus_efficiency;
+	cf_dt::cf_time total_gbe_running_time;
 	//End of 'ReadDataDriver local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 

@@ -33,8 +33,8 @@ public:
 	/// cfm_waddrdmux type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_waddrdmux, cft_defawaddrchn> p_mq_AWADDRin_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_waddrdmux, cft_defawaddrchn> p_mq_AWADDRchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_waddrdmux, cft_defawaddrchn> p_mq_AWADDRin_t;
 	/// cfm_waddrdmux type define end
 
 	/// constructor
@@ -48,8 +48,8 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_AWADDRin_t p_mq_AWADDRin;
 	p_mq_AWADDRchn_t p_mq_AWADDRchn;
+	p_mq_AWADDRin_t p_mq_AWADDRin;
 	//@}
 
 public:

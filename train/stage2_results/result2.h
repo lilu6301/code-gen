@@ -16,9 +16,9 @@
 #include "cfm_applicationlayer.h"
 #include "cfm_callprotocolstack.h"
 #include "cfm_controller.h"
-#include "cfm_videoprotocolstack.h"
-#include "dt/cft_defvideo.h"
+#include "cfm_videoprocessstack.h"
 #include "dt/cft_defcall.h"
+#include "dt/cft_defvideo.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'MobilePhone includes' algorithm generated code
@@ -44,11 +44,11 @@ public:
 
 	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_mobilephone, cft_defvideo> p_mq_NetToDVB_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_mobilephone, cft_defvideo> p_mq_Video_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_mobilephone, cft_defcall> p_mq_NetToUMTS_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_mobilephone, cft_defcall> p_mq_UMTSToNet_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_mobilephone, cft_defcall> p_mq_Response_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_mobilephone, cft_defcall> p_mq_Request_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_mobilephone, cft_defcall> p_mq_Response_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_mobilephone, cft_defcall> p_mq_UMTSToNet_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_mobilephone, cft_defvideo> p_mq_Video_t;
 	/// cfm_mobilephone type define end
 
 	/// constructor
@@ -64,11 +64,11 @@ public:
 	/// \name input/output ports
 	//@{
 	p_mq_NetToDVB_t p_mq_NetToDVB;
-	p_mq_Video_t p_mq_Video;
 	p_mq_NetToUMTS_t p_mq_NetToUMTS;
-	p_mq_UMTSToNet_t p_mq_UMTSToNet;
-	p_mq_Response_t p_mq_Response;
 	p_mq_Request_t p_mq_Request;
+	p_mq_Response_t p_mq_Response;
+	p_mq_UMTSToNet_t p_mq_UMTSToNet;
+	p_mq_Video_t p_mq_Video;
 	//@}
 
 public:
@@ -77,7 +77,7 @@ public:
 	cfm_applicationlayer* ApplicationLayer;
 	cfm_callprotocolstack* CallProtocolStack;
 	cfm_controller* Controller;
-	cfm_videoprotocolstack* VideoProtocolStack;
+	cfm_videoprocessstack* VideoProtocolStack;
 	//@}
 
 protected:

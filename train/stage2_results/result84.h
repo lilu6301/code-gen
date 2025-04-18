@@ -12,6 +12,7 @@
 #include "cfm_transactiontrackermsgqapp_global.h"
 #include "cfm_transactiontrackermsgqapp_global_types.h"
 #include "cofluent.h"
+#include "dp/cfm_producer_dp_if.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'Producer includes' algorithm generated code
@@ -25,7 +26,7 @@
 ///        \page dxpProducer
 //@{
 ///    \brief Producer function model start
-class cfm_producer: public cf_core::cf_function {
+class cfm_producer: public cf_core::cf_function, public cfm_producer_dp_if {
 public:
 	/// cfm_producer type define start
 

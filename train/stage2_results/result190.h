@@ -12,8 +12,8 @@
 #include "cfm_ddrmemory_global.h"
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
+#include "dt/cft_defbchn.h"
 #include "dt/cft_defwriteack.h"
-#include "dt/cft_defbrespchn.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'SendWAckDriver includes' algorithm generated code
@@ -32,8 +32,8 @@ public:
 	/// cfm_sendwackdriver type define start
 
 	/// ports typedef
+	typedef cf_core::cf_mq_initiator_socket<cfm_sendwackdriver, cft_defbchn> p_mq_BRESPchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_sendwackdriver, cft_defwriteack> p_mq_WriteAck_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_sendwackdriver, cft_defbrespchn> p_mq_BRESPchn_t;
 	/// cfm_sendwackdriver type define end
 
 	/// constructor
@@ -48,8 +48,8 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_WriteAck_t p_mq_WriteAck;
 	p_mq_BRESPchn_t p_mq_BRESPchn;
+	p_mq_WriteAck_t p_mq_WriteAck;
 	//@}
 
 protected:
@@ -64,7 +64,7 @@ protected:
 	/// \name user-defined local declarations
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'SendWAckDriver local declarations' algorithm generated code
-
+	int i;
 	//End of 'SendWAckDriver local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 

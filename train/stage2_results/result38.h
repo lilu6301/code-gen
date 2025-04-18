@@ -32,8 +32,8 @@ public:
 	/// cfm_rtpudp type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_rtpudp, cft_defvideo> p_mq_RTPToApp_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_rtpudp, cft_defvideo> p_mq_IPToRTP_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_rtpudp, cft_defvideo> p_mq_RTPToApp_t;
 	/// cfm_rtpudp type define end
 
 	/// constructor
@@ -48,8 +48,8 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_RTPToApp_t p_mq_RTPToApp;
 	p_mq_IPToRTP_t p_mq_IPToRTP;
+	p_mq_RTPToApp_t p_mq_RTPToApp;
 	//@}
 
 protected:
@@ -64,7 +64,9 @@ protected:
 	/// \name user-defined local declarations
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'RTPUDP local declarations' algorithm generated code
-
+	int NbPicture;
+	short NbLines;
+	short NbPixelsPerLine;
 	//End of 'RTPUDP local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 

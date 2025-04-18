@@ -14,11 +14,11 @@
 #include "dp/cfm_ddrmemory_dp_if.h"
 #include "cfm_clientside.h"
 #include "cfm_target.h"
-#include "dt/cft_defawaddrchn.h"
-#include "dt/cft_defwdatachn.h"
-#include "dt/cft_defbrespchn.h"
 #include "dt/cft_defaraddrchn.h"
+#include "dt/cft_defawaddrchn.h"
+#include "dt/cft_defbrespchn.h"
 #include "dt/cft_defrdatachn.h"
+#include "dt/cft_defwdatachn.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'DDRMemory includes' algorithm generated code

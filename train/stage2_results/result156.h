@@ -12,14 +12,15 @@
 #include "cfm_ddrmemory_global.h"
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
+#include "dp/cfm_device_dp_if.h"
+#include "cfm_receivenack.h"
 #include "cfm_receiverrdata.h"
-#include "cfm_receivewack.h"
 #include "cfm_sender.h"
-#include "dt/cft_defrdatachn.h"
-#include "dt/cft_defbrespchn.h"
 #include "dt/cft_defaraddrchn.h"
-#include "dt/cft_defwdatachn.h"
 #include "dt/cft_defawaddrchn.h"
+#include "dt/cft_defbrespchn.h"
+#include "dt/cft_defrdatachn.h"
+#include "dt/cft_defwdatachn.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'Device includes' algorithm generated code
@@ -33,16 +34,16 @@
 ///        \page dxpDevice
 //@{
 ///    \brief Device function model start
-class cfm_device: public cf_core::cf_function_container {
+class cfm_device: public cf_core::cf_function_container, public cfm_device_dp_if {
 public:
 	/// cfm_device type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_device, cft_defrdatachn> p_mq_RDATAin_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_device, cft_defbrespchn> p_mq_BRESPin_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_device, cft_defaraddrchn> p_mq_ARADDRchn_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_device, cft_defwdatachn> p_mq_WDATAchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_device, cft_defawaddrchn> p_mq_AWADDRchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_device, cft_defbrespchn> p_mq_BRESPin_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_device, cft_defrdatachn> p_mq_RDATAin_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_device, cft_defwdatachn> p_mq_WDATAchn_t;
 	/// cfm_device type define end
 
 	/// constructor
@@ -57,18 +58,18 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_RDATAin_t p_mq_RDATAin;
-	p_mq_BRESPin_t p_mq_BRESPin;
 	p_mq_ARADDRchn_t p_mq_ARADDRchn;
-	p_mq_WDATAchn_t p_mq_WDATAchn;
 	p_mq_AWADDRchn_t p_mq_AWADDRchn;
+	p_mq_BRESPin_t p_mq_BRESPin;
+	p_mq_RDATAin_t p_mq_RDATAin;
+	p_mq_WDATAchn_t p_mq_WDATAchn;
 	//@}
 
 public:
 	/// \name functions
 	//@{
+	cfm_receivenack* ReceiveWACK;
 	cfm_receiverrdata* ReceiverRData;
-	cfm_receivewack* ReceiveWACK;
 	cfm_sender* Sender;
 	//@}
 

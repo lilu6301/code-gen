@@ -32,8 +32,8 @@ public:
 	/// cfm_inboundaggswitch type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_inboundaggswitch, cft_defpacket> p_mq_MsgQToRack_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_inboundaggswitch, cft_defpacket> p_mq_MsgQInboundAGGSwitch_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_inboundaggswitch, cft_defpacket> p_mq_MsgQToRack_t;
 	/// cfm_inboundaggswitch type define end
 
 	/// constructor
@@ -48,8 +48,8 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_MsgQToRack_t p_mq_MsgQToRack;
 	p_mq_MsgQInboundAGGSwitch_t p_mq_MsgQInboundAGGSwitch;
+	p_mq_MsgQToRack_t p_mq_MsgQToRack;
 	//@}
 
 protected:

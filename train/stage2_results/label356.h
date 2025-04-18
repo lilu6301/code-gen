@@ -12,9 +12,9 @@
 #include "cfm_bluetooth_ips_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_obex_send_dp_if.h"
+#include "dt/cft_defdataout.h"
 #include "dt/cft_defobex_out.h"
 #include "dt/cft_defreadwrite.h"
-#include "dt/cft_defdataout.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'OBEX_Send includes' algorithm generated code
@@ -34,10 +34,10 @@ public:
 
 	/// ports typedef
 	typedef cf_core::cf_ev_initiator_socket<cfm_obex_send> p_ev_continueEv_t;
+	typedef cf_core::cf_ev_initiator_socket<cfm_obex_send> p_ev_startEv_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_obex_send, cft_defdataout> p_mq_DataOut_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_obex_send, cft_defobex_out> p_mq_OB_Out2_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_obex_send, cft_defreadwrite> p_mq_ReadWrite_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_obex_send, cft_defdataout> p_mq_DataOut_t;
-	typedef cf_core::cf_ev_initiator_socket<cfm_obex_send> p_ev_startEv_t;
 	/// cfm_obex_send type define end
 
 	/// constructor
@@ -53,10 +53,10 @@ public:
 	/// \name input/output ports
 	//@{
 	p_ev_continueEv_t p_ev_continueEv;
+	p_ev_startEv_t p_ev_startEv;
+	p_mq_DataOut_t p_mq_DataOut;
 	p_mq_OB_Out2_t p_mq_OB_Out2;
 	p_mq_ReadWrite_t p_mq_ReadWrite;
-	p_mq_DataOut_t p_mq_DataOut;
-	p_ev_startEv_t p_ev_startEv;
 	//@}
 
 protected:

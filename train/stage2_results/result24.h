@@ -62,17 +62,7 @@ protected:
 	/// \name user-defined local declarations
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'Watching local declarations' algorithm generated code
-	int framedatasize;
-	int remainingdatasize;
-	bool isLastTrans;
-	bool isReady;
-	bool reqBatch;
-	int numBatch;
-	int numByte;
-	double bus_throughput;
-	double bus_width;
-	double bus_efficiency;
-	cf_throughput software_throughput;
+
 	//End of 'Watching local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 

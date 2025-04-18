@@ -64,9 +64,9 @@ protected:
 	/// \name user-defined local declarations
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'IPVideo local declarations' algorithm generated code
-	int framedatasize;
-	int remainingdatasize;
-	bool lasttrans;
+	int NbPicture;
+	short NbLines;
+	short NbPixelsPerLine;
 	//End of 'IPVideo local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 

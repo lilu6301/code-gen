@@ -12,8 +12,8 @@
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_readdriver_dp_if.h"
-#include "dt/cft_defmemreadrequest.h"
 #include "dt/cft_defaraddrchn.h"
+#include "dt/cft_defmemreadrequest.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'ReadDriver includes' algorithm generated code
@@ -32,9 +32,9 @@ public:
 	/// cfm_readdriver type define start
 
 	/// ports typedef
+	typedef cf_core::cf_mq_initiator_socket<cfm_readdriver, cft_defaraddrchn> p_mq_ARADDRin_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_readdriver,
 			cft_defmemreadrequest> p_mq_MemReadRequest_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_readdriver, cft_defaraddrchn> p_mq_ARADDRin_t;
 	/// cfm_readdriver type define end
 
 	/// constructor
@@ -49,8 +49,8 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_MemReadRequest_t p_mq_MemReadRequest;
 	p_mq_ARADDRin_t p_mq_ARADDRin;
+	p_mq_MemReadRequest_t p_mq_MemReadRequest;
 	//@}
 
 protected:

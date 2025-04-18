@@ -13,6 +13,7 @@
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
 #include "behavior/cf_function_router.h"
+#include "dp/cfm_waddrdmux_dp_if.h"
 #include "dt/cft_defawaddrchn.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -27,13 +28,14 @@
 ///        \page dxpWAddrDmux
 //@{
 ///    \brief WAddrDmux function model start
-class cfm_waddrdmux: public cf_core::cf_function_router {
+class cfm_waddrdmux: public cf_core::cf_function_router,
+		public cfm_waddrdmux_dp_if {
 public:
 	/// cfm_waddrdmux type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_waddrdmux, cft_defawaddrchn> p_mq_AWADDRin_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_waddrdmux, cft_defawaddrchn> p_mq_AWADDRchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_waddrdmux, cft_defawaddrchn> p_mq_AWADDRin_t;
 	/// cfm_waddrdmux type define end
 
 	/// constructor
@@ -47,8 +49,8 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_AWADDRin_t p_mq_AWADDRin;
 	p_mq_AWADDRchn_t p_mq_AWADDRchn;
+	p_mq_AWADDRin_t p_mq_AWADDRin;
 	//@}
 
 public:

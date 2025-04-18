@@ -32,8 +32,8 @@ public:
 	/// cfm_wrdmux type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_wrdmux, cft_defbrespchn> p_mq_BRESPchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_wrdmux, cft_defbrespchn> p_mq_BRESPin_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_wrdmux, cft_defbrespchn> p_mq_BRESPchn_t;
 	/// cfm_wrdmux type define end
 
 	/// constructor
@@ -47,8 +47,8 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_BRESPchn_t p_mq_BRESPchn;
 	p_mq_BRESPin_t p_mq_BRESPin;
+	p_mq_BRESPchn_t p_mq_BRESPchn;
 	//@}
 
 public:

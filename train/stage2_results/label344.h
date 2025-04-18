@@ -13,8 +13,8 @@
 #include "cofluent.h"
 #include "dp/cfm_filesystem_dp_if.h"
 #include "dt/cft_defdata.h"
-#include "dt/cft_defdataout.h"
 #include "dt/cft_defdatain.h"
+#include "dt/cft_defdataout.h"
 #include "dt/cft_defreadwrite.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -34,11 +34,11 @@ public:
 	/// cfm_filesystem type define start
 
 	/// ports typedef
-	typedef cf_core::cf_sv_initiator_socket<cfm_filesystem, cft_defdata> p_sv_Data_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_filesystem> p_ev_WrOK_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_filesystem, cft_defdataout> p_mq_DataOut_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_filesystem, cft_defdatain> p_mq_DataIn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_filesystem, cft_defdataout> p_mq_DataOut_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_filesystem, cft_defreadwrite> p_mq_ReadWrite_t;
+	typedef cf_core::cf_sv_initiator_socket<cfm_filesystem, cft_defdata> p_sv_Data_t;
 	/// cfm_filesystem type define end
 
 	/// constructor
@@ -53,11 +53,11 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_sv_Data_t p_sv_Data;
 	p_ev_WrOK_t p_ev_WrOK;
-	p_mq_DataOut_t p_mq_DataOut;
 	p_mq_DataIn_t p_mq_DataIn;
+	p_mq_DataOut_t p_mq_DataOut;
 	p_mq_ReadWrite_t p_mq_ReadWrite;
+	p_sv_Data_t p_sv_Data;
 	//@}
 
 protected:

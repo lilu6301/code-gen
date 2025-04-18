@@ -15,8 +15,8 @@
 #include "dp/cfm_memory_dp_if.h"
 #include "cfm_bankdmuxer.h"
 #include "cfm_memorycommandexecution.h"
-#include "dt/cft_defdqs.h"
 #include "dt/cft_defddrcommand.h"
+#include "dt/cft_defdqs.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'Memory includes' algorithm generated code
@@ -37,8 +37,8 @@ public:
 	typedef cf_core::cf_message_queue<cft_defddrcommand> mq_DDRAction_t;
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_memory, cft_defdqs> p_mq_DQs_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_memory, cft_defddrcommand> p_mq_DDRCommand_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memory, cft_defdqs> p_mq_DQs_t;
 	/// cfm_memory type define end
 
 	/// constructor
@@ -53,8 +53,8 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	std::vector<p_mq_DQs_t*> p_mq_DQs_vec;
 	p_mq_DDRCommand_t p_mq_DDRCommand;
+	p_mq_DQs_t* p_mq_DQs;
 	//@}
 
 public:

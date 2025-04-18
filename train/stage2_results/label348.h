@@ -15,11 +15,11 @@
 #include "cfm_ob_out.h"
 #include "cfm_obex_receive.h"
 #include "cfm_obex_send.h"
-#include "dt/cft_defreadwrite.h"
 #include "dt/cft_defdatain.h"
 #include "dt/cft_defdataout.h"
 #include "dt/cft_defobex_in.h"
 #include "dt/cft_defobex_out.h"
+#include "dt/cft_defreadwrite.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'OBEX_Layer includes' algorithm generated code
@@ -43,13 +43,13 @@ public:
 	typedef cf_core::cf_event ev_continueEv_t;
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_obex_layer, cft_defreadwrite> p_mq_ReadWrite_0_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_obex_layer, cft_defdatain> p_mq_DataIn_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_obex_layer> p_ev_WrOK_t;
+	typedef cf_core::cf_ev_initiator_socket<cfm_obex_layer> p_ev_startEv_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_obex_layer, cft_defdatain> p_mq_DataIn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_obex_layer, cft_defdataout> p_mq_DataOut_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_obex_layer, cft_defobex_in> p_mq_OBEX_In_t;
-	typedef cf_core::cf_ev_initiator_socket<cfm_obex_layer> p_ev_startEv_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_obex_layer, cft_defobex_out> p_mq_OBEX_Out_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_obex_layer, cft_defreadwrite> p_mq_ReadWrite_0_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_obex_layer, cft_defreadwrite> p_mq_ReadWrite_1_t;
 	/// cfm_obex_layer type define end
 
@@ -65,13 +65,13 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_ReadWrite_0_t p_mq_ReadWrite_0;
-	p_mq_DataIn_t p_mq_DataIn;
 	p_ev_WrOK_t p_ev_WrOK;
+	p_ev_startEv_t p_ev_startEv;
+	p_mq_DataIn_t p_mq_DataIn;
 	p_mq_DataOut_t p_mq_DataOut;
 	p_mq_OBEX_In_t p_mq_OBEX_In;
-	p_ev_startEv_t p_ev_startEv;
 	p_mq_OBEX_Out_t p_mq_OBEX_Out;
+	p_mq_ReadWrite_0_t p_mq_ReadWrite_0;
 	p_mq_ReadWrite_1_t p_mq_ReadWrite_1;
 	//@}
 
@@ -92,9 +92,9 @@ protected:
 public:
 	/// \name relations
 	//@{
+	ev_continueEv_t ev_continueEv;
 	mq_OB_Out1_t mq_OB_Out1;
 	mq_OB_Out2_t mq_OB_Out2;
-	ev_continueEv_t ev_continueEv;
 	//@}
 
 	/// Model private fields start

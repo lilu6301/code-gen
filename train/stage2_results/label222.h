@@ -31,8 +31,8 @@ public:
 	/// cfm_outbound type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_outbound, cft_defpacket> p_mq_MsgQToServerRoom_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_outbound, cft_defpacket> p_mq_MsgQRouting_out_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_outbound, cft_defpacket> p_mq_MsgQToServerRoom_t;
 	/// cfm_outbound type define end
 
 	/// constructor
@@ -47,8 +47,8 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_MsgQToServerRoom_t p_mq_MsgQToServerRoom;
 	p_mq_MsgQRouting_out_t p_mq_MsgQRouting_out;
+	p_mq_MsgQToServerRoom_t p_mq_MsgQToServerRoom;
 	//@}
 
 protected:

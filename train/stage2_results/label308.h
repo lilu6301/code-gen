@@ -31,10 +31,10 @@ public:
 	/// cfm_reader type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_reader, cft_defmsgq> p_mq_ReferenceQueue3_t;
+	typedef cf_core::cf_ev_initiator_socket<cfm_reader> p_ev_Sync_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_reader, cf_core::cf_payload_tlm2> p_mq_InitiatorReader_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_reader, cf_core::cf_payload_tlm2> p_mq_ReaderResponse_t;
-	typedef cf_core::cf_ev_initiator_socket<cfm_reader> p_ev_Sync_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_reader, cft_defmsgq> p_mq_ReferenceQueue3_t;
 	/// cfm_reader type define end
 
 	/// constructor
@@ -49,10 +49,10 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_ReferenceQueue3_t p_mq_ReferenceQueue3;
+	p_ev_Sync_t p_ev_Sync;
 	p_mq_InitiatorReader_t p_mq_InitiatorReader;
 	p_mq_ReaderResponse_t p_mq_ReaderResponse;
-	p_ev_Sync_t p_ev_Sync;
+	p_mq_ReferenceQueue3_t p_mq_ReferenceQueue3;
 	//@}
 
 protected:

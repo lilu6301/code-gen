@@ -31,7 +31,7 @@ public:
 
 	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_producer,
-			cf_core::cf_payload_int> p_mq_user_data_in_t;
+			cf_core::cf_payload_vector> p_mq_user_data_in_t;
 	/// cfm_producer type define end
 
 	/// constructor

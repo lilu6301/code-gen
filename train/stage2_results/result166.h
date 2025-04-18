@@ -12,9 +12,9 @@
 #include "cfm_ddrmemory_global.h"
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
+#include "dt/cft_defawaddrchn.h"
 #include "dt/cft_defaraddrchn.h"
 #include "dt/cft_defwdatachn.h"
-#include "dt/cft_defawaddrchn.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'Sender includes' algorithm generated code
@@ -33,9 +33,9 @@ public:
 	/// cfm_sender type define start
 
 	/// ports typedef
+	typedef cf_core::cf_mq_initiator_socket<cfm_sender, cft_defawaddrchn> p_mq_AWADDRchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_sender, cft_defaraddrchn> p_mq_ARADDRchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_sender, cft_defwdatachn> p_mq_WDATAchn_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_sender, cft_defawaddrchn> p_mq_AWADDRchn_t;
 	/// cfm_sender type define end
 
 	/// constructor
@@ -50,9 +50,9 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+	p_mq_AWADDRchn_t p_mq_AWADDRchn;
 	p_mq_ARADDRchn_t p_mq_ARADDRchn;
 	p_mq_WDATAchn_t p_mq_WDATAchn;
-	p_mq_AWADDRchn_t p_mq_AWADDRchn;
 	//@}
 
 protected:

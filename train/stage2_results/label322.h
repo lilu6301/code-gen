@@ -77,10 +77,10 @@ protected:
 public:
 	/// \name relations
 	//@{
+	ev_startProcess_t ev_startProcess;
 	mq_inputFrame_t mq_inputFrame;
 	mq_outputFrame_t mq_outputFrame;
 	sv_processingMode_t sv_processingMode;
-	ev_startProcess_t ev_startProcess;
 	//@}
 
 	/// Model private fields start

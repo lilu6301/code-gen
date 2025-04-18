@@ -61,7 +61,7 @@ protected:
 	/// \name user-defined local declarations
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'Producer local declarations' algorithm generated code
-	int value;
+
 	//End of 'Producer local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 

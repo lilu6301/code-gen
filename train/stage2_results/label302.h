@@ -86,15 +86,15 @@ protected:
 public:
 	/// \name relations
 	//@{
+	ev_Sync2_t ev_Sync2;
+	ev_Sync3_t ev_Sync3;
+	ev_Sync_t ev_Sync;
 	mq_InitiatorReader_t mq_InitiatorReader;
 	mq_InitiatorWriter_t mq_InitiatorWriter;
 	mq_ReaderResponse_t mq_ReaderResponse;
-	mq_ReferenceQueue_t mq_ReferenceQueue;
 	mq_ReferenceQueue2_t mq_ReferenceQueue2;
 	mq_ReferenceQueue3_t mq_ReferenceQueue3;
-	ev_Sync_t ev_Sync;
-	ev_Sync2_t ev_Sync2;
-	ev_Sync3_t ev_Sync3;
+	mq_ReferenceQueue_t mq_ReferenceQueue;
 	mq_TargetRequest_t mq_TargetRequest;
 	mq_TargetResponse_t mq_TargetResponse;
 	mq_TargetWrapper_t mq_TargetWrapper;

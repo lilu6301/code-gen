@@ -12,10 +12,10 @@
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_arbitration_dp_if.h"
-#include "dt/cft_defwriteack.h"
-#include "dt/cft_defrequestinformation.h"
 #include "dt/cft_deflistrequestsptr.h"
+#include "dt/cft_defrequestinformation.h"
 #include "dt/cft_defrequests2memory.h"
+#include "dt/cft_defwriteack.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'Arbitration includes' algorithm generated code
@@ -34,14 +34,14 @@ public:
 	/// cfm_arbitration type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_arbitration, cft_defwriteack> p_mq_WriteAck_t;
+	typedef cf_core::cf_ev_initiator_socket<cfm_arbitration> p_ev_RequestCounter_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_arbitration,
 			cft_defrequestinformation> p_mq_RequestInformation_t;
-	typedef cf_core::cf_sv_initiator_socket<cfm_arbitration,
-			cft_deflistrequestsptr> p_sv_ListRequestsPtr_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_arbitration,
 			cft_defrequests2memory> p_mq_Requests2Memory_t;
-	typedef cf_core::cf_ev_initiator_socket<cfm_arbitration> p_ev_RequestCounter_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_arbitration, cft_defwriteack> p_mq_WriteAck_t;
+	typedef cf_core::cf_sv_initiator_socket<cfm_arbitration,
+			cft_deflistrequestsptr> p_sv_ListRequestsPtr_t;
 	/// cfm_arbitration type define end
 
 	/// constructor
@@ -56,11 +56,11 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_WriteAck_t p_mq_WriteAck;
-	p_mq_RequestInformation_t p_mq_RequestInformation;
-	p_sv_ListRequestsPtr_t p_sv_ListRequestsPtr;
-	p_mq_Requests2Memory_t p_mq_Requests2Memory;
 	p_ev_RequestCounter_t p_ev_RequestCounter;
+	p_mq_RequestInformation_t p_mq_RequestInformation;
+	p_mq_Requests2Memory_t p_mq_Requests2Memory;
+	p_mq_WriteAck_t p_mq_WriteAck;
+	p_sv_ListRequestsPtr_t p_sv_ListRequestsPtr;
 	//@}
 
 protected:

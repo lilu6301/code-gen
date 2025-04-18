@@ -15,9 +15,9 @@
 #include "cfm_broadcastnetwork.h"
 #include "cfm_clockgenerator.h"
 #include "cfm_interactivenetwork.h"
-#include "dt/cft_defvideo.h"
 #include "dt/cft_defcall.h"
 #include "dt/cft_defnet.h"
+#include "dt/cft_defvideo.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'Networks includes' algorithm generated code
@@ -81,8 +81,8 @@ public:
 	/// \name relations
 	//@{
 	ev_BurstClock_t ev_BurstClock;
-	sv_VideoFiles_t sv_VideoFiles;
 	mq_VideoNet_t mq_VideoNet;
+	sv_VideoFiles_t sv_VideoFiles;
 	//@}
 
 	/// Model private fields start

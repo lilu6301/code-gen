@@ -36,10 +36,11 @@ class cfm_softwaredefinedradioapp: public cf_core::cf_application,
 public:
 	/// cfm_softwaredefinedradioapp type define start
 	/// relations typedef
-	typedef cf_core::cf_message_queue<cft_defcall> mq_NetToDVB_t;
+	typedef cf_core::cf_message_queue<cft_defvideo> mq_NetToDVB_t;
 	typedef cf_core::cf_message_queue<cft_defcall> mq_NetToUMTS_t;
-	typedef cf_core::cf_message_queue<cft_defcall> mq_Response_t;
 	typedef cf_core::cf_message_queue<cft_defcall> mq_Request_t;
+	typedef cf_core::cf_message_queue<cft_defcall> mq_Response_t;
+	typedef cf_core::cf_message_queue<cft_defcall> mq_UMTSToNet_t;
 	typedef cf_core::cf_message_queue<cft_defvideo> mq_Video_t;
 
 	/// cfm_softwaredefinedradioapp type define end
@@ -73,8 +74,9 @@ public:
 	//@{
 	mq_NetToDVB_t mq_NetToDVB;
 	mq_NetToUMTS_t mq_NetToUMTS;
-	mq_Response_t mq_Response;
 	mq_Request_t mq_Request;
+	mq_Response_t mq_Response;
+	mq_UMTSToNet_t mq_UMTSToNet;
 	mq_Video_t mq_Video;
 	//@}
 

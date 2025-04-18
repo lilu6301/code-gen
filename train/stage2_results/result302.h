@@ -16,10 +16,9 @@
 #include "cfm_target.h"
 #include "cfm_target_2.h"
 #include "cfm_writer.h"
-#include "cfm_tlm2platfom.h"
-#include "dt/cft_defdata.h"
-#include "dt/cft_initiator.h"
+#include "dt/cft_defdatatype.h"
 #include "dt/cft_defmsgq.h"
+#include "dt/cft_initiator.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'TLM2AT includes' algorithm generated code
@@ -37,19 +36,20 @@ class cfm_tlm2at: public cf_core::cf_application {
 public:
 	/// cfm_tlm2at type define start
 	/// systemC IPs typedef
-	typedef cfm_tlm2platfom SystemCIP_t;
+	typedef cfm_target_2 SystemCIP_t;
 	/// relations typedef
-	typedef cf_core::cf_message_queue<cft_defdata> mq_InitiatorReader_t;
-	typedef cf_core::cf_message_queue<cft_defdata> mq_InitiatorWriter_t;
+	typedef cf_core::cf_message_queue<cft_initiator> mq_InitiatorReader_t;
+	typedef cf_core::cf_message_queue<cft_initiator> mq_InitiatorWriter_t;
+	typedef cf_core::cf_message_queue<cft_defdatatype> mq_ReaderResponse_t;
 	typedef cf_core::cf_message_queue<cft_defmsgq> mq_ReferenceQueue_t;
 	typedef cf_core::cf_message_queue<cft_defmsgq> mq_ReferenceQueue2_t;
 	typedef cf_core::cf_message_queue<cft_defmsgq> mq_ReferenceQueue3_t;
 	typedef cf_core::cf_event ev_Sync_t;
 	typedef cf_core::cf_event ev_Sync2_t;
 	typedef cf_core::cf_event ev_Sync3_t;
-	typedef cf_core::cf_message_queue<cft_defdata> mq_TargetRequest_t;
-	typedef cf_core::cf_message_queue<cft_defdata> mq_TargetResponse_t;
-	typedef cf_core::cf_message_queue<cft_defdata> mq_WriterResponse_t;
+	typedef cf_core::cf_message_queue<cft_target> mq_TargetRequest_t;
+	typedef cf_core::cf_message_queue<cft_target> mq_TargetResponse_t;
+	typedef cf_core::cf_message_queue<cft_target> mq_TargetWrapper_t;
 
 	/// cfm_tlm2at type define end
 
@@ -67,10 +67,10 @@ public:
 	/// \name functions
 	//@{
 	cfm_reader* Reader;
+	SystemCIP_t* TLM2Platfom;
 	cfm_target* Target;
 	cfm_target_2* Target_2;
 	cfm_writer* Writer;
-	SystemCIP_t* SystemCIP;
 	//@}
 
 protected:
@@ -82,17 +82,18 @@ protected:
 public:
 	/// \name relations
 	//@{
-	mq_InitiatorReader_t mq_InitiatorReader;
-	mq_InitiatorWriter_t mq_InitiatorWriter;
-	mq_ReferenceQueue_t mq_ReferenceQueue;
-	mq_ReferenceQueue2_t mq_ReferenceQueue2;
-	mq_ReferenceQueue3_t mq_ReferenceQueue3;
-	ev_Sync_t ev_Sync;
 	ev_Sync2_t ev_Sync2;
 	ev_Sync3_t ev_Sync3;
+	ev_Sync_t ev_Sync;
+	mq_InitiatorReader_t mq_InitiatorReader;
+	mq_InitiatorWriter_t mq_InitiatorWriter;
+	mq_ReaderResponse_t mq_ReaderResponse;
+	mq_ReferenceQueue2_t mq_ReferenceQueue2;
+	mq_ReferenceQueue3_t mq_ReferenceQueue3;
+	mq_ReferenceQueue_t mq_ReferenceQueue;
 	mq_TargetRequest_t mq_TargetRequest;
 	mq_TargetResponse_t mq_TargetResponse;
-	mq_WriterResponse_t mq_WriterResponse;
+	mq_TargetWrapper_t mq_TargetWrapper;
 	//@}
 
 	/// Model private fields start

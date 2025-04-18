@@ -35,10 +35,10 @@ public:
 	/// cfm_httptcp type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_httptcp, cft_defcall> p_mq_IPToHTTP_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_httptcp, cft_defcall> p_mq_HTTPToIP_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_httptcp, cft_defcall> p_mq_HTTPToApp_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_httptcp, cft_defcall> p_mq_AppToHTTP_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_httptcp, cft_defcall> p_mq_HTTPToApp_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_httptcp, cft_defcall> p_mq_HTTPToIP_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_httptcp, cft_defcall> p_mq_IPToHTTP_t;
 	/// cfm_httptcp type define end
 
 	/// constructor
@@ -53,10 +53,10 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_IPToHTTP_t p_mq_IPToHTTP;
-	p_mq_HTTPToIP_t p_mq_HTTPToIP;
-	p_mq_HTTPToApp_t p_mq_HTTPToApp;
 	p_mq_AppToHTTP_t p_mq_AppToHTTP;
+	p_mq_HTTPToApp_t p_mq_HTTPToApp;
+	p_mq_HTTPToIP_t p_mq_HTTPToIP;
+	p_mq_IPToHTTP_t p_mq_IPToHTTP;
 	//@}
 
 public:

@@ -34,13 +34,13 @@ public:
 	/// cfm_collectrequests type define start
 
 	/// ports typedef
-	typedef cf_core::cf_sv_initiator_socket<cfm_collectrequests,
-			cft_deflistrequestsptr> p_sv_ListRequestsPtr_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_collectrequests> p_ev_RequestCounter_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_collectrequests,
 			cft_defmemreadrequest> p_mq_MemReadRequest_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_collectrequests,
 			cft_defmemwriterequest> p_mq_MemWriteRequest_t;
+	typedef cf_core::cf_sv_initiator_socket<cfm_collectrequests,
+			cft_deflistrequestsptr> p_sv_ListRequestsPtr_t;
 	/// cfm_collectrequests type define end
 
 	/// constructor
@@ -55,10 +55,10 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_sv_ListRequestsPtr_t p_sv_ListRequestsPtr;
 	p_ev_RequestCounter_t p_ev_RequestCounter;
 	p_mq_MemReadRequest_t p_mq_MemReadRequest;
 	p_mq_MemWriteRequest_t p_mq_MemWriteRequest;
+	p_sv_ListRequestsPtr_t p_sv_ListRequestsPtr;
 	//@}
 
 protected:

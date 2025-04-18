@@ -31,8 +31,8 @@ public:
 	/// cfm_ipcall_send type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_ipcall_send, cft_defcall> p_mq_IPToUMTS_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_ipcall_send, cft_defcall> p_mq_HTTPToIP_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_ipcall_send, cft_defcall> p_mq_IPToUMTS_t;
 	/// cfm_ipcall_send type define end
 
 	/// constructor
@@ -47,8 +47,8 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_IPToUMTS_t p_mq_IPToUMTS;
 	p_mq_HTTPToIP_t p_mq_HTTPToIP;
+	p_mq_IPToUMTS_t p_mq_IPToUMTS;
 	//@}
 
 protected:

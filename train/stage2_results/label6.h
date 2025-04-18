@@ -15,8 +15,8 @@
 #include "cfm_reading.h"
 #include "cfm_requesting.h"
 #include "cfm_watching.h"
-#include "dt/cft_defvideo.h"
 #include "dt/cft_defcall.h"
+#include "dt/cft_defvideo.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'User includes' algorithm generated code
@@ -35,10 +35,10 @@ public:
 	/// cfm_user type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_user, cft_defvideo> p_mq_Video_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_user, cft_defcall> p_mq_Response_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_user, cft_defcall> p_mq_Request_0_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_user, cft_defcall> p_mq_Request_1_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_user, cft_defcall> p_mq_Response_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_user, cft_defvideo> p_mq_Video_t;
 	/// cfm_user type define end
 
 	/// constructor
@@ -53,10 +53,10 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_Video_t p_mq_Video;
-	p_mq_Response_t p_mq_Response;
 	p_mq_Request_0_t p_mq_Request_0;
 	p_mq_Request_1_t p_mq_Request_1;
+	p_mq_Response_t p_mq_Response;
+	p_mq_Video_t p_mq_Video;
 	//@}
 
 public:

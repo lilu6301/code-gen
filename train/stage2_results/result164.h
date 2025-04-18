@@ -17,7 +17,7 @@
 #include "cfm_bankdmuxer.h"
 #include "cfm_memorycommandexecution.h"
 #include "dt/cft_defdqs.h"
-#include "dt/cft_defddrcommand.h"
+#include "dt/cft_defdrrcommand.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'Memory includes' algorithm generated code
@@ -35,11 +35,11 @@ class cfm_memory: public cf_core::cf_function_container, public cfm_memory_dp_if
 public:
 	/// cfm_memory type define start
 	/// relations typedef
-	typedef cf_core::cf_message_queue<cft_defddrcommand> mq_DDRAction_t;
+	typedef cf_core::cf_message_queue<cft_defdrrcommand> mq_DDRAction_t;
 
 	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_memory, cft_defdqs> p_mq_DQs_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_memory, cft_defddrcommand> p_mq_DDRCommand_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memory, cft_defdrrcommand> p_mq_DDRCommand_t;
 	/// cfm_memory type define end
 
 	/// constructor
@@ -54,15 +54,15 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	std::vector<p_mq_DQs_t*> p_mq_DQs_vec;
-	std::vector<p_mq_DDRCommand_t*> p_mq_DDRCommand_vec;
+	p_mq_DQs_t* p_mq_DQs;
+	p_mq_DDRCommand_t p_mq_DDRCommand;
 	//@}
 
 public:
 	/// \name functions
 	//@{
-	std::vector<cfm_bankdmuxer*> BankDmuxer_vec;
-	cfm_memorycommandexecution* MemoryCommandExecution;
+	cfm_bankdmuxer* BankDmuxer;
+	std::vector<cfm_memorycommandexecution*> MemoryCommandExecution_vec;
 	//@}
 
 protected:

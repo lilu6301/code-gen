@@ -40,7 +40,6 @@ public:
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_M1_3_t;
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_M2_1_t;
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_M2_2_t;
-	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_M1_3_2_t;
 
 	/// cfm_automatedpayloadtrackers type define end
 
@@ -79,7 +78,6 @@ public:
 	mq_M1_3_t mq_M1_3;
 	mq_M2_1_t mq_M2_1;
 	mq_M2_2_t mq_M2_2;
-	mq_M1_3_2_t mq_M1_3_2;
 	//@}
 
 	/// Model private fields start

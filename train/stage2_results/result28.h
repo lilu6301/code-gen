@@ -12,7 +12,6 @@
 #include "cfm_softwaredefinedradioapp_global.h"
 #include "cfm_softwaredefinedradioapp_global_types.h"
 #include "cofluent.h"
-#include "dp/cfm_callapplication_dp_if.h"
 #include "dt/cft_defcall.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -27,17 +26,16 @@
 ///        \page dxpCallApplication
 //@{
 ///    \brief CallApplication function model start
-class cfm_callapplication: public cf_core::cf_function,
-		public cfm_callapplication_dp_if {
+class cfm_callapplication: public cf_core::cf_function {
 public:
 	/// cfm_callapplication type define start
 
 	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_callapplication, cft_defcall> p_mq_AppToCtrl_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_callapplication, cft_defcall> p_mq_HTTPToApp_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_callapplication, cft_defcall> p_mq_AppToHTTP_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_callapplication, cft_defcall> p_mq_Response_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_callapplication, cft_defcall> p_mq_HTTPToApp_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_callapplication, cft_defcall> p_mq_Request_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_callapplication, cft_defcall> p_mq_Response_t;
 	/// cfm_callapplication type define end
 
 	/// constructor
@@ -53,10 +51,10 @@ public:
 	/// \name input/output ports
 	//@{
 	p_mq_AppToCtrl_t p_mq_AppToCtrl;
-	p_mq_HTTPToApp_t p_mq_HTTPToApp;
 	p_mq_AppToHTTP_t p_mq_AppToHTTP;
-	p_mq_Response_t p_mq_Response;
+	p_mq_HTTPToApp_t p_mq_HTTPToApp;
 	p_mq_Request_t p_mq_Request;
+	p_mq_Response_t p_mq_Response;
 	//@}
 
 protected:

@@ -18,8 +18,8 @@
 #include "wrappers/cfm_data2_initiator.h"
 #include "wrappers/cfm_sum_target.h"
 #include "dpi/cofluent_dpi.h"
-#include "dt/cft_defsum.h"
 #include "dt/cft_defdata1.h"
+#include "dt/cft_defsum.h"
 
 #include "communication/cf_payload_tlm2.h"
 //<#!@READ-ONLY-SECTION-END@!#>

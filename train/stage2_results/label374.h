@@ -12,8 +12,8 @@
 #include "cfm_bluetooth_ips_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_l2cap_receive_dp_if.h"
-#include "dt/cft_defrfcomm_in.h"
 #include "dt/cft_defl2cap_in.h"
+#include "dt/cft_defrfcomm_in.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'L2CAP_Receive includes' algorithm generated code
@@ -33,8 +33,8 @@ public:
 	/// cfm_l2cap_receive type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_l2cap_receive, cft_defrfcomm_in> p_mq_RFCOMM_In_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_l2cap_receive, cft_defl2cap_in> p_mq_L2CAP_In_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_l2cap_receive, cft_defrfcomm_in> p_mq_RFCOMM_In_t;
 	/// cfm_l2cap_receive type define end
 
 	/// constructor
@@ -49,8 +49,8 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_RFCOMM_In_t p_mq_RFCOMM_In;
 	p_mq_L2CAP_In_t p_mq_L2CAP_In;
+	p_mq_RFCOMM_In_t p_mq_RFCOMM_In;
 	//@}
 
 protected:

@@ -32,8 +32,8 @@ class cfm_applicationvectordatatype: public cf_core::cf_application {
 public:
 	/// cfm_applicationvectordatatype type define start
 	/// relations typedef
-	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_user_data_in_t;
-	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_user_data_out_t;
+	typedef cf_core::cf_message_queue<cf_core::cf_payload_vector> mq_user_data_in_t;
+	typedef cf_core::cf_message_queue<cf_core::cf_payload_vector> mq_user_data_out_t;
 
 	/// cfm_applicationvectordatatype type define end
 

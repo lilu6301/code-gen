@@ -33,9 +33,9 @@ public:
 
 	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_inbounddatacenterswitch,
-			cft_defpacket> p_mq_MsgQToServerRoom_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_inbounddatacenterswitch,
 			cft_defpacket> p_mq_MsgQInboundDataCenterSwitch_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_inbounddatacenterswitch,
+			cft_defpacket> p_mq_MsgQToServerRoom_t;
 	/// cfm_inbounddatacenterswitch type define end
 
 	/// constructor
@@ -50,8 +50,8 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_MsgQToServerRoom_t p_mq_MsgQToServerRoom;
 	p_mq_MsgQInboundDataCenterSwitch_t p_mq_MsgQInboundDataCenterSwitch;
+	p_mq_MsgQToServerRoom_t p_mq_MsgQToServerRoom;
 	//@}
 
 protected:

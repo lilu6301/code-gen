@@ -12,8 +12,8 @@
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_memorycommandexecution_dp_if.h"
-#include "dt/cft_defdqs.h"
 #include "dt/cft_defddrcommand.h"
+#include "dt/cft_defdqs.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'MemoryCommandExecution includes' algorithm generated code
@@ -34,9 +34,9 @@ public:
 
 	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_memorycommandexecution,
-			cft_defdqs> p_mq_DQs_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycommandexecution,
 			cft_defddrcommand> p_mq_DDRAction_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycommandexecution,
+			cft_defdqs> p_mq_DQs_t;
 	/// cfm_memorycommandexecution type define end
 
 	/// constructor
@@ -51,8 +51,8 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_DQs_t p_mq_DQs;
 	p_mq_DDRAction_t p_mq_DDRAction;
+	p_mq_DQs_t p_mq_DQs;
 	//@}
 
 protected:

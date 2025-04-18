@@ -12,9 +12,9 @@
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_responseforward_dp_if.h"
+#include "dt/cft_defdataread.h"
 #include "dt/cft_defdqs.h"
 #include "dt/cft_defrequestinformation.h"
-#include "dt/cft_defdataread.h"
 #include "dt/cft_defwriteack.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -36,9 +36,9 @@ public:
 
 	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_responseforward, cft_defdqs> p_mq_DQs_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_responseforward, cft_defdataread> p_mq_DataRead_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_responseforward,
 			cft_defrequestinformation> p_mq_RequestInformation_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_responseforward, cft_defdataread> p_mq_DataRead_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_responseforward, cft_defwriteack> p_mq_WriteAck_t;
 	/// cfm_responseforward type define end
 
@@ -55,8 +55,8 @@ public:
 	/// \name input/output ports
 	//@{
 	p_mq_DQs_t p_mq_DQs;
-	p_mq_RequestInformation_t p_mq_RequestInformation;
 	p_mq_DataRead_t p_mq_DataRead;
+	p_mq_RequestInformation_t p_mq_RequestInformation;
 	p_mq_WriteAck_t p_mq_WriteAck;
 	//@}
 

@@ -31,9 +31,9 @@ public:
 
 	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_processing,
-			cf_core::cf_payload_int> p_mq_user_data_in_t;
+			cf_core::cf_payload_vector> p_mq_user_data_in_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_processing,
-			cf_core::cf_payload_int> p_mq_user_data_out_t;
+			cf_core::cf_payload_vector> p_mq_user_data_out_t;
 	/// cfm_processing type define end
 
 	/// constructor

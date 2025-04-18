@@ -32,9 +32,9 @@ public:
 	/// cfm_creditsordata type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_creditsordata, cft_defrfcomm_in> p_mq_RFC_Data_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_creditsordata, cft_defrfcomm_in> p_mq_RFC_Cdts_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_creditsordata, cft_defrfcomm_in> p_mq_RFCOMM_In_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_creditsordata, cft_defrfcomm_in> p_mq_RFC_Cdts_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_creditsordata, cft_defrfcomm_in> p_mq_RFC_Data_t;
 	/// cfm_creditsordata type define end
 
 	/// constructor
@@ -49,9 +49,9 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_RFC_Data_t p_mq_RFC_Data;
-	p_mq_RFC_Cdts_t p_mq_RFC_Cdts;
 	p_mq_RFCOMM_In_t p_mq_RFCOMM_In;
+	p_mq_RFC_Cdts_t p_mq_RFC_Cdts;
+	p_mq_RFC_Data_t p_mq_RFC_Data;
 	//@}
 
 protected:

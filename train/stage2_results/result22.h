@@ -12,6 +12,7 @@
 #include "cfm_softwaredefinedradioapp_global.h"
 #include "cfm_softwaredefinedradioapp_global_types.h"
 #include "cofluent.h"
+#include "dp/cfm_requesting_dp_if.h"
 #include "dt/cft_defcall.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -26,7 +27,7 @@
 ///        \page dxpRequesting
 //@{
 ///    \brief Requesting function model start
-class cfm_requesting: public cf_core::cf_function {
+class cfm_requesting: public cf_core::cf_function, public cfm_requesting_dp_if {
 public:
 	/// cfm_requesting type define start
 

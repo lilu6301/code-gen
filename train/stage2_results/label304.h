@@ -32,13 +32,13 @@ public:
 	/// cfm_writer type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_writer, cft_defdata> p_mq_ReferenceQueue_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_writer, cf_core::cf_payload_tlm2> p_mq_InitiatorWriter_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_writer, cft_defdata> p_mq_ReferenceQueue2_t;
-	typedef cf_core::cf_ev_initiator_socket<cfm_writer> p_ev_Sync_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_writer, cft_defmsgq> p_mq_ReferenceQueue3_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_writer> p_ev_Sync2_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_writer> p_ev_Sync3_t;
+	typedef cf_core::cf_ev_initiator_socket<cfm_writer> p_ev_Sync_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_writer, cf_core::cf_payload_tlm2> p_mq_InitiatorWriter_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_writer, cft_defdata> p_mq_ReferenceQueue2_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_writer, cft_defmsgq> p_mq_ReferenceQueue3_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_writer, cft_defdata> p_mq_ReferenceQueue_t;
 	/// cfm_writer type define end
 
 	/// constructor
@@ -53,13 +53,13 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_ReferenceQueue_t p_mq_ReferenceQueue;
-	p_mq_InitiatorWriter_t p_mq_InitiatorWriter;
-	p_mq_ReferenceQueue2_t p_mq_ReferenceQueue2;
-	p_ev_Sync_t p_ev_Sync;
-	p_mq_ReferenceQueue3_t p_mq_ReferenceQueue3;
 	p_ev_Sync2_t p_ev_Sync2;
 	p_ev_Sync3_t p_ev_Sync3;
+	p_ev_Sync_t p_ev_Sync;
+	p_mq_InitiatorWriter_t p_mq_InitiatorWriter;
+	p_mq_ReferenceQueue2_t p_mq_ReferenceQueue2;
+	p_mq_ReferenceQueue3_t p_mq_ReferenceQueue3;
+	p_mq_ReferenceQueue_t p_mq_ReferenceQueue;
 	//@}
 
 protected:

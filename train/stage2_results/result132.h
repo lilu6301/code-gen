@@ -12,7 +12,6 @@
 #include "cfm_tlm2lt_global.h"
 #include "cfm_tlm2lt_global_types.h"
 #include "cofluent.h"
-#include "dp/cfm_reader_dp_if.h"
 #include "dt/cft_defmsgq.h"
 #include "dt/cft_initiator.h"
 #include "dt/cft_target.h"
@@ -29,15 +28,15 @@
 ///        \page dxpReader
 //@{
 ///    \brief Reader function model start
-class cfm_reader: public cf_core::cf_function, public cfm_reader_dp_if {
+class cfm_reader: public cf_core::cf_function {
 public:
 	/// cfm_reader type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_reader, cft_defmsgq> p_mq_ReferenceQueue3_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_reader, cft_initiator> p_mq_InitiatorReader_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_reader, cft_target> p_mq_ReaderResponse_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_reader> p_ev_Sync_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_reader, cft_defmsgq> p_mq_InitiatorReader_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_reader, cft_defmsgq> p_mq_ReferenceQueue3_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_reader, cft_target> p_mq_ReaderResponse_t;
 	/// cfm_reader type define end
 
 	/// constructor
@@ -52,10 +51,10 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_ReferenceQueue3_t p_mq_ReferenceQueue3;
-	p_mq_InitiatorReader_t p_mq_InitiatorReader;
-	p_mq_ReaderResponse_t p_mq_ReaderResponse;
 	p_ev_Sync_t p_ev_Sync;
+	p_mq_InitiatorReader_t p_mq_InitiatorReader;
+	p_mq_ReferenceQueue3_t p_mq_ReferenceQueue3;
+	p_mq_ReaderResponse_t p_mq_ReaderResponse;
 	//@}
 
 protected:

@@ -10,7 +10,7 @@
 
 /// Model Header includes start
 #include "cfm_ddrmemory_global.h"
-#include "cfm_ddermemory_global_types.h"
+#include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_bankdmuxer_dp_if.h"
 #include "dt/cft_defddrcommand.h"
@@ -66,9 +66,16 @@ protected:
 	//Start of 'BankDmuxer local declarations' algorithm generated code
 	int remainingDataSize;
 	int transId;
-	int num_of_adm_channel;
-	int index;
-	int max_channel_size;
+	float req4kintervalns;
+	int deadline;
+	int dma_size;
+	DEVICEIDTYPE message_targetid;
+	DEVICEIDTYPE message_sourceid;
+	OPERATIONTYPE message_operation;
+	cf_dt::cf_time transfer_time;
+	cf_dt::cf_time message_time_stamp;
+	cf_dt::cf_data_size message_size;
+	cf_dt::cf_throughput bus_throughput;
 	//End of 'BankDmuxer local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 

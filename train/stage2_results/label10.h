@@ -40,10 +40,10 @@ public:
 	typedef cf_core::cf_message_queue<cft_defcall> mq_UMTSToIP_t;
 
 	/// ports typedef
+	typedef cf_core::cf_mq_initiator_socket<cfm_callprotocolstack, cft_defcall> p_mq_AppToHTTP_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_callprotocolstack, cft_defcall> p_mq_HTTPToApp_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_callprotocolstack, cft_defcall> p_mq_NetToUMTS_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_callprotocolstack, cft_defcall> p_mq_UMTSToNet_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_callprotocolstack, cft_defcall> p_mq_HTTPToApp_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_callprotocolstack, cft_defcall> p_mq_AppToHTTP_t;
 	/// cfm_callprotocolstack type define end
 
 	/// constructor
@@ -58,10 +58,10 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+	p_mq_AppToHTTP_t p_mq_AppToHTTP;
+	p_mq_HTTPToApp_t p_mq_HTTPToApp;
 	p_mq_NetToUMTS_t p_mq_NetToUMTS;
 	p_mq_UMTSToNet_t p_mq_UMTSToNet;
-	p_mq_HTTPToApp_t p_mq_HTTPToApp;
-	p_mq_AppToHTTP_t p_mq_AppToHTTP;
 	//@}
 
 public:

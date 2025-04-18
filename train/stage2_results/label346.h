@@ -17,15 +17,15 @@
 #include "cfm_obex_layer.h"
 #include "cfm_rfcomm_layer.h"
 #include "dt/cft_defbaseband.h"
-#include "dt/cft_defreadwrite.h"
 #include "dt/cft_defdatain.h"
 #include "dt/cft_defdataout.h"
-#include "dt/cft_defobex_out.h"
-#include "dt/cft_defobex_in.h"
-#include "dt/cft_defrfcomm_out.h"
-#include "dt/cft_defrfcomm_in.h"
 #include "dt/cft_defl2cap_in.h"
 #include "dt/cft_defl2cap_out.h"
+#include "dt/cft_defobex_in.h"
+#include "dt/cft_defobex_out.h"
+#include "dt/cft_defreadwrite.h"
+#include "dt/cft_defrfcomm_in.h"
+#include "dt/cft_defrfcomm_out.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'BT_Stack includes' algorithm generated code
@@ -52,13 +52,13 @@ public:
 	typedef cf_core::cf_message_queue<cft_defrfcomm_out> mq_RFCOMM_Out_t;
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defbaseband> p_mq_BaseBand_Out_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defbaseband> p_mq_BaseBand_In_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defreadwrite> p_mq_ReadWrite_0_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defdatain> p_mq_DataIn_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_bt_stack> p_ev_WrOK_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defdataout> p_mq_DataOut_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_bt_stack> p_ev_startEv_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defbaseband> p_mq_BaseBand_In_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defbaseband> p_mq_BaseBand_Out_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defdatain> p_mq_DataIn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defdataout> p_mq_DataOut_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defreadwrite> p_mq_ReadWrite_0_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defreadwrite> p_mq_ReadWrite_1_t;
 	/// cfm_bt_stack type define end
 
@@ -74,13 +74,13 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_BaseBand_Out_t p_mq_BaseBand_Out;
-	p_mq_BaseBand_In_t p_mq_BaseBand_In;
-	p_mq_ReadWrite_0_t p_mq_ReadWrite_0;
-	p_mq_DataIn_t p_mq_DataIn;
 	p_ev_WrOK_t p_ev_WrOK;
-	p_mq_DataOut_t p_mq_DataOut;
 	p_ev_startEv_t p_ev_startEv;
+	p_mq_BaseBand_In_t p_mq_BaseBand_In;
+	p_mq_BaseBand_Out_t p_mq_BaseBand_Out;
+	p_mq_DataIn_t p_mq_DataIn;
+	p_mq_DataOut_t p_mq_DataOut;
+	p_mq_ReadWrite_0_t p_mq_ReadWrite_0;
 	p_mq_ReadWrite_1_t p_mq_ReadWrite_1;
 	//@}
 

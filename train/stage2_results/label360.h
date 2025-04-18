@@ -31,9 +31,9 @@ public:
 	/// cfm_ob_out type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_ob_out, cft_defobex_out> p_mq_OB_Out2_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_ob_out, cft_defobex_out> p_mq_OB_Out1_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_ob_out, cft_defobex_out> p_mq_OBEX_Out_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_ob_out, cft_defobex_out> p_mq_OB_Out1_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_ob_out, cft_defobex_out> p_mq_OB_Out2_t;
 	/// cfm_ob_out type define end
 
 	/// constructor
@@ -48,9 +48,9 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_OB_Out2_t p_mq_OB_Out2;
-	p_mq_OB_Out1_t p_mq_OB_Out1;
 	p_mq_OBEX_Out_t p_mq_OBEX_Out;
+	p_mq_OB_Out1_t p_mq_OB_Out1;
+	p_mq_OB_Out2_t p_mq_OB_Out2;
 	//@}
 
 protected:

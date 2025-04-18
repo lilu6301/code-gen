@@ -32,8 +32,8 @@ public:
 	/// cfm_wdatadmux type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_wdatadmux, cft_defwdatachn> p_mq_WDATAin_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_wdatadmux, cft_defwdatachn> p_mq_WDATAchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_wdatadmux, cft_defwdatachn> p_mq_WDATAin_t;
 	/// cfm_wdatadmux type define end
 
 	/// constructor
@@ -47,8 +47,8 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_WDATAin_t p_mq_WDATAin;
 	p_mq_WDATAchn_t p_mq_WDATAchn;
+	p_mq_WDATAin_t p_mq_WDATAin;
 	//@}
 
 public:

@@ -15,11 +15,11 @@
 #include "cfm_receiverrdata.h"
 #include "cfm_receivewack.h"
 #include "cfm_sender.h"
-#include "dt/cft_defrdatachn.h"
-#include "dt/cft_defbrespchn.h"
 #include "dt/cft_defaraddrchn.h"
-#include "dt/cft_defwdatachn.h"
 #include "dt/cft_defawaddrchn.h"
+#include "dt/cft_defbrespchn.h"
+#include "dt/cft_defrdatachn.h"
+#include "dt/cft_defwdatachn.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'Device includes' algorithm generated code
@@ -38,11 +38,11 @@ public:
 	/// cfm_device type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_device, cft_defrdatachn> p_mq_RDATAin_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_device, cft_defbrespchn> p_mq_BRESPin_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_device, cft_defaraddrchn> p_mq_ARADDRchn_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_device, cft_defwdatachn> p_mq_WDATAchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_device, cft_defawaddrchn> p_mq_AWADDRchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_device, cft_defbrespchn> p_mq_BRESPin_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_device, cft_defrdatachn> p_mq_RDATAin_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_device, cft_defwdatachn> p_mq_WDATAchn_t;
 	/// cfm_device type define end
 
 	/// constructor
@@ -57,11 +57,11 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_RDATAin_t p_mq_RDATAin;
-	p_mq_BRESPin_t p_mq_BRESPin;
 	p_mq_ARADDRchn_t p_mq_ARADDRchn;
-	p_mq_WDATAchn_t p_mq_WDATAchn;
 	p_mq_AWADDRchn_t p_mq_AWADDRchn;
+	p_mq_BRESPin_t p_mq_BRESPin;
+	p_mq_RDATAin_t p_mq_RDATAin;
+	p_mq_WDATAchn_t p_mq_WDATAchn;
 	//@}
 
 public:

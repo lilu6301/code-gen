@@ -14,8 +14,8 @@
 #include "dp/cfm_applicationlayer_dp_if.h"
 #include "cfm_callapplication.h"
 #include "cfm_videoapplication.h"
-#include "dt/cft_defvideo.h"
 #include "dt/cft_defcall.h"
+#include "dt/cft_defvideo.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'ApplicationLayer includes' algorithm generated code
@@ -35,13 +35,13 @@ public:
 	/// cfm_applicationlayer type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defvideo> p_mq_Video_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defvideo> p_mq_RTPToApp_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defcall> p_mq_AppToCtrl_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defcall> p_mq_HTTPToApp_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defcall> p_mq_AppToHTTP_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defcall> p_mq_Response_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defcall> p_mq_HTTPToApp_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defvideo> p_mq_RTPToApp_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defcall> p_mq_Request_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defcall> p_mq_Response_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defvideo> p_mq_Video_t;
 	/// cfm_applicationlayer type define end
 
 	/// constructor
@@ -56,13 +56,13 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_Video_t p_mq_Video;
-	p_mq_RTPToApp_t p_mq_RTPToApp;
 	p_mq_AppToCtrl_t p_mq_AppToCtrl;
-	p_mq_HTTPToApp_t p_mq_HTTPToApp;
 	p_mq_AppToHTTP_t p_mq_AppToHTTP;
-	p_mq_Response_t p_mq_Response;
+	p_mq_HTTPToApp_t p_mq_HTTPToApp;
+	p_mq_RTPToApp_t p_mq_RTPToApp;
 	p_mq_Request_t p_mq_Request;
+	p_mq_Response_t p_mq_Response;
+	p_mq_Video_t p_mq_Video;
 	//@}
 
 public:

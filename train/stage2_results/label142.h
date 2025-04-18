@@ -30,8 +30,8 @@ public:
 
 	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_f12, cf_core::cf_payload_int> p_mq_M1_1_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_f12, cf_core::cf_payload_int> p_mq_M2_1_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_f12, cf_core::cf_payload_int> p_mq_M1_2_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_f12, cf_core::cf_payload_int> p_mq_M2_1_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_f12, cf_core::cf_payload_int> p_mq_M2_2_t;
 	/// cfm_f12 type define end
 
@@ -48,8 +48,8 @@ public:
 	/// \name input/output ports
 	//@{
 	p_mq_M1_1_t p_mq_M1_1;
-	p_mq_M2_1_t p_mq_M2_1;
 	p_mq_M1_2_t p_mq_M1_2;
+	p_mq_M2_1_t p_mq_M2_1;
 	p_mq_M2_2_t p_mq_M2_2;
 	//@}
 

@@ -12,8 +12,8 @@
 #include "cfm_softwaredefinedradioapp_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_broadcastnetwork_dp_if.h"
-#include "dt/cft_defvideo.h"
 #include "dt/cft_defnet.h"
+#include "dt/cft_defvideo.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'BroadcastNetwork includes' algorithm generated code
@@ -33,10 +33,10 @@ public:
 	/// cfm_broadcastnetwork type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_broadcastnetwork, cft_defvideo> p_mq_NetToDVB_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_broadcastnetwork> p_ev_BurstClock_t;
-	typedef cf_core::cf_sv_initiator_socket<cfm_broadcastnetwork, cft_defnet> p_sv_VideoFiles_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_broadcastnetwork, cft_defvideo> p_mq_NetToDVB_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_broadcastnetwork, cft_defnet> p_mq_VideoNet_t;
+	typedef cf_core::cf_sv_initiator_socket<cfm_broadcastnetwork, cft_defnet> p_sv_VideoFiles_t;
 	/// cfm_broadcastnetwork type define end
 
 	/// constructor
@@ -51,10 +51,10 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_NetToDVB_t p_mq_NetToDVB;
 	p_ev_BurstClock_t p_ev_BurstClock;
-	p_sv_VideoFiles_t p_sv_VideoFiles;
+	p_mq_NetToDVB_t p_mq_NetToDVB;
 	p_mq_VideoNet_t p_mq_VideoNet;
+	p_sv_VideoFiles_t p_sv_VideoFiles;
 	//@}
 
 protected:

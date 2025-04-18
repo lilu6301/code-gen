@@ -9,8 +9,8 @@
 #define COFS_MODEL_INHERITANCE_EXAMPLE1APP_F2
 
 /// Model Header includes start
-#include "cfm_inheritance_example1app_global.h"
-#include "cfm_inheritance_example1app_global_types.h"
+#include "cfm_inheritage_example1app_global.h"
+#include "cfm_inheritage_example1app_global_types.h"
 #include "cofluent.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>

@@ -20,7 +20,7 @@
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'datacenter includes' algorithm generated code
-#include <chrono>
+
 //End of 'datacenter includes' algorithm generated code
 //<#!@READ-ONLY-SECTION-START@!#>
 /// Model Header includes end
@@ -76,7 +76,7 @@ public:
 	/// \name user-defined local declarations
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'datacenter local declarations' algorithm generated code
-	std::chrono::high_resolution_clock::time_point t_start;
+
 	//End of 'datacenter local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 

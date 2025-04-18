@@ -12,12 +12,13 @@
 #include "cfm_applicationmodelrefinement_global.h"
 #include "cfm_applicationmodelrefinement_global_types.h"
 #include "cofluent.h"
+#include "dp/cfm_producer_dp_if.h"
 #include "cfm_generator.h"
 #include "cfm_sender.h"
-#include "dt/cft_defmsg.h"
 #include "dt/cft_defack.h"
-#include "dt/cft_deftestprod.h"
 #include "dt/cft_defdatavar.h"
+#include "dt/cft_defmsg.h"
+#include "dt/cft_deftestprod.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'Producer includes' algorithm generated code
@@ -31,7 +32,8 @@
 ///        \page dxpProducer
 //@{
 ///    \brief Producer function model start
-class cfm_producer: public cf_core::cf_function_container {
+class cfm_producer: public cf_core::cf_function_container,
+		public cfm_producer_dp_if {
 public:
 	/// cfm_producer type define start
 	/// relations typedef
@@ -40,8 +42,8 @@ public:
 	typedef cf_core::cf_shared_variable<cft_deftestprod> sv_TestProd_t;
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_producer, cft_defmsg> p_mq_Msg_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_producer, cft_defack> p_mq_Ack_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_producer, cft_defmsg> p_mq_Msg_t;
 	/// cfm_producer type define end
 
 	/// constructor
@@ -56,8 +58,8 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_Msg_t p_mq_Msg;
 	p_mq_Ack_t p_mq_Ack;
+	p_mq_Msg_t p_mq_Msg;
 	//@}
 
 public:
@@ -76,8 +78,8 @@ protected:
 public:
 	/// \name relations
 	//@{
-	sv_DataVar_t sv_DataVar;
 	ev_Req_t ev_Req;
+	sv_DataVar_t sv_DataVar;
 	sv_TestProd_t sv_TestProd;
 	//@}
 

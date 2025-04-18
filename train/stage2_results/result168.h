@@ -9,9 +9,10 @@
 #define COFS_MODEL_DDRMEMORY_RECEIVERRDATA
 
 /// Model Header includes start
-#include "cfm_ddermemory_global.h"
-#include "cfm_ddermemory_global_types.h"
+#include "cfm_ddrmemory_global.h"
+#include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
+#include "dp/cfm_receiverrdata_dp_if.h"
 #include "dt/cft_defrdatachn.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -26,7 +27,8 @@
 ///        \page dxpReceiverRData
 //@{
 ///    \brief ReceiverRData function model start
-class cfm_receiverrdata: public cf_core::cf_function {
+class cfm_receiverrdata: public cf_core::cf_function,
+		public cfm_receiverrdata_dp_if {
 public:
 	/// cfm_receiverrdata type define start
 

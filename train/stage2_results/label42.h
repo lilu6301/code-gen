@@ -31,8 +31,8 @@ public:
 	/// cfm_mpetsl type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_mpetsl, cft_defvideo> p_mq_NetToDVB_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_mpetsl, cft_defvideo> p_mq_MPEToIP_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_mpetsl, cft_defvideo> p_mq_NetToDVB_t;
 	/// cfm_mpetsl type define end
 
 	/// constructor
@@ -47,8 +47,8 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_NetToDVB_t p_mq_NetToDVB;
 	p_mq_MPEToIP_t p_mq_MPEToIP;
+	p_mq_NetToDVB_t p_mq_NetToDVB;
 	//@}
 
 protected:

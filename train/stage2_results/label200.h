@@ -12,9 +12,9 @@
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_ddrcommandgeneration_dp_if.h"
+#include "dt/cft_defddrcommand.h"
 #include "dt/cft_defmemorystatus.h"
 #include "dt/cft_defrequests2memory.h"
-#include "dt/cft_defddrcommand.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'DDRCommandGeneration includes' algorithm generated code
@@ -34,12 +34,12 @@ public:
 	/// cfm_ddrcommandgeneration type define start
 
 	/// ports typedef
-	typedef cf_core::cf_sv_initiator_socket<cfm_ddrcommandgeneration,
-			cft_defmemorystatus> p_sv_MemoryStatus_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_ddrcommandgeneration,
-			cft_defrequests2memory> p_mq_Requests2Memory_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_ddrcommandgeneration,
 			cft_defddrcommand> p_mq_DDRCommand_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_ddrcommandgeneration,
+			cft_defrequests2memory> p_mq_Requests2Memory_t;
+	typedef cf_core::cf_sv_initiator_socket<cfm_ddrcommandgeneration,
+			cft_defmemorystatus> p_sv_MemoryStatus_t;
 	/// cfm_ddrcommandgeneration type define end
 
 	/// constructor
@@ -54,9 +54,9 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_sv_MemoryStatus_t p_sv_MemoryStatus;
-	p_mq_Requests2Memory_t p_mq_Requests2Memory;
 	p_mq_DDRCommand_t p_mq_DDRCommand;
+	p_mq_Requests2Memory_t p_mq_Requests2Memory;
+	p_sv_MemoryStatus_t p_sv_MemoryStatus;
 	//@}
 
 protected:

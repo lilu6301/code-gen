@@ -67,9 +67,9 @@ protected:
 public:
 	/// \name relations
 	//@{
+	ev_startEv_t ev_startEv;
 	mq_BaseBand_In_t mq_BaseBand_In;
 	mq_BaseBand_Out_t mq_BaseBand_Out;
-	ev_startEv_t ev_startEv;
 	//@}
 
 	/// Model private fields start

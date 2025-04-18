@@ -36,9 +36,9 @@ public:
 	/// ports typedef
 	typedef cf_core::cf_ev_initiator_socket<cfm_hwtestbench> p_ev_startProcess_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_hwtestbench, cft_defframe> p_mq_inputFrame_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_hwtestbench, cft_defframe> p_mq_outputFrame_t;
 	typedef cf_core::cf_sv_initiator_socket<cfm_hwtestbench,
 			cft_defprocessingmode> p_sv_processingMode_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_hwtestbench, cft_defframe> p_mq_outputFrame_t;
 	typedef cf_core::cf_sv_initiator_socket<cfm_hwtestbench, cft_defframe> p_sv_inputStream_t;
 	typedef cf_core::cf_sv_initiator_socket<cfm_hwtestbench, cft_defframe> p_sv_outputStream_t;
 	/// cfm_hwtestbench type define end
@@ -57,8 +57,8 @@ public:
 	//@{
 	p_ev_startProcess_t p_ev_startProcess;
 	p_mq_inputFrame_t p_mq_inputFrame;
-	p_sv_processingMode_t p_sv_processingMode;
 	p_mq_outputFrame_t p_mq_outputFrame;
+	p_sv_processingMode_t p_sv_processingMode;
 	p_sv_inputStream_t p_sv_inputStream;
 	p_sv_outputStream_t p_sv_outputStream;
 	//@}

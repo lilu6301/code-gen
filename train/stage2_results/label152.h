@@ -16,11 +16,11 @@
 #include "cfm_device.h"
 #include "cfm_rddmux.h"
 #include "cfm_wrdmux.h"
-#include "dt/cft_defrdatachn.h"
 #include "dt/cft_defaraddrchn.h"
-#include "dt/cft_defbrespchn.h"
-#include "dt/cft_defwdatachn.h"
 #include "dt/cft_defawaddrchn.h"
+#include "dt/cft_defbrespchn.h"
+#include "dt/cft_defrdatachn.h"
+#include "dt/cft_defwdatachn.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'ClientSide includes' algorithm generated code
@@ -43,11 +43,11 @@ public:
 	typedef cf_core::cf_message_queue<cft_defrdatachn> mq_RDATAin_t;
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_clientside, cft_defrdatachn> p_mq_RDATAchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_clientside, cft_defaraddrchn> p_mq_ARADDRchn_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_clientside, cft_defbrespchn> p_mq_BRESPchn_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_clientside, cft_defwdatachn> p_mq_WDATAchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_clientside, cft_defawaddrchn> p_mq_AWADDRchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_clientside, cft_defbrespchn> p_mq_BRESPchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_clientside, cft_defrdatachn> p_mq_RDATAchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_clientside, cft_defwdatachn> p_mq_WDATAchn_t;
 	/// cfm_clientside type define end
 
 	/// constructor
@@ -62,11 +62,11 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_RDATAchn_t p_mq_RDATAchn;
-	std::vector<p_mq_ARADDRchn_t*> p_mq_ARADDRchn_vec;
+	p_mq_ARADDRchn_t* p_mq_ARADDRchn;
+	p_mq_AWADDRchn_t* p_mq_AWADDRchn;
 	p_mq_BRESPchn_t p_mq_BRESPchn;
-	std::vector<p_mq_WDATAchn_t*> p_mq_WDATAchn_vec;
-	std::vector<p_mq_AWADDRchn_t*> p_mq_AWADDRchn_vec;
+	p_mq_RDATAchn_t p_mq_RDATAchn;
+	p_mq_WDATAchn_t* p_mq_WDATAchn;
 	//@}
 
 public:

@@ -12,7 +12,6 @@
 #include "cfm_softwaredefinedradioapp_global.h"
 #include "cfm_softwaredefinedradioapp_global_types.h"
 #include "cofluent.h"
-#include "dp/cfm_ipcall_send_dp_if.h"
 #include "dt/cft_defcall.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -27,7 +26,7 @@
 ///        \page dxpIPCall_Send
 //@{
 ///    \brief IPCall_Send function model start
-class cfm_ipcall_send: public cf_core::cf_function, public cfm_ipcall_send_dp_if {
+class cfm_ipcall_send: public cf_core::cf_function {
 public:
 	/// cfm_ipcall_send type define start
 
@@ -64,7 +63,7 @@ protected:
 	/// \name user-defined local declarations
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'IPCall_Send local declarations' algorithm generated code
-	int IPCall_SendDuration;
+
 	//End of 'IPCall_Send local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 

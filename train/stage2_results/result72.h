@@ -61,7 +61,9 @@ protected:
 	/// \name user-defined local declarations
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'Producer local declarations' algorithm generated code
+	bool payloadMQ_start(void);
 
+	int i;
 	//End of 'Producer local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 

@@ -34,10 +34,10 @@ public:
 	/// cfm_umts type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_umts, cft_defcall> p_mq_UMTSToIP_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_umts, cft_defcall> p_mq_NetToUMTS_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_umts, cft_defcall> p_mq_UMTSToNet_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_umts, cft_defcall> p_mq_IPToUMTS_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_umts, cft_defcall> p_mq_NetToUMTS_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_umts, cft_defcall> p_mq_UMTSToIP_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_umts, cft_defcall> p_mq_UMTSToNet_t;
 	/// cfm_umts type define end
 
 	/// constructor
@@ -52,10 +52,10 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_UMTSToIP_t p_mq_UMTSToIP;
-	p_mq_NetToUMTS_t p_mq_NetToUMTS;
-	p_mq_UMTSToNet_t p_mq_UMTSToNet;
 	p_mq_IPToUMTS_t p_mq_IPToUMTS;
+	p_mq_NetToUMTS_t p_mq_NetToUMTS;
+	p_mq_UMTSToIP_t p_mq_UMTSToIP;
+	p_mq_UMTSToNet_t p_mq_UMTSToNet;
 	//@}
 
 public:

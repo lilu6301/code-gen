@@ -12,9 +12,9 @@
 #include "cfm_bluetooth_ips_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_rfcomm_receive_dp_if.h"
+#include "dt/cft_defobex_in.h"
 #include "dt/cft_defrfcomm_in.h"
 #include "dt/cft_defrfcomm_out.h"
-#include "dt/cft_defobex_in.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'RFCOMM_Receive includes' algorithm generated code
@@ -34,10 +34,10 @@ public:
 	/// cfm_rfcomm_receive type define start
 
 	/// ports typedef
+	typedef cf_core::cf_mq_initiator_socket<cfm_rfcomm_receive, cft_defobex_in> p_mq_OBEX_In_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_rfcomm_receive, cft_defrfcomm_in> p_mq_RFC_Data_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_rfcomm_receive,
 			cft_defrfcomm_out> p_mq_RFC_Out1_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_rfcomm_receive, cft_defobex_in> p_mq_OBEX_In_t;
 	/// cfm_rfcomm_receive type define end
 
 	/// constructor
@@ -52,9 +52,9 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+	p_mq_OBEX_In_t p_mq_OBEX_In;
 	p_mq_RFC_Data_t p_mq_RFC_Data;
 	p_mq_RFC_Out1_t p_mq_RFC_Out1;
-	p_mq_OBEX_In_t p_mq_OBEX_In;
 	//@}
 
 protected:

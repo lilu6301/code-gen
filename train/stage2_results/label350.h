@@ -18,8 +18,8 @@
 #include "cfm_rfcomm_send.h"
 #include "dt/cft_defobex_in.h"
 #include "dt/cft_defobex_out.h"
-#include "dt/cft_defrfcomm_out.h"
 #include "dt/cft_defrfcomm_in.h"
+#include "dt/cft_defrfcomm_out.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'RFCOMM_Layer includes' algorithm generated code
@@ -46,8 +46,8 @@ public:
 	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_rfcomm_layer, cft_defobex_in> p_mq_OBEX_In_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_rfcomm_layer, cft_defobex_out> p_mq_OBEX_Out_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_rfcomm_layer, cft_defrfcomm_out> p_mq_RFCOMM_Out_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_rfcomm_layer, cft_defrfcomm_in> p_mq_RFCOMM_In_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_rfcomm_layer, cft_defrfcomm_out> p_mq_RFCOMM_Out_t;
 	/// cfm_rfcomm_layer type define end
 
 	/// constructor
@@ -64,8 +64,8 @@ public:
 	//@{
 	p_mq_OBEX_In_t p_mq_OBEX_In;
 	p_mq_OBEX_Out_t p_mq_OBEX_Out;
-	p_mq_RFCOMM_Out_t p_mq_RFCOMM_Out;
 	p_mq_RFCOMM_In_t p_mq_RFCOMM_In;
+	p_mq_RFCOMM_Out_t p_mq_RFCOMM_Out;
 	//@}
 
 public:

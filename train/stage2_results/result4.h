@@ -13,12 +13,12 @@
 #include "cfm_softwaredefinedradioapp_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_networks_dp_if.h"
+#include "cfm_broadcastnetwork.h"
 #include "cfm_clockgenerator.h"
 #include "cfm_interactivenetwork.h"
-#include "cfm_broadcastnetwork.h"
-#include "dt/cft_defvideo.h"
 #include "dt/cft_defcall.h"
 #include "dt/cft_defnet.h"
+#include "dt/cft_defvideo.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'Networks includes' algorithm generated code
@@ -37,9 +37,9 @@ class cfm_networks: public cf_core::cf_function_container,
 public:
 	/// cfm_networks type define start
 	/// relations typedef
-	typedef cf_core::cf_message_queue<cft_defnet> mq_VideoFiles_t;
-	typedef cf_core::cf_message_queue<cft_defvideo> mq_VideoNet_t;
 	typedef cf_core::cf_event ev_BurstClock_t;
+	typedef cf_core::cf_shared_variable<cft_defnet> sv_VideoFiles_t;
+	typedef cf_core::cf_message_queue<cft_defnet> mq_VideoNet_t;
 
 	/// ports typedef
 	typedef cf_core::cf_mq_initiator_socket<cfm_networks, cft_defvideo> p_mq_NetToDVB_t;
@@ -67,9 +67,9 @@ public:
 public:
 	/// \name functions
 	//@{
+	cfm_broadcastnetwork* BroadcastNetwork;
 	cfm_clockgenerator* ClockGenerator;
 	cfm_interactivenetwork* InteractiveNetwork;
-	cfm_broadcastnetwork* BroadcastNetwork;
 	//@}
 
 protected:
@@ -81,9 +81,9 @@ protected:
 public:
 	/// \name relations
 	//@{
-	mq_VideoFiles_t mq_VideoFiles;
-	mq_VideoNet_t mq_VideoNet;
 	ev_BurstClock_t ev_BurstClock;
+	mq_VideoNet_t mq_VideoNet;
+	sv_VideoFiles_t sv_VideoFiles;
 	//@}
 
 	/// Model private fields start

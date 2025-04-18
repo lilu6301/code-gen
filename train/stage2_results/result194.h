@@ -9,14 +9,13 @@
 #define COFS_MODEL_DDRMEMORY_COLLECTREQUESTS
 
 /// Model Header includes start
-#include "cfm_ddermemory_global.h"
-#include "cfm_ddermemory_global_types.h"
+#include "cfm_ddrmemory_global.h"
+#include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_collectrequests_dp_if.h"
-#include "dt/cft_deflistrequestsptr.h"
-#include "dt/cft_defcounter.h"
 #include "dt/cft_defmemreadrequest.h"
-#include "dt/cft_defmemwriterevent.h"
+#include "dt/cft_defmemwriterequest.h"
+#include "dt/cft_deflaterequestsptr.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'CollectRequests includes' algorithm generated code
@@ -36,13 +35,11 @@ public:
 	/// cfm_collectrequests type define start
 
 	/// ports typedef
-	typedef cf_core::cf_sv_initiator_socket<cfm_collectrequests,
-			cft_deflistrequestsptr> p_sv_ListRequestsPtr_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_collectrequests> p_ev_RequestCounter_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_collectrequests,
-			cft_defmemreadrequest> p_mq_MemReadRequest_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_collectrequests,
-			cft_defmemwriterevent> p_mq_MemWriteRequest_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_collectrequests, cft_defmemreadrequest> p_mq_MemReadRequest_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_collectrequests, cft_defmemwriterequest> p_mq_MemWriteRequest_t;
+	typedef cf_core::cf_sv_initiator_socket<cfm_collectrequests,
+			cft_deflaterequestsptr> p_sv_ListRequestsPtr_t;
 	/// cfm_collectrequests type define end
 
 	/// constructor
@@ -57,10 +54,10 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_sv_ListRequestsPtr_t p_sv_ListRequestsPtr;
 	p_ev_RequestCounter_t p_ev_RequestCounter;
 	p_mq_MemReadRequest_t p_mq_MemReadRequest;
 	p_mq_MemWriteRequest_t p_mq_MemWriteRequest;
+	p_sv_ListRequestsPtr_t p_sv_ListRequestsPtr;
 	//@}
 
 protected:

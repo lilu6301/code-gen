@@ -34,10 +34,10 @@ class cfm_opp_usecase: public cf_core::cf_application {
 public:
 	/// cfm_opp_usecase type define start
 	/// relations typedef
-	typedef cf_core::cf_event ev_StartEv_t;
-	typedef cf_core::cf_event ev_UnusedEv_t;
 	typedef cf_core::cf_message_queue<cft_defbaseband> mq_M2S_t;
 	typedef cf_core::cf_message_queue<cft_defbaseband> mq_S2M_t;
+	typedef cf_core::cf_event ev_StartEv_t;
+	typedef cf_core::cf_event ev_UnusedEv_t;
 
 	/// cfm_opp_usecase type define end
 

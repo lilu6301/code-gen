@@ -15,13 +15,13 @@
 #include "dp/cfm_target_dp_if.h"
 #include "cfm_memory.h"
 #include "cfm_memorycontroller.h"
-#include "dt/cft_defrdatachn.h"
 #include "dt/cft_defaraddrchn.h"
-#include "dt/cft_defbrespchn.h"
-#include "dt/cft_defwdatachn.h"
 #include "dt/cft_defawaddrchn.h"
-#include "dt/cft_defdqs.h"
+#include "dt/cft_defbrespchn.h"
 #include "dt/cft_defddrcommand.h"
+#include "dt/cft_defdqs.h"
+#include "dt/cft_defrdatachn.h"
+#include "dt/cft_defwdatachn.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'Target includes' algorithm generated code
@@ -43,11 +43,11 @@ public:
 	typedef cf_core::cf_message_queue<cft_defdqs> mq_DQs_t;
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_target, cft_defrdatachn> p_mq_RDATAchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_target, cft_defaraddrchn> p_mq_ARADDRchn_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_target, cft_defbrespchn> p_mq_BRESPchn_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_target, cft_defwdatachn> p_mq_WDATAchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_target, cft_defawaddrchn> p_mq_AWADDRchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_target, cft_defbrespchn> p_mq_BRESPchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_target, cft_defrdatachn> p_mq_RDATAchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_target, cft_defwdatachn> p_mq_WDATAchn_t;
 	/// cfm_target type define end
 
 	/// constructor
@@ -62,18 +62,18 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	std::vector<p_mq_RDATAchn_t*> p_mq_RDATAchn_vec;
 	p_mq_ARADDRchn_t p_mq_ARADDRchn;
-	std::vector<p_mq_BRESPchn_t*> p_mq_BRESPchn_vec;
-	p_mq_WDATAchn_t p_mq_WDATAchn;
 	p_mq_AWADDRchn_t p_mq_AWADDRchn;
+	p_mq_BRESPchn_t* p_mq_BRESPchn;
+	p_mq_RDATAchn_t* p_mq_RDATAchn;
+	p_mq_WDATAchn_t p_mq_WDATAchn;
 	//@}
 
 public:
 	/// \name functions
 	//@{
-	std::vector<cfm_memory*> Memory_vec;
 	cfm_memorycontroller* MemoryController;
+	std::vector<cfm_memory*> Memory_vec;
 	//@}
 
 public:

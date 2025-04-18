@@ -32,8 +32,8 @@ public:
 	/// cfm_httptcp_send type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_httptcp_send, cft_defcall> p_mq_HTTPToIP_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_httptcp_send, cft_defcall> p_mq_AppToHTTP_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_httptcp_send, cft_defcall> p_mq_HTTPToIP_t;
 	/// cfm_httptcp_send type define end
 
 	/// constructor
@@ -48,8 +48,8 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_HTTPToIP_t p_mq_HTTPToIP;
 	p_mq_AppToHTTP_t p_mq_AppToHTTP;
+	p_mq_HTTPToIP_t p_mq_HTTPToIP;
 	//@}
 
 protected:

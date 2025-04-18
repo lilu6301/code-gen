@@ -18,16 +18,16 @@
 #include "cfm_collectrequests.h"
 #include "cfm_ddrcommandgeneration.h"
 #include "cfm_responseforward.h"
-#include "dt/cft_defdqs.h"
 #include "dt/cft_defdataread.h"
+#include "dt/cft_defdqs.h"
+#include "dt/cft_defrightack.h"
 #include "dt/cft_defwriteack.h"
+#include "dt/cft_deflaterequestptr.h"
 #include "dt/cft_defmemreadrequest.h"
-#include "dt/cft_defmemwriterevent.h"
-#include "dt/cft_defddrcommand.h"
-#include "dt/cft_defmemorystatus.h"
-#include "dt/cft_deflatiqup.h"
+#include "dt/cft_defmemwriterequest.h"
 #include "dt/cft_defrequestinformation.h"
-#include "dt/cft_defrequests2memory.h"
+#include "dt/cft_deframemory.h"
+#include "dt/cft_defwriteack.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'BackEnd includes' algorithm generated code
@@ -46,19 +46,18 @@ class cfm_backend: public cf_core::cf_function_container,
 public:
 	/// cfm_backend type define start
 	/// relations typedef
-	typedef cf_core::cf_message_queue<cft_defrequestinformation> mq_RequestInformation_t;
-	typedef cf_core::cf_message_queue<cft_defrequests2memory> mq_Requests2Memory_t;
+	typedef cf_core::cf_shared_variable<cft_deflaterequestptr> sv_ListRequestsPtr_t;
+	typedef cf_core::cf_shared_variable<cft_defmemorystatus> sv_MemoryStatus_t;
 	typedef cf_core::cf_event ev_RequestCounter_t;
-	typedef cf_core::cf_shared_variable<cft_deflistrequestsptr> sv_ListRequestsPtr_t;
-	typedef cf_core::cf_message_queue<cft_defmemorystatus> mq_MemoryStatus_t;
+	typedef cf_core::cf_message_queue<cft_defrequestinformation> mq_RequestInformation_t;
+	typedef cf_core::cf_message_queue<cft_deframemory> mq_Requests2Memory_t;
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defdqs> p_mq_DQs_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defdataread> p_mq_DataRead_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defwriteack> p_mq_WriteAck_0_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defmemreadrequest> p_mq_MemReadRequest_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defmemwriterevent> p_mq_MemWriteRequest_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defddrcommand> p_mq_DDRCommand_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defdqs> p_mq_DQs_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defrightack> p_mq_WriteAck_0_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defrightack> p_mq_WriteAck_1_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defwriteack> p_mq_DDRCommand_t;
 	/// cfm_backend type define end
 
 	/// constructor
@@ -73,11 +72,10 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_DQs_t p_mq_DQs;
 	p_mq_DataRead_t p_mq_DataRead;
+	p_mq_DQs_t p_mq_DQs;
 	p_mq_WriteAck_0_t p_mq_WriteAck_0;
-	p_mq_MemReadRequest_t p_mq_MemReadRequest;
-	p_mq_MemWriteRequest_t p_mq_MemWriteRequest;
+	p_mq_WriteAck_1_t p_mq_WriteAck_1;
 	p_mq_DDRCommand_t p_mq_DDRCommand;
 	//@}
 
@@ -99,11 +97,11 @@ protected:
 public:
 	/// \name relations
 	//@{
+	ev_RequestCounter_t ev_RequestCounter;
 	mq_RequestInformation_t mq_RequestInformation;
 	mq_Requests2Memory_t mq_Requests2Memory;
-	ev_RequestCounter_t ev_RequestCounter;
 	sv_ListRequestsPtr_t sv_ListRequestsPtr;
-	std::vector<mq_MemoryStatus_t*> mq_MemoryStatus_vec;
+	std::vector<sv_MemoryStatus_t*> sv_MemoryStatus_vec;
 	//@}
 
 	/// Model private fields start
