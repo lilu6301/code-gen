@@ -7,8 +7,7 @@
 # settings for torchccl
 export TORCH_LLM_ALLREDUCE=1
 
-#model=/root/llm/fine-tuning/RTL-Coder/train/saved_pretrained_model
-model=/root/llm/fine-tuning/RTL-Coder/train/saved-stage2-model
+model=/root/llm/fine-tuning/RTL-Coder/train/saved-model-v1
 #model=mistralai/Mistral-7B-v0.1
 
 python mle_test.py \
