@@ -18,6 +18,7 @@
 #include "cfm_raddrdmux.h"
 #include "cfm_waddrdmux.h"
 #include "cfm_wdatadmux.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defaraddrchn.h"
 #include "dt/cft_defawaddrchn.h"
 #include "dt/cft_defbrespchn.h"
@@ -47,6 +48,7 @@ class cfm_memorycontroller: public cf_core::cf_function_container,
 public:
 	/// cfm_memorycontroller type define start
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_message_queue<cft_defaraddrchn> mq_ARADDRin_t;
 	typedef cf_core::cf_message_queue<cft_defawaddrchn> mq_AWADDRin_t;
 	typedef cf_core::cf_message_queue<cft_defdataread> mq_DataRead_t;
@@ -56,6 +58,7 @@ public:
 	typedef cf_core::cf_message_queue<cft_defwriteack> mq_WriteAck_t;
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
 			cft_defaraddrchn> p_mq_ARADDRchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
@@ -83,6 +86,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_ARADDRchn_t p_mq_ARADDRchn;
 	p_mq_AWADDRchn_t p_mq_AWADDRchn;
 	p_mq_BRESPchn_t* p_mq_BRESPchn;
@@ -95,6 +99,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_backend* BackEnd;
 	std::vector<cfm_frontend*> FrontEnd_vec;
 	cfm_raddrdmux* RAddrDmux;
@@ -111,6 +116,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	std::vector<mq_ARADDRin_t*> mq_ARADDRin_vec;
 	std::vector<mq_AWADDRin_t*> mq_AWADDRin_vec;
 	std::vector<mq_DataRead_t*> mq_DataRead_vec;

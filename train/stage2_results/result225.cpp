@@ -31,9 +31,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_outbounddatacenterswitch
-    : cf_function(name),
-      cfm_outbounddatacenterswitch_dp_if(),
+cfm_outbounddatacenterswitch ::cfm_outbounddatacenterswitch()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_outbounddatacenterswitch_dp_if(),
       p_mq_MsgQOutboundDataCenterSwitch("p_mq_MsgQOutboundDataCenterSwitch"),
       p_mq_MsgQToDataCenterSwitch("p_mq_MsgQToDataCenterSwitch") {
   cf_function::init();
@@ -108,8 +108,6 @@ void cfm_outbounddatacenterswitch::cb_init_local_vars(void) {
   // Start of 'OutboundDataCenterSwitch initializations' algorithm generated
   // code
   server_room_id = get_container()->get_container()->get_cp_index();
-  rack_id = get_container()->get_cp_index();
-  server_id = get_container()->get_cp_index();
   // End of 'OutboundDataCenterSwitch initializations' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
 }

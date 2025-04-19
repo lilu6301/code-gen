@@ -12,6 +12,7 @@
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_bankdmuxer_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defddrcommand.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -31,6 +32,7 @@ public:
 	/// cfm_bankdmuxer type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_bankdmuxer, cft_defddrcommand> p_mq_DDRAction_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_bankdmuxer, cft_defddrcommand> p_mq_DDRCommand_t;
 	/// cfm_bankdmuxer type define end
@@ -47,6 +49,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_DDRAction_t p_mq_DDRAction;
 	p_mq_DDRCommand_t p_mq_DDRCommand;
 	//@}

@@ -30,16 +30,13 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_rfcomm_layer : cf_function_container(name),
-                   cfm_rfcomm_layer_dp_if(),
-                   mq_RFC_Cdts("RFC_Cdts"),
-                   mq_RFC_Data("RFC_Data"),
-                   mq_RFC_Out1("RFC_Out1"),
-                   mq_RFC_Out2("RFC_Out2"),
-                   p_mq_OBEX_In("p_mq_OBEX_In"),
-                   p_mq_OBEX_Out("p_mq_OBEX_Out"),
-                   p_mq_RFCOMM_In("p_mq_RFCOMM_In"),
-                   p_mq_RFCOMM_Out("p_mq_RFCOMM_Out") {
+cfm_rfcomm_layer ::cfm_rfcomm_layer()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_container(name), cfm_rfcomm_layer_dp_if(),
+      mq_RFC_Cdts("RFC_Cdts"), mq_RFC_Data("RFC_Data"), mq_RFC_Out1("RFC_Out1"),
+      mq_RFC_Out2("RFC_Out2"), p_mq_OBEX_In("p_mq_OBEX_In"),
+      p_mq_OBEX_Out("p_mq_OBEX_Out"), p_mq_RFCOMM_In("p_mq_RFCOMM_In"),
+      p_mq_RFCOMM_Out("p_mq_RFCOMM_Out") {
   cf_function_container::init();
   // instantiation of models
   CreditsOrData = new cfm_creditsordata("CreditsOrData");
@@ -47,19 +44,27 @@ cfm_rfcomm_layer : cf_function_container(name),
   RFCOMM_Send = new cfm_rfcomm_send("RFCOMM_Send");
   RFC_Out = new cfm_rfc_out("RFC_Out");
   // connections
-  CreditsOrData->p_mq_RFC_Cdts(mq_RFC_Cdts);
-  CreditsOrData->p_mq_RFC_Data(mq_RFC_Data);
-CreditsOrData->p_mq_RFCOMM_In((p_mq_RFCOMM_In);
-RFCOMM_Receive->p_mq_RFC_Data(mq_RFC_Data);
-RFCOMM_Receive->p_mq_RFC_Out1(mq_RFC_Out1);
-RFCOMM_Receive->p_mq_OBEX_In((p_mq_OBEX_In);
-RFCOMM_Send->p_mq_RFC_Cdts(mq_RFC_Cdts);
-RFCOMM_Send->p_mq_RFC_Out2(mq_RFC_Out2);
-RFCOMM_Send->p_mq_OBEX_Out((p_mq_OBEX_Out);
-RFC_Out->p_mq_RFC_Out1(mq_RFC_Out1);
-RFC_Out->p_mq_RFC_Out2(mq_RFC_Out2);
-RFC_Out->p_mq_RFCOMM_Out((p_mq_RFCOMM_Out);
-	cf_function_container::elab_end();
+  // model connect to relation
+  CreditsOrData->p_mq_RFC_Cdts(mq_RFC_Cdts.p_target_socket);
+  CreditsOrData->p_mq_RFC_Data(mq_RFC_Data.p_target_socket);
+  // model connect to port
+  CreditsOrData->p_mq_RFCOMM_In(p_mq_RFCOMM_In);
+  // model connect to relation
+  RFCOMM_Receive->p_mq_RFC_Data(mq_RFC_Data.p_target_socket);
+  RFCOMM_Receive->p_mq_RFC_Out1(mq_RFC_Out1.p_target_socket);
+  // model connect to port
+  RFCOMM_Receive->p_mq_OBEX_In(p_mq_OBEX_In);
+  // model connect to relation
+  RFCOMM_Send->p_mq_RFC_Cdts(mq_RFC_Cdts.p_target_socket);
+  RFCOMM_Send->p_mq_RFC_Out2(mq_RFC_Out2.p_target_socket);
+  // model connect to port
+  RFCOMM_Send->p_mq_OBEX_Out(p_mq_OBEX_Out);
+  // model connect to relation
+  RFC_Out->p_mq_RFC_Out1(mq_RFC_Out1.p_target_socket);
+  RFC_Out->p_mq_RFC_Out2(mq_RFC_Out2.p_target_socket);
+  // model connect to port
+  RFC_Out->p_mq_RFCOMM_Out(p_mq_RFCOMM_Out);
+  cf_function_container::elab_end();
 }
 //@}
 

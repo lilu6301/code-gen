@@ -13,6 +13,7 @@
 #include "cfm_softwaredefinedradioapp_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_broadcastnetwork_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defnet.h"
 #include "dt/cft_defvideo.h"
 
@@ -34,10 +35,11 @@ public:
 	/// cfm_broadcastnetwork type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_ev_initiator_socket<cfm_broadcastnetwork> p_ev_BurstClock_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_broadcastnetwork, cft_defnet> p_mq_NetToDVB_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_broadcastnetwork, cft_defnet> p_mq_VideoNet_t;
-	typedef cf_core::cf_sv_initiator_socket<cfm_broadcastnetwork, cft_defvideo> p_sv_VideoFiles_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_broadcastnetwork, cft_defnet> p_mq_NetToDpv_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_broadcastnetwork, cft_defnet> p_mq_VideoFiles_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_broadcastnetwork, cft_defvideo> p_mq_VideoNet_t;
 	/// cfm_broadcastnetwork type define end
 
 	/// constructor
@@ -52,10 +54,11 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_ev_BurstClock_t p_ev_BurstClock;
-	p_mq_NetToDVB_t p_mq_NetToDVB;
+	p_mq_NetToDpv_t p_mq_NetToDpv;
+	p_mq_VideoFiles_t p_mq_VideoFiles;
 	p_mq_VideoNet_t p_mq_VideoNet;
-	p_sv_VideoFiles_t p_sv_VideoFiles;
 	//@}
 
 protected:
@@ -70,19 +73,9 @@ protected:
 	/// \name user-defined local declarations
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'BroadcastNetwork local declarations' algorithm generated code
-	int NbPicture;
-	short iclip[1024];
-	/* Register address definition */
-#define PROCESSEDV_REGISTER_ADDR 0x200
-#define PROCESSINGMODE_REGISTER_ADDR 0x100
-
-	DefVideo PreviousFrame;
-	DefSubVideo CurrentMacroBlock420;
-	int i0, j0;
-	DefVideo FileName;
-	int NbLines;
-	int NbPixelsPerLine;
-	int NbMBPerFile;
+	int ClockCounter;
+	int DVBCounter;
+	int NbFiles;
 	//End of 'BroadcastNetwork local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 

@@ -30,9 +30,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_inbounddatacenterswitch
-    : cf_function(name),
-      cfm_inbounddatacenterswitch_dp_if(),
+cfm_inbounddatacenterswitch ::cfm_inbounddatacenterswitch()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_inbounddatacenterswitch_dp_if(),
       p_mq_MsgQInboundDataCenterSwitch("p_mq_MsgQInboundDataCenterSwitch"),
       p_mq_MsgQToServerRoom("p_mq_MsgQToServerRoom") {
   cf_function::init();

@@ -22,14 +22,18 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_vectordatatypeapiapp : cf_application(name), mq_MsgQVector("MsgQVector") {
+cfm_vectordatatypeapiapp ::cfm_vectordatatypeapiapp()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name), mq_MsgQVector("MsgQVector") {
   cf_application::init();
   // instantiation of models
   ConsumerVector = new cfm_consumervector("ConsumerVector");
   ProducerVector = new cfm_producervector("ProducerVector");
   // connections
-  ConsumerVector->p_mq_MsgQVector(mq_MsgQVector);
-  ProducerVector->p_mq_MsgQVector(mq_MsgQVector);
+  // model connect to relation
+  ConsumerVector->p_mq_MsgQVector(mq_MsgQVector.p_target_socket);
+  // model connect to relation
+  ProducerVector->p_mq_MsgQVector(mq_MsgQVector.p_target_socket);
   cf_application::elab_end();
 }
 //@}

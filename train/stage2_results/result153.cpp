@@ -31,13 +31,12 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_clientside : cf_function_container(name),
-                 cfm_clientside_dp_if(),
-                 p_mq_BRESPchn("p_mq_BRESPchn"),
-                 p_mq_RDATAchn("p_mq_RDATAchn"),
-                 p_mq_WDATAchn("p_mq_WDATAchn"),
-                 p_mq_ARADDRchn("p_mq_ARADDRchn"),
-                 p_mq_AWADDRchn("p_mq_AWADDRchn") {
+cfm_clientside ::cfm_clientside()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_container(name), cfm_clientside_dp_if(),
+      p_mq_ARADDRchn("p_mq_ARADDRchn"), p_mq_AWADDRchn("p_mq_AWADDRchn"),
+      p_mq_BRESPchn("p_mq_BRESPchn"), p_mq_RDATAchn("p_mq_RDATAchn"),
+      p_mq_WDATAchn("p_mq_WDATAchn") {
   cf_function_container::init();
   // instantiation of models
   for (cf_count i = 0; i < (cf_count)(C_Nbr + 1); i++) {
@@ -64,24 +63,31 @@ cfm_clientside : cf_function_container(name),
   for (cf_count i = 0; i < (cf_count)(C_Nbr + 1); i++) {
     cfm_device *module = Device_vec[i];
     if (module != nullptr) {
+      // model connect to relation
       for (cf_count j = 0; j < (cf_count)(C_Nbr + 1); j++) {
         module->p_mq_BRESPin(mq_BRESPin_vec[j]->p_target_socket);
       }
       for (cf_count j = 0; j < (cf_count)(C_Nbr + 1); j++) {
         module->p_mq_RDATAin(mq_RDATAin_vec[j]->p_target_socket);
       }
-module->p_mq_ARADDRchn((p_mq_ARADDRchn);
-module->p_mq_AWADDRchn((p_mq_AWADDRchn);
-module->p_mq_WDATAchn((p_mq_WDATAchn);
+      // model connect to port
+      module->p_mq_ARADDRchn(p_mq_ARADDRchn);
+      module->p_mq_AWADDRchn(p_mq_AWADDRchn);
     }
   }
+  // model connect to relation
   for (cf_count i = 0; i < (cf_count)(C_Nbr + 1); i++) {
     RDDmux->p_mq_RDATAin(mq_RDATAin_vec[i]->p_target_socket);
   }
-RDDmux->p_mq_RDATAchn((p_mq_RDATAchn);
-WRDmux->p_mq_BRESPin((p_mq_BRESPin);
-WRDmux->p_mq_BRESPchn((p_mq_BRESPchn);
-	cf_function_container::elab_end();
+  // model connect to port
+  RDDmux->p_mq_RDATAchn(p_mq_RDATAchn);
+  // model connect to relation
+  for (cf_count i = 0; i < (cf_count)(C_Nbr + 1); i++) {
+    WRDmux->p_mq_BRESPin(mq_BRESPin_vec[i]->p_target_socket);
+  }
+  // model connect to port
+  WRDmux->p_mq_BRESPchn(p_mq_BRESPchn);
+  cf_function_container::elab_end();
 }
 //@}
 

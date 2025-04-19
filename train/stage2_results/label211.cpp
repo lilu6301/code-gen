@@ -25,7 +25,9 @@ void merge_and_sort_vector(std::vector<cf_dt::cf_time> &vect1,
 
 /// \name constructor
 //@{
-cfm_datacenter : cf_application(name), cfm_datacenter_dp_if() {
+cfm_datacenter ::cfm_datacenter()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name), cfm_datacenter_dp_if() {
   cf_application::init();
   // instantiation of models
   DataCenterSwitch = new cfm_datacenterswitch("DataCenterSwitch");
@@ -49,6 +51,7 @@ cfm_datacenter : cf_application(name), cfm_datacenter_dp_if() {
     mq_MsgQToServerRoom_vec.push_back(module);
   }
   // connections
+  // model connect to relation
   for (cf_count i = 0; i < (cf_count)(dpServerRoomNb + 1); i++) {
     DataCenterSwitch->p_mq_MsgQToDataCenterSwitch(
         mq_MsgQToDataCenterSwitch_vec[i]->p_target_socket);
@@ -60,6 +63,7 @@ cfm_datacenter : cf_application(name), cfm_datacenter_dp_if() {
   for (cf_count i = 0; i < (cf_count)(dpServerRoomNb + 1); i++) {
     cfm_serverroom *module = ServerRoom_vec[i];
     if (module != nullptr) {
+      // model connect to relation
       for (cf_count j = 0; j < (cf_count)(dpServerRoomNb + 1); j++) {
         module->p_mq_MsgQToDataCenterSwitch(
             mq_MsgQToDataCenterSwitch_vec[j]->p_target_socket);

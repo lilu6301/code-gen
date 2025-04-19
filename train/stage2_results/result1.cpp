@@ -23,32 +23,32 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_softwaredefinedradioapp : cf_application(name),
-                             cfm_softwaredefinedradioapp_dp_if(),
-                             mq_NetToDVB("NetToDVB"),
-                             mq_NetToUMTS("NetToUMTS"),
-                             mq_Request("Request"),
-                             mq_Response("Response"),
-                             mq_UMTSToNet("UMTSToNet"),
-                             mq_Video("Video") {
+cfm_softwaredefinedradioapp ::cfm_softwaredefinedradioapp()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name), cfm_softwaredefinedradioapp_dp_if(),
+      mq_NetToDpvb("NetToDpvb"), mq_NetToUMTS("NetToUMTS"), mq_Request("Request"),
+      mq_Response("Response"), mq_UMTSToNet("UMTSToNet"), mq_Video("Video") {
   cf_application::init();
   // instantiation of models
   MobilePhone = new cfm_mobilephone("MobilePhone");
   Networks = new cfm_networks("Networks");
   User = new cfm_user("User");
   // connections
-  MobilePhone->p_mq_NetToDVB(mq_NetToDVB);
-  MobilePhone->p_mq_NetToUMTS(mq_NetToUMTS);
-  MobilePhone->p_mq_Request(mq_Request);
-  MobilePhone->p_mq_Response(mq_Response);
-  MobilePhone->p_mq_UMTSToNet(mq_UMTSToNet);
-  MobilePhone->p_mq_Video(mq_Video);
-  Networks->p_mq_NetToDVB(mq_NetToDVB);
-  Networks->p_mq_NetToUMTS(mq_NetToUMTS);
-  Networks->p_mq_UMTSToNet(mq_UMTSToNet);
-  User->p_mq_Request(mq_Request);
-  User->p_mq_Response(mq_Response);
-  User->p_mq_Video(mq_Video);
+  // model connect to relation
+  MobilePhone->p_mq_NetToDpvb(mq_NetToDpvb.p_target_socket);
+  MobilePhone->p_mq_NetToUMTS(mq_NetToUMTS.p_target_socket);
+  MobilePhone->p_mq_Request(mq_Request.p_target_socket);
+  MobilePhone->p_mq_Response(mq_Response.p_target_socket);
+  MobilePhone->p_mq_UMTSToNet(mq_UMTSToNet.p_target_socket);
+  MobilePhone->p_mq_Video(mq_Video.p_target_socket);
+  // model connect to relation
+  Networks->p_mq_NetToDpvb(mq_NetToDpvb.p_target_socket);
+  Networks->p_mq_NetToUMTS(mq_NetToUMTS.p_target_socket);
+  Networks->p_mq_UMTSToNet(mq_UMTSToNet.p_target_socket);
+  // model connect to relation
+  User->p_mq_Request(mq_Request.p_target_socket);
+  User->p_mq_Response(mq_Response.p_target_socket);
+  User->p_mq_Video(mq_Video.p_target_socket);
   cf_application::elab_end();
 }
 //@}
@@ -108,43 +108,43 @@ void cfm_softwaredefinedradioapp::cb_init_attributes() {
   // initialize function attributes
   cfa_cycle_period.init(cf_expr_time(10, CF_NS));
   // initialize relations attributes
-  mq_NetToDVB.cfa_send_time.init(cf_expr_duration(10, CF_US));
-  mq_NetToDVB.cfa_receive_time.init(cf_expr_duration(10, CF_US));
-  mq_NetToDVB.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
-  mq_NetToDVB.cfa_queue_capacity.init((cf_nonzero_count)1);
-  mq_NetToDVB.cfa_concurrency.init((cf_nonzero_count)1);
-  mq_NetToDVB.cfa_send_threshold.init((cf_nonzero_count)1);
-  mq_NetToDVB.cfa_receive_threshold.init((cf_nonzero_count)1);
-  mq_NetToUMTS.cfa_send_time.init(cf_expr_duration(10, CF_US));
-  mq_NetToUMTS.cfa_receive_time.init(cf_expr_duration(10, CF_US));
+  mq_NetToDpvb.cfa_send_time.init(cf_expr_duration(1, CF_NS));
+  mq_NetToDpvb.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
+  mq_NetToDpvb.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
+  mq_NetToDpvb.cfa_queue_capacity.init((cf_nonzero_count)1);
+  mq_NetToDpvb.cfa_concurrency.init((cf_nonzero_count)1);
+  mq_NetToDpvb.cfa_send_threshold.init((cf_nonzero_count)1);
+  mq_NetToDpvb.cfa_receive_threshold.init((cf_nonzero_count)1);
+  mq_NetToUMTS.cfa_send_time.init(cf_expr_duration(1, CF_NS));
+  mq_NetToUMTS.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
   mq_NetToUMTS.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
   mq_NetToUMTS.cfa_queue_capacity.init((cf_nonzero_count)1);
   mq_NetToUMTS.cfa_concurrency.init((cf_nonzero_count)1);
   mq_NetToUMTS.cfa_send_threshold.init((cf_nonzero_count)1);
   mq_NetToUMTS.cfa_receive_threshold.init((cf_nonzero_count)1);
-  mq_Request.cfa_send_time.init(cf_expr_duration(10, CF_US));
-  mq_Request.cfa_receive_time.init(cf_expr_duration(10, CF_US));
+  mq_Request.cfa_send_time.init(cf_expr_duration(1, CF_NS));
+  mq_Request.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
   mq_Request.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
   mq_Request.cfa_queue_capacity.init((cf_nonzero_count)1);
   mq_Request.cfa_concurrency.init((cf_nonzero_count)1);
   mq_Request.cfa_send_threshold.init((cf_nonzero_count)1);
   mq_Request.cfa_receive_threshold.init((cf_nonzero_count)1);
-  mq_Response.cfa_send_time.init(cf_expr_duration(10, CF_US));
-  mq_Response.cfa_receive_time.init(cf_expr_duration(10, CF_US));
+  mq_Response.cfa_send_time.init(cf_expr_duration(1, CF_NS));
+  mq_Response.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
   mq_Response.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
   mq_Response.cfa_queue_capacity.init((cf_nonzero_count)1);
   mq_Response.cfa_concurrency.init((cf_nonzero_count)1);
   mq_Response.cfa_send_threshold.init((cf_nonzero_count)1);
   mq_Response.cfa_receive_threshold.init((cf_nonzero_count)1);
-  mq_UMTSToNet.cfa_send_time.init(cf_expr_duration(10, CF_US));
-  mq_UMTSToNet.cfa_receive_time.init(cf_expr_duration(10, CF_US));
+  mq_UMTSToNet.cfa_send_time.init(cf_expr_duration(1, CF_NS));
+  mq_UMTSToNet.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
   mq_UMTSToNet.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
   mq_UMTSToNet.cfa_queue_capacity.init((cf_nonzero_count)1);
   mq_UMTSToNet.cfa_concurrency.init((cf_nonzero_count)1);
   mq_UMTSToNet.cfa_send_threshold.init((cf_nonzero_count)1);
   mq_UMTSToNet.cfa_receive_threshold.init((cf_nonzero_count)1);
-  mq_Video.cfa_send_time.init(cf_expr_duration(10, CF_US));
-  mq_Video.cfa_receive_time.init(cf_expr_duration(10, CF_US));
+  mq_Video.cfa_send_time.init(cf_expr_duration(1, CF_NS));
+  mq_Video.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
   mq_Video.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
   mq_Video.cfa_queue_capacity.init((cf_nonzero_count)1);
   mq_Video.cfa_concurrency.init((cf_nonzero_count)1);

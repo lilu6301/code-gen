@@ -11,7 +11,7 @@
 #ifdef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #undef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #endif
-#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_cosimvcsumapp
+#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_cosimvcuvmaapp
 #ifdef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #undef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #endif
@@ -31,7 +31,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_consumer : cf_function(name), p_mq_read("p_mq_read") {
+cfm_consumer ::cfm_consumer()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), p_mq_read("p_mq_read") {
   cf_function::init();
   // connections
   cf_function::elab_end();

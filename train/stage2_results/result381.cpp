@@ -31,7 +31,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_startfunc : cf_function(name), p_ev_StartEv("p_ev_StartEv") {
+cfm_startfunc ::cfm_startfunc()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_startfunc_dp_if(), p_ev_StartEv("p_ev_StartEv") {
   cf_function::init();
   // connections
   cf_function::elab_end();

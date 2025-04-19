@@ -31,10 +31,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_sendwackdriver : cf_function(name),
-                    cfm_sendwackdriver_dp_if(),
-                    p_mq_BRESPchn("p_mq_BRESPchn"),
-                    p_mq_WriteAck("p_mq_WriteAck") {
+cfm_sendwackdriver ::cfm_sendwackdriver()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_sendwackdriver_dp_if(),
+      p_mq_BRESPchn("p_mq_BRESPchn"), p_mq_WriteAck("p_mq_WriteAck") {
   cf_function::init();
   // connections
   cf_function::elab_end();
@@ -106,7 +106,6 @@ void cfm_sendwackdriver::cb_init_local_vars(void) {
   bus_efficiency = DP_DDR_EFFICIENCY.get_value();
   frequency_map_GL[DDRMemory] =
       DP_DDR_INIT_FREQ.get_value().to_scalar(CF_HZ);
-  latency = (float)DP_DDR_LATENCY.get_value().to_scalar(CF_CYCLE);
   // End of 'SendWAckDriver initializations' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
 }

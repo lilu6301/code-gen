@@ -30,10 +30,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_memorycommandexecution : cf_function(name),
-                             cfm_memorycommandexecution_dp_if(),
-                             p_mq_DDRAction("p_mq_DDRAction"),
-                             p_mq_DQs("p_mq_DQs") {
+cfm_memorycommandexecution ::cfm_memorycommandexecution()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_memorycommandexecution_dp_if(),
+      p_mq_DDRAction("p_mq_DDRAction"), p_mq_DQs("p_mq_DQs") {
   cf_function::init();
   // connections
   cf_function::elab_end();

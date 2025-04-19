@@ -23,19 +23,14 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_tlm2at : cf_application(name),
-             mq_InitiatorReader("InitiatorReader"),
-             mq_InitiatorWriter("InitiatorWriter"),
-             mq_ReaderResponse("ReaderResponse"),
-             mq_ReferenceQueue("ReferenceQueue"),
-             mq_ReferenceQueue2("ReferenceQueue2"),
-             mq_ReferenceQueue3("ReferenceQueue3"),
-             ev_Sync("Sync"),
-             ev_Sync2("Sync2"),
-             ev_Sync3("Sync3"),
-             mq_TargetRequest("TargetRequest"),
-             mq_TargetResponse("TargetResponse"),
-             mq_TargetWrapper("TargetWrapper") {
+cfm_tlm2at ::cfm_tlm2at()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name), ev_Sync("Sync"), ev_Sync2("Sync2"),
+      ev_Sync3("Sync3"), mq_InitiatorReader("InitiatorReader"),
+      mq_InitiatorWriter("InitiatorWriter"), mq_ReaderResponse("ReaderResponse"),
+      mq_ReferenceQueue("ReferenceQueue"), mq_ReferenceQueue2("ReferenceQueue2"),
+      mq_ReferenceQueue3("ReferenceQueue3"), mq_TargetRequest("TargetRequest"),
+      mq_TargetResponse("TargetResponse"), mq_TargetWrapper("TargetWrapper") {
   cf_application::init();
   // instantiation of models
   Reader = new cfm_reader("Reader");
@@ -44,25 +39,29 @@ cfm_tlm2at : cf_application(name),
   Target_2 = new cfm_target_2("Target_2");
   Writer = new cfm_writer("Writer");
   // connections
-  Reader->p_mq_InitiatorReader(mq_InitiatorReader);
-  Reader->p_mq_ReaderResponse(mq_ReaderResponse);
-  Reader->p_mq_ReferenceQueue3(mq_ReferenceQueue3);
-  Reader->p_ev_Sync(ev_Sync);
-  Target->p_mq_ReaderResponse(mq_ReaderResponse);
-  Target->p_mq_ReferenceQueue2(mq_ReferenceQueue2);
-  Target->p_ev_Sync2(ev_Sync2);
-  Target_2->p_mq_ReferenceQueue(mq_ReferenceQueue);
-  Target_2->p_mq_TargetRequest(mq_TargetRequest);
-  Target_2->p_mq_TargetResponse(mq_TargetResponse);
-  Target_2->p_mq_TargetWrapper(mq_TargetWrapper);
-  Target_2->p_ev_Sync3(ev_Sync3);
-  Writer->p_mq_InitiatorWriter(mq_InitiatorWriter);
-  Writer->p_mq_ReferenceQueue(mq_ReferenceQueue);
-  Writer->p_mq_ReferenceQueue2(mq_ReferenceQueue2);
-  Writer->p_mq_ReferenceQueue3(mq_ReferenceQueue3);
-  Writer->p_ev_Sync(ev_Sync);
-  Writer->p_ev_Sync2(ev_Sync2);
-  Writer->p_ev_Sync3(ev_Sync3);
+  // model connect to relation
+  Reader->p_mq_InitiatorReader(mq_InitiatorReader.p_target_socket);
+  Reader->p_mq_ReaderResponse(mq_ReaderResponse.p_target_socket);
+  Reader->p_mq_ReferenceQueue3(mq_ReferenceQueue3.p_target_socket);
+  Reader->p_ev_Sync(ev_Sync.p_target_socket);
+  // model connect to relation
+  TLM2Platfom->p_mq_InitiatorWriter(mq_InitiatorWriter.p_target_socket);
+  // model connect to relation
+  Target->p_mq_ReferenceQueue2(mq_ReferenceQueue2.p_target_socket);
+  Target->p_mq_TargetResponse(mq_TargetResponse.p_target_socket);
+  Target->p_mq_TargetWrapper(mq_TargetWrapper.p_target_socket);
+  // model connect to relation
+  Target_2->p_mq_ReferenceQueue3(mq_ReferenceQueue3.p_target_socket);
+  Target_2->p_mq_TargetRequest(mq_TargetRequest.p_target_socket);
+  Target_2->p_mq_TargetResponse(mq_TargetResponse.p_target_socket);
+  // model connect to relation
+  Writer->p_mq_InitiatorWriter(mq_InitiatorWriter.p_target_socket);
+  Writer->p_mq_ReferenceQueue(mq_ReferenceQueue.p_target_socket);
+  Writer->p_mq_ReferenceQueue2(mq_ReferenceQueue2.p_target_socket);
+  Writer->p_mq_ReferenceQueue3(mq_ReferenceQueue3.p_target_socket);
+  Writer->p_ev_Sync(ev_Sync.p_target_socket);
+  Writer->p_ev_Sync2(ev_Sync2.p_target_socket);
+  Writer->p_ev_Sync3(ev_Sync3.p_target_socket);
   cf_application::elab_end();
 }
 //@}
@@ -129,67 +128,55 @@ void cfm_tlm2at::cb_init_attributes() {
   mq_InitiatorReader.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
   mq_InitiatorReader.cfa_queue_capacity.init((cf_nonzero_count)1);
   mq_InitiatorReader.cfa_concurrency.init((cf_nonzero_count)1);
-  mq_InitiatorReader.cfa_send_threshold.init((cf_nonzero_count)1);
-  mq_InitiatorReader.cfa_receive_threshold.init((cf_nonzero_count)1);
   mq_InitiatorWriter.cfa_send_time.init(cf_expr_duration(1, CF_NS));
   mq_InitiatorWriter.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
   mq_InitiatorWriter.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
   mq_InitiatorWriter.cfa_queue_capacity.init((cf_nonzero_count)1);
   mq_InitiatorWriter.cfa_concurrency.init((cf_nonzero_count)1);
-  mq_InitiatorWriter.cfa_send_threshold.init((cf_nonzero_count)1);
-  mq_InitiatorWriter.cfa_receive_threshold.init((cf_nonzero_count)1);
   mq_ReaderResponse.cfa_send_time.init(cf_expr_duration(1, CF_NS));
   mq_ReaderResponse.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
   mq_ReaderResponse.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
   mq_ReaderResponse.cfa_queue_capacity.init((cf_nonzero_count)1);
   mq_ReaderResponse.cfa_concurrency.init((cf_nonzero_count)1);
-  mq_ReaderResponse.cfa_send_threshold.init((cf_nonzero_count)1);
-  mq_ReaderResponse.cfa_receive_threshold.init((cf_nonzero_count)1);
   mq_ReferenceQueue.cfa_send_time.init(cf_expr_duration(1, CF_NS));
   mq_ReferenceQueue.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
   mq_ReferenceQueue.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
   mq_ReferenceQueue.cfa_queue_capacity.init((cf_nonzero_count)1);
   mq_ReferenceQueue.cfa_concurrency.init((cf_nonzero_count)1);
-  mq_ReferenceQueue.cfa_send_threshold.init((cf_nonzero_count)1);
-  mq_ReferenceQueue.cfa_receive_threshold.init((cf_nonzero_count)1);
   mq_ReferenceQueue2.cfa_send_time.init(cf_expr_duration(1, CF_NS));
   mq_ReferenceQueue2.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
   mq_ReferenceQueue2.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
   mq_ReferenceQueue2.cfa_queue_capacity.init((cf_nonzero_count)1);
   mq_ReferenceQueue2.cfa_concurrency.init((cf_nonzero_count)1);
-  mq_ReferenceQueue2.cfa_send_threshold.init((cf_nonzero_count)1);
-  mq_ReferenceQueue2.cfa_receive_threshold.init((cf_nonzero_count)1);
   mq_ReferenceQueue3.cfa_send_time.init(cf_expr_duration(1, CF_NS));
   mq_ReferenceQueue3.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
   mq_ReferenceQueue3.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
   mq_ReferenceQueue3.cfa_queue_capacity.init((cf_nonzero_count)1);
   mq_ReferenceQueue3.cfa_concurrency.init((cf_nonzero_count)1);
-  mq_ReferenceQueue3.cfa_send_threshold.init((cf_nonzero_count)1);
-  mq_ReferenceQueue3.cfa_receive_threshold.init((cf_nonzero_count)1);
   ev_Sync.cfa_set_time.init(cf_expr_duration(1, CF_NS));
   ev_Sync.cfa_get_time.init(cf_expr_duration(1, CF_NS));
   ev_Sync.cfa_event_policy.init(CF_EV_POLICY_BOOLEAN);
+  ev_Sync2.cfa_set_time.init(cf_expr_duration(1, CF_NS));
+  ev_Sync2.cfa_get_time.init(cf_expr_duration(1, CF_NS));
+  ev_Sync2.cfa_event_policy.init(CF_EV_POLICY_BOOLEAN);
+  ev_Sync3.cfa_set_time.init(cf_expr_duration(1, CF_NS));
+  ev_Sync3.cfa_get_time.init(cf_expr_duration(1, CF_NS));
+  ev_Sync3.cfa_event_policy.init(CF_EV_POLICY_BOOLEAN);
   mq_TargetRequest.cfa_send_time.init(cf_expr_duration(1, CF_NS));
   mq_TargetRequest.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
   mq_TargetRequest.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
   mq_TargetRequest.cfa_queue_capacity.init((cf_nonzero_count)1);
   mq_TargetRequest.cfa_concurrency.init((cf_nonzero_count)1);
-  mq_TargetRequest.cfa_send_threshold.init((cf_nonzero_count)1);
-  mq_TargetRequest.cfa_receive_threshold.init((cf_nonzero_count)1);
   mq_TargetResponse.cfa_send_time.init(cf_expr_duration(1, CF_NS));
   mq_TargetResponse.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
   mq_TargetResponse.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
   mq_TargetResponse.cfa_queue_capacity.init((cf_nonzero_count)1);
   mq_TargetResponse.cfa_concurrency.init((cf_nonzero_count)1);
-  mq_TargetResponse.cfa_send_threshold.init((cf_nonzero_count)1);
-  mq_TargetResponse.cfa_receive_threshold.init((cf_nonzero_count)1);
   mq_TargetWrapper.cfa_send_time.init(cf_expr_duration(1, CF_NS));
   mq_TargetWrapper.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
   mq_TargetWrapper.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
   mq_TargetWrapper.cfa_queue_capacity.init((cf_nonzero_count)1);
   mq_TargetWrapper.cfa_concurrency.init((cf_nonzero_count)1);
-  mq_TargetWrapper.cfa_send_threshold.init((cf_nonzero_count)1);
-  mq_TargetWrapper.cfa_receive_threshold.init((cf_nonzero_count)1);
 
   return;
 }

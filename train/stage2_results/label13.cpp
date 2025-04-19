@@ -30,25 +30,29 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_videoprotocolstack : cf_function_container(name),
-                         cfm_videoprotocolstack_dp_if(),
-                         mq_IPToRTP("IPToRTP"),
-                         mq_MPEToIP("MPEToIP"),
-                         p_mq_NetToDVB("p_mq_NetToDVB"),
-                         p_mq_RTPToApp("p_mq_RTPToApp") {
+cfm_videoprotocolstack ::cfm_videoprotocolstack()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_container(name), cfm_videoprotocolstack_dp_if(),
+      mq_IPToRTP("IPToRTP"), mq_MPEToIP("MPEToIP"),
+      p_mq_NetToDVB("p_mq_NetToDVB"), p_mq_RTPToApp("p_mq_RTPToApp") {
   cf_function_container::init();
   // instantiation of models
   IPVideo = new cfm_ipvideo("IPVideo");
   MPETSL = new cfm_mpetsl("MPETSL");
   RTPUDP = new cfm_rtpudp("RTPUDP");
   // connections
-  IPVideo->p_mq_IPToRTP(mq_IPToRTP);
-  IPVideo->p_mq_MPEToIP(mq_MPEToIP);
-  MPETSL->p_mq_MPEToIP(mq_MPEToIP);
-MPETSL->p_mq_NetToDVB((p_mq_NetToDVB);
-RTPUDP->p_mq_IPToRTP(mq_IPToRTP);
-RTPUDP->p_mq_RTPToApp((p_mq_RTPToApp);
-	cf_function_container::elab_end();
+  // model connect to relation
+  IPVideo->p_mq_IPToRTP(mq_IPToRTP.p_target_socket);
+  IPVideo->p_mq_MPEToIP(mq_MPEToIP.p_target_socket);
+  // model connect to relation
+  MPETSL->p_mq_MPEToIP(mq_MPEToIP.p_target_socket);
+  // model connect to port
+  MPETSL->p_mq_NetToDVB(p_mq_NetToDVB);
+  // model connect to relation
+  RTPUDP->p_mq_IPToRTP(mq_IPToRTP.p_target_socket);
+  // model connect to port
+  RTPUDP->p_mq_RTPToApp(p_mq_RTPToApp);
+  cf_function_container::elab_end();
 }
 //@}
 

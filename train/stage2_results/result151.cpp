@@ -23,27 +23,27 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_ddrmemory : cf_application(name),
-                mq_ARADDRchn("ARADDRchn"),
-                mq_AWADDRchn("AWADDRchn"),
-                mq_BRESPchn("BRESPchn"),
-                mq_RDATAchn("RDATAchn"),
-                mq_WDATAchn("WDATAchn") {
+cfm_ddrmemory ::cfm_ddrmemory()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name), mq_ARADDRchn("ARADDRchn"), mq_AWADDRchn("AWADDRchn"),
+      mq_BRESPchn("BRESPchn"), mq_RDATAchn("RDATAchn"), mq_WDATAchn("WDATAchn") {
   cf_application::init();
   // instantiation of models
   ClientSide = new cfm_clientside("ClientSide");
   Target = new cfm_target("Target");
   // connections
-  ClientSide->p_mq_ARADDRchn(mq_ARADDRchn);
-  ClientSide->p_mq_AWADDRchn(mq_AWADDRchn);
-  ClientSide->p_mq_BRESPchn(mq_BRESPchn);
-  ClientSide->p_mq_RDATAchn(mq_RDATAchn);
-  ClientSide->p_mq_WDATAchn(mq_WDATAchn);
-  Target->p_mq_ARADDRchn(mq_ARADDRchn);
-  Target->p_mq_AWADDRchn(mq_AWADDRchn);
-  Target->p_mq_BRESPchn(mq_BRESPchn);
-  Target->p_mq_RDATAchn(mq_RDATAchn);
-  Target->p_mq_WDATAchn(mq_WDATAchn);
+  // model connect to relation
+  ClientSide->p_mq_ARADDRchn(mq_ARADDRchn.p_target_socket);
+  ClientSide->p_mq_AWADDRchn(mq_AWADDRchn.p_target_socket);
+  ClientSide->p_mq_BRESPchn(mq_BRESPchn.p_target_socket);
+  ClientSide->p_mq_RDATAchn(mq_RDATAchn.p_target_socket);
+  ClientSide->p_mq_WDATAchn(mq_WDATAchn.p_target_socket);
+  // model connect to relation
+  Target->p_mq_ARADDRchn(mq_ARADDRchn.p_target_socket);
+  Target->p_mq_AWADDRchn(mq_AWADDRchn.p_target_socket);
+  Target->p_mq_BRESPchn(mq_BRESPchn.p_target_socket);
+  Target->p_mq_RDATAchn(mq_RDATAchn.p_target_socket);
+  Target->p_mq_WDATAchn(mq_WDATAchn.p_target_socket);
   cf_application::elab_end();
 }
 //@}

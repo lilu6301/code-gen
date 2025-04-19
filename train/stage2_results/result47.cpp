@@ -31,10 +31,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_httptcp_receive : cf_function(name),
-                     cfm_httptcp_receive_dp_if(),
-                     p_mq_IPToHTTP("p_mq_IPToHTTP"),
-                     p_mq_HTTPToApp("p_mq_HTTPToApp") {
+cfm_httptcp_receive ::cfm_httptcp_receive()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_httptcp_receive_dp_if(),
+      p_mq_HTTPToApp("p_mq_HTTPToApp"), p_mq_IPToHTTP("p_mq_IPToHTTP") {
   cf_function::init();
   // connections
   cf_function::elab_end();

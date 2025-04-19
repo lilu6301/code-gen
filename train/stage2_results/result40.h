@@ -13,6 +13,7 @@
 #include "cfm_softwaredefinedradioapp_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_ipvideo_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defvideo.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -32,6 +33,7 @@ public:
 	/// cfm_ipvideo type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_ipvideo, cft_defvideo> p_mq_IPToRTP_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_ipvideo, cft_defvideo> p_mq_MPEToIP_t;
 	/// cfm_ipvideo type define end
@@ -48,6 +50,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_IPToRTP_t p_mq_IPToRTP;
 	p_mq_MPEToIP_t p_mq_MPEToIP;
 	//@}
@@ -64,6 +67,7 @@ protected:
 	/// \name user-defined local declarations
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'IPVideo local declarations' algorithm generated code
+	int MVX, MVY;
 	int NbPicture;
 	short NbLines;
 	short NbPixelsPerLine;

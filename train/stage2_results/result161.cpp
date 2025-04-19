@@ -23,9 +23,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_rddmux : cf_function_router(name),
-             p_mq_RDATAchn("p_mq_RDATAchn"),
-             p_mq_RDATAin("p_mq_RDATAin") {
+cfm_rddmux ::cfm_rddmux()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_router(name), cfm_rddmux_dp_if(),
+      p_mq_RDATAchn("p_mq_RDATAchn"), p_mq_RDATAin("p_mq_RDATAin") {
   cf_function_router::init();
   // connections
   cf_function_router::elab_end();
@@ -95,7 +96,7 @@ string cfm_rddmux::cb_select_destination_name(cf_payload_b *_trans) {
   string source_name = get_source_name();
   //<#!@READ-ONLY-SECTION-END@!#>
   // Start of 'RDDmux destination' algorithm generated code
-  return "RDATAin";
+  return source_name;
   // End of 'RDDmux destination' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
   return "";

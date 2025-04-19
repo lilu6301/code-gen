@@ -23,10 +23,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_raddrdmux : cf_function_router(name),
-                cfm_raddrdmux_dp_if(),
-                p_mq_ARADDRchn("p_mq_ARADDRchn"),
-                p_mq_ARADDRin("p_mq_ARADDRin") {
+cfm_raddrdmux ::cfm_raddrdmux()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_router(name), cfm_raddrdmux_dp_if(),
+      p_mq_ARADDRchn("p_mq_ARADDRchn"), p_mq_ARADDRin("p_mq_ARADDRin") {
   cf_function_router::init();
   // connections
   cf_function_router::elab_end();
@@ -96,7 +96,7 @@ string cfm_raddrdmux::cb_select_destination_name(cf_payload_b *_trans) {
   string source_name = get_source_name();
   //<#!@READ-ONLY-SECTION-END@!#>
   // Start of 'RAddrDmux destination' algorithm generated code
-  return "ARADDRin";
+  return source_name;
   // End of 'RAddrDmux destination' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
   return "";

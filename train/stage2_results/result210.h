@@ -16,11 +16,12 @@
 #include "dp/cfm_datacenter_dp_if.h"
 #include "cfm_datacenterswitch.h"
 #include "cfm_serverroom.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defpacket.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'datacenter includes' algorithm generated code
-
+#include <chrono>
 //End of 'datacenter includes' algorithm generated code
 //<#!@READ-ONLY-SECTION-START@!#>
 /// Model Header includes end
@@ -35,6 +36,7 @@ class cfm_datacenter: public cf_core::cf_application,
 public:
 	/// cfm_datacenter type define start
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQToDataCenterSwitch_t;
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQToServerRoom_t;
 
@@ -53,6 +55,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_datacenterswitch* DataCenterSwitch;
 	std::vector<cfm_serverroom*> ServerRoom_vec;
 	//@}
@@ -66,6 +69,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	std::vector<mq_MsgQToDataCenterSwitch_t*> mq_MsgQToDataCenterSwitch_vec;
 	std::vector<mq_MsgQToServerRoom_t*> mq_MsgQToServerRoom_vec;
 	//@}
@@ -76,7 +80,7 @@ public:
 	/// \name user-defined local declarations
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'datacenter local declarations' algorithm generated code
-
+	std::chrono::high_resolution_clock::time_point t_start;
 	//End of 'datacenter local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 

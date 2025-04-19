@@ -12,6 +12,7 @@
 #include "cfm_bluetooth_ips_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_l2cap_send_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defl2cap_out.h"
 #include "dt/cft_defrfcomm_out.h"
 
@@ -32,6 +33,7 @@ public:
 	/// cfm_l2cap_send type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_l2cap_send, cft_defl2cap_out> p_mq_L2CAP_Out_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_l2cap_send, cft_defrfcomm_out> p_mq_RFCOMM_Out_t;
 	/// cfm_l2cap_send type define end
@@ -48,6 +50,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_L2CAP_Out_t p_mq_L2CAP_Out;
 	p_mq_RFCOMM_Out_t p_mq_RFCOMM_Out;
 	//@}

@@ -30,19 +30,17 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_backend : cf_function_container(name),
-              cfm_backend_dp_if(),
-              ev_RequestCounter("RequestCounter"),
-              mq_RequestInformation("RequestInformation"),
-              mq_Requests2Memory("Requests2Memory"),
-              p_mq_DDRCommand("p_mq_DDRCommand"),
-              p_mq_DQs("p_mq_DQs"),
-              p_mq_DataRead("p_mq_DataRead"),
-              p_mq_MemReadRequest("p_mq_MemReadRequest"),
-              p_mq_MemWriteRequest("p_mq_MemWriteRequest"),
-              p_mq_WriteAck_0("p_mq_WriteAck_0"),
-              p_mq_WriteAck_1("p_mq_WriteAck_1"),
-              sv_ListRequestsPtr("ListRequestsPtr") {
+cfm_backend ::cfm_backend()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_container(name), cfm_backend_dp_if(),
+      ev_RequestCounter("RequestCounter"),
+      mq_RequestInformation("RequestInformation"),
+      mq_Requests2Memory("Requests2Memory"), p_mq_DDRCommand("p_mq_DDRCommand"),
+      p_mq_DQs("p_mq_DQs"), p_mq_DataRead("p_mq_DataRead"),
+      p_mq_MemReadRequest("p_mq_MemReadRequest"),
+      p_mq_MemWriteRequest("p_mq_MemWriteRequest"),
+      p_mq_WriteAck_0("p_mq_WriteAck_0"), p_mq_WriteAck_1("p_mq_WriteAck_1"),
+      sv_ListRequestsPtr("ListRequestsPtr") {
   cf_function_container::init();
   // instantiation of models
   Arbitration = new cfm_arbitration("Arbitration");
@@ -57,26 +55,36 @@ cfm_backend : cf_function_container(name),
     sv_MemoryStatus_vec.push_back(module);
   }
   // connections
-  Arbitration->p_sv_ListRequestsPtr(sv_ListRequestsPtr);
-  Arbitration->p_ev_RequestCounter(ev_RequestCounter);
-  Arbitration->p_mq_RequestInformation(mq_RequestInformation);
-  Arbitration->p_mq_Requests2Memory(mq_Requests2Memory);
-Arbitration->p_mq_WriteAck((p_mq_WriteAck);
-CollectRequests->p_sv_ListRequestsPtr(sv_ListRequestsPtr);
-CollectRequests->p_ev_RequestCounter(ev_RequestCounter);
-CollectRequests->p_mq_MemReadRequest((p_mq_MemReadRequest);
-CollectRequests->p_mq_MemWriteRequest((p_mq_MemWriteRequest);
-for (cf_count i = 0; i < (cf_count)( M_Nbr + 1); i++) {
+  // model connect to relation
+  Arbitration->p_sv_ListRequestsPtr(sv_ListRequestsPtr.p_target_socket);
+  Arbitration->p_ev_RequestCounter(ev_RequestCounter.p_target_socket);
+  Arbitration->p_mq_RequestInformation(mq_RequestInformation.p_target_socket);
+  Arbitration->p_mq_Requests2Memory(mq_Requests2Memory.p_target_socket);
+  // model connect to port
+  Arbitration->p_mq_WriteAck(p_mq_WriteAck);
+  // model connect to relation
+  CollectRequests->p_sv_ListRequestsPtr(sv_ListRequestsPtr.p_target_socket);
+  CollectRequests->p_ev_RequestCounter(ev_RequestCounter.p_target_socket);
+  // model connect to port
+  CollectRequests->p_mq_MemReadRequest(p_mq_MemReadRequest);
+  CollectRequests->p_mq_MemWriteRequest(p_mq_MemWriteRequest);
+  // model connect to relation
+  for (cf_count i = 0; i < (cf_count)(M_Nbr + 1); i++) {
     DDRCommandGeneration->p_sv_MemoryStatus(
         sv_MemoryStatus_vec[i]->p_target_socket);
-	}
-DDRCommandGeneration->p_mq_Requests2Memory(mq_Requests2Memory);
-DDRCommandGeneration->p_mq_DDRCommand((p_mq_DDRCommand);
-ResponseForward->p_mq_RequestInformation(mq_RequestInformation);
-ResponseForward->p_mq_DQs((p_mq_DQs);
-ResponseForward->p_mq_DataRead((p_mq_DataRead);
-ResponseForward->p_mq_WriteAck((p_mq_WriteAck);
-	cf_function_container::elab_end();
+  }
+  DDRCommandGeneration->p_mq_Requests2Memory(
+      mq_Requests2Memory.p_target_socket);
+  // model connect to port
+  DDRCommandGeneration->p_mq_DDRCommand(p_mq_DDRCommand);
+  // model connect to relation
+  ResponseForward->p_mq_RequestInformation(
+      mq_RequestInformation.p_target_socket);
+  // model connect to port
+  ResponseForward->p_mq_DQs(p_mq_DQs);
+  ResponseForward->p_mq_DataRead(p_mq_DataRead);
+  ResponseForward->p_mq_WriteAck(p_mq_WriteAck);
+  cf_function_container::elab_end();
 }
 //@}
 

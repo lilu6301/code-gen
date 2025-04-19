@@ -30,9 +30,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_receivewack : cf_function(name),
-                  cfm_receivewack_dp_if(),
-                  p_mq_BRESPin("p_mq_BRESPin") {
+cfm_receivewack ::cfm_receivewack()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_receivewack_dp_if(), p_mq_BRESPin("p_mq_BRESPin") {
   cf_function::init();
   // connections
   cf_function::elab_end();

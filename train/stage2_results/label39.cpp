@@ -30,10 +30,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_rtpudp : cf_function(name),
-             cfm_rtpudp_dp_if(),
-             p_mq_IPToRTP("p_mq_IPToRTP"),
-             p_mq_RTPToApp("p_mq_RTPToApp") {
+cfm_rtpudp ::cfm_rtpudp()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_rtpudp_dp_if(), p_mq_IPToRTP("p_mq_IPToRTP"),
+      p_mq_RTPToApp("p_mq_RTPToApp") {
   cf_function::init();
   // connections
   cf_function::elab_end();

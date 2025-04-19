@@ -31,10 +31,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_ob_out : cf_function(name),
-             p_mq_OB_Out1("p_mq_OB_Out1"),
-             p_mq_OB_Out2("p_mq_OB_Out2"),
-             p_mq_OBEX_Out("p_mq_OBEX_Out") {
+cfm_ob_out ::cfm_ob_out()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_ob_out_dp_if(), p_mq_OBEX_Out("p_mq_OBEX_Out"),
+      p_mq_OB_Out1("p_mq_OB_Out1"), p_mq_OB_Out2("p_mq_OB_Out2") {
   cf_function::init();
   // connections
   cf_function::elab_end();

@@ -22,32 +22,32 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_softwaredefinedradioapp : cf_application(name),
-                              cfm_softwaredefinedradioapp_dp_if(),
-                              mq_NetToDVB("NetToDVB"),
-                              mq_NetToUMTS("NetToUMTS"),
-                              mq_Request("Request"),
-                              mq_Response("Response"),
-                              mq_UMTSToNet("UMTSToNet"),
-                              mq_Video("Video") {
+cfm_softwaredefinedradioapp ::cfm_softwaredefinedradioapp()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name), cfm_softwaredefinedradioapp_dp_if(),
+      mq_NetToDVB("NetToDVB"), mq_NetToUMTS("NetToUMTS"), mq_Request("Request"),
+      mq_Response("Response"), mq_UMTSToNet("UMTSToNet"), mq_Video("Video") {
   cf_application::init();
   // instantiation of models
   MobilePhone = new cfm_mobilephone("MobilePhone");
   Networks = new cfm_networks("Networks");
   User = new cfm_user("User");
   // connections
-  MobilePhone->p_mq_NetToDVB(mq_NetToDVB);
-  MobilePhone->p_mq_NetToUMTS(mq_NetToUMTS);
-  MobilePhone->p_mq_Request(mq_Request);
-  MobilePhone->p_mq_Response(mq_Response);
-  MobilePhone->p_mq_UMTSToNet(mq_UMTSToNet);
-  MobilePhone->p_mq_Video(mq_Video);
-  Networks->p_mq_NetToDVB(mq_NetToDVB);
-  Networks->p_mq_NetToUMTS(mq_NetToUMTS);
-  Networks->p_mq_UMTSToNet(mq_UMTSToNet);
-  User->p_mq_Request(mq_Request);
-  User->p_mq_Response(mq_Response);
-  User->p_mq_Video(mq_Video);
+  // model connect to relation
+  MobilePhone->p_mq_NetToDVB(mq_NetToDVB.p_target_socket);
+  MobilePhone->p_mq_NetToUMTS(mq_NetToUMTS.p_target_socket);
+  MobilePhone->p_mq_Request(mq_Request.p_target_socket);
+  MobilePhone->p_mq_Response(mq_Response.p_target_socket);
+  MobilePhone->p_mq_UMTSToNet(mq_UMTSToNet.p_target_socket);
+  MobilePhone->p_mq_Video(mq_Video.p_target_socket);
+  // model connect to relation
+  Networks->p_mq_NetToDVB(mq_NetToDVB.p_target_socket);
+  Networks->p_mq_NetToUMTS(mq_NetToUMTS.p_target_socket);
+  Networks->p_mq_UMTSToNet(mq_UMTSToNet.p_target_socket);
+  // model connect to relation
+  User->p_mq_Request(mq_Request.p_target_socket);
+  User->p_mq_Response(mq_Response.p_target_socket);
+  User->p_mq_Video(mq_Video.p_target_socket);
   cf_application::elab_end();
 }
 //@}

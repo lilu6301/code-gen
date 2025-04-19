@@ -20,6 +20,7 @@
 #include "wrappers/cfm_initiatorwriter_tlm2_at_initiator.h"
 #include "wrappers/cfm_targetrequest_tlm2_at_target.h"
 #include "wrappers/cfm_targetwrapper_tlm2_at_target.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defdata.h"
 #include "dt/cft_defmsgq.h"
 
@@ -42,15 +43,16 @@ public:
 	/// systemC IPs typedef
 	typedef at_top TLM2Platfom_t;
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
+	typedef cf_core::cf_event ev_Sync2_t;
+	typedef cf_core::cf_event ev_Sync3_t;
+	typedef cf_core::cf_event ev_Sync_t;
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_tlm2> mq_InitiatorReader_t;
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_tlm2> mq_InitiatorWriter_t;
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_tlm2> mq_ReaderResponse_t;
-	typedef cf_core::cf_message_queue<cft_defdata> mq_ReferenceQueue_t;
 	typedef cf_core::cf_message_queue<cft_defdata> mq_ReferenceQueue2_t;
 	typedef cf_core::cf_message_queue<cft_defmsgq> mq_ReferenceQueue3_t;
-	typedef cf_core::cf_event ev_Sync_t;
-	typedef cf_core::cf_event ev_Sync2_t;
-	typedef cf_core::cf_event ev_Sync3_t;
+	typedef cf_core::cf_message_queue<cft_defdata> mq_ReferenceQueue_t;
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_tlm2> mq_TargetRequest_t;
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_tlm2> mq_TargetResponse_t;
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_tlm2> mq_TargetWrapper_t;
@@ -70,6 +72,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_reader* Reader;
 	TLM2Platfom_t* TLM2Platfom;
 	cfm_target* Target;
@@ -86,6 +89,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	ev_Sync2_t ev_Sync2;
 	ev_Sync3_t ev_Sync3;
 	ev_Sync_t ev_Sync;

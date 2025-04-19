@@ -11,7 +11,7 @@
 #ifdef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #undef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #endif
-#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_applicationmodelrefinement
+#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_producer
 #ifdef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #undef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #endif
@@ -31,11 +31,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_sender : cf_function(name),
-             p_ev_Req("p_ev_Req"),
-             p_mq_Ack("p_mq_Ack"),
-             p_mq_Msg("p_mq_Msg"),
-             p_sv_DataVar("p_sv_DataVar") {
+cfm_sender ::cfm_sender()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), p_ev_Req("p_ev_Req"), p_mq_Ack("p_mq_Ack"),
+      p_mq_Msg("p_mq_Msg"), p_sv_DataVar("p_sv_DataVar") {
   cf_function::init();
   // connections
   cf_function::elab_end();
@@ -91,7 +90,6 @@ void cfm_sender::cb_end_of_simulation(void) {
 void cfm_sender::cb_init_attributes() {
 
   // initialize function attributes
-  cfa_cycle_period.init(cf_expr_time(10, CF_NS));
   cfa_scope.init(CF_FCT_SYSTEM);
 
   return;
@@ -104,7 +102,8 @@ void cfm_sender::cb_init_local_vars(void) {
 
   //<#!@READ-ONLY-SECTION-END@!#>
   // Start of 'Sender initializations' algorithm generated code
-
+  PreviousData = 0;
+  DataVarSize = 0;
   // End of 'Sender initializations' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
 }

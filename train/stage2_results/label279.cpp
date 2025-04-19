@@ -30,11 +30,12 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_f1
-    : Start of 'Inherited classes call' from
-          F1 's model property generated code*/camera_class(640, 480), cf_function(name)End of ' Inherited
-              classes call ' from F1' s model property generated code * /
-{
+cfm_f1 ::cfm_f1()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      Start of 'Inherited classes call' from F1
+      's model property generated code*/camera_class(640, 480), cf_function(name)End of ' Inherited
+      classes call ' from F1' s model property generated code
+      * / {
   cf_function::init();
   // connections
   cf_function::elab_end();

@@ -23,9 +23,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_wrdmux : cf_function_router(name),
-             p_mq_BRESPin("p_mq_BRESPin"),
-             p_mq_BRESPchn("p_mq_BRESPchn") {
+cfm_wrdmux ::cfm_wrdmux()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_router(name), cfm_wrdmux_dp_if(),
+      p_mq_BRESPchn("p_mq_BRESPchn"), p_mq_BRESPin("p_mq_BRESPin") {
   cf_function_router::init();
   // connections
   cf_function_router::elab_end();
@@ -95,10 +96,21 @@ string cfm_wrdmux::cb_select_destination_name(cf_payload_b *_trans) {
   string source_name = get_source_name();
   //<#!@READ-ONLY-SECTION-END@!#>
   // Start of 'WRDmux destination' algorithm generated code
-  return "BRESPin";
+  DefBRESPchn *resp = ((cft_defbrespchn *)_trans)->get_data_ptr();
+  if (resp != nullptr) {
+    return "BRESPin";
+  } else {
+    return "BRESPchn";
+  }
   // End of 'WRDmux destination' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
   return "";
+}
+//@}
+/// \name Overload function for WRDmux router routing time method
+//@{
+cf_duration cfm_wrdmux::cb_routing_time(cf_payload_b *_trans) {
+  return cf_expr_duration(10, CF_NS);
 }
 //@}
 

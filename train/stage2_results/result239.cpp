@@ -31,9 +31,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_consumer : cf_function(name),
-               cfm_consumer_dp_if(),
-               p_mq_MsgQToServer("p_mq_MsgQToServer") {
+cfm_consumer ::cfm_consumer()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_consumer_dp_if(),
+      p_mq_MsgQToServer("p_mq_MsgQToServer") {
   cf_function::init();
   // connections
   cf_function::elab_end();
@@ -101,7 +102,13 @@ void cfm_consumer::cb_init_local_vars(void) {
 
   //<#!@READ-ONLY-SECTION-END@!#>
   // Start of 'Consumer initializations' algorithm generated code
-
+  // Initialize components ID
+  server_room_id =
+      get_container()->get_container()->get_container()->get_cp_index();
+  rack_id = get_container()->get_container()->get_container()->get_cp_index();
+  server_id = get_container()->get_container()->get_cp_index();
+  // Init latency
+  latency = cf_dt::cf_time(0, CF_SEC);
   // End of 'Consumer initializations' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
 }

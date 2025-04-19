@@ -31,9 +31,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_outboundaggswitch
-    : cf_function(name),
-      cfm_outboundaggswitch_dp_if(),
+cfm_outboundaggswitch ::cfm_outboundaggswitch()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_outboundaggswitch_dp_if(),
       p_mq_MsgQOutboundAGGSwitch("p_mq_MsgQOutboundAGGSwitch"),
       p_mq_MsgQToAggSwitch("p_mq_MsgQToAggSwitch") {
   cf_function::init();

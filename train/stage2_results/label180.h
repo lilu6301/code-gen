@@ -17,6 +17,7 @@
 #include "cfm_collectrequests.h"
 #include "cfm_ddrcommandgeneration.h"
 #include "cfm_responseforward.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defdataread.h"
 #include "dt/cft_defddrcommand.h"
 #include "dt/cft_defdqs.h"
@@ -45,13 +46,15 @@ class cfm_backend: public cf_core::cf_function_container,
 public:
 	/// cfm_backend type define start
 	/// relations typedef
-	typedef cf_core::cf_shared_variable<cft_deflistrequestsptr> sv_ListRequestsPtr_t;
-	typedef cf_core::cf_shared_variable<cft_defmemorystatus> sv_MemoryStatus_t;
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_event ev_RequestCounter_t;
 	typedef cf_core::cf_message_queue<cft_defrequestinformation> mq_RequestInformation_t;
 	typedef cf_core::cf_message_queue<cft_defrequests2memory> mq_Requests2Memory_t;
+	typedef cf_core::cf_shared_variable<cft_deflistrequestsptr> sv_ListRequestsPtr_t;
+	typedef cf_core::cf_shared_variable<cft_defmemorystatus> sv_MemoryStatus_t;
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defddrcommand> p_mq_DDRCommand_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defdqs> p_mq_DQs_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defdataread> p_mq_DataRead_t;
@@ -73,6 +76,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_DDRCommand_t p_mq_DDRCommand;
 	p_mq_DQs_t p_mq_DQs;
 	p_mq_DataRead_t p_mq_DataRead;
@@ -85,6 +89,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_arbitration* Arbitration;
 	cfm_collectrequests* CollectRequests;
 	cfm_ddrcommandgeneration* DDRCommandGeneration;
@@ -100,6 +105,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	ev_RequestCounter_t ev_RequestCounter;
 	mq_RequestInformation_t mq_RequestInformation;
 	mq_Requests2Memory_t mq_Requests2Memory;

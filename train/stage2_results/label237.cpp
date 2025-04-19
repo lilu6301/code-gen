@@ -30,9 +30,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_producer : cf_function(name),
-               cfm_producer_dp_if(),
-               p_mq_MsgQServerToToRSwitch("p_mq_MsgQServerToToRSwitch") {
+cfm_producer ::cfm_producer()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_producer_dp_if(),
+      p_mq_MsgQServerToToRSwitch("p_mq_MsgQServerToToRSwitch") {
   cf_function::init();
   // connections
   cf_function::elab_end();

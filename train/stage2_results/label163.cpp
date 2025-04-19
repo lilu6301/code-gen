@@ -30,17 +30,14 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_memorycontroller : cf_function_container(name),
-                       cfm_memorycontroller_dp_if(),
-                       mq_MemReadRequest("MemReadRequest"),
-                       mq_MemWriteRequest("MemWriteRequest"),
-                       p_mq_ARADDRchn("p_mq_ARADDRchn"),
-                       p_mq_AWADDRchn("p_mq_AWADDRchn"),
-                       p_mq_DDRCommand("p_mq_DDRCommand"),
-                       p_mq_DQs("p_mq_DQs"),
-                       p_mq_WDATAchn("p_mq_WDATAchn"),
-                       p_mq_BRESPchn("p_mq_BRESPchn"),
-                       p_mq_RDATAchn("p_mq_RDATAchn") {
+cfm_memorycontroller ::cfm_memorycontroller()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_container(name), cfm_memorycontroller_dp_if(),
+      mq_MemReadRequest("MemReadRequest"),
+      mq_MemWriteRequest("MemWriteRequest"), p_mq_ARADDRchn("p_mq_ARADDRchn"),
+      p_mq_AWADDRchn("p_mq_AWADDRchn"), p_mq_DDRCommand("p_mq_DDRCommand"),
+      p_mq_DQs("p_mq_DQs"), p_mq_WDATAchn("p_mq_WDATAchn"),
+      p_mq_BRESPchn("p_mq_BRESPchn"), p_mq_RDATAchn("p_mq_RDATAchn") {
   cf_function_container::init();
   // instantiation of models
   BackEnd = new cfm_backend("BackEnd");
@@ -85,19 +82,22 @@ cfm_memorycontroller : cf_function_container(name),
     mq_WriteAck_vec.push_back(module);
   }
   // connections
+  // model connect to relation
   for (cf_count i = 0; i < (cf_count)(P_Nbr + 1); i++) {
     BackEnd->p_mq_DataRead(mq_DataRead_vec[i]->p_target_socket);
   }
-  BackEnd->p_mq_MemReadRequest(mq_MemReadRequest);
-  BackEnd->p_mq_MemWriteRequest(mq_MemWriteRequest);
+  BackEnd->p_mq_MemReadRequest(mq_MemReadRequest.p_target_socket);
+  BackEnd->p_mq_MemWriteRequest(mq_MemWriteRequest.p_target_socket);
   for (cf_count i = 0; i < (cf_count)(P_Nbr + 1); i++) {
     BackEnd->p_mq_WriteAck(mq_WriteAck_vec[i]->p_target_socket);
   }
-BackEnd->p_mq_DDRCommand((p_mq_DDRCommand);
-BackEnd->p_mq_DQs((p_mq_DQs);
-	for (cf_count i = 0; i < (cf_count)( P_Nbr + 1); i++) {
+  // model connect to port
+  BackEnd->p_mq_DDRCommand(p_mq_DDRCommand);
+  BackEnd->p_mq_DQs(p_mq_DQs);
+  for (cf_count i = 0; i < (cf_count)(P_Nbr + 1); i++) {
     cfm_frontend *module = FrontEnd_vec[i];
     if (module != nullptr) {
+      // model connect to relation
       for (cf_count j = 0; j < (cf_count)(P_Nbr + 1); j++) {
         module->p_mq_ARADDRin(mq_ARADDRin_vec[j]->p_target_socket);
       }
@@ -115,23 +115,30 @@ BackEnd->p_mq_DQs((p_mq_DQs);
       for (cf_count j = 0; j < (cf_count)(P_Nbr + 1); j++) {
         module->p_mq_WriteAck(mq_WriteAck_vec[j]->p_target_socket);
       }
-module->p_mq_BRESPchn((p_mq_BRESPchn);
-module->p_mq_RDATAchn((p_mq_RDATAchn);
+      // model connect to port
+      module->p_mq_BRESPchn(p_mq_BRESPchn);
+      module->p_mq_RDATAchn(p_mq_RDATAchn);
     }
-}
-for (cf_count i = 0; i < (cf_count)( P_Nbr + 1); i++) {
+  }
+  // model connect to relation
+  for (cf_count i = 0; i < (cf_count)(P_Nbr + 1); i++) {
     RAddrDmux->p_mq_ARADDRin(mq_ARADDRin_vec[i]->p_target_socket);
-	}
-RAddrDmux->p_mq_ARADDRchn((p_mq_ARADDRchn);
-for (cf_count i = 0; i < (cf_count)( P_Nbr + 1); i++) {
+  }
+  // model connect to port
+  RAddrDmux->p_mq_ARADDRchn(p_mq_ARADDRchn);
+  // model connect to relation
+  for (cf_count i = 0; i < (cf_count)(P_Nbr + 1); i++) {
     WAddrDmux->p_mq_AWADDRin(mq_AWADDRin_vec[i]->p_target_socket);
-	}
-WAddrDmux->p_mq_AWADDRchn((p_mq_AWADDRchn);
-for (cf_count i = 0; i < (cf_count)( P_Nbr + 1); i++) {
+  }
+  // model connect to port
+  WAddrDmux->p_mq_AWADDRchn(p_mq_AWADDRchn);
+  // model connect to relation
+  for (cf_count i = 0; i < (cf_count)(P_Nbr + 1); i++) {
     WdataDmux->p_mq_WDATAin(mq_WDATAin_vec[i]->p_target_socket);
-	}
-WdataDmux->p_mq_WDATAchn((p_mq_WDATAchn);
-	cf_function_container::elab_end();
+  }
+  // model connect to port
+  WdataDmux->p_mq_WDATAchn(p_mq_WDATAchn);
+  cf_function_container::elab_end();
 }
 //@}
 

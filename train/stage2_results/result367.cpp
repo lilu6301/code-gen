@@ -31,10 +31,11 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_creditsordata : cf_function(name),
-                    p_mq_RFC_Cdts("p_mq_RFC_Cdts"),
-                    p_mq_RFC_Data("p_mq_RFC_Data"),
-                    p_mq_RFCOMM_In("p_mq_RFCOMM_In") {
+cfm_creditsordata ::cfm_creditsordata()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_creditsordata_dp_if(),
+      p_mq_RFC_Cdts("p_mq_RFC_Cdts"), p_mq_RFC_Data("p_mq_RFC_Data"),
+      p_mq_RFCOMM_In("p_mq_RFCOMM_In") {
   cf_function::init();
   // connections
   cf_function::elab_end();
@@ -90,7 +91,6 @@ void cfm_creditsordata::cb_end_of_simulation(void) {
 void cfm_creditsordata::cb_init_attributes() {
 
   // initialize function attributes
-  cfa_cycle_period.init(cf_expr_time(10, CF_NS));
   cfa_scope.init(CF_FCT_SYSTEM);
 
   return;
@@ -103,7 +103,8 @@ void cfm_creditsordata::cb_init_local_vars(void) {
 
   //<#!@READ-ONLY-SECTION-END@!#>
   // Start of 'CreditsOrData initializations' algorithm generated code
-
+  data_in_credits = false;
+  data_in_data = false;
   // End of 'CreditsOrData initializations' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
 }

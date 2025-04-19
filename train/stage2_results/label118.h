@@ -18,6 +18,7 @@
 #include "wrappers/cfm_data2_initiator.h"
 #include "wrappers/cfm_sum_target.h"
 #include "dpi/cofluent_dpi.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defdata1.h"
 #include "dt/cft_defsum.h"
 
@@ -38,6 +39,7 @@ class cfm_cosimverilatorchiselapp: public cf_core::cf_application {
 public:
 	/// cfm_cosimverilatorchiselapp type define start
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_message_queue<cft_defdata1> mq_data1_t;
 	typedef cf_core::cf_message_queue<cft_defdata1> mq_data2_t;
 	typedef cf_core::cf_message_queue<cft_defsum> mq_sum_t;
@@ -107,6 +109,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_consumer* Consumer;
 	cfm_producer1* Producer1;
 	cfm_producer2* Producer2;
@@ -121,6 +124,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	mq_data1_t mq_data1;
 	mq_data2_t mq_data2;
 	mq_sum_t mq_sum;

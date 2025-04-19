@@ -23,10 +23,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_wdatadmux : cf_function_router(name),
-                 cfm_wdatadmux_dp_if(),
-                 p_mq_WDATAchn("p_mq_WDATAchn"),
-                 p_mq_WDATAin("p_mq_WDATAin") {
+cfm_wdatadmux ::cfm_wdatadmux()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_router(name), cfm_wdatadmux_dp_if(),
+      p_mq_WDATAchn("p_mq_WDATAchn"), p_mq_WDATAin("p_mq_WDATAin") {
   cf_function_router::init();
   // connections
   cf_function_router::elab_end();
@@ -71,7 +71,7 @@ void cfm_wdatadmux::cb_end_of_simulation(void) {
 void cfm_wdatadmux::cb_init_attributes() {
 
   // initialize routing function attributes
-  cfa_routing_time.init(cf_expr_duration(0, CF_NS));
+  cfa_routing_time.init(cf_expr_duration(10, CF_NS));
   cfa_concurrency.init((cf_nonzero_count)1);
 
   return;
@@ -96,7 +96,7 @@ string cfm_wdatadmux::cb_select_destination_name(cf_payload_b *_trans) {
   string source_name = get_source_name();
   //<#!@READ-ONLY-SECTION-END@!#>
   // Start of 'WdataDmux destination' algorithm generated code
-  return "WDATAin";
+  return "WDATAchn";
   // End of 'WdataDmux destination' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
   return "";

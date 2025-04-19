@@ -29,6 +29,7 @@ public:
 	/// cfm_protocolsend type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_protocolsend,
 			cf_core::cf_payload_map> p_mq_protocol_data_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_protocolsend,
@@ -47,6 +48,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_protocol_data_t p_mq_protocol_data;
 	p_mq_user_data_in_t p_mq_user_data_in;
 	//@}

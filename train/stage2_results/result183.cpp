@@ -11,7 +11,7 @@
 #ifdef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #undef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #endif
-#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_ddrmemory
+#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_memory
 #ifdef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #undef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #endif
@@ -31,10 +31,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_memorycommandexecution : cf_function(name),
-                             cfm_memorycommandexecution_dp_if(),
-                             p_mq_DDRAction("p_mq_DDRAction"),
-                             p_mq_DQs("p_mq_DQs") {
+cfm_memorycommandexecution ::cfm_memorycommandexecution()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_memorycommandexecution_dp_if(),
+      p_mq_DDRAction("p_mq_DDRAction"), p_mq_DQs("p_mq_DQs") {
   cf_function::init();
   // connections
   cf_function::elab_end();
@@ -102,8 +102,25 @@ void cfm_memorycommandexecution::cb_init_local_vars(void) {
 
   //<#!@READ-ONLY-SECTION-END@!#>
   // Start of 'MemoryCommandExecution initializations' algorithm generated code
-
-  // End of 'MemoryCommandExecution initializations' algorithm generated code
+  //	string mem_base_name = get_hcp_name().c_str();
+  //
+  //	string pathreadE = mem_base_name + "/FlowControl/ReadE";
+  //	string pathisochE = mem_base_name + "/FlowControl/IsochE";
+  //	string pathwriteE = mem_base_name + "/WriteE";
+  //	cf_core::cf_event* event_ptr;
+  //	event_ptr = (cf_core::cf_event*) cf_get_component(pathreadE);
+  //	event_ptr->init_count(DP_READ_CREDIT_PER_CHANNEL *
+  //(DP_NUMBER_OF_DDR_CHANNELS+1)); 	cf_trace_report("checking read counter value
+  //= %d", event_ptr->get_count()); 	event_ptr = (cf_core::cf_event*)
+  //cf_get_component(pathisochE);
+  //	event_ptr->init_count(DP_ISOCH_CREDIT_PER_CHANNEL *
+  //(DP_NUMBER_OF_DDR_CHANNELS+1)); 	cf_trace_report("checking isoch counter
+  //value = %d", event_ptr->get_count()); 	event_ptr = (cf_core::cf_event*)
+  //cf_get_component(pathwriteE);
+  //	event_ptr->init_count(DP_WRITE_CREDIT_PER_CHANNEL *
+  //(DP_NUMBER_OF_DDR_CHANNELS+1)); 	cf_trace_report("checking write counter
+  //value = %d", event_ptr->get_count()); End of 'MemoryCommandExecution
+  // initializations' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
 }
 //@}

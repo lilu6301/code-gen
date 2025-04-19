@@ -31,10 +31,11 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_outboundrack : cf_function(name),
-                   cfm_outboundrack_dp_if(),
-                   p_mq_MsgQOutboundRack("p_mq_MsgQOutboundRack"),
-                   p_mq_MsgQToRack("p_mq_MsgQToRack") {
+cfm_outboundrack ::cfm_outboundrack()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_outboundrack_dp_if(),
+      p_mq_MsgQOutboundRack("p_mq_MsgQOutboundRack"),
+      p_mq_MsgQToRack("p_mq_MsgQToRack") {
   cf_function::init();
   // connections
   cf_function::elab_end();
@@ -103,7 +104,7 @@ void cfm_outboundrack::cb_init_local_vars(void) {
   //<#!@READ-ONLY-SECTION-END@!#>
   // Start of 'OutboundRack initializations' algorithm generated code
   server_room_id = get_container()->get_container()->get_cp_index();
-  rack_id = get_cp_index();
+  rack_id = get_container()->get_container()->get_cp_index();
   // End of 'OutboundRack initializations' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
 }

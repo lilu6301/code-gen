@@ -15,6 +15,7 @@
 #include "cfm_ipvideo.h"
 #include "cfm_mpetsl.h"
 #include "cfm_rtpudp.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defvideo.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -34,10 +35,12 @@ class cfm_videoprotocolstack: public cf_core::cf_function_container,
 public:
 	/// cfm_videoprotocolstack type define start
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_message_queue<cft_defvideo> mq_IPToRTP_t;
 	typedef cf_core::cf_message_queue<cft_defvideo> mq_MPEToIP_t;
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_videoprotocolstack, cft_defvideo> p_mq_NetToDVB_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_videoprotocolstack, cft_defvideo> p_mq_RTPToApp_t;
 	/// cfm_videoprotocolstack type define end
@@ -54,6 +57,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_NetToDVB_t p_mq_NetToDVB;
 	p_mq_RTPToApp_t p_mq_RTPToApp;
 	//@}
@@ -61,6 +65,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_ipvideo* IPVideo;
 	cfm_mpetsl* MPETSL;
 	cfm_rtpudp* RTPUDP;
@@ -75,6 +80,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	mq_IPToRTP_t mq_IPToRTP;
 	mq_MPEToIP_t mq_MPEToIP;
 	//@}

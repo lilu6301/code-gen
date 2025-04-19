@@ -31,7 +31,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_producermap : cf_function(name), p_mq_MsgQMap("p_mq_MsgQMap") {
+cfm_producermap ::cfm_producermap()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), p_mq_MsgQMap("p_mq_MsgQMap") {
   cf_function::init();
   // connections
   cf_function::elab_end();

@@ -31,11 +31,12 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_responseforward : cf_function(name),
-                      p_mq_DataRead("p_mq_DataRead"),
-                      p_mq_DQs("p_mq_DQs"),
-                      p_mq_RequestInformation("p_mq_RequestInformation"),
-                      p_mq_WriteAck("p_mq_WriteAck") {
+cfm_responseforward ::cfm_responseforward()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_responseforward_dp_if(), p_mq_DQs("p_mq_DQs"),
+      p_mq_DataRead("p_mq_DataRead"), p_mq_DataWriteAck("p_mq_DataWriteAck"),
+      p_mq_RequestInformation("p_mq_RequestInformation"),
+      p_mq_WriteAck("p_mq_WriteAck") {
   cf_function::init();
   // connections
   cf_function::elab_end();
@@ -103,10 +104,14 @@ void cfm_responseforward::cb_init_local_vars(void) {
 
   //<#!@READ-ONLY-SECTION-END@!#>
   // Start of 'ResponseForward initializations' algorithm generated code
+  message_time_stamp = cf_dt::cf_time(0, CF_NS);
+  message_size = cf_dt::cf_data_size(0, CF_BYTE);
+  // bus_throughput = DP_RINGSTOP_THROUGHPUT.get_value();
   bus_width = DP_DDR_BUS_WIDTH.get_value().to_scalar(CF_BYTE);
   bus_efficiency = DP_DDR_EFFICIENCY.get_value();
-  frequency_map_GL[DDRMemory] =
-      DP_DDR_INIT_FREQ.get_value().to_scalar(CF_HZ);
+  frequency_map_GL[RING] = DP_CPU_RING_FREQ.get_value().to_scalar(CF_HZ);
+  latency = (float)DP_DDR_RINGSTOP_LATENCY.get_value().to_scalar(CF_CYCLE);
+  index = get_cp_index();
   // End of 'ResponseForward initializations' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
 }

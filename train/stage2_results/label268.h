@@ -31,6 +31,7 @@ class cfm_hybridschedulingapp: public cf_core::cf_application {
 public:
 	/// cfm_hybridschedulingapp type define start
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_MsgQ_t;
 
 	/// cfm_hybridschedulingapp type define end
@@ -48,6 +49,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_consumer* Consumer;
 	cfm_controller* Controller;
 	cfm_producer* Producer;
@@ -62,6 +64,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	mq_MsgQ_t mq_MsgQ;
 	//@}
 

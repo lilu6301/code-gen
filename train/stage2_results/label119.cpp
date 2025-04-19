@@ -22,13 +22,11 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_cosimverilatorchiselapp : cf_application(name),
-                              data1_initiator("data1_initiator"),
-                              data2_initiator("data2_initiator"),
-                              mq_data1("data1"),
-                              mq_data2("data2"),
-                              mq_sum("sum"),
-                              sum_target("sum_target") {
+cfm_cosimverilatorchiselapp ::cfm_cosimverilatorchiselapp()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name), data1_initiator("data1_initiator"),
+      data2_initiator("data2_initiator"), mq_data1("data1"), mq_data2("data2"),
+      mq_sum("sum"), sum_target("sum_target") {
   cf_application::init();
   // instantiation of models
   Consumer = new cfm_consumer("Consumer");
@@ -36,12 +34,16 @@ cfm_cosimverilatorchiselapp : cf_application(name),
   Producer2 = new cfm_producer2("Producer2");
   adder = new cfm_adder("adder");
   // connections
-  Consumer->p_mq_sum(mq_sum);
-  Producer1->p_mq_data1(mq_data1);
-  Producer2->p_mq_data2(mq_data2);
-  adder->p_mq_data1(mq_data1);
-  adder->p_mq_data2(mq_data2);
-  adder->p_mq_sum(mq_sum);
+  // model connect to relation
+  Consumer->p_mq_sum(mq_sum.p_target_socket);
+  // model connect to relation
+  Producer1->p_mq_data1(mq_data1.p_target_socket);
+  // model connect to relation
+  Producer2->p_mq_data2(mq_data2.p_target_socket);
+  // model connect to relation
+  adder->p_mq_data1(mq_data1.p_target_socket);
+  adder->p_mq_data2(mq_data2.p_target_socket);
+  adder->p_mq_sum(mq_sum.p_target_socket);
   cf_application::elab_end();
 }
 //@}

@@ -31,13 +31,11 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_filesystem : cf_function(name),
-                 cfm_filesystem_dp_if(),
-                 p_ev_WrOK("p_ev_WrOK"),
-                 p_mq_DataIn("p_mq_DataIn"),
-                 p_mq_DataOut("p_mq_DataOut"),
-                 p_mq_ReadWrite("p_mq_ReadWrite"),
-                 p_sv_Data("p_sv_Data") {
+cfm_filesystem ::cfm_filesystem()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_filesystem_dp_if(), p_ev_WrOK("p_ev_WrOK"),
+      p_mq_DataIn("p_mq_DataIn"), p_mq_DataOut("p_mq_DataOut"),
+      p_mq_ReadWrite("p_mq_ReadWrite"), p_sv_Data("p_sv_Data") {
   cf_function::init();
   // connections
   cf_function::elab_end();
@@ -106,8 +104,13 @@ void cfm_filesystem::cb_init_local_vars(void) {
 
   //<#!@READ-ONLY-SECTION-END@!#>
   // Start of 'FileSystem initializations' algorithm generated code
-  data_in_tab_index = 0;
-  data_out_tab_index = 0;
+  message_time_stamp = cf_dt::cf_time(0, CF_NS);
+  message_size = cf_dt::cf_data_size(0, CF_BYTE);
+  // bus_throughput = DP_RINGSTOP_THROUGHPUT.get_value();
+  bus_width = DP_BLUETOOTH_DATA_BUS_WIDTH.get_value().to_scalar(CF_BYTE);
+  bus_efficiency = DP_BLUETOOTH_EFFICIENCY.get_value();
+  frequency_map_GL[RING] = DP_CPU_RING_FREQ.get_value().to_scalar(CF_HZ);
+  latency = (float)DP_BLUETOOTH_RINGSTOP_LATENCY.get_value().to_scalar(CF_CYCLE);
   // End of 'FileSystem initializations' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
 }

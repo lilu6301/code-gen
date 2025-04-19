@@ -22,7 +22,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_inheritance_example1app : cf_application(name) {
+cfm_inheritance_example1app ::cfm_inheritance_example1app()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name) {
   cf_application::init();
   // instantiation of models
   F1 = new cfm_f1("F1");

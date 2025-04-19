@@ -30,11 +30,11 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_testbench : cf_function(name),
-                dpv("dpv"),
-                p_ev_newFrame("p_ev_newFrame"),
-                p_sv_inputStream("p_sv_inputStream"),
-                p_sv_outputStream("p_sv_outputStream") {
+cfm_testbench ::cfm_testbench()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), dpv("dpv"), p_ev_newFrame("p_ev_newFrame"),
+      p_sv_inputStream("p_sv_inputStream"),
+      p_sv_outputStream("p_sv_outputStream") {
   cf_function::init();
   // connections
   cf_function::elab_end();

@@ -16,6 +16,7 @@
 #include "cfm_mobilephone.h"
 #include "cfm_networks.h"
 #include "cfm_user.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defcall.h"
 #include "dt/cft_defvideo.h"
 
@@ -36,7 +37,8 @@ class cfm_softwaredefinedradioapp: public cf_core::cf_application,
 public:
 	/// cfm_softwaredefinedradioapp type define start
 	/// relations typedef
-	typedef cf_core::cf_message_queue<cft_defvideo> mq_NetToDVB_t;
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
+	typedef cf_core::cf_message_queue<cft_defvideo> mq_NetToDpv_t;
 	typedef cf_core::cf_message_queue<cft_defcall> mq_NetToUMTS_t;
 	typedef cf_core::cf_message_queue<cft_defcall> mq_Request_t;
 	typedef cf_core::cf_message_queue<cft_defcall> mq_Response_t;
@@ -58,6 +60,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_mobilephone* MobilePhone;
 	cfm_networks* Networks;
 	cfm_user* User;
@@ -72,7 +75,8 @@ protected:
 public:
 	/// \name relations
 	//@{
-	mq_NetToDVB_t mq_NetToDVB;
+//set of relation, sort alphabetically. format: relation_type relation_name
+	mq_NetToDpv_t mq_NetToDpv;
 	mq_NetToUMTS_t mq_NetToUMTS;
 	mq_Request_t mq_Request;
 	mq_Response_t mq_Response;

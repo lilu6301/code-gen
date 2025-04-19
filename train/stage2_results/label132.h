@@ -11,6 +11,7 @@
 #include "cfm_tlm2lt_global.h"
 #include "cfm_tlm2lt_global_types.h"
 #include "cofluent.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defmsgq.h"
 
 #include "communication/cf_payload_tlm2.h"
@@ -31,6 +32,7 @@ public:
 	/// cfm_reader type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_ev_initiator_socket<cfm_reader> p_ev_Sync_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_reader, cf_core::cf_payload_tlm2> p_mq_InitiatorReader_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_reader, cf_core::cf_payload_tlm2> p_mq_ReaderResponse_t;
@@ -49,6 +51,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_ev_Sync_t p_ev_Sync;
 	p_mq_InitiatorReader_t p_mq_InitiatorReader;
 	p_mq_ReaderResponse_t p_mq_ReaderResponse;

@@ -29,6 +29,7 @@ public:
 	/// cfm_f2 type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_f2, cf_core::cf_payload_int> p_mq_M1_2_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_f2, cf_core::cf_payload_int> p_mq_M1_3_t;
 	/// cfm_f2 type define end
@@ -45,6 +46,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_M1_2_t p_mq_M1_2;
 	p_mq_M1_3_t p_mq_M1_3;
 	//@}

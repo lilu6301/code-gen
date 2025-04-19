@@ -13,6 +13,7 @@
 #include "cfm_softwaredefinedradioapp_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_videoapplication_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defvideo.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -33,6 +34,7 @@ public:
 	/// cfm_videoapplication type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_videoapplication, cft_defvideo> p_mq_RTPToApp_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_videoapplication, cft_defvideo> p_mq_Video_t;
 	/// cfm_videoapplication type define end
@@ -49,6 +51,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_RTPToApp_t p_mq_RTPToApp;
 	p_mq_Video_t p_mq_Video;
 	//@}

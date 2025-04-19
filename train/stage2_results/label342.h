@@ -12,6 +12,7 @@
 #include "cfm_bluetooth_ips_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_out_stub_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defbaseband.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -31,6 +32,7 @@ public:
 	/// cfm_out_stub type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_out_stub, cft_defbaseband> p_mq_BaseBand_Out_t;
 	/// cfm_out_stub type define end
 
@@ -46,6 +48,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_BaseBand_Out_t p_mq_BaseBand_Out;
 	//@}
 

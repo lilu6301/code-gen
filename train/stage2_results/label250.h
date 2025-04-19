@@ -14,6 +14,7 @@
 #include "dp/cfm_producer_dp_if.h"
 #include "cfm_generator.h"
 #include "cfm_sender.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defack.h"
 #include "dt/cft_defdatavar.h"
 #include "dt/cft_defmsg.h"
@@ -36,11 +37,13 @@ class cfm_producer: public cf_core::cf_function_container,
 public:
 	/// cfm_producer type define start
 	/// relations typedef
-	typedef cf_core::cf_shared_variable<cft_defdatavar> sv_DataVar_t;
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_event ev_Req_t;
+	typedef cf_core::cf_shared_variable<cft_defdatavar> sv_DataVar_t;
 	typedef cf_core::cf_shared_variable<cft_deftestprod> sv_TestProd_t;
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_producer, cft_defack> p_mq_Ack_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_producer, cft_defmsg> p_mq_Msg_t;
 	/// cfm_producer type define end
@@ -57,6 +60,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_Ack_t p_mq_Ack;
 	p_mq_Msg_t p_mq_Msg;
 	//@}
@@ -64,6 +68,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_generator* Generator;
 	cfm_sender* Sender;
 	//@}
@@ -77,6 +82,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	ev_Req_t ev_Req;
 	sv_DataVar_t sv_DataVar;
 	sv_TestProd_t sv_TestProd;

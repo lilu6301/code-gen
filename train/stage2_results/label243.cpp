@@ -30,10 +30,11 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_outboundserver : cf_function(name),
-                     cfm_outboundserver_dp_if(),
-                     p_mq_MsgQOutboundServer("p_mq_MsgQOutboundServer"),
-                     p_mq_MsgQToServer("p_mq_MsgQToServer") {
+cfm_outboundserver ::cfm_outboundserver()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_outboundserver_dp_if(),
+      p_mq_MsgQOutboundServer("p_mq_MsgQOutboundServer"),
+      p_mq_MsgQToServer("p_mq_MsgQToServer") {
   cf_function::init();
   // connections
   cf_function::elab_end();

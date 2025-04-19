@@ -22,10 +22,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_raddrdmux : cf_function_router(name),
-                cfm_raddrdmux_dp_if(),
-                p_mq_ARADDRchn("p_mq_ARADDRchn"),
-                p_mq_ARADDRin("p_mq_ARADDRin") {
+cfm_raddrdmux ::cfm_raddrdmux()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_router(name), cfm_raddrdmux_dp_if(),
+      p_mq_ARADDRchn("p_mq_ARADDRchn"), p_mq_ARADDRin("p_mq_ARADDRin") {
   cf_function_router::init();
   // connections
   cf_function_router::elab_end();

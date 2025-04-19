@@ -13,6 +13,8 @@
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
 #include "behavior/cf_function_router.h"
+#include "dp/cfm_wrdmux_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defbrespchn.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -27,13 +29,14 @@
 ///        \page dxpWRDmux
 //@{
 ///    \brief WRDmux function model start
-class cfm_wrdmux: public cf_core::cf_function_router {
+class cfm_wrdmux: public cf_core::cf_function_router, public cfm_wrdmux_dp_if {
 public:
 	/// cfm_wrdmux type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_wrdmux, cft_defbrespchn> p_mq_BRESPin_t;
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_wrdmux, cft_defbrespchn> p_mq_BRESPchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_wrdmux, cft_defbrespchn> p_mq_BRESPin_t;
 	/// cfm_wrdmux type define end
 
 	/// constructor
@@ -47,8 +50,9 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_BRESPin_t p_mq_BRESPin;
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_BRESPchn_t p_mq_BRESPchn;
+	p_mq_BRESPin_t p_mq_BRESPin;
 	//@}
 
 public:
@@ -60,6 +64,8 @@ protected:
 	void cb_init_attributes(void);
 	/// initialize definitions
 	void cb_init_local_vars(void);
+	/// Overload function for WRDmux router routing time method
+	cf_dt::cf_duration cb_routing_time(cf_core::cf_payload_b* _trans);
 
 	/// Model private fields start
 	/// Model private fields end

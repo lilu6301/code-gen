@@ -30,13 +30,11 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_filesystem : cf_function(name),
-                 cfm_filesystem_dp_if(),
-                 p_ev_WrOK("p_ev_WrOK"),
-                 p_mq_DataIn("p_mq_DataIn"),
-                 p_mq_DataOut("p_mq_DataOut"),
-                 p_mq_ReadWrite("p_mq_ReadWrite"),
-                 p_sv_Data("p_sv_Data") {
+cfm_filesystem ::cfm_filesystem()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_filesystem_dp_if(), p_ev_WrOK("p_ev_WrOK"),
+      p_mq_DataIn("p_mq_DataIn"), p_mq_DataOut("p_mq_DataOut"),
+      p_mq_ReadWrite("p_mq_ReadWrite"), p_sv_Data("p_sv_Data") {
   cf_function::init();
   // connections
   cf_function::elab_end();

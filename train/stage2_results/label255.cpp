@@ -30,11 +30,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_generator : cf_function(name),
-                cfm_generator_dp_if(),
-                p_ev_Req("p_ev_Req"),
-                p_sv_DataVar("p_sv_DataVar"),
-                p_sv_TestProd("p_sv_TestProd") {
+cfm_generator ::cfm_generator()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_generator_dp_if(), p_ev_Req("p_ev_Req"),
+      p_sv_DataVar("p_sv_DataVar"), p_sv_TestProd("p_sv_TestProd") {
   cf_function::init();
   // connections
   cf_function::elab_end();

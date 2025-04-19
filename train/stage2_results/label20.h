@@ -31,6 +31,7 @@ public:
 	/// cfm_clockgenerator type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_ev_initiator_socket<cfm_clockgenerator> p_ev_BurstClock_t;
 	/// cfm_clockgenerator type define end
 
@@ -46,6 +47,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_ev_BurstClock_t p_ev_BurstClock;
 	//@}
 

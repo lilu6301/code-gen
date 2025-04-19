@@ -32,8 +32,9 @@ void cfm_packet_in::my_callback(){// notify internal synchronization event
 
 /// \name constructor
 //@{
-cfm_packet_in : cf_function(name),
-                p_mq_p_in("p_mq_p_in") {
+cfm_packet_in ::cfm_packet_in()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), p_mq_p_in("p_mq_p_in") {
   cf_function::init();
   // connections
   cf_function::elab_end();

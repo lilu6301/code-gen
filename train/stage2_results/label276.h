@@ -45,6 +45,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_f1* F1;
 	cfm_f2* F2;
 	//@}

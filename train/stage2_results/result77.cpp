@@ -11,7 +11,7 @@
 #ifdef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #undef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #endif
-#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_cofluentapifromexternalip
+#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_cofapifromexternalip
 #ifdef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #undef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #endif
@@ -31,9 +31,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_cof_initiator : cf_function(name),
-                    p_mq_MsgBwQ("p_mq_MsgBwQ"),
-                    p_mq_MsgFwQ("p_mq_MsgFwQ") {
+cfm_cof_initiator ::cfm_cof_initiator()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), p_mq_MsgBwQ("p_mq_MsgBwQ"),
+      p_mq_MsgFwQ("p_mq_MsgFwQ") {
   cf_function::init();
   // connections
   cf_function::elab_end();

@@ -30,9 +30,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_datacenterswitch
-    : cf_function_container(name),
-      cfm_datacenterswitch_dp_if(),
+cfm_datacenterswitch ::cfm_datacenterswitch()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_container(name), cfm_datacenterswitch_dp_if(),
       p_mq_MsgQToDataCenterSwitch("p_mq_MsgQToDataCenterSwitch"),
       p_mq_MsgQToServerRoom("p_mq_MsgQToServerRoom") {
   cf_function_container::init();
@@ -66,22 +66,27 @@ cfm_datacenterswitch
   for (cf_count i = 0; i < (cf_count)(dpServerRoomNb + 1); i++) {
     cfm_inbound *module = Inbound_vec[i];
     if (module != nullptr) {
+      // model connect to relation
       for (cf_count j = 0; j < (cf_count)(dpServerRoomNb + 1); j++) {
         module->p_mq_MsgQRouting_in(mq_MsgQRouting_in_vec[j]->p_target_socket);
       }
-module->p_mq_MsgQToDataCenterSwitch((p_mq_MsgQToDataCenterSwitch);
+      // model connect to port
+      module->p_mq_MsgQToDataCenterSwitch(p_mq_MsgQToDataCenterSwitch);
     }
   }
   for (cf_count i = 0; i < (cf_count)(dpServerRoomNb + 1); i++) {
     cfm_outbound *module = Outbound_vec[i];
     if (module != nullptr) {
+      // model connect to relation
       for (cf_count j = 0; j < (cf_count)(dpServerRoomNb + 1); j++) {
         module->p_mq_MsgQRouting_out(
             mq_MsgQRouting_out_vec[j]->p_target_socket);
       }
-module->p_mq_MsgQToServerRoom((p_mq_MsgQToServerRoom);
+      // model connect to port
+      module->p_mq_MsgQToServerRoom(p_mq_MsgQToServerRoom);
     }
   }
+  // model connect to relation
   for (cf_count i = 0; i < (cf_count)(dpServerRoomNb + 1); i++) {
     RoutingFunction->p_mq_MsgQRouting_in(
         mq_MsgQRouting_in_vec[i]->p_target_socket);

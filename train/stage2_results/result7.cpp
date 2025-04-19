@@ -31,23 +31,25 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_user : cf_function_container(name),
-           p_mq_Request_0("p_mq_Request_0"),
-           p_mq_Request_1("p_mq_Request_1"),
-           p_mq_Response("p_mq_Response"),
-           p_mq_Video("p_mq_Video") {
+cfm_user ::cfm_user()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_container(name), cfm_user_dp_if(),
+      p_mq_Request("p_mq_Request"), p_mq_Response("p_mq_Response"),
+      p_mq_Video("p_mq_Video") {
   cf_function_container::init();
   // instantiation of models
-  Reading = new cfm_reading("Readings");
-  Requesting = new cfm_requesting("Requestings");
-  Watching = new cfm_watching("Watchings");
+  Reading = new cfm_reading("Reading");
+  Requesting = new cfm_requesting("Requesting");
+  Watching = new cfm_watching("Watching");
   // connections
-Readings->p_mq_Request((p_mq_Request);
-Readings->p_mq_Response((p_mq_Response);
-Requesting->p_mq_Request((p_mq_Request);
-Requesting->p_mq_Video((p_mq_Video);
-Watching->p_mq_Video((p_mq_Video);
-	cf_function_container::elab_end();
+  // model connect to port
+  Reading->p_mq_Request(p_mq_Request);
+  Reading->p_mq_Response(p_mq_Response);
+  // model connect to port
+  Requesting->p_mq_Request(p_mq_Request);
+  // model connect to port
+  Watching->p_mq_Video(p_mq_Video);
+  cf_function_container::elab_end();
 }
 //@}
 

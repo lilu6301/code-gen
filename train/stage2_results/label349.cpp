@@ -30,40 +30,42 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_obex_layer : cf_function_container(name),
-                 cfm_obex_layer_dp_if(),
-                 ev_continueEv("continueEv"),
-                 mq_OB_Out1("OB_Out1"),
-                 mq_OB_Out2("OB_Out2"),
-                 p_ev_WrOK("p_ev_WrOK"),
-                 p_ev_startEv("p_ev_startEv"),
-                 p_mq_DataIn("p_mq_DataIn"),
-                 p_mq_DataOut("p_mq_DataOut"),
-                 p_mq_OBEX_In("p_mq_OBEX_In"),
-                 p_mq_OBEX_Out("p_mq_OBEX_Out"),
-                 p_mq_ReadWrite_0("p_mq_ReadWrite_0"),
-                 p_mq_ReadWrite_1("p_mq_ReadWrite_1") {
+cfm_obex_layer ::cfm_obex_layer()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_container(name), cfm_obex_layer_dp_if(),
+      ev_continueEv("continueEv"), mq_OB_Out1("OB_Out1"), mq_OB_Out2("OB_Out2"),
+      p_ev_WrOK("p_ev_WrOK"), p_ev_startEv("p_ev_startEv"),
+      p_mq_DataIn("p_mq_DataIn"), p_mq_DataOut("p_mq_DataOut"),
+      p_mq_OBEX_In("p_mq_OBEX_In"), p_mq_OBEX_Out("p_mq_OBEX_Out"),
+      p_mq_ReadWrite_0("p_mq_ReadWrite_0"),
+      p_mq_ReadWrite_1("p_mq_ReadWrite_1") {
   cf_function_container::init();
   // instantiation of models
   OBEX_Receive = new cfm_obex_receive("OBEX_Receive");
   OBEX_Send = new cfm_obex_send("OBEX_Send");
   OB_Out = new cfm_ob_out("OB_Out");
   // connections
-  OBEX_Receive->p_mq_OB_Out1(mq_OB_Out1);
-  OBEX_Receive->p_ev_continueEv(ev_continueEv);
-OBEX_Receive->p_mq_DataIn((p_mq_DataIn);
-OBEX_Receive->p_mq_OBEX_In((p_mq_OBEX_In);
-OBEX_Receive->p_mq_ReadWrite((p_mq_ReadWrite);
-OBEX_Receive->p_mq_WrOK((p_mq_WrOK);
-OBEX_Send->p_mq_OB_Out2(mq_OB_Out2);
-OBEX_Send->p_ev_continueEv(ev_continueEv);
-OBEX_Send->p_mq_DataOut((p_mq_DataOut);
-OBEX_Send->p_mq_ReadWrite((p_mq_ReadWrite);
-OBEX_Send->p_mq_startEv((p_mq_startEv);
-OB_Out->p_mq_OB_Out1(mq_OB_Out1);
-OB_Out->p_mq_OB_Out2(mq_OB_Out2);
-OB_Out->p_mq_OBEX_Out((p_mq_OBEX_Out);
-	cf_function_container::elab_end();
+  // model connect to relation
+  OBEX_Receive->p_mq_OB_Out1(mq_OB_Out1.p_target_socket);
+  OBEX_Receive->p_ev_continueEv(ev_continueEv.p_target_socket);
+  // model connect to port
+  OBEX_Receive->p_mq_DataIn(p_mq_DataIn);
+  OBEX_Receive->p_mq_OBEX_In(p_mq_OBEX_In);
+  OBEX_Receive->p_mq_ReadWrite(p_mq_ReadWrite);
+  OBEX_Receive->p_mq_WrOK(p_mq_WrOK);
+  // model connect to relation
+  OBEX_Send->p_mq_OB_Out2(mq_OB_Out2.p_target_socket);
+  OBEX_Send->p_ev_continueEv(ev_continueEv.p_target_socket);
+  // model connect to port
+  OBEX_Send->p_mq_DataOut(p_mq_DataOut);
+  OBEX_Send->p_mq_ReadWrite(p_mq_ReadWrite);
+  OBEX_Send->p_mq_startEv(p_mq_startEv);
+  // model connect to relation
+  OB_Out->p_mq_OB_Out1(mq_OB_Out1.p_target_socket);
+  OB_Out->p_mq_OB_Out2(mq_OB_Out2.p_target_socket);
+  // model connect to port
+  OB_Out->p_mq_OBEX_Out(p_mq_OBEX_Out);
+  cf_function_container::elab_end();
 }
 //@}
 

@@ -13,6 +13,7 @@
 #include "cofluent.h"
 #include "cfm_consumer.h"
 #include "cfm_producer.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defmsgq.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -31,6 +32,7 @@ class cfm_copypayloadnonpod: public cf_core::cf_application {
 public:
 	/// cfm_copypayloadnonpod type define start
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_message_queue<cft_defmsgq> mq_MsgQ_t;
 
 	/// cfm_copypayloadnonpod type define end
@@ -48,6 +50,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_consumer* Consumer;
 	cfm_producer* Producer;
 	//@}
@@ -61,6 +64,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	mq_MsgQ_t mq_MsgQ;
 	//@}
 

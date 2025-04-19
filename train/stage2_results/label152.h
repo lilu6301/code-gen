@@ -16,6 +16,7 @@
 #include "cfm_device.h"
 #include "cfm_rddmux.h"
 #include "cfm_wrdmux.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defaraddrchn.h"
 #include "dt/cft_defawaddrchn.h"
 #include "dt/cft_defbrespchn.h"
@@ -39,10 +40,12 @@ class cfm_clientside: public cf_core::cf_function_container,
 public:
 	/// cfm_clientside type define start
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_message_queue<cft_defbrespchn> mq_BRESPin_t;
 	typedef cf_core::cf_message_queue<cft_defrdatachn> mq_RDATAin_t;
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_clientside, cft_defaraddrchn> p_mq_ARADDRchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_clientside, cft_defawaddrchn> p_mq_AWADDRchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_clientside, cft_defbrespchn> p_mq_BRESPchn_t;
@@ -62,6 +65,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_ARADDRchn_t* p_mq_ARADDRchn;
 	p_mq_AWADDRchn_t* p_mq_AWADDRchn;
 	p_mq_BRESPchn_t p_mq_BRESPchn;
@@ -72,6 +76,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	std::vector<cfm_device*> Device_vec;
 	cfm_rddmux* RDDmux;
 	cfm_wrdmux* WRDmux;
@@ -86,6 +91,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	std::vector<mq_BRESPin_t*> mq_BRESPin_vec;
 	std::vector<mq_RDATAin_t*> mq_RDATAin_vec;
 	//@}

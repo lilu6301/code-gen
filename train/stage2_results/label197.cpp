@@ -30,12 +30,12 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_responseforward : cf_function(name),
-                      cfm_responseforward_dp_if(),
-                      p_mq_DQs("p_mq_DQs"),
-                      p_mq_DataRead("p_mq_DataRead"),
-                      p_mq_RequestInformation("p_mq_RequestInformation"),
-                      p_mq_WriteAck("p_mq_WriteAck") {
+cfm_responseforward ::cfm_responseforward()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_responseforward_dp_if(), p_mq_DQs("p_mq_DQs"),
+      p_mq_DataRead("p_mq_DataRead"),
+      p_mq_RequestInformation("p_mq_RequestInformation"),
+      p_mq_WriteAck("p_mq_WriteAck") {
   cf_function::init();
   // connections
   cf_function::elab_end();

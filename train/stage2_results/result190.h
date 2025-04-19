@@ -12,8 +12,10 @@
 #include "cfm_ddrmemory_global.h"
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
-#include "dt/cft_defbchn.h"
-#include "dt/cft_defwriteack.h"
+#include "dp/cfm_sendwackdriver_dp_if.h"
+//set of dataType, sort alphabetically
+#include "dt/cft_defack.h"
+#include "dt/cft_defbrespchn.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'SendWAckDriver includes' algorithm generated code
@@ -27,12 +29,14 @@
 ///        \page dxpSendWAckDriver
 //@{
 ///    \brief SendWAckDriver function model start
-class cfm_sendwackdriver: public cf_core::cf_function {
+class cfm_sendwackdriver: public cf_core::cf_function,
+		public cfm_sendwackdriver_dp_if {
 public:
 	/// cfm_sendwackdriver type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_sendwackdriver, cft_defbchn> p_mq_BRESPchn_t;
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
+	typedef cf_core::cf_mq_initiator_socket<cfm_sendwackdriver, cft_defack> p_mq_BRESPchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_sendwackdriver, cft_defwriteack> p_mq_WriteAck_t;
 	/// cfm_sendwackdriver type define end
 
@@ -48,6 +52,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_BRESPchn_t p_mq_BRESPchn;
 	p_mq_WriteAck_t p_mq_WriteAck;
 	//@}
@@ -64,7 +69,8 @@ protected:
 	/// \name user-defined local declarations
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'SendWAckDriver local declarations' algorithm generated code
-	int i;
+	int index;
+	int max_channels;
 	//End of 'SendWAckDriver local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 

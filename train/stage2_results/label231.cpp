@@ -30,10 +30,11 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_outboundrack : cf_function(name),
-                   cfm_outboundrack_dp_if(),
-                   p_mq_MsgQOutboundRack("p_mq_MsgQOutboundRack"),
-                   p_mq_MsgQToRack("p_mq_MsgQToRack") {
+cfm_outboundrack ::cfm_outboundrack()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_outboundrack_dp_if(),
+      p_mq_MsgQOutboundRack("p_mq_MsgQOutboundRack"),
+      p_mq_MsgQToRack("p_mq_MsgQToRack") {
   cf_function::init();
   // connections
   cf_function::elab_end();

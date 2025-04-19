@@ -13,6 +13,7 @@
 #include "cofluent.h"
 #include "behavior/cf_function_router.h"
 #include "dp/cfm_waddrdmux_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defawaddrchn.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -33,6 +34,7 @@ public:
 	/// cfm_waddrdmux type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_waddrdmux, cft_defawaddrchn> p_mq_AWADDRchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_waddrdmux, cft_defawaddrchn> p_mq_AWADDRin_t;
 	/// cfm_waddrdmux type define end
@@ -48,6 +50,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_AWADDRchn_t p_mq_AWADDRchn;
 	p_mq_AWADDRin_t p_mq_AWADDRin;
 	//@}

@@ -34,6 +34,7 @@ class cfm_automatedpayloadtrackers: public cf_core::cf_application {
 public:
 	/// cfm_automatedpayloadtrackers type define start
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_M1_1_t;
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_M1_2_t;
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_M1_3_t;
@@ -55,6 +56,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_c1* C1;
 	cfm_c2* C2;
 	cfm_f12* F12;
@@ -72,6 +74,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	mq_M1_1_t mq_M1_1;
 	mq_M1_2_t mq_M1_2;
 	mq_M1_3_t mq_M1_3;

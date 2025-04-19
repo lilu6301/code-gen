@@ -31,11 +31,12 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_ddrcommandgeneration : cf_function(name),
-                          cfm_ddrcommandgeneration_dp_if(),
-                          p_mq_DDRCommand("p_mq_DDRCommand"),
-                          p_mq_Requests2Memory("p_mq_Requests2Memory"),
-                          p_sv_MemoryStatus("p_sv_MemoryStatus") {
+cfm_ddrcommandgeneration ::cfm_ddrcommandgeneration()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_ddrcommandgeneration_dp_if(),
+      p_mq_DDRCommand("p_mq_DDRCommand"),
+      p_mq_Requests2Memory("p_mq_Requests2Memory"),
+      p_sv_MemoryStatus("p_sv_MemoryStatus") {
   cf_function::init();
   // connections
   cf_function::elab_end();
@@ -103,9 +104,7 @@ void cfm_ddrcommandgeneration::cb_init_local_vars(void) {
 
   //<#!@READ-ONLY-SECTION-END@!#>
   // Start of 'DDRCommandGeneration initializations' algorithm generated code
-  remainingDataSize = 0;
-  transId = 0;
-  dma_size = 512;
+  DDRCommand = 0;
   // End of 'DDRCommandGeneration initializations' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
 }

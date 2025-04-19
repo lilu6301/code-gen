@@ -13,6 +13,7 @@
 #include "cofluent.h"
 #include "Uart.h"
 #include "cfm_cof_initiator.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defmsgq.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -33,6 +34,7 @@ public:
 	/// systemC IPs typedef
 	typedef Uart iUart_t;
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_message_queue<cft_defmsgq> mq_MsgBwQ_t;
 	typedef cf_core::cf_message_queue<cft_defmsgq> mq_MsgFwQ_t;
 
@@ -51,6 +53,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_cof_initiator* CoF_Initiator;
 	iUart_t* iUart;
 	//@}
@@ -64,6 +67,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	mq_MsgBwQ_t mq_MsgBwQ;
 	mq_MsgFwQ_t mq_MsgFwQ;
 	//@}

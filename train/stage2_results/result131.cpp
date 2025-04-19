@@ -11,7 +11,7 @@
 #ifdef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #undef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #endif
-#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_tbm
+#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_tlm2lt
 #ifdef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #undef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #endif
@@ -31,10 +31,11 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_target : cf_function(name),
-             p_ev_Sync2("p_ev_Sync2"),
-             p_mq_ReferenceQueue2("p_mq_ReferenceQueue2"),
-             p_mq_TargetWrapper("p_mq_TargetWrapper") {
+cfm_target ::cfm_target()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_target_dp_if(), p_ev_Sync2("p_ev_Sync2"),
+      p_mq_ReferenceQueue2("p_mq_ReferenceQueue2"),
+      p_mq_TargetWrapper("p_mq_TargetWrapper") {
   cf_function::init();
   // connections
   cf_function::elab_end();

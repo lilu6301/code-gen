@@ -12,7 +12,6 @@
 #include "cfm_transactiontrackermsgqapp_global.h"
 #include "cfm_transactiontrackermsgqapp_global_types.h"
 #include "cofluent.h"
-#include "dp/cfm_producer_dp_if.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'Producer includes' algorithm generated code
@@ -26,11 +25,12 @@
 ///        \page dxpProducer
 //@{
 ///    \brief Producer function model start
-class cfm_producer: public cf_core::cf_function, public cfm_producer_dp_if {
+class cfm_producer: public cf_core::cf_function {
 public:
 	/// cfm_producer type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_producer,
 			cf_core::cf_payload_int> p_mq_MsgQIn_t;
 	/// cfm_producer type define end
@@ -47,6 +47,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_MsgQIn_t p_mq_MsgQIn;
 	//@}
 

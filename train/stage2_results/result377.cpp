@@ -31,10 +31,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_l2cap_send : cf_function(name),
-                 cfm_l2cap_send_dp_if(),
-                 p_mq_L2CAP_Out("p_mq_L2CAP_Out"),
-                 p_mq_RFCOMM_Out("p_mq_RFCOMM_Out") {
+cfm_l2cap_send ::cfm_l2cap_send()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_l2cap_send_dp_if(),
+      p_mq_L2CAP_Out("p_mq_L2CAP_Out"), p_mq_RFCOMM_Out("p_mq_RFCOMM_Out") {
   cf_function::init();
   // connections
   cf_function::elab_end();

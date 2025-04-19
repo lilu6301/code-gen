@@ -30,18 +30,14 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_mobilephone : cf_function_container(name),
-                  cfm_mobilephone_dp_if(),
-                  mq_AppToCtrl("AppToCtrl"),
-                  mq_AppToHTTP("AppToHTTP"),
-                  mq_HTTPToApp("HTTPToApp"),
-                  mq_RTPToApp("RTPToApp"),
-                  p_mq_NetToDVB("p_mq_NetToDVB"),
-                  p_mq_NetToUMTS("p_mq_NetToUMTS"),
-                  p_mq_Request("p_mq_Request"),
-                  p_mq_Response("p_mq_Response"),
-                  p_mq_UMTSToNet("p_mq_UMTSToNet"),
-                  p_mq_Video("p_mq_Video") {
+cfm_mobilephone ::cfm_mobilephone()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_container(name), cfm_mobilephone_dp_if(),
+      mq_AppToCtrl("AppToCtrl"), mq_AppToHTTP("AppToHTTP"),
+      mq_HTTPToApp("HTTPToApp"), mq_RTPToApp("RTPToApp"),
+      p_mq_NetToDVB("p_mq_NetToDVB"), p_mq_NetToUMTS("p_mq_NetToUMTS"),
+      p_mq_Request("p_mq_Request"), p_mq_Response("p_mq_Response"),
+      p_mq_UMTSToNet("p_mq_UMTSToNet"), p_mq_Video("p_mq_Video") {
   cf_function_container::init();
   // instantiation of models
   ApplicationLayer = new cfm_applicationlayer("ApplicationLayer");
@@ -49,21 +45,28 @@ cfm_mobilephone : cf_function_container(name),
   Controller = new cfm_controller("Controller");
   VideoProtocolStack = new cfm_videoprotocolstack("VideoProtocolStack");
   // connections
-  ApplicationLayer->p_mq_AppToCtrl(mq_AppToCtrl);
-  ApplicationLayer->p_mq_AppToHTTP(mq_AppToHTTP);
-  ApplicationLayer->p_mq_HTTPToApp(mq_HTTPToApp);
-  ApplicationLayer->p_mq_RTPToApp(mq_RTPToApp);
-ApplicationLayer->p_mq_Request((p_mq_Request);
-ApplicationLayer->p_mq_Response((p_mq_Response);
-ApplicationLayer->p_mq_Video((p_mq_Video);
-CallProtocolStack->p_mq_AppToHTTP(mq_AppToHTTP);
-CallProtocolStack->p_mq_HTTPToApp(mq_HTTPToApp);
-CallProtocolStack->p_mq_NetToUMTS((p_mq_NetToUMTS);
-CallProtocolStack->p_mq_UMTSToNet((p_mq_UMTSToNet);
-Controller->p_mq_AppToCtrl(mq_AppToCtrl);
-VideoProtocolStack->p_mq_RTPToApp(mq_RTPToApp);
-VideoProtocolStack->p_mq_NetToDVB((p_mq_NetToDVB);
-	cf_function_container::elab_end();
+  // model connect to relation
+  ApplicationLayer->p_mq_AppToCtrl(mq_AppToCtrl.p_target_socket);
+  ApplicationLayer->p_mq_AppToHTTP(mq_AppToHTTP.p_target_socket);
+  ApplicationLayer->p_mq_HTTPToApp(mq_HTTPToApp.p_target_socket);
+  ApplicationLayer->p_mq_RTPToApp(mq_RTPToApp.p_target_socket);
+  // model connect to port
+  ApplicationLayer->p_mq_Request(p_mq_Request);
+  ApplicationLayer->p_mq_Response(p_mq_Response);
+  ApplicationLayer->p_mq_Video(p_mq_Video);
+  // model connect to relation
+  CallProtocolStack->p_mq_AppToHTTP(mq_AppToHTTP.p_target_socket);
+  CallProtocolStack->p_mq_HTTPToApp(mq_HTTPToApp.p_target_socket);
+  // model connect to port
+  CallProtocolStack->p_mq_NetToUMTS(p_mq_NetToUMTS);
+  CallProtocolStack->p_mq_UMTSToNet(p_mq_UMTSToNet);
+  // model connect to relation
+  Controller->p_mq_AppToCtrl(mq_AppToCtrl.p_target_socket);
+  // model connect to relation
+  VideoProtocolStack->p_mq_RTPToApp(mq_RTPToApp.p_target_socket);
+  // model connect to port
+  VideoProtocolStack->p_mq_NetToDVB(p_mq_NetToDVB);
+  cf_function_container::elab_end();
 }
 //@}
 

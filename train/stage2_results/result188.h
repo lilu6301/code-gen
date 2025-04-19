@@ -13,7 +13,8 @@
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_readdriver_dp_if.h"
-#include "dt/cft_defarchn.h"
+//set of dataType, sort alphabetically
+#include "dt/cft_defaraddrchn.h"
 #include "dt/cft_defmemreadrequest.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -33,7 +34,8 @@ public:
 	/// cfm_readdriver type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_readdriver, cft_defarchn> p_mq_ARADDRin_t;
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
+	typedef cf_core::cf_mq_initiator_socket<cfm_readdriver, cft_defaraddrchn> p_mq_ARADDRin_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_readdriver, cft_defmemreadrequest> p_mq_MemReadRequest_t;
 	/// cfm_readdriver type define end
 
@@ -49,6 +51,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_ARADDRin_t p_mq_ARADDRin;
 	p_mq_MemReadRequest_t p_mq_MemReadRequest;
 	//@}
@@ -67,33 +70,15 @@ protected:
 	//Start of 'ReadDriver local declarations' algorithm generated code
 	int remainingDataSize;
 	int transId;
-	int PCIeLane;
-	DEVICEIDTYPE requesterId;
 	int dma_size;
-	float write_gap;
 
-	cf_dt::cf_time send_time;
+	DEVICEIDTYPE message_targetid;
+	DEVICEIDTYPE message_sourceid;
+	OPERATIONTYPE message_operation;
+	cf_dt::cf_time transfer_time;
 	cf_dt::cf_time message_time_stamp;
 	cf_dt::cf_data_size message_size;
-	cf_dt::cf_throughput pcie_throughput;
-	cf_dt::cf_time total_pcie_running_time;
-	double pcie_bus_usage;
-	cf_dt::cf_data_size total_pcie_data_processed;
-
-	cf_dt::cf_time read_time;
-	cf_dt::cf_throughput memory_read_throughput;
-	cf_dt::cf_time total_memory_read_time;
-	cf_dt::cf_throughput memory_write_throughput;
-
-	float total_gbe_data;
-	int total_gbe_packets;
-	float total_gbe_time;
-
-	int soc_priority;
-	int ring_priority;
-	int dataring_priority;
-
-	cf_dt::cf_time oldest_message_time_stamp;
+	cf_dt::cf_throughput bus_throughput;
 	//End of 'ReadDriver local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 

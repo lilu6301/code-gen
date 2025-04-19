@@ -30,6 +30,7 @@ public:
 	/// cfm_consumer type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_consumer,
 			cf_core::cf_payload_int> p_mq_MsgQ_t;
 	/// cfm_consumer type define end
@@ -46,6 +47,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_MsgQ_t p_mq_MsgQ;
 	//@}
 

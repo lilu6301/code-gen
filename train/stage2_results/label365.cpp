@@ -30,11 +30,11 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_rfcomm_send : cf_function(name),
-                  cfm_rfcomm_send_dp_if(),
-                  p_mq_OBEX_Out("p_mq_OBEX_Out"),
-                  p_mq_RFC_Cdts("p_mq_RFC_Cdts"),
-                  p_mq_RFC_Out2("p_mq_RFC_Out2") {
+cfm_rfcomm_send ::cfm_rfcomm_send()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_rfcomm_send_dp_if(),
+      p_mq_OBEX_Out("p_mq_OBEX_Out"), p_mq_RFC_Cdts("p_mq_RFC_Cdts"),
+      p_mq_RFC_Out2("p_mq_RFC_Out2") {
   cf_function::init();
   // connections
   cf_function::elab_end();

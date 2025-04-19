@@ -12,6 +12,7 @@
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_sendwackdriver_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defbrespchn.h"
 #include "dt/cft_defwriteack.h"
 
@@ -33,6 +34,7 @@ public:
 	/// cfm_sendwackdriver type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_sendwackdriver, cft_defbrespchn> p_mq_BRESPchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_sendwackdriver, cft_defwriteack> p_mq_WriteAck_t;
 	/// cfm_sendwackdriver type define end
@@ -49,6 +51,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_BRESPchn_t p_mq_BRESPchn;
 	p_mq_WriteAck_t p_mq_WriteAck;
 	//@}

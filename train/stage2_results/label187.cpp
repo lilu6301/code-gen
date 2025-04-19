@@ -30,11 +30,12 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_writedriver : cf_function(name),
-                  cfm_writedriver_dp_if(),
-                  p_mq_AWADDRin("p_mq_AWADDRin"),
-                  p_mq_MemWriteRequest("p_mq_MemWriteRequest"),
-                  p_mq_WDATAin("p_mq_WDATAin") {
+cfm_writedriver ::cfm_writedriver()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_writedriver_dp_if(),
+      p_mq_AWADDRin("p_mq_AWADDRin"),
+      p_mq_MemWriteRequest("p_mq_MemWriteRequest"),
+      p_mq_WDATAin("p_mq_WDATAin") {
   cf_function::init();
   // connections
   cf_function::elab_end();

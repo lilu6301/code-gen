@@ -30,10 +30,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_ipvideo : cf_function(name),
-              cfm_ipvideo_dp_if(),
-              p_mq_IPToRTP("p_mq_IPToRTP"),
-              p_mq_MPEToIP("p_mq_MPEToIP") {
+cfm_ipvideo ::cfm_ipvideo()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_ipvideo_dp_if(), p_mq_IPToRTP("p_mq_IPToRTP"),
+      p_mq_MPEToIP("p_mq_MPEToIP") {
   cf_function::init();
   // connections
   cf_function::elab_end();

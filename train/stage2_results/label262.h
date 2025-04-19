@@ -12,6 +12,7 @@
 #include "cfm_applicationmodelrefinement_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_receiver_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defack.h"
 #include "dt/cft_defmsg.h"
 
@@ -32,6 +33,7 @@ public:
 	/// cfm_receiver type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_receiver, cft_defack> p_mq_Ack_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_receiver, cft_defmsg> p_mq_Msg_t;
 	/// cfm_receiver type define end
@@ -48,6 +50,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_Ack_t p_mq_Ack;
 	p_mq_Msg_t p_mq_Msg;
 	//@}

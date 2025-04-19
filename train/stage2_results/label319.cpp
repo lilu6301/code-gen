@@ -30,13 +30,13 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_hwtestbench : cf_function(name),
-                  p_ev_startProcess("p_ev_startProcess"),
-                  p_mq_inputFrame("p_mq_inputFrame"),
-                  p_mq_outputFrame("p_mq_outputFrame"),
-                  p_sv_inputStream("p_sv_inputStream"),
-                  p_sv_outputStream("p_sv_outputStream"),
-                  p_sv_processingMode("p_sv_processingMode") {
+cfm_hwtestbench ::cfm_hwtestbench()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), p_ev_startProcess("p_ev_startProcess"),
+      p_mq_inputFrame("p_mq_inputFrame"), p_mq_outputFrame("p_mq_outputFrame"),
+      p_sv_inputStream("p_sv_inputStream"),
+      p_sv_outputStream("p_sv_outputStream"),
+      p_sv_processingMode("p_sv_processingMode") {
   cf_function::init();
   // connections
   cf_function::elab_end();

@@ -9,8 +9,8 @@
 #define COFS_MODEL_COSIMVCSUVMAPP_PRODUCER
 
 /// Model Header includes start
-#include "cfm_cosimvcsuvmapp_global.h"
-#include "cfm_cosimvcsuvmapp_global_types.h"
+#include "cfm_cosimvcsuvmaapp_global.h"
+#include "cfm_cosimvcsuvmaapp_global_types.h"
 #include "cofluent.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -30,6 +30,7 @@ public:
 	/// cfm_producer type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_producer,
 			cf_core::cf_payload_int> p_mq_data_t;
 	/// cfm_producer type define end
@@ -46,6 +47,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_data_t p_mq_data;
 	//@}
 

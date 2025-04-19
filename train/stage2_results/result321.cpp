@@ -23,22 +23,23 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_completedevice : cf_application(name),
-                    cfm_completedevice_dp_if(),
-                    ev_newFrame("newFrame"),
-                    sv_inputStream("inputStream"),
-                    sv_outputStream("outputStream") {
+cfm_completedevice ::cfm_completedevice()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name), cfm_compledevice_dp_if(), ev_newFrame("newFrame"),
+      sv_inputStream("inputStream"), sv_outputStream("outputStream") {
   cf_application::init();
   // instantiation of models
   device = new cfm_device("device");
   testBench = new cfm_testbench("testBench");
   // connections
-  device->p_mq_dpv(mq_dpv);
-  device->p_ev_newFrame(ev_newFrame);
-  testBench->p_mq_dpv(mq_dpv);
-  testBench->p_sv_inputStream(sv_inputStream);
-  testBench->p_ev_newFrame(ev_newFrame);
-  testBench->p_sv_outputStream(sv_outputStream);
+  // model connect to relation
+  device->p_mq_dpv(mq_dpv.p_target_socket);
+  device->p_sv_newFrame(sv_newFrame.p_target_socket);
+  // model connect to relation
+  testBench->p_mq_dpv(mq_dpv.p_target_socket);
+  testBench->p_sv_inputStream(sv_inputStream.p_target_socket);
+  testBench->p_ev_newFrame(ev_newFrame.p_target_socket);
+  testBench->p_sv_outputStream(sv_outputStream.p_target_socket);
   cf_application::elab_end();
 }
 //@}
@@ -97,15 +98,15 @@ void cfm_completedevice::cb_init_attributes() {
   // initialize function attributes
   cfa_cycle_period.init(cf_expr_time(10, CF_NS));
   // initialize relations attributes
-  sv_inputStream.cfa_write_time.init(cf_expr_duration(10, CF_US));
-  sv_inputStream.cfa_read_time.init(cf_expr_duration(10, CF_US));
+  sv_inputStream.cfa_write_time.init(cf_expr_duration(1, CF_NS));
+  sv_inputStream.cfa_read_time.init(cf_expr_duration(1, CF_NS));
   sv_inputStream.cfa_semaphore.init(false);
   sv_inputStream.cfa_concurrency.init((cf_nonzero_count)1);
-  ev_newFrame.cfa_set_time.init(cf_expr_duration(10, CF_US));
-  ev_newFrame.cfa_get_time.init(cf_expr_duration(10, CF_US));
+  ev_newFrame.cfa_set_time.init(cf_expr_duration(1, CF_NS));
+  ev_newFrame.cfa_get_time.init(cf_expr_duration(1, CF_NS));
   ev_newFrame.cfa_event_policy.init(CF_EV_POLICY_BOOLEAN);
-  sv_outputStream.cfa_write_time.init(cf_expr_duration(10, CF_US));
-  sv_outputStream.cfa_read_time.init(cf_expr_duration(10, CF_US));
+  sv_outputStream.cfa_write_time.init(cf_expr_duration(1, CF_NS));
+  sv_outputStream.cfa_read_time.init(cf_expr_duration(1, CF_NS));
   sv_outputStream.cfa_semaphore.init(false);
   sv_outputStream.cfa_concurrency.init((cf_nonzero_count)1);
 

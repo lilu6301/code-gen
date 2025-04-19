@@ -30,13 +30,12 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_callapplication : cf_function(name),
-                      cfm_callapplication_dp_if(),
-                      p_mq_AppToCtrl("p_mq_AppToCtrl"),
-                      p_mq_AppToHTTP("p_mq_AppToHTTP"),
-                      p_mq_HTTPToApp("p_mq_HTTPToApp"),
-                      p_mq_Request("p_mq_Request"),
-                      p_mq_Response("p_mq_Response") {
+cfm_callapplication ::cfm_callapplication()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_callapplication_dp_if(),
+      p_mq_AppToCtrl("p_mq_AppToCtrl"), p_mq_AppToHTTP("p_mq_AppToHTTP"),
+      p_mq_HTTPToApp("p_mq_HTTPToApp"), p_mq_Request("p_mq_Request"),
+      p_mq_Response("p_mq_Response") {
   cf_function::init();
   // connections
   cf_function::elab_end();

@@ -14,6 +14,7 @@
 #include "dp/cfm_ipcall_dp_if.h"
 #include "cfm_ipcall_receive.h"
 #include "cfm_ipcall_send.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defcall.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -33,6 +34,7 @@ public:
 	/// cfm_ipcall type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_ipcall, cft_defcall> p_mq_HTTPToIP_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_ipcall, cft_defcall> p_mq_IPToHTTP_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_ipcall, cft_defcall> p_mq_IPToUMTS_t;
@@ -51,6 +53,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_HTTPToIP_t p_mq_HTTPToIP;
 	p_mq_IPToHTTP_t p_mq_IPToHTTP;
 	p_mq_IPToUMTS_t p_mq_IPToUMTS;
@@ -60,6 +63,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_ipcall_receive* IPCall_Receive;
 	cfm_ipcall_send* IPCall_Send;
 	//@}

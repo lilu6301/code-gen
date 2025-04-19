@@ -12,7 +12,6 @@
 #include "cfm_transactiontrackermsgqapp_global.h"
 #include "cfm_transactiontrackermsgqapp_global_types.h"
 #include "cofluent.h"
-#include "dt/cft_null.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'MessageRouting includes' algorithm generated code
@@ -31,9 +30,13 @@ public:
 	/// cfm_messagerouting type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_messagerouting, cft_null> p_mq_MsgQIn_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_messagerouting, cft_null> p_mq_MsgQOut1_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_messagerouting, cft_null> p_mq_MsgQOut2_t;
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
+	typedef cf_core::cf_mq_initiator_socket<cfm_messagerouting,
+			cf_core::cf_payload_int> p_mq_MsgQIn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_messagerouting,
+			cf_core::cf_payload_int> p_mq_MsgQOut1_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_messagerouting,
+			cf_core::cf_payload_int> p_mq_MsgQOut2_t;
 	/// cfm_messagerouting type define end
 
 	/// constructor
@@ -48,6 +51,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_MsgQIn_t p_mq_MsgQIn;
 	p_mq_MsgQOut1_t p_mq_MsgQOut1;
 	p_mq_MsgQOut2_t p_mq_MsgQOut2;

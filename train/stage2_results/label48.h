@@ -12,6 +12,7 @@
 #include "cfm_softwaredefinedradioapp_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_ipcall_send_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defcall.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -31,6 +32,7 @@ public:
 	/// cfm_ipcall_send type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_ipcall_send, cft_defcall> p_mq_HTTPToIP_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_ipcall_send, cft_defcall> p_mq_IPToUMTS_t;
 	/// cfm_ipcall_send type define end
@@ -47,6 +49,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_HTTPToIP_t p_mq_HTTPToIP;
 	p_mq_IPToUMTS_t p_mq_IPToUMTS;
 	//@}

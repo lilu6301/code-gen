@@ -24,16 +24,17 @@ using namespace cf_pk;
 using namespace cf_core;
 
 //<#!@READ-ONLY-SECTION-END@!#>
-// Start of 'Readings definitions' algorithm generated code
+// Start of 'Reading definitions' algorithm generated code
 
-// End of 'Readings definitions' algorithm generated code
+// End of 'Reading definitions' algorithm generated code
 //<#!@READ-ONLY-SECTION-START@!#>
 
 /// \name constructor
 //@{
-cfm_reading : cf_function(name),
-              p_mq_Request("p_mq_Request"),
-              p_mq_Response("p_mq_Response") {
+cfm_reading ::cfm_reading()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_reading_dp_if(), p_mq_Request("p_mq_Request"),
+      p_mq_Response("p_mq_Response") {
   cf_function::init();
   // connections
   cf_function::elab_end();
@@ -44,9 +45,9 @@ cfm_reading : cf_function(name),
 //@{
 cfm_reading::~cfm_reading(void) {
   //<#!@READ-ONLY-SECTION-END@!#>
-  // Start of 'Readings destructor' algorithm generated code
+  // Start of 'Reading destructor' algorithm generated code
 
-  // End of 'Readings destructor' algorithm generated code
+  // End of 'Reading destructor' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
 }
 //@}
@@ -55,9 +56,9 @@ cfm_reading::~cfm_reading(void) {
 //@{
 void cfm_reading::cb_before_elaboration(void) {
   //<#!@READ-ONLY-SECTION-END@!#>
-  // Start of 'Readings pre elaboration' algorithm generated code
+  // Start of 'Reading pre elaboration' algorithm generated code
 
-  // End of 'Readings pre elaboration' algorithm generated code
+  // End of 'Reading pre elaboration' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
 }
 //@}
@@ -66,9 +67,9 @@ void cfm_reading::cb_before_elaboration(void) {
 //@{
 void cfm_reading::cb_end_of_elaboration(void) {
   //<#!@READ-ONLY-SECTION-END@!#>
-  // Start of 'Readings post elaboration' algorithm generated code
+  // Start of 'Reading post elaboration' algorithm generated code
 
-  // End of 'Readings post elaboration' algorithm generated code
+  // End of 'Reading post elaboration' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
 }
 //@}
@@ -77,9 +78,9 @@ void cfm_reading::cb_end_of_elaboration(void) {
 //@{
 void cfm_reading::cb_end_of_simulation(void) {
   //<#!@READ-ONLY-SECTION-END@!#>
-  // Start of 'Readings post simulation' algorithm generated code
+  // Start of 'Reading post simulation' algorithm generated code
 
-  // End of 'Readings post simulation' algorithm generated code
+  // End of 'Reading post simulation' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
 }
 //@}
@@ -101,9 +102,9 @@ void cfm_reading::cb_init_attributes() {
 void cfm_reading::cb_init_local_vars(void) {
 
   //<#!@READ-ONLY-SECTION-END@!#>
-  // Start of 'Readings initializations' algorithm generated code
+  // Start of 'Reading initializations' algorithm generated code
 
-  // End of 'Readings initializations' algorithm generated code
+  // End of 'Reading initializations' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
 }
 //@}

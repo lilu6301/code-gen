@@ -13,6 +13,7 @@
 #include "cofluent.h"
 #include "behavior/cf_function_router.h"
 #include "dp/cfm_wrdmux_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defbrespchn.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -32,6 +33,7 @@ public:
 	/// cfm_wrdmux type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_wrdmux, cft_defbrespchn> p_mq_BRESPchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_wrdmux, cft_defbrespchn> p_mq_BRESPin_t;
 	/// cfm_wrdmux type define end
@@ -47,6 +49,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_BRESPchn_t p_mq_BRESPchn;
 	p_mq_BRESPin_t p_mq_BRESPin;
 	//@}

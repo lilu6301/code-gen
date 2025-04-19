@@ -12,6 +12,7 @@
 #include "cfm_bluetooth_ips_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_rfc_out_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defrfcomm_out.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -31,6 +32,7 @@ public:
 	/// cfm_rfc_out type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_rfc_out, cft_defrfcomm_out> p_mq_RFCOMM_Out_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_rfc_out, cft_defrfcomm_out> p_mq_RFC_Out1_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_rfc_out, cft_defrfcomm_out> p_mq_RFC_Out2_t;
@@ -48,6 +50,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_RFCOMM_Out_t p_mq_RFCOMM_Out;
 	p_mq_RFC_Out1_t p_mq_RFC_Out1;
 	p_mq_RFC_Out2_t p_mq_RFC_Out2;

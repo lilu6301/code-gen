@@ -22,10 +22,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_transactiontrackermsgqapp : cf_application(name),
-                                mq_MsgQIn("MsgQIn"),
-                                mq_MsgQOut1("MsgQOut1"),
-                                mq_MsgQOut2("MsgQOut2") {
+cfm_transactiontrackermsgqapp ::cfm_transactiontrackermsgqapp()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name), mq_MsgQIn("MsgQIn"), mq_MsgQOut1("MsgQOut1"),
+      mq_MsgQOut2("MsgQOut2") {
   cf_application::init();
   // instantiation of models
   Consumer1 = new cfm_consumer1("Consumer1");
@@ -33,12 +33,16 @@ cfm_transactiontrackermsgqapp : cf_application(name),
   MessageRouting = new cfm_messagerouting("MessageRouting");
   Producer = new cfm_producer("Producer");
   // connections
-  Consumer1->p_mq_MsgQOut1(mq_MsgQOut1);
-  Consumer2->p_mq_MsgQOut2(mq_MsgQOut2);
-  MessageRouting->p_mq_MsgQIn(mq_MsgQIn);
-  MessageRouting->p_mq_MsgQOut1(mq_MsgQOut1);
-  MessageRouting->p_mq_MsgQOut2(mq_MsgQOut2);
-  Producer->p_mq_MsgQIn(mq_MsgQIn);
+  // model connect to relation
+  Consumer1->p_mq_MsgQOut1(mq_MsgQOut1.p_target_socket);
+  // model connect to relation
+  Consumer2->p_mq_MsgQOut2(mq_MsgQOut2.p_target_socket);
+  // model connect to relation
+  MessageRouting->p_mq_MsgQIn(mq_MsgQIn.p_target_socket);
+  MessageRouting->p_mq_MsgQOut1(mq_MsgQOut1.p_target_socket);
+  MessageRouting->p_mq_MsgQOut2(mq_MsgQOut2.p_target_socket);
+  // model connect to relation
+  Producer->p_mq_MsgQIn(mq_MsgQIn.p_target_socket);
   cf_application::elab_end();
 }
 //@}

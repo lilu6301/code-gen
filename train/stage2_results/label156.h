@@ -15,6 +15,7 @@
 #include "cfm_receiverrdata.h"
 #include "cfm_receivewack.h"
 #include "cfm_sender.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defaraddrchn.h"
 #include "dt/cft_defawaddrchn.h"
 #include "dt/cft_defbrespchn.h"
@@ -38,6 +39,7 @@ public:
 	/// cfm_device type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_device, cft_defaraddrchn> p_mq_ARADDRchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_device, cft_defawaddrchn> p_mq_AWADDRchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_device, cft_defbrespchn> p_mq_BRESPin_t;
@@ -57,6 +59,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_ARADDRchn_t p_mq_ARADDRchn;
 	p_mq_AWADDRchn_t p_mq_AWADDRchn;
 	p_mq_BRESPin_t p_mq_BRESPin;
@@ -67,6 +70,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_receivewack* ReceiveWACK;
 	cfm_receiverrdata* ReceiverRData;
 	cfm_sender* Sender;

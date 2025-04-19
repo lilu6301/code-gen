@@ -23,17 +23,17 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_cofluentapifromexternalip : cf_application(name),
-                                mq_MsgBwQ("MsgBwQ"),
-                                mq_MsgFwQ("MsgFwQ") {
+cfm_cofluentapifromexternalip ::cfm_cofluentapifromexternalip()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name), mq_MsgBwQ("MsgBwQ"), mq_MsgFwQ("MsgFwQ") {
   cf_application::init();
   // instantiation of models
   CoF_Initiator = new cfm_cof_initiator("CoF_Initiator");
   iUart = new cfm_iuart("iUart");
   // connections
-  CoF_Initiator->p_mq_MsgBwQ(mq_MsgBwQ);
-  CoF_Initiator->p_mq_MsgFwQ(mq_MsgFwQ);
-  iUart->p_mq_MsgFwQ(mq_MsgFwQ);
+  // model connect to relation
+  CoF_Initiator->p_mq_MsgBwQ(mq_MsgBwQ.p_target_socket);
+  CoF_Initiator->p_mq_MsgFwQ(mq_MsgFwQ.p_target_socket);
   cf_application::elab_end();
 }
 //@}

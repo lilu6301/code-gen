@@ -12,6 +12,7 @@
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_arbitration_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_deflistrequestsptr.h"
 #include "dt/cft_defrequestinformation.h"
 #include "dt/cft_defrequests2memory.h"
@@ -34,6 +35,7 @@ public:
 	/// cfm_arbitration type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_ev_initiator_socket<cfm_arbitration> p_ev_RequestCounter_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_arbitration,
 			cft_defrequestinformation> p_mq_RequestInformation_t;
@@ -56,6 +58,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_ev_RequestCounter_t p_ev_RequestCounter;
 	p_mq_RequestInformation_t p_mq_RequestInformation;
 	p_mq_Requests2Memory_t p_mq_Requests2Memory;

@@ -31,7 +31,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_requesting : cf_function(name), p_mq_Request("p_mq_Request") {
+cfm_requesting ::cfm_requesting()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_requesting_dp_if(), p_mq_Request("p_mq_Request") {
   cf_function::init();
   // connections
   cf_function::elab_end();

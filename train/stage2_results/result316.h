@@ -13,71 +13,67 @@
 #include "cfm_hwdevicemodel_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_hwmodel_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defframe.h"
 #include "dt/cft_defprocessingmode.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'hwModel includes' algorithm generated code
+void cfm_hwmodel::revert_frame() {
 
-//End of 'hwModel includes' algorithm generated code
+  /* Reverting the image means that Pixel 0 becomes Pixel N-1, where N is the
+   * frame size (in Pixels) In YUV 422 format, it implies to:
+   *   - Revert the Y table, located at offset 0
+   *   - Revert the U table, located at offset N
+   *   - Revert the V table, located at offset N*1.5
+   */
+  byte *outpayload = outputFrame.payload;
+  byte *inpayload = inputFrame.payload;
+
+  //4-Pixel block index in a line
+  int pixel_block_idx = 0;
+
+  //Line index
+  int line_idx;
+
+  //4-Pixel block offset, from the beginning of the frame
+  int current_block_ofs = 0;
+
+  // For each frame line
+  for (line_idx = 0; line_idx < NbPixelsPerLineMax; line_idx++) {
+    // For each pixel block
+    for (pixel_block_idx = 0; pixel_block_idx < NbPixelsPerLineMax / 4;
+         pixel_block_idx++) {
+
+      // Revert the Y table
+      outpayload[current_block_ofs] =
+          inpayload[current_block_ofs + 1]; //swap Y table, located at offset 0
+      outpayload[current_block_ofs + 1] =
+          inpayload[current_block_ofs + 2]; //swap Y table, located at offset N
+      outpayload[current_block_ofs + 1] =
+          inpayload[current_block_ofs + 3]; //swap Y table, located at offset N*1.5
+
+      // Revert the U table
+      outpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 1] =
+          inpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 2]; //swap U table,
+                                                                       located at
+                                                                       offset N
+      outpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 3] =
+          inpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 4]; //swap U
+                                                                       table,
+                                                                       located at
+                                                                       offset N*1.5
+
+      // Revert the V table
+      outpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 4] =
+          inpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 5]; //swap V
+                                                                       table,
+                                                                       located at
+                                                                       offset N*1.5
+
+      current_block_ofs += 4;
+    }
+  }
+}
+
 //<#!@READ-ONLY-SECTION-START@!#>
-/// Model Header includes end
-
-///    \defgroup dxghwModel Function hwModel
-//@{
-///        \page dxphwModel
-//@{
-///    \brief hwModel function model start
-class cfm_hwmodel: public cf_core::cf_function, public cfm_hwmodel_dp_if {
-public:
-	/// cfm_hwmodel type define start
-
-	/// ports typedef
-	typedef cf_core::cf_ev_initiator_socket<cfm_hwmodel> p_ev_startProcess_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_hwmodel, cft_defframe> p_mq_inputFrame_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_hwmodel, cft_defframe> p_mq_outputFrame_t;
-	typedef cf_core::cf_sv_initiator_socket<cfm_hwmodel, cft_defprocessingmode> p_sv_processingMode_t;
-	/// cfm_hwmodel type define end
-
-	/// constructor
-	cfm_hwmodel(sc_core::sc_module_name name);
-
-	/// destructor
-	virtual ~cfm_hwmodel(void);
-	virtual void cb_before_elaboration(void);
-	virtual void cb_end_of_elaboration(void);
-	virtual void cb_end_of_simulation(void);
-
-public:
-	/// \name input/output ports
-	//@{
-	p_ev_startProcess_t p_ev_startProcess;
-	p_mq_inputFrame_t p_mq_inputFrame;
-	p_mq_outputFrame_t p_mq_outputFrame;
-	p_sv_processingMode_t p_sv_processingMode;
-	//@}
-
-protected:
-	/// initialize attributes
-	void cb_init_attributes(void);
-	/// initialize definitions
-	void cb_init_local_vars(void);
-
-	/// Model private fields start
-	/// Model private fields end
-
-	/// \name user-defined local declarations
-	//<#!@READ-ONLY-SECTION-END@!#>
-	//Start of 'hwModel local declarations' algorithm generated code
-	void revert_frame();
-	//End of 'hwModel local declarations' algorithm generated code
-	//<#!@READ-ONLY-SECTION-START@!#>
-
-};
-///    \brief hwModel function model end
-
-//@}
-//@}
-#endif // COFS_MODEL_HWDEVICEMODEL_HWMODEL
-
-//<#!@READ-ONLY-SECTION-END@!#>

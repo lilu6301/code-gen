@@ -14,6 +14,7 @@
 #include "dp/cfm_bt_system_dp_if.h"
 #include "cfm_bt_stack.h"
 #include "cfm_filesystem.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defbaseband.h"
 #include "dt/cft_defdata.h"
 #include "dt/cft_defdatain.h"
@@ -37,13 +38,15 @@ class cfm_bt_system: public cf_core::cf_function_container,
 public:
 	/// cfm_bt_system type define start
 	/// relations typedef
-	typedef cf_core::cf_shared_variable<cft_defdata> sv_Data_t;
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
+	typedef cf_core::cf_event ev_WrOK_t;
 	typedef cf_core::cf_message_queue<cft_defdatain> mq_DataIn_t;
 	typedef cf_core::cf_message_queue<cft_defdataout> mq_DataOut_t;
 	typedef cf_core::cf_message_queue<cft_defreadwrite> mq_ReadWrite_t;
-	typedef cf_core::cf_event ev_WrOK_t;
+	typedef cf_core::cf_shared_variable<cft_defdata> sv_Data_t;
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_ev_initiator_socket<cfm_bt_system> p_ev_startEv_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_bt_system, cft_defbaseband> p_mq_BaseBand_In_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_bt_system, cft_defbaseband> p_mq_BaseBand_Out_t;
@@ -61,6 +64,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_ev_startEv_t p_ev_startEv;
 	p_mq_BaseBand_In_t p_mq_BaseBand_In;
 	p_mq_BaseBand_Out_t p_mq_BaseBand_Out;
@@ -69,6 +73,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_bt_stack* BT_Stack;
 	cfm_filesystem* FileSystem;
 	//@}
@@ -82,6 +87,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	ev_WrOK_t ev_WrOK;
 	mq_DataIn_t mq_DataIn;
 	mq_DataOut_t mq_DataOut;

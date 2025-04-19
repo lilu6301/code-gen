@@ -14,6 +14,7 @@
 #include "cfm_packet_in.h"
 #include "cfm_packet_out.h"
 #include "cfm_packet_process.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defpacket.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -32,6 +33,7 @@ class cfm_mymodel: public cf_core::cf_application {
 public:
 	/// cfm_mymodel type define start
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_p_in_t;
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_p_out_t;
 
@@ -50,6 +52,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_packet_in* packet_in;
 	cfm_packet_out* packet_out;
 	cfm_packet_process* packet_process;
@@ -64,6 +67,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	mq_p_in_t mq_p_in;
 	mq_p_out_t mq_p_out;
 	//@}

@@ -36,11 +36,6 @@ void cfm_hwmodel::revert_frame() {
   byte *outpayload = outputFrame.payload;
   byte *inpayload = inputFrame.payload;
 
-  // 'U' table Offset
-  int offsetU = (int)(NbPixelsPerLineMax * NbLinesMax);
-  // 'V' table offset
-  int offsetV = (int)(NbPixelsPerLineMax * NbLinesMax * 1.5);
-
   // 4-Pixel block index in a line
   int pixel_block_idx = 0;
 
@@ -51,108 +46,40 @@ void cfm_hwmodel::revert_frame() {
   int current_block_ofs = 0;
 
   // For each frame line
-  for (line_idx = 0; line_idx < NbLinesMax; line_idx++) {
+  for (line_idx = 0; line_idx < NbPixelsPerLineMax; line_idx++) {
     // For each pixel block
     for (pixel_block_idx = 0; pixel_block_idx < NbPixelsPerLineMax / 4;
          pixel_block_idx++) {
 
       // Revert the Y table
-      outpayload[offsetU - 1 - current_block_ofs] =
-          inpayload[offsetV + current_block_ofs + 1];
+      outpayload[current_block_ofs] =
+          inpayload[current_block_ofs + 1]; // 03
+      outpayload[current_block_ofs + 1] =
+          inpayload[current_block_ofs + 2]; // 04
+      outpayload[current_block_ofs + 1] =
+          inpayload[current_block_ofs + 3]; // 05
+      outpayload[current_block_ofs + 1] =
+          inpayload[current_block_ofs + 4]; // 06
 
       // Revert the U table
-      outpayload[offsetV - 1 - current_block_ofs / 2 - 0] =
-          inpayload[offsetU + current_block_ofs / 2 + 1 - 0];
+      outpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 1] =
+          inpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 2]; // 07
+      outpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 3] =
+          inpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 4]; // 08
+      outpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 5] =
+          inpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 6]; // 09
 
       // Revert the V table
-      outpayload[NbPixelsPerLineMax * NbLinesMax * 2 - 1 -
-                 current_block_ofs / 2 - 0] =
-          inpayload[offsetV + current_block_ofs / 2 + 1 - 0];
+      outpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 1] =
+          inpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 2]; // 10
+      outpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 3] =
+          inpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 4]; // 11
+      outpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 5] =
+          inpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 6]; // 12
+
+      current_block_ofs += 4;
     }
   }
 }
-// End of 'hwModel definitions' algorithm generated code
+
 //<#!@READ-ONLY-SECTION-START@!#>
-
-/// \name constructor
-//@{
-cfm_hwmodel : cf_function(name),
-              cfm_hwmodel_dp_if(),
-              p_ev_startProcess("p_ev_startProcess"),
-              p_mq_inputFrame("p_mq_inputFrame"),
-              p_mq_outputFrame("p_mq_outputFrame"),
-              p_sv_processingMode("p_sv_processingMode") {
-  cf_function::init();
-  // connections
-  cf_function::elab_end();
-}
-//@}
-
-/// \name destructor
-//@{
-cfm_hwmodel::~cfm_hwmodel(void) {
-  //<#!@READ-ONLY-SECTION-END@!#>
-  // Start of 'hwModel destructor' algorithm generated code
-
-  // End of 'hwModel destructor' algorithm generated code
-  //<#!@READ-ONLY-SECTION-START@!#>
-}
-//@}
-
-/// \name pre-elaboration section
-//@{
-void cfm_hwmodel::cb_before_elaboration(void) {
-  //<#!@READ-ONLY-SECTION-END@!#>
-  // Start of 'hwModel pre elaboration' algorithm generated code
-
-  // End of 'hwModel pre elaboration' algorithm generated code
-  //<#!@READ-ONLY-SECTION-START@!#>
-}
-//@}
-
-/// \name post-elaboration section
-//@{
-void cfm_hwmodel::cb_end_of_elaboration(void) {
-  //<#!@READ-ONLY-SECTION-END@!#>
-  // Start of 'hwModel post elaboration' algorithm generated code
-
-  // End of 'hwModel post elaboration' algorithm generated code
-  //<#!@READ-ONLY-SECTION-START@!#>
-}
-//@}
-
-/// \name post-simulation section
-//@{
-void cfm_hwmodel::cb_end_of_simulation(void) {
-  //<#!@READ-ONLY-SECTION-END@!#>
-  // Start of 'hwModel post simulation' algorithm generated code
-
-  // End of 'hwModel post simulation' algorithm generated code
-  //<#!@READ-ONLY-SECTION-START@!#>
-}
-//@}
-
-/// \name initialize attributes
-//@{
-void cfm_hwmodel::cb_init_attributes() {
-
-  // initialize function attributes
-  cfa_scope.init(CF_FCT_SYSTEM);
-
-  return;
-}
-//@}
-
-/// \name initialize definitions
-//@{
-void cfm_hwmodel::cb_init_local_vars(void) {
-
-  //<#!@READ-ONLY-SECTION-END@!#>
-  // Start of 'hwModel initializations' algorithm generated code
-
-  // End of 'hwModel initializations' algorithm generated code
-  //<#!@READ-ONLY-SECTION-START@!#>
-}
-//@}
-
-//<#!@READ-ONLY-SECTION-END@!#>

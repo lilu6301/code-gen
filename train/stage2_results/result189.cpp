@@ -11,7 +11,7 @@
 #ifdef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #undef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #endif
-#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_memory
+#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_ddrmemory
 #ifdef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #undef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #endif
@@ -31,10 +31,11 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_readdriver : cf_function(name),
-                 cfm_readdriver_dp_if(),
-                 p_mq_ARADDRin("p_mq_ARADDRin"),
-                 p_mq_MemReadRequest("p_mq_MemReadRequest") {
+cfm_readdriver ::cfm_readdriver()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_readdriver_dp_if(),
+      p_mq_ARADDRin("p_mq_ARADDRin"),
+      p_mq_MemReadRequest("p_mq_MemReadRequest") {
   cf_function::init();
   // connections
   cf_function::elab_end();
@@ -103,9 +104,10 @@ void cfm_readdriver::cb_init_local_vars(void) {
   //<#!@READ-ONLY-SECTION-END@!#>
   // Start of 'ReadDriver initializations' algorithm generated code
   remainingDataSize = 0;
+  req4kintervalns = 10.0f;
   transId = 0;
+  deadline = 0;
   dma_size = 64;
-
   // End of 'ReadDriver initializations' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
 }

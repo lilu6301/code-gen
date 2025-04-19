@@ -22,12 +22,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_automatedpayloadtrackers : cf_application(name),
-                               mq_M1_1("M1_1"),
-                               mq_M1_2("M1_2"),
-                               mq_M1_3("M1_3"),
-                               mq_M2_1("M2_1"),
-                               mq_M2_2("M2_2") {
+cfm_automatedpayloadtrackers ::cfm_automatedpayloadtrackers()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name), mq_M1_1("M1_1"), mq_M1_2("M1_2"), mq_M1_3("M1_3"),
+      mq_M2_1("M2_1"), mq_M2_2("M2_2") {
   cf_application::init();
   // instantiation of models
   C1 = new cfm_c1("C1");
@@ -37,16 +35,22 @@ cfm_automatedpayloadtrackers : cf_application(name),
   P1 = new cfm_p1("P1");
   P2 = new cfm_p2("P2");
   // connections
-  C1->p_mq_M1_3(mq_M1_3);
-  C2->p_mq_M2_2(mq_M2_2);
-  F12->p_mq_M1_1(mq_M1_1);
-  F12->p_mq_M1_2(mq_M1_2);
-  F12->p_mq_M2_1(mq_M2_1);
-  F12->p_mq_M2_2(mq_M2_2);
-  F2->p_mq_M1_2(mq_M1_2);
-  F2->p_mq_M1_3(mq_M1_3);
-  P1->p_mq_M1_1(mq_M1_1);
-  P2->p_mq_M2_1(mq_M2_1);
+  // model connect to relation
+  C1->p_mq_M1_3(mq_M1_3.p_target_socket);
+  // model connect to relation
+  C2->p_mq_M2_2(mq_M2_2.p_target_socket);
+  // model connect to relation
+  F12->p_mq_M1_1(mq_M1_1.p_target_socket);
+  F12->p_mq_M1_2(mq_M1_2.p_target_socket);
+  F12->p_mq_M2_1(mq_M2_1.p_target_socket);
+  F12->p_mq_M2_2(mq_M2_2.p_target_socket);
+  // model connect to relation
+  F2->p_mq_M1_2(mq_M1_2.p_target_socket);
+  F2->p_mq_M1_3(mq_M1_3.p_target_socket);
+  // model connect to relation
+  P1->p_mq_M1_1(mq_M1_1.p_target_socket);
+  // model connect to relation
+  P2->p_mq_M2_1(mq_M2_1.p_target_socket);
   cf_application::elab_end();
 }
 //@}

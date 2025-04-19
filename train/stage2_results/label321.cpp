@@ -22,21 +22,23 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_completedevice : cf_application(name),
-                     ev_newFrame("newFrame"),
-                     sv_inputStream("inputStream"),
-                     sv_outputStream("outputStream") {
+cfm_completedevice ::cfm_completedevice()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name), ev_newFrame("newFrame"),
+      sv_inputStream("inputStream"), sv_outputStream("outputStream") {
   cf_application::init();
   // instantiation of models
   device = new cfm_device("device");
   testBench = new cfm_testbench("testBench");
   // connections
-  device->p_mq_dpv(mq_dpv);
-  device->p_ev_newFrame(ev_newFrame);
-  testBench->p_mq_dpv(mq_dpv);
-  testBench->p_sv_inputStream(sv_inputStream);
-  testBench->p_ev_newFrame(ev_newFrame);
-  testBench->p_sv_outputStream(sv_outputStream);
+  // model connect to relation
+  device->p_mq_dpv(mq_dpv.p_target_socket);
+  device->p_ev_newFrame(ev_newFrame.p_target_socket);
+  // model connect to relation
+  testBench->p_mq_dpv(mq_dpv.p_target_socket);
+  testBench->p_sv_inputStream(sv_inputStream.p_target_socket);
+  testBench->p_ev_newFrame(ev_newFrame.p_target_socket);
+  testBench->p_sv_outputStream(sv_outputStream.p_target_socket);
   cf_application::elab_end();
 }
 //@}

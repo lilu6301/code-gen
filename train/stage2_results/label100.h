@@ -29,6 +29,7 @@ public:
 	/// cfm_producermap type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_producermap,
 			cf_core::cf_payload_map> p_mq_MsgQMap_t;
 	/// cfm_producermap type define end
@@ -45,6 +46,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_MsgQMap_t p_mq_MsgQMap;
 	//@}
 

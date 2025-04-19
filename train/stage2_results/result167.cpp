@@ -11,7 +11,7 @@
 #ifdef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #undef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #endif
-#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_producer
+#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_ddrmemory
 #ifdef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #undef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #endif
@@ -31,11 +31,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_sender : cf_function(name),
-             cfm_sender_dp_if(),
-             p_mq_ARADDRchn("p_mq_ARADDRchn"),
-             p_mq_WDATAchn("p_mq_WDATAchn"),
-             p_mq_AWADDRchn("p_mq_AWADDRchn") {
+cfm_sender ::cfm_sender()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_sender_dp_if(), p_mq_ARADDRchn("p_mq_ARADDRchn"),
+      p_mq_AWADDRchn("p_mq_AWADDRchn"), p_mq_WDATAchn("p_mq_WDATAchn") {
   cf_function::init();
   // connections
   cf_function::elab_end();
@@ -103,6 +102,19 @@ void cfm_sender::cb_init_local_vars(void) {
 
   //<#!@READ-ONLY-SECTION-END@!#>
   // Start of 'Sender initializations' algorithm generated code
+  isRequest = false;
+  isAck = false;
+  BlockSize = 4096; // amount of data received then an interurpt is required.
+  CurrentReceivedSize = 0;
+
+  message_time_stamp = cf_dt::cf_time(0, CF_NS);
+  message_size = cf_dt::cf_data_size(0, CF_BYTE);
+
+  // bus_throughput = DP_RINGSTOP_THROUGHPUT.get_value();
+  bus_width = DP_DDR_BUS_WIDTH.get_value().to_scalar(CF_BYTE);
+  bus_efficiency = DP_DDR_EFFICIENCY.get_value();
+  frequency_map_GL[RING] = DP_CPU_RING_FREQ.get_value().to_scalar(CF_HZ);
+  latency = (float)DP_DDR_RINGSTOP_LATENCY.get_value().to_scalar(CF_CYCLE);
 
   // End of 'Sender initializations' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>

@@ -12,6 +12,7 @@
 #include "cfm_bluetooth_ips_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_obex_send_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defdataout.h"
 #include "dt/cft_defobex_out.h"
 #include "dt/cft_defreadwrite.h"
@@ -33,6 +34,7 @@ public:
 	/// cfm_obex_send type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_ev_initiator_socket<cfm_obex_send> p_ev_continueEv_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_obex_send> p_ev_startEv_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_obex_send, cft_defdataout> p_mq_DataOut_t;
@@ -52,6 +54,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_ev_continueEv_t p_ev_continueEv;
 	p_ev_startEv_t p_ev_startEv;
 	p_mq_DataOut_t p_mq_DataOut;

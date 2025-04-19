@@ -14,6 +14,7 @@
 #include "dp/cfm_slave_stub_dp_if.h"
 #include "cfm_in_stub.h"
 #include "cfm_out_stub.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defbaseband.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -34,6 +35,7 @@ public:
 	/// cfm_slave_stub type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_slave_stub, cft_defbaseband> p_mq_BaseBand_In_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_slave_stub, cft_defbaseband> p_mq_BaseBand_Out_t;
 	/// cfm_slave_stub type define end
@@ -50,6 +52,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_BaseBand_In_t p_mq_BaseBand_In;
 	p_mq_BaseBand_Out_t p_mq_BaseBand_Out;
 	//@}
@@ -57,6 +60,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_in_stub* In_Stub;
 	cfm_out_stub* Out_Stub;
 	//@}

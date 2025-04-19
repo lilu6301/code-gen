@@ -26,11 +26,12 @@ void cfm_swinterface::storeOutputFrame(DefFrame *frame) {
 
 /// \name constructor
 //@{
-cfm_swinterface : cf_dpv_container(name),
-                  p_ev_newFrame("p_ev_newFrame"),
-                  p_ev_startProcess("p_ev_startProcess"),
-                  p_mq_inputFrame("p_mq_inputFrame"),
-                  p_sv_processingMode("p_sv_processingMode") {
+cfm_swinterface ::cfm_swinterface()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_dpv_container(name), p_ev_newFrame("p_ev_newFrame"),
+      p_ev_startProcess("p_ev_startProcess"),
+      p_mq_inputFrame("p_mq_inputFrame"),
+      p_sv_processingMode("p_sv_processingMode") {
   cf_dpv_container::init();
   // connections
   cf_dpv_container::elab_end();

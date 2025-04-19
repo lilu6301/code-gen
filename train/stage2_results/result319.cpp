@@ -33,13 +33,8 @@ void cfm_hwtestbench::revert_frame() {
    *   - Revert the U table, located at offset N
    *   - Revert the V table, located at offset N*1.5
    */
-  byte *outpayload = outputStream.payload;
-  byte *inpayload = inputStream.payload;
-
-  // 'U' table Offset
-  int offsetU = (int)(NbPixelsPerLineMax * NbLinesMax);
-  // 'V' table offset
-  int offsetV = (int)(NbPixelsPerLineMax * NbLinesMax * 1.5);
+  byte *outpayload = outputFrame.payload;
+  byte *inpayload = inputFrame.payload;
 
   // 4-Pixel block index in a line
   int pixel_block_idx = 0;
@@ -51,112 +46,40 @@ void cfm_hwtestbench::revert_frame() {
   int current_block_ofs = 0;
 
   // For each frame line
-  for (line_idx = 0; line_idx < NbLinesMax; line_idx++) {
+  for (line_idx = 0; line_idx < NbPixelsPerLineMax; line_idx++) {
     // For each pixel block
     for (pixel_block_idx = 0; pixel_block_idx < NbPixelsPerLineMax / 4;
          pixel_block_idx++) {
 
       // Revert the Y table
-      outpayload[offsetU - 1 - current_block_ofs] =
-          inpayload[offsetV + current_block_ofs + 1];
+      outpayload[current_block_ofs] =
+          inpayload[current_block_ofs + 1]; // 03
+      outpayload[current_block_ofs + 1] =
+          inpayload[current_block_ofs + 2]; // 04
+      outpayload[current_block_ofs + 1] =
+          inpayload[current_block_ofs + 3]; // 05
+      outpayload[current_block_ofs + 1] =
+          inpayload[current_block_ofs + 4]; // 06
 
       // Revert the U table
-      outpayload[offsetV - 1 - current_block_ofs / 2 - 0] =
-          inpayload[offsetU + current_block_ofs / 2 + 1 - 0];
+      outpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 1] =
+          inpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 2]; // 07
+      outpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 3] =
+          inpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 4]; // 08
+      outpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 5] =
+          inpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 6]; // 09
 
       // Revert the V table
-      outpayload[NbPixelsPerLineMax * NbLinesMax * 2 - 1 -
-                 current_block_ofs / 2 - 0] =
-          inpayload[offsetV + current_block_ofs / 2 + 1 - 0];
+      outpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 1] =
+          inpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 2]; // 10
+      outpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 3] =
+          inpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 4]; // 11
+      outpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 5] =
+          inpayload[current_block_ofs + NbPixelsPerLineMax / 2 - 6]; // 12
+
+      current_block_ofs += 4;
     }
   }
 }
-// End of 'hwTestBench definitions' algorithm generated code
+
 //<#!@READ-ONLY-SECTION-START@!#>
-
-/// \name constructor
-//@{
-cfm_hwtestbench : cf_function(name),
-                  cfm_hwtestbench_dp_if(),
-                  p_ev_startProcess("p_ev_startProcess"),
-                  p_mq_inputFrame("p_mq_inputFrame"),
-                  p_mq_outputFrame("p_mq_outputFrame"),
-                  p_sv_inputStream("p_sv_inputStream"),
-                  p_sv_outputStream("p_sv_outputStream"),
-                  p_sv_processingMode("p_sv_processingMode") {
-  cf_function::init();
-  // connections
-  cf_function::elab_end();
-}
-//@}
-
-/// \name destructor
-//@{
-cfm_hwtestbench::~cfm_hwtestbench(void) {
-  //<#!@READ-ONLY-SECTION-END@!#>
-  // Start of 'hwTestBench destructor' algorithm generated code
-
-  // End of 'hwTestBench destructor' algorithm generated code
-  //<#!@READ-ONLY-SECTION-START@!#>
-}
-//@}
-
-/// \name pre-elaboration section
-//@{
-void cfm_hwtestbench::cb_before_elaboration(void) {
-  //<#!@READ-ONLY-SECTION-END@!#>
-  // Start of 'hwTestBench pre elaboration' algorithm generated code
-
-  // End of 'hwTestBench pre elaboration' algorithm generated code
-  //<#!@READ-ONLY-SECTION-START@!#>
-}
-//@}
-
-/// \name post-elaboration section
-//@{
-void cfm_hwtestbench::cb_end_of_elaboration(void) {
-  //<#!@READ-ONLY-SECTION-END@!#>
-  // Start of 'hwTestBench post elaboration' algorithm generated code
-
-  // End of 'hwTestBench post elaboration' algorithm generated code
-  //<#!@READ-ONLY-SECTION-START@!#>
-}
-//@}
-
-/// \name post-simulation section
-//@{
-void cfm_hwtestbench::cb_end_of_simulation(void) {
-  //<#!@READ-ONLY-SECTION-END@!#>
-  // Start of 'hwTestBench post simulation' algorithm generated code
-
-  // End of 'hwTestBench post simulation' algorithm generated code
-  //<#!@READ-ONLY-SECTION-START@!#>
-}
-//@}
-
-/// \name initialize attributes
-//@{
-void cfm_hwtestbench::cb_init_attributes() {
-
-  // initialize function attributes
-  cfa_cycle_period.init(cf_expr_time(10, CF_NS));
-  cfa_scope.init(CF_FCT_SYSTEM);
-
-  return;
-}
-//@}
-
-/// \name initialize definitions
-//@{
-void cfm_hwtestbench::cb_init_local_vars(void) {
-
-  //<#!@READ-ONLY-SECTION-END@!#>
-  // Start of 'hwTestBench initializations' algorithm generated code
-  NbPixelsPerLineMax = NbPixelsPerLineMaxMax;
-  NbLinesMax = NbLinesMaxMax;
-  // End of 'hwTestBench initializations' algorithm generated code
-  //<#!@READ-ONLY-SECTION-START@!#>
-}
-//@}
-
-//<#!@READ-ONLY-SECTION-END@!#>

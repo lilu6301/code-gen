@@ -30,10 +30,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_bb_send : cf_function(name),
-              cfm_bb_send_dp_if(),
-              p_mq_BaseBand_Out("p_mq_BaseBand_Out"),
-              p_mq_L2CAP_Out("p_mq_L2CAP_Out") {
+cfm_bb_send ::cfm_bb_send()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_bb_send_dp_if(),
+      p_mq_BaseBand_Out("p_mq_BaseBand_Out"), p_mq_L2CAP_Out("p_mq_L2CAP_Out") {
   cf_function::init();
   // connections
   cf_function::elab_end();

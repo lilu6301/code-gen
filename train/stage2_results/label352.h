@@ -14,6 +14,7 @@
 #include "dp/cfm_baseband_layer_dp_if.h"
 #include "cfm_bb_receive.h"
 #include "cfm_bb_send.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defbaseband.h"
 #include "dt/cft_defl2cap_in.h"
 #include "dt/cft_defl2cap_out.h"
@@ -36,6 +37,7 @@ public:
 	/// cfm_baseband_layer type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_baseband_layer, cft_defbaseband> p_mq_BaseBand_In_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_baseband_layer, cft_defbaseband> p_mq_BaseBand_Out_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_baseband_layer, cft_defl2cap_in> p_mq_L2CAP_In_t;
@@ -54,6 +56,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_BaseBand_In_t p_mq_BaseBand_In;
 	p_mq_BaseBand_Out_t p_mq_BaseBand_Out;
 	p_mq_L2CAP_In_t p_mq_L2CAP_In;
@@ -63,6 +66,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_bb_receive* BB_Receive;
 	cfm_bb_send* BB_Send;
 	//@}

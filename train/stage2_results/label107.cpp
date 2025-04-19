@@ -30,7 +30,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_producervector : cf_function(name), p_mq_MsgQVector("p_mq_MsgQVector") {
+cfm_producervector ::cfm_producervector()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), p_mq_MsgQVector("p_mq_MsgQVector") {
   cf_function::init();
   // connections
   cf_function::elab_end();

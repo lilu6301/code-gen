@@ -11,7 +11,7 @@
 #ifdef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #undef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #endif
-#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_bluetooth_ips
+#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_l2cap
 #ifdef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #undef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #endif
@@ -31,10 +31,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_bb_receive : cf_function(name),
-                 cfm_bb_receive_dp_if(),
-                 p_mq_BaseBand_In("p_mq_BaseBand_In"),
-                 p_mq_L2CAP_In("p_mq_L2CAP_In") {
+cfm_bb_receive ::cfm_bb_receive()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_bb_receive_dp_if(),
+      p_mq_BaseBand_In("p_mq_BaseBand_In"), p_mq_L2CAP_In("p_mq_L2CAP_In") {
   cf_function::init();
   // connections
   cf_function::elab_end();
@@ -90,7 +90,6 @@ void cfm_bb_receive::cb_end_of_simulation(void) {
 void cfm_bb_receive::cb_init_attributes() {
 
   // initialize function attributes
-  cfa_cycle_period.init(cf_expr_time(10, CF_NS));
   cfa_scope.init(CF_FCT_SYSTEM);
 
   return;

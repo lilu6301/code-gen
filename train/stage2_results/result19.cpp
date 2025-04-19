@@ -31,12 +31,11 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_broadcastnetwork : cf_function(name),
-                       cfm_broadcastnetwork_dp_if(),
-                       p_ev_BurstClock("p_ev_BurstClock"),
-                       p_mq_NetToDVB("p_mq_NetToDVB"),
-                       p_mq_VideoNet("p_mq_VideoNet"),
-                       p_sv_VideoFiles("p_sv_VideoFiles") {
+cfm_broadcastnetwork ::cfm_broadcastnetwork()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_broadcastnetwork_dp_if(),
+      p_ev_BurstClock("p_ev_BurstClock"), p_mq_NetToDpv("p_mq_NetToDpv"),
+      p_mq_VideoFiles("p_mq_VideoFiles"), p_mq_VideoNet("p_mq_VideoNet") {
   cf_function::init();
   // connections
   cf_function::elab_end();
@@ -106,6 +105,8 @@ void cfm_broadcastnetwork::cb_init_local_vars(void) {
   //<#!@READ-ONLY-SECTION-END@!#>
   // Start of 'BroadcastNetwork initializations' algorithm generated code
   ClockCounter = 0;
+  NetToDpv = 0;
+  VideoFile = 0;
   // End of 'BroadcastNetwork initializations' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
 }

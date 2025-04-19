@@ -12,6 +12,7 @@
 #include "cfm_datacenter_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_outbound_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defpacket.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -31,6 +32,7 @@ public:
 	/// cfm_outbound type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_outbound, cft_defpacket> p_mq_MsgQRouting_out_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_outbound, cft_defpacket> p_mq_MsgQToServerRoom_t;
 	/// cfm_outbound type define end
@@ -47,6 +49,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_MsgQRouting_out_t p_mq_MsgQRouting_out;
 	p_mq_MsgQToServerRoom_t p_mq_MsgQToServerRoom;
 	//@}

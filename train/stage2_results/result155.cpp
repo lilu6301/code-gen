@@ -31,13 +31,12 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_target : cf_function_container(name),
-             cfm_target_dp_if(),
-             p_mq_ARADDRchn("p_mq_ARADDRchn"),
-             p_mq_AWADDRchn("p_mq_AWADDRchn"),
-             p_mq_BRESPchn("p_mq_BRESPchn"),
-             p_mq_RDATAchn("p_mq_RDATAchn"),
-             p_mq_WDATAchn("p_mq_WDATAchn") {
+cfm_target ::cfm_target()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_container(name), cfm_target_dp_if(),
+      p_mq_ARADDRchn("p_mq_ARADDRchn"), p_mq_AWADDRchn("p_mq_AWADDRchn"),
+      p_mq_BRESPchn("p_mq_BRESPchn"), p_mq_RDATAchn("p_mq_RDATAchn"),
+      p_mq_WDATAchn("p_mq_WDATAchn") {
   cf_function_container::init();
   // instantiation of models
   for (cf_count i = 0; i < (cf_count)(M_Nbr + 1); i++) {
@@ -62,6 +61,7 @@ cfm_target : cf_function_container(name),
   for (cf_count i = 0; i < (cf_count)(M_Nbr + 1); i++) {
     cfm_memory *module = Memory_vec[i];
     if (module != nullptr) {
+      // model connect to relation
       for (cf_count j = 0; j < (cf_count)(M_Nbr + 1); j++) {
         module->p_mq_DDRCommand(mq_DDRCommand_vec[j]->p_target_socket);
       }
@@ -70,18 +70,20 @@ cfm_target : cf_function_container(name),
       }
     }
   }
+  // model connect to relation
   for (cf_count i = 0; i < (cf_count)(M_Nbr + 1); i++) {
     MemoryController->p_mq_DDRCommand(mq_DDRCommand_vec[i]->p_target_socket);
   }
   for (cf_count i = 0; i < (cf_count)(M_Nbr + 1); i++) {
     MemoryController->p_mq_DQs(mq_DQs_vec[i]->p_target_socket);
   }
-MemoryController->p_mq_ARADDRchn((p_mq_ARADDRchn);
-MemoryController->p_mq_AWADDRchn((p_mq_AWADDRchn);
-MemoryController->p_mq_BRESPchn((p_mq_BRESPchn);
-MemoryController->p_mq_RDATAchn((p_mq_RDATAchn);
-MemoryController->p_mq_WDATAchn((p_mq_WDATAchn);
-	cf_function_container::elab_end();
+  // model connect to port
+  MemoryController->p_mq_ARADDRchn(p_mq_ARADDRchn);
+  MemoryController->p_mq_AWADDRchn(p_mq_AWADDRchn);
+  MemoryController->p_mq_BRESPchn(p_mq_BRESPchn);
+  MemoryController->p_mq_RDATAchn(p_mq_RDATAchn);
+  MemoryController->p_mq_WDATAchn(p_mq_WDATAchn);
+  cf_function_container::elab_end();
 }
 //@}
 
@@ -153,8 +155,7 @@ void cfm_target::cb_init_attributes() {
   for (cf_count i = 0; i < (cf_count)(M_Nbr + 1); i++) {
     (*mq_DDRCommand_vec[i]).cfa_send_time.init(cf_expr_duration(0, CF_NS));
     (*mq_DDRCommand_vec[i]).cfa_receive_time.init(cf_expr_duration(0, CF_NS));
-    (*mq_DDRCommand_vec[i]).cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
-    (*mq_DDRCommand_vec[i]).cfa_queue_capacity.init((cf_nonzero_count)1);
+    (*mq_DDRCommand_vec[i]).cfa_queue_policy.init(CF_MQ_POLICY_FIFO_INFINITE);
     (*mq_DDRCommand_vec[i]).cfa_concurrency.init((cf_nonzero_count)1);
     (*mq_DDRCommand_vec[i]).cfa_send_threshold.init((cf_nonzero_count)1);
     (*mq_DDRCommand_vec[i]).cfa_receive_threshold.init((cf_nonzero_count)1);
@@ -162,8 +163,7 @@ void cfm_target::cb_init_attributes() {
   for (cf_count i = 0; i < (cf_count)(M_Nbr + 1); i++) {
     (*mq_DQs_vec[i]).cfa_send_time.init(cf_expr_duration(0, CF_NS));
     (*mq_DQs_vec[i]).cfa_receive_time.init(cf_expr_duration(0, CF_NS));
-    (*mq_DQs_vec[i]).cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
-    (*mq_DQs_vec[i]).cfa_queue_capacity.init((cf_nonzero_count)1);
+    (*mq_DQs_vec[i]).cfa_queue_policy.init(CF_MQ_POLICY_FIFO_INFINITE);
     (*mq_DQs_vec[i]).cfa_concurrency.init((cf_nonzero_count)1);
     (*mq_DQs_vec[i]).cfa_send_threshold.init((cf_nonzero_count)1);
     (*mq_DQs_vec[i]).cfa_receive_threshold.init((cf_nonzero_count)1);

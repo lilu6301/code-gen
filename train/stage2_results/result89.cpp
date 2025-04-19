@@ -23,10 +23,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_protocolmapdatatypeapp : cf_application(name),
-                             mq_protocol_data("protocol_data"),
-                             mq_user_data_in("user_data_in"),
-                             mq_user_data_out("user_data_out") {
+cfm_protocolmapdatatypeapp ::cfm_protocolmapdatatypeapp()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name), mq_protocol_data("protocol_data"),
+      mq_user_data_in("user_data_in"), mq_user_data_out("user_data_out") {
   cf_application::init();
   // instantiation of models
   Consumer = new cfm_consumer("Consumer");
@@ -34,12 +34,16 @@ cfm_protocolmapdatatypeapp : cf_application(name),
   ProtocolReceive = new cfm_protocolreceive("ProtocolReceive");
   ProtocolSend = new cfm_protocolsend("ProtocolSend");
   // connections
-  Consumer->p_mq_user_data_out(mq_user_data_out);
-  Producer->p_mq_user_data_in(mq_user_data_in);
-  ProtocolReceive->p_mq_protocol_data(mq_protocol_data);
-  ProtocolReceive->p_mq_user_data_out(mq_user_data_out);
-  ProtocolSend->p_mq_protocol_data(mq_protocol_data);
-  ProtocolSend->p_mq_user_data_in(mq_user_data_in);
+  // model connect to relation
+  Consumer->p_mq_user_data_out(mq_user_data_out.p_target_socket);
+  // model connect to relation
+  Producer->p_mq_user_data_in(mq_user_data_in.p_target_socket);
+  // model connect to relation
+  ProtocolReceive->p_mq_protocol_data(mq_protocol_data.p_target_socket);
+  ProtocolReceive->p_mq_user_data_out(mq_user_data_out.p_target_socket);
+  // model connect to relation
+  ProtocolSend->p_mq_protocol_data(mq_protocol_data.p_target_socket);
+  ProtocolSend->p_mq_user_data_in(mq_user_data_in.p_target_socket);
   cf_application::elab_end();
 }
 //@}
@@ -105,22 +109,16 @@ void cfm_protocolmapdatatypeapp::cb_init_attributes() {
   mq_protocol_data.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
   mq_protocol_data.cfa_queue_capacity.init((cf_nonzero_count)1);
   mq_protocol_data.cfa_concurrency.init((cf_nonzero_count)1);
-  mq_protocol_data.cfa_send_threshold.init((cf_nonzero_count)1);
-  mq_protocol_data.cfa_receive_threshold.init((cf_nonzero_count)1);
   mq_user_data_in.cfa_send_time.init(cf_expr_duration(1, CF_NS));
   mq_user_data_in.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
   mq_user_data_in.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
   mq_user_data_in.cfa_queue_capacity.init((cf_nonzero_count)1);
   mq_user_data_in.cfa_concurrency.init((cf_nonzero_count)1);
-  mq_user_data_in.cfa_send_threshold.init((cf_nonzero_count)1);
-  mq_user_data_in.cfa_receive_threshold.init((cf_nonzero_count)1);
   mq_user_data_out.cfa_send_time.init(cf_expr_duration(1, CF_NS));
   mq_user_data_out.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
   mq_user_data_out.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
   mq_user_data_out.cfa_queue_capacity.init((cf_nonzero_count)1);
   mq_user_data_out.cfa_concurrency.init((cf_nonzero_count)1);
-  mq_user_data_out.cfa_send_threshold.init((cf_nonzero_count)1);
-  mq_user_data_out.cfa_receive_threshold.init((cf_nonzero_count)1);
 
   return;
 }

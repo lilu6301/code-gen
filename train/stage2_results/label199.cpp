@@ -30,13 +30,14 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_arbitration : cf_function(name),
-                  cfm_arbitration_dp_if(),
-                  p_ev_RequestCounter("p_ev_RequestCounter"),
-                  p_mq_RequestInformation("p_mq_RequestInformation"),
-                  p_mq_Requests2Memory("p_mq_Requests2Memory"),
-                  p_mq_WriteAck("p_mq_WriteAck"),
-                  p_sv_ListRequestsPtr("p_sv_ListRequestsPtr") {
+cfm_arbitration ::cfm_arbitration()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_arbitration_dp_if(),
+      p_ev_RequestCounter("p_ev_RequestCounter"),
+      p_mq_RequestInformation("p_mq_RequestInformation"),
+      p_mq_Requests2Memory("p_mq_Requests2Memory"),
+      p_mq_WriteAck("p_mq_WriteAck"),
+      p_sv_ListRequestsPtr("p_sv_ListRequestsPtr") {
   cf_function::init();
   // connections
   cf_function::elab_end();

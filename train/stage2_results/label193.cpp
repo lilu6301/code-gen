@@ -30,10 +30,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_readdatadriver : cf_function(name),
-                     cfm_readdatadriver_dp_if(),
-                     p_mq_DataRead("p_mq_DataRead"),
-                     p_mq_RDATAchn("p_mq_RDATAchn") {
+cfm_readdatadriver ::cfm_readdatadriver()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_readdatadriver_dp_if(),
+      p_mq_DataRead("p_mq_DataRead"), p_mq_RDATAchn("p_mq_RDATAchn") {
   cf_function::init();
   // connections
   cf_function::elab_end();

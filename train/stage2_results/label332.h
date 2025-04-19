@@ -15,6 +15,7 @@
 #include "cfm_bt_system.h"
 #include "cfm_slave_stub.h"
 #include "cfm_start.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defbaseband.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -34,9 +35,10 @@ class cfm_bluetooth_ips: public cf_core::cf_application,
 public:
 	/// cfm_bluetooth_ips type define start
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
+	typedef cf_core::cf_event ev_startEv_t;
 	typedef cf_core::cf_message_queue<cft_defbaseband> mq_BaseBand_In_t;
 	typedef cf_core::cf_message_queue<cft_defbaseband> mq_BaseBand_Out_t;
-	typedef cf_core::cf_event ev_startEv_t;
 
 	/// cfm_bluetooth_ips type define end
 
@@ -53,6 +55,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_bt_system* BT_System;
 	cfm_slave_stub* Slave_Stub;
 	cfm_start* Start;
@@ -67,6 +70,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	ev_startEv_t ev_startEv;
 	mq_BaseBand_In_t mq_BaseBand_In;
 	mq_BaseBand_Out_t mq_BaseBand_Out;

@@ -16,6 +16,7 @@
 #include "cfm_broadcastnetwork.h"
 #include "cfm_clockgenerator.h"
 #include "cfm_interactivenetwork.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defcall.h"
 #include "dt/cft_defnet.h"
 #include "dt/cft_defvideo.h"
@@ -37,12 +38,14 @@ class cfm_networks: public cf_core::cf_function_container,
 public:
 	/// cfm_networks type define start
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_event ev_BurstClock_t;
-	typedef cf_core::cf_shared_variable<cft_defnet> sv_VideoFiles_t;
 	typedef cf_core::cf_message_queue<cft_defnet> mq_VideoNet_t;
+	typedef cf_core::cf_shared_variable<cft_defnet> sv_VideoFiles_t;
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_networks, cft_defvideo> p_mq_NetToDVB_t;
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
+	typedef cf_core::cf_mq_initiator_socket<cfm_networks, cft_defvideo> p_mq_NetToDpv_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_networks, cft_defcall> p_mq_NetToUMTS_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_networks, cft_defcall> p_mq_UMTSToNet_t;
 	/// cfm_networks type define end
@@ -59,7 +62,8 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_NetToDVB_t p_mq_NetToDVB;
+//set of port, sort alphabetically. format: port_type port_name
+	p_mq_NetToDpv_t p_mq_NetToDpv;
 	p_mq_NetToUMTS_t p_mq_NetToUMTS;
 	p_mq_UMTSToNet_t p_mq_UMTSToNet;
 	//@}
@@ -67,6 +71,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_broadcastnetwork* BroadcastNetwork;
 	cfm_clockgenerator* ClockGenerator;
 	cfm_interactivenetwork* InteractiveNetwork;
@@ -81,6 +86,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	ev_BurstClock_t ev_BurstClock;
 	mq_VideoNet_t mq_VideoNet;
 	sv_VideoFiles_t sv_VideoFiles;

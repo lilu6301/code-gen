@@ -31,22 +31,23 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_umts : cf_function_container(name),
-           cfm_umts_dp_if(),
-           p_mq_IPToUMTS("p_mq_IPToUMTS"),
-           p_mq_NetToUMTS("p_mq_NetToUMTS"),
-           p_mq_UMTSToIP("p_mq_UMTSToIP"),
-           p_mq_UMTSToNet("p_mq_UMTSToNet") {
+cfm_umts ::cfm_umts()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_container(name), cfm_umts_dp_if(),
+      p_mq_IPToUMTS("p_mq_IPToUMTS"), p_mq_NetToUMTS("p_mq_NetToUMTS"),
+      p_mq_UMTSToIP("p_mq_UMTSToIP"), p_mq_UMTSToNet("p_mq_UMTSToNet") {
   cf_function_container::init();
   // instantiation of models
   UMTS_Receive = new cfm_umts_receive("UMTS_Receive");
   UMTS_Send = new cfm_umts_send("UMTS_Send");
   // connections
-UMTS_Receive->p_mq_NetToUMTS((p_mq_NetToUMTS);
-UMTS_Receive->p_mq_UMTSToIP((p_mq_UMTSToIP);
-UMTS_Send->p_mq_IPToUMTS((p_mq_IPToUMTS);
-UMTS_Send->p_mq_UMTSToNet((p_mq_UMTSToNet);
-	cf_function_container::elab_end();
+  // model connect to port
+  UMTS_Receive->p_mq_NetToUMTS(p_mq_NetToUMTS);
+  UMTS_Receive->p_mq_UMTSToIP(p_mq_UMTSToIP);
+  // model connect to port
+  UMTS_Send->p_mq_IPToUMTS(p_mq_IPToUMTS);
+  UMTS_Send->p_mq_UMTSToNet(p_mq_UMTSToNet);
+  cf_function_container::elab_end();
 }
 //@}
 

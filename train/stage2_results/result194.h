@@ -13,9 +13,10 @@
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_collectrequests_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defmemreadrequest.h"
 #include "dt/cft_defmemwriterequest.h"
-#include "dt/cft_deflaterequestsptr.h"
+#include "dt/cft_deflatypemapptr.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'CollectRequests includes' algorithm generated code
@@ -35,11 +36,14 @@ public:
 	/// cfm_collectrequests type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_ev_initiator_socket<cfm_collectrequests> p_ev_RequestCounter_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_collectrequests, cft_defmemreadrequest> p_mq_MemReadRequest_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_collectrequests, cft_defmemwriterequest> p_mq_MemWriteRequest_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_collectrequests,
+			cft_defmemreadrequest> p_mq_MemReadRequest_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_collectrequests,
+			cft_defmemwriterequest> p_mq_MemWriteRequest_t;
 	typedef cf_core::cf_sv_initiator_socket<cfm_collectrequests,
-			cft_deflaterequestsptr> p_sv_ListRequestsPtr_t;
+			cft_deflatypemapptr> p_sv_ListRequestsPtr_t;
 	/// cfm_collectrequests type define end
 
 	/// constructor
@@ -54,6 +58,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_ev_RequestCounter_t p_ev_RequestCounter;
 	p_mq_MemReadRequest_t p_mq_MemReadRequest;
 	p_mq_MemWriteRequest_t p_mq_MemWriteRequest;
@@ -72,7 +77,7 @@ protected:
 	/// \name user-defined local declarations
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'CollectRequests local declarations' algorithm generated code
-
+	int counter;
 	//End of 'CollectRequests local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 

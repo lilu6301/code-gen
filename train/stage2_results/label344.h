@@ -12,6 +12,7 @@
 #include "cfm_bluetooth_ips_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_filesystem_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defdata.h"
 #include "dt/cft_defdatain.h"
 #include "dt/cft_defdataout.h"
@@ -34,6 +35,7 @@ public:
 	/// cfm_filesystem type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_ev_initiator_socket<cfm_filesystem> p_ev_WrOK_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_filesystem, cft_defdatain> p_mq_DataIn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_filesystem, cft_defdataout> p_mq_DataOut_t;
@@ -53,6 +55,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_ev_WrOK_t p_ev_WrOK;
 	p_mq_DataIn_t p_mq_DataIn;
 	p_mq_DataOut_t p_mq_DataOut;

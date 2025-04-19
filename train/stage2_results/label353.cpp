@@ -30,22 +30,24 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_baseband_layer : cf_function_container(name),
-                     cfm_baseband_layer_dp_if(),
-                     p_mq_BaseBand_In("p_mq_BaseBand_In"),
-                     p_mq_BaseBand_Out("p_mq_BaseBand_Out"),
-                     p_mq_L2CAP_In("p_mq_L2CAP_In"),
-                     p_mq_L2CAP_Out("p_mq_L2CAP_Out") {
+cfm_baseband_layer ::cfm_baseband_layer()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_container(name), cfm_baseband_layer_dp_if(),
+      p_mq_BaseBand_In("p_mq_BaseBand_In"),
+      p_mq_BaseBand_Out("p_mq_BaseBand_Out"), p_mq_L2CAP_In("p_mq_L2CAP_In"),
+      p_mq_L2CAP_Out("p_mq_L2CAP_Out") {
   cf_function_container::init();
   // instantiation of models
   BB_Receive = new cfm_bb_receive("BB_Receive");
   BB_Send = new cfm_bb_send("BB_Send");
   // connections
-BB_Receive->p_mq_BaseBand_In((p_mq_BaseBand_In);
-BB_Receive->p_mq_L2CAP_In((p_mq_L2CAP_In);
-BB_Send->p_mq_BaseBand_Out((p_mq_BaseBand_Out);
-BB_Send->p_mq_L2CAP_Out((p_mq_L2CAP_Out);
-	cf_function_container::elab_end();
+  // model connect to port
+  BB_Receive->p_mq_BaseBand_In(p_mq_BaseBand_In);
+  BB_Receive->p_mq_L2CAP_In(p_mq_L2CAP_In);
+  // model connect to port
+  BB_Send->p_mq_BaseBand_Out(p_mq_BaseBand_Out);
+  BB_Send->p_mq_L2CAP_Out(p_mq_L2CAP_Out);
+  cf_function_container::elab_end();
 }
 //@}
 

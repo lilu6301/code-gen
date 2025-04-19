@@ -30,10 +30,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_reading : cf_function(name),
-              cfm_reading_dp_if(),
-              p_mq_Request("p_mq_Request"),
-              p_mq_Response("p_mq_Response") {
+cfm_reading ::cfm_reading()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_reading_dp_if(), p_mq_Request("p_mq_Request"),
+      p_mq_Response("p_mq_Response") {
   cf_function::init();
   // connections
   cf_function::elab_end();

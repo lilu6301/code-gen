@@ -22,19 +22,21 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_applicationmodelrefinement : cf_application(name),
-                                 cfm_applicationmodelrefinement_dp_if(),
-                                 mq_Ack("Ack"),
-                                 mq_Msg("Msg") {
+cfm_applicationmodelrefinement ::cfm_applicationmodelrefinement()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name), cfm_applicationmodelrefinement_dp_if(),
+      mq_Ack("Ack"), mq_Msg("Msg") {
   cf_application::init();
   // instantiation of models
   Producer = new cfm_producer("Producer");
   Receiver = new cfm_receiver("Receiver");
   // connections
-  Producer->p_mq_Ack(mq_Ack);
-  Producer->p_mq_Msg(mq_Msg);
-  Receiver->p_mq_Ack(mq_Ack);
-  Receiver->p_mq_Msg(mq_Msg);
+  // model connect to relation
+  Producer->p_mq_Ack(mq_Ack.p_target_socket);
+  Producer->p_mq_Msg(mq_Msg.p_target_socket);
+  // model connect to relation
+  Receiver->p_mq_Ack(mq_Ack.p_target_socket);
+  Receiver->p_mq_Msg(mq_Msg.p_target_socket);
   cf_application::elab_end();
 }
 //@}

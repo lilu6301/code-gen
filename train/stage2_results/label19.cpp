@@ -30,12 +30,11 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_broadcastnetwork : cf_function(name),
-                       cfm_broadcastnetwork_dp_if(),
-                       p_ev_BurstClock("p_ev_BurstClock"),
-                       p_mq_NetToDVB("p_mq_NetToDVB"),
-                       p_mq_VideoNet("p_mq_VideoNet"),
-                       p_sv_VideoFiles("p_sv_VideoFiles") {
+cfm_broadcastnetwork ::cfm_broadcastnetwork()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_broadcastnetwork_dp_if(),
+      p_ev_BurstClock("p_ev_BurstClock"), p_mq_NetToDVB("p_mq_NetToDVB"),
+      p_mq_VideoNet("p_mq_VideoNet"), p_sv_VideoFiles("p_sv_VideoFiles") {
   cf_function::init();
   // connections
   cf_function::elab_end();

@@ -30,17 +30,15 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_frontend : cf_function_container(name),
-               cfm_frontend_dp_if(),
-               p_mq_ARADDRin("p_mq_ARADDRin"),
-               p_mq_AWADDRin("p_mq_AWADDRin"),
-               p_mq_BRESPchn("p_mq_BRESPchn"),
-               p_mq_DataRead("p_mq_DataRead"),
-               p_mq_MemReadRequest("p_mq_MemReadRequest"),
-               p_mq_MemWriteRequest("p_mq_MemWriteRequest"),
-               p_mq_RDATAchn("p_mq_RDATAchn"),
-               p_mq_WDATAin("p_mq_WDATAin"),
-               p_mq_WriteAck("p_mq_WriteAck") {
+cfm_frontend ::cfm_frontend()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_container(name), cfm_frontend_dp_if(),
+      p_mq_ARADDRin("p_mq_ARADDRin"), p_mq_AWADDRin("p_mq_AWADDRin"),
+      p_mq_BRESPchn("p_mq_BRESPchn"), p_mq_DataRead("p_mq_DataRead"),
+      p_mq_MemReadRequest("p_mq_MemReadRequest"),
+      p_mq_MemWriteRequest("p_mq_MemWriteRequest"),
+      p_mq_RDATAchn("p_mq_RDATAchn"), p_mq_WDATAin("p_mq_WDATAin"),
+      p_mq_WriteAck("p_mq_WriteAck") {
   cf_function_container::init();
   // instantiation of models
   ReadDataDriver = new cfm_readdatadriver("ReadDataDriver");
@@ -48,16 +46,20 @@ cfm_frontend : cf_function_container(name),
   SendWAckDriver = new cfm_sendwackdriver("SendWAckDriver");
   WriteDriver = new cfm_writedriver("WriteDriver");
   // connections
-ReadDataDriver->p_mq_DataRead((p_mq_DataRead);
-ReadDataDriver->p_mq_RDATAchn((p_mq_RDATAchn);
-ReadDriver->p_mq_ARADDRin((p_mq_ARADDRin);
-ReadDriver->p_mq_MemReadRequest((p_mq_MemReadRequest);
-SendWAckDriver->p_mq_BRESPchn((p_mq_BRESPchn);
-SendWAckDriver->p_mq_WriteAck((p_mq_WriteAck);
-WriteDriver->p_mq_AWADDRin((p_mq_AWADDRin);
-WriteDriver->p_mq_MemWriteRequest((p_mq_MemWriteRequest);
-WriteDriver->p_mq_WDATAin((p_mq_WDATAin);
-	cf_function_container::elab_end();
+  // model connect to port
+  ReadDataDriver->p_mq_DataRead(p_mq_DataRead);
+  ReadDataDriver->p_mq_RDATAchn(p_mq_RDATAchn);
+  // model connect to port
+  ReadDriver->p_mq_ARADDRin(p_mq_ARADDRin);
+  ReadDriver->p_mq_MemReadRequest(p_mq_MemReadRequest);
+  // model connect to port
+  SendWAckDriver->p_mq_BRESPchn(p_mq_BRESPchn);
+  SendWAckDriver->p_mq_WriteAck(p_mq_WriteAck);
+  // model connect to port
+  WriteDriver->p_mq_AWADDRin(p_mq_AWADDRin);
+  WriteDriver->p_mq_MemWriteRequest(p_mq_MemWriteRequest);
+  WriteDriver->p_mq_WDATAin(p_mq_WDATAin);
+  cf_function_container::elab_end();
 }
 //@}
 

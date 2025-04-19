@@ -11,6 +11,7 @@
 #include "cfm_completedevice_global.h"
 #include "cfm_completedevice_global_types.h"
 #include "cofluent.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defframe.h"
 
 #include "mci/cfm_storeframe.h"
@@ -31,6 +32,7 @@ public:
 	/// cfm_mqtocommand type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_mqtocommand, cft_defframe> p_mq_outputFrame_t;
 	typedef cf_core::cf_mci_port<cfm_storeframe> storeFrame_t;
 	/// cfm_mqtocommand type define end
@@ -47,6 +49,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_outputFrame_t p_mq_outputFrame;
 	storeFrame_t storeFrame;
 	//@}

@@ -12,6 +12,7 @@
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_sender_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defaraddrchn.h"
 #include "dt/cft_defawaddrchn.h"
 #include "dt/cft_defwdatachn.h"
@@ -33,6 +34,7 @@ public:
 	/// cfm_sender type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_sender, cft_defaraddrchn> p_mq_ARADDRchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_sender, cft_defawaddrchn> p_mq_AWADDRchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_sender, cft_defwdatachn> p_mq_WDATAchn_t;
@@ -50,6 +52,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_ARADDRchn_t p_mq_ARADDRchn;
 	p_mq_AWADDRchn_t p_mq_AWADDRchn;
 	p_mq_WDATAchn_t p_mq_WDATAchn;

@@ -31,7 +31,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_c2 : cf_function(name), p_mq_M2_2("p_mq_M2_2") {
+cfm_c2 ::cfm_c2()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_c2_dp_if(), p_mq_M2_2("p_mq_M2_2") {
   cf_function::init();
   // connections
   cf_function::elab_end();

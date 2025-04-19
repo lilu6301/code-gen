@@ -12,6 +12,7 @@
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_responseforward_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defdataread.h"
 #include "dt/cft_defdqs.h"
 #include "dt/cft_defrequestinformation.h"
@@ -35,6 +36,7 @@ public:
 	/// cfm_responseforward type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_responseforward, cft_defdqs> p_mq_DQs_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_responseforward, cft_defdataread> p_mq_DataRead_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_responseforward,
@@ -54,6 +56,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_DQs_t p_mq_DQs;
 	p_mq_DataRead_t p_mq_DataRead;
 	p_mq_RequestInformation_t p_mq_RequestInformation;

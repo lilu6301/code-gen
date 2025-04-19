@@ -30,9 +30,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_watching : cf_function(name),
-               cfm_watching_dp_if(),
-               p_mq_Video("p_mq_Video") {
+cfm_watching ::cfm_watching()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_watching_dp_if(), p_mq_Video("p_mq_Video") {
   cf_function::init();
   // connections
   cf_function::elab_end();

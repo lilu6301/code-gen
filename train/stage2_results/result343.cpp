@@ -31,9 +31,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_out_stub : cf_function(name),
-               cfm_out_stub_dp_if(),
-               p_mq_BaseBand_Out("p_mq_BaseBand_Out") {
+cfm_out_stub ::cfm_out_stub()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_out_stub_dp_if(),
+      p_mq_BaseBand_Out("p_mq_BaseBand_Out") {
   cf_function::init();
   // connections
   cf_function::elab_end();

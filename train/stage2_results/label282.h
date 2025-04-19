@@ -31,6 +31,7 @@ class cfm_customizeddispatcherapp: public cf_core::cf_application {
 public:
 	/// cfm_customizeddispatcherapp type define start
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_MsgQ_t;
 
 	/// cfm_customizeddispatcherapp type define end
@@ -48,6 +49,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	std::vector<cfm_consumer*> Consumer_vec;
 	std::vector<cfm_producer*> Producer_vec;
 	//@}
@@ -61,6 +63,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	std::vector<mq_MsgQ_t*> mq_MsgQ_vec;
 	//@}
 

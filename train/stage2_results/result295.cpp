@@ -23,20 +23,23 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_mymodel : cf_application(name),
-              cfm_mymodel_dp_if(),
-              mq_p_in("p_in"),
-              mq_p_out("p_out") {
+cfm_mymodel ::cfm_mymodel()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name), cfm_mymodel_dp_if(), mq_p_in("p_in"),
+      mq_p_out("p_out") {
   cf_application::init();
   // instantiation of models
   packet_in = new cfm_packet_in("packet_in");
   packet_out = new cfm_packet_out("packet_out");
   packet_process = new cfm_packet_process("packet_process");
   // connections
-  packet_in->p_mq_p_in(mq_p_in);
-  packet_out->p_mq_p_out(mq_p_out);
-  packet_process->p_mq_p_in(mq_p_in);
-  packet_process->p_mq_p_out(mq_p_out);
+  // model connect to relation
+  packet_in->p_mq_p_in(mq_p_in.p_target_socket);
+  // model connect to relation
+  packet_out->p_mq_p_out(mq_p_out.p_target_socket);
+  // model connect to relation
+  packet_process->p_mq_p_in(mq_p_in.p_target_socket);
+  packet_process->p_mq_p_out(mq_p_out.p_target_socket);
   cf_application::elab_end();
 }
 //@}

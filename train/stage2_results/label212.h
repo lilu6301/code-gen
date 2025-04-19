@@ -15,6 +15,7 @@
 #include "dp/cfm_serverroom_dp_if.h"
 #include "cfm_aggswitch.h"
 #include "cfm_rack.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defpacket.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -34,10 +35,12 @@ class cfm_serverroom: public cf_core::cf_function_container,
 public:
 	/// cfm_serverroom type define start
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQToAggSwitch_t;
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQToRack_t;
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_serverroom, cft_defpacket> p_mq_MsgQToDataCenterSwitch_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_serverroom, cft_defpacket> p_mq_MsgQToServerRoom_t;
 	/// cfm_serverroom type define end
@@ -54,6 +57,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_MsgQToDataCenterSwitch_t p_mq_MsgQToDataCenterSwitch;
 	p_mq_MsgQToServerRoom_t p_mq_MsgQToServerRoom;
 	//@}
@@ -61,6 +65,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_aggswitch* AGGSwitch;
 	std::vector<cfm_rack*> Rack_vec;
 	//@}
@@ -88,6 +93,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	std::vector<mq_MsgQToAggSwitch_t*> mq_MsgQToAggSwitch_vec;
 	std::vector<mq_MsgQToRack_t*> mq_MsgQToRack_vec;
 	//@}

@@ -11,6 +11,7 @@
 #include "cfm_completedevice_global.h"
 #include "cfm_completedevice_global_types.h"
 #include "cofluent.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defframe.h"
 #include "dt/cft_defprocessingmode.h"
 
@@ -35,6 +36,7 @@ public:
 	/// cfm_swinterface type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_ev_initiator_socket<cfm_swinterface> p_ev_newFrame_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_swinterface> p_ev_startProcess_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_swinterface, cft_defframe> p_mq_inputFrame_t;
@@ -59,6 +61,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_ev_newFrame_t p_ev_newFrame;
 	p_ev_startProcess_t p_ev_startProcess;
 	p_mq_inputFrame_t p_mq_inputFrame;

@@ -14,6 +14,7 @@
 #include "dp/cfm_applicationlayer_dp_if.h"
 #include "cfm_callapplication.h"
 #include "cfm_videoapplication.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defcall.h"
 #include "dt/cft_defvideo.h"
 
@@ -35,6 +36,7 @@ public:
 	/// cfm_applicationlayer type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defcall> p_mq_AppToCtrl_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defcall> p_mq_AppToHTTP_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defcall> p_mq_HTTPToApp_t;
@@ -56,6 +58,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_AppToCtrl_t p_mq_AppToCtrl;
 	p_mq_AppToHTTP_t p_mq_AppToHTTP;
 	p_mq_HTTPToApp_t p_mq_HTTPToApp;
@@ -68,6 +71,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_callapplication* CallApplication;
 	cfm_videoapplication* VideoApplication;
 	//@}

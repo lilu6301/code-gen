@@ -12,8 +12,9 @@
 #include "cfm_tlm2at_global.h"
 #include "cfm_tlm2at_global_types.h"
 #include "cofluent.h"
-#include "dt/cft_defdatatype.h"
-#include "dt/cft_initiator.h"
+#include "dp/cfm_writer_dp_if.h"
+//set of dataType, sort alphabetically
+#include "dt/cft_defdat.h"
 #include "dt/cft_defmsgq.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -28,17 +29,19 @@
 ///        \page dxpWriter
 //@{
 ///    \brief Writer function model start
-class cfm_writer: public cf_core::cf_function {
+class cfm_writer: public cf_core::cf_function, public cfm_writer_dp_if {
 public:
 	/// cfm_writer type define start
 
 	/// ports typedef
-	typedef cf_core::cf_ev_initiator_socket<cfm_writer> p_ev_InitiatorWriter_t;
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_ev_initiator_socket<cfm_writer> p_ev_Sync2_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_writer> p_ev_Sync3_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_writer, cft_defdatatype> p_mq_ReferenceQueue2_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_writer, cft_defdatatype> p_mq_ReferenceQueue3_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_writer, cft_initiator> p_mq_InitiatorWriter_t;
+	typedef cf_core::cf_ev_initiator_socket<cfm_writer> p_ev_Sync_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_writer, cft_defdat> p_mq_InitiatorWriter_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_writer, cft_defdat> p_mq_ReferenceQueue2_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_writer, cft_defdat> p_mq_ReferenceQueue3_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_writer, cft_defdat> p_mq_ReferenceQueue_t;
 	/// cfm_writer type define end
 
 	/// constructor
@@ -53,12 +56,14 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_ev_InitiatorWriter_t p_ev_InitiatorWriter;
+//set of port, sort alphabetically. format: port_type port_name
 	p_ev_Sync2_t p_ev_Sync2;
 	p_ev_Sync3_t p_ev_Sync3;
+	p_ev_Sync_t p_ev_Sync;
+	p_mq_InitiatorWriter_t p_mq_InitiatorWriter;
 	p_mq_ReferenceQueue2_t p_mq_ReferenceQueue2;
 	p_mq_ReferenceQueue3_t p_mq_ReferenceQueue3;
-	p_mq_InitiatorWriter_t p_mq_InitiatorWriter;
+	p_mq_ReferenceQueue_t p_mq_ReferenceQueue;
 	//@}
 
 protected:
@@ -74,8 +79,6 @@ protected:
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'Writer local declarations' algorithm generated code
 	int InitiatorWriterIndex;
-	int Sync2Index;
-	int Sync3Index;
 	//End of 'Writer local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 

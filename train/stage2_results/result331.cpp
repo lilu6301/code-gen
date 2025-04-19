@@ -31,10 +31,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_mqtocommand : cf_function(name),
-                  cfm_mqtocommand_dp_if(),
-                  p_mq_outputFrame("p_mq_outputFrame"),
-                  storeFrame("storeFrame") {
+cfm_mqtocommand ::cfm_mqtocommand()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_mqtocommand_dp_if(),
+      p_mq_outputFrame("p_mq_outputFrame"), storeFrame("storeFrame") {
   cf_function::init();
   // connections
   cf_function::elab_end();

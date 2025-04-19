@@ -12,6 +12,7 @@
 #include "cfm_applicationmodelrefinement_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_generator_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defdatavar.h"
 #include "dt/cft_deftestprod.h"
 
@@ -30,6 +31,7 @@ public:
 	/// cfm_generator type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_ev_initiator_socket<cfm_generator> p_ev_Req_t;
 	typedef cf_core::cf_sv_initiator_socket<cfm_generator, cft_defdatavar> p_sv_DataVar_t;
 	typedef cf_core::cf_sv_initiator_socket<cfm_generator, cft_deftestprod> p_sv_TestProd_t;
@@ -47,6 +49,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_ev_Req_t p_ev_Req;
 	p_sv_DataVar_t p_sv_DataVar;
 	p_sv_TestProd_t p_sv_TestProd;

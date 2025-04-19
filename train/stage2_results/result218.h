@@ -16,6 +16,7 @@
 #include "dp/cfm_rack_dp_if.h"
 #include "cfm_server.h"
 #include "cfm_torswitch.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defpacket.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -34,10 +35,12 @@ class cfm_rack: public cf_core::cf_function_container, public cfm_rack_dp_if {
 public:
 	/// cfm_rack type define start
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQServerToToRSwitch_t;
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQToServer_t;
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_rack, cft_defpacket> p_mq_MsgQToAggSwitch_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_rack, cft_defpacket> p_mq_MsgQToRack_t;
 	/// cfm_rack type define end
@@ -54,6 +57,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_MsgQToAggSwitch_t p_mq_MsgQToAggSwitch;
 	p_mq_MsgQToRack_t p_mq_MsgQToRack;
 	//@}
@@ -61,6 +65,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	std::vector<cfm_server*> Server_vec;
 	cfm_torswitch* ToRSwitch;
 	//@}
@@ -74,6 +79,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	std::vector<mq_MsgQServerToToRSwitch_t*> mq_MsgQServerToToRSwitch_vec;
 	std::vector<mq_MsgQToServer_t*> mq_MsgQToServer_vec;
 	//@}

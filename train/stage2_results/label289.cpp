@@ -22,7 +22,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_customizedschedulerapp : cf_application(name), mq_MsgQ("MsgQ") {
+cfm_customizedschedulerapp ::cfm_customizedschedulerapp()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name), mq_MsgQ("MsgQ") {
   cf_application::init();
   // instantiation of models
   for (cf_count i = 0; i < (cf_count)(1 + 1); i++) {
@@ -41,12 +43,14 @@ cfm_customizedschedulerapp : cf_application(name), mq_MsgQ("MsgQ") {
   for (cf_count i = 0; i < (cf_count)(1 + 1); i++) {
     cfm_consumer *module = Consumer_vec[i];
     if (module != nullptr) {
+      // model connect to relation
       module->p_mq_MsgQ(mq_MemReadRequest.p_target_socket);
     }
   }
   for (cf_count i = 0; i < (cf_count)(1 + 1); i++) {
     cfm_producer *module = Producer_vec[i];
     if (module != nullptr) {
+      // model connect to relation
       module->p_mq_MsgQ(mq_MemReadRequest.p_target_socket);
     }
   }

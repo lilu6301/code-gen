@@ -18,15 +18,14 @@
 #include "cfm_frontend.h"
 #include "cfm_raddrdmux.h"
 #include "cfm_waddrdmux.h"
-#include "cfm_wdatadmux.h"
+#include "cfm_wdatafmux.h"
+//set of dataType, sort alphabetically
+#include "dt/cft_defack.h"
 #include "dt/cft_defaraddrchn.h"
-#include "dt/cft_defawaddrchn.h"
-#include "dt/cft_defbrespchn.h"
-#include "dt/cft_defrdatachn.h"
+#include "dt/cft_defdataread.h"
 #include "dt/cft_defmemreadrequest.h"
 #include "dt/cft_defmemwriterequest.h"
 #include "dt/cft_defwdatachn.h"
-#include "dt/cft_defwriteack.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'MemoryController includes' algorithm generated code
@@ -45,29 +44,27 @@ class cfm_memorycontroller: public cf_core::cf_function_container,
 public:
 	/// cfm_memorycontroller type define start
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_simple_message_queue<cft_defaraddrchn> mq_ARADDRin_t;
 	typedef cf_core::cf_simple_message_queue<cft_defawaddrchn> mq_AWADDRin_t;
-	typedef cf_core::cf_simple_message_queue<cft_defrdatachn> mq_DataRead_t;
-	typedef cf_core::cf_simple_message_queue<cft_defmemreadrequest> mq_MemReadRequest_t;
-	typedef cf_core::cf_simple_message_queue<cft_defmemwriterequest> mq_MemWriteRequest_t;
-	typedef cf_core::cf_simple_message_queue<cft_defwdatachn> mq_WDATAin_t;
-	typedef cf_core::cf_simple_message_queue<cft_defwriteack> mq_WriteAck_t;
+	typedef cf_core::cf_message_queue<cft_defdataread> mq_DataRead_t;
+	typedef cf_core::cf_message_queue<cft_defmemreadrequest> mq_MemReadRequest_t;
+	typedef cf_core::cf_message_queue<cft_defmemwriterequest> mq_MemWriteRequest_t;
+	typedef cf_core::cf_message_queue<cft_defwdatachn> mq_WDATAin_t;
+	typedef cf_core::cf_message_queue<cft_defwriteack> mq_WriteAck_t;
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
-			cft_defaraddrchn> p_mq_ARADDRchn_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
-			cft_defawaddrchn> p_mq_AWADDRchn_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
-			cft_defbrespchn> p_mq_BRESPchn_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
-			cft_defrdatachn> p_mq_DDRCommand_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
-			cft_defdqs> p_mq_DQs_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
-			cft_defrdatachn> p_mq_RDATAchn_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
-			cft_defwdatachn> p_mq_WDATAchn_t;
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defaraddrchn> p_mq_ARADDRchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defwdatachn> p_mq_BRESPchn_0_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defwdatachn> p_mq_BRESPchn_1_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defwdatachn> p_mq_BRESPchn_2_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defwdatachn> p_mq_DDRCommand_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defwdatachn> p_mq_DQs_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defwdatachn> p_mq_RDATAchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defwdatachn> p_mq_WDATAchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defwdatachn> p_mq_WDATAin_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defwdatachn> p_mq_WriteAck_t;
 	/// cfm_memorycontroller type define end
 
 	/// constructor
@@ -82,23 +79,28 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_ARADDRchn_t p_mq_ARADDRchn;
-	p_mq_AWADDRchn_t p_mq_AWADDRchn;
-	p_mq_BRESPchn_t* p_mq_BRESPchn;
+	p_mq_BRESPchn_0_t p_mq_BRESPchn_0;
+	p_mq_BRESPchn_1_t p_mq_BRESPchn_1;
+	p_mq_BRESPchn_2_t p_mq_BRESPchn_2;
 	p_mq_DDRCommand_t p_mq_DDRCommand;
 	p_mq_DQs_t p_mq_DQs;
-	p_mq_RDATAchn_t* p_mq_RDATAchn;
+	p_mq_RDATAchn_t p_mq_RDATAchn;
 	p_mq_WDATAchn_t p_mq_WDATAchn;
+	p_mq_WDATAin_t p_mq_WDATAin;
+	p_mq_WriteAck_t p_mq_WriteAck;
 	//@}
 
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_backend* BackEnd;
 	std::vector<cfm_frontend*> FrontEnd_vec;
 	cfm_raddrdmux* RAddrDmux;
 	cfm_waddrdmux* WAddrDmux;
-	cfm_wdatadmux* WdataDmux;
+	cfm_wdatafmux* WdataDmux;
 	//@}
 
 protected:
@@ -110,6 +112,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	std::vector<mq_ARADDRin_t*> mq_ARADDRin_vec;
 	std::vector<mq_AWADDRin_t*> mq_AWADDRin_vec;
 	std::vector<mq_DataRead_t*> mq_DataRead_vec;

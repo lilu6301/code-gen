@@ -22,7 +22,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_inheritance_example3app : cf_application(name) {
+cfm_inheritance_example3app ::cfm_inheritance_example3app()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name) {
   cf_application::init();
   // instantiation of models
   for (cf_count i = 0; i < (cf_count)(1 + 1); i++) {
@@ -48,6 +50,7 @@ cfm_inheritance_example3app : cf_application(name) {
   for (cf_count i = 0; i < (cf_count)(1 + 1); i++) {
     cfm_consumer *module = Consumer_vec[i];
     if (module != nullptr) {
+      // model connect to relation
       for (cf_count j = 0; j < (cf_count)(1 + 1); j++) {
         module->p_mq_MsgQ(mq_MsgQ_vec[j]->p_target_socket);
       }
@@ -56,6 +59,7 @@ cfm_inheritance_example3app : cf_application(name) {
   for (cf_count i = 0; i < (cf_count)(1 + 1); i++) {
     cfm_producer *module = Producer_vec[i];
     if (module != nullptr) {
+      // model connect to relation
       for (cf_count j = 0; j < (cf_count)(1 + 1); j++) {
         module->p_mq_MsgQ(mq_MsgQ_vec[j]->p_target_socket);
       }

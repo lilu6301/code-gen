@@ -31,10 +31,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_ipvideo : cf_function(name),
-              cfm_ipvideo_dp_if(),
-              p_mq_IPToRTP("p_mq_IPToRTP"),
-              p_mq_MPEToIP("p_mq_MPEToIP") {
+cfm_ipvideo ::cfm_ipvideo()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_ipvideo_dp_if(), p_mq_IPToRTP("p_mq_IPToRTP"),
+      p_mq_MPEToIP("p_mq_MPEToIP") {
   cf_function::init();
   // connections
   cf_function::elab_end();
@@ -103,8 +103,8 @@ void cfm_ipvideo::cb_init_local_vars(void) {
 
   //<#!@READ-ONLY-SECTION-END@!#>
   // Start of 'IPVideo initializations' algorithm generated code
-  MPEToIP = MPEToIP.get_value();
-  IPToRTP = IPToRTP.get_value();
+  MPEToIP = false;
+  IPToRTP = false;
   // End of 'IPVideo initializations' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
 }

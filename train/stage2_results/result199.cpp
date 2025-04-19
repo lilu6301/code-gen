@@ -11,7 +11,7 @@
 #ifdef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #undef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #endif
-#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_memory
+#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_ddrmemory
 #ifdef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #undef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #endif
@@ -31,13 +31,13 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_arbitration : cf_function(name),
-                  cfm_arbitration_dp_if(),
-                  p_ev_RequestCounter("p_ev_RequestCounter"),
-                  p_mq_RequestInformation("p_mq_RequestInformation"),
-                  p_mq_WriteAck("p_mq_WriteAck"),
-                  p_sv_ListRequestsPtr("p_sv_ListRequestsPtr"),
-                  p_mq_Requests2Memory("p_mq_Requests2Memory") {
+cfm_arbitration ::cfm_arbitration()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_arbitration_dp_if(),
+      p_ev_RequestCounter("p_ev_RequestCounter"),
+      p_mq_RequestInformation("p_mq_RequestInformation"),
+      p_mq_WriteAck("p_mq_WriteAck"), p_sv_ListRequestsPtr("p_sv_ListRequestsPtr"),
+      p_mq_Requests2Memory("p_mq_Requests2Memory") {
   cf_function::init();
   // connections
   cf_function::elab_end();
@@ -105,8 +105,7 @@ void cfm_arbitration::cb_init_local_vars(void) {
 
   //<#!@READ-ONLY-SECTION-END@!#>
   // Start of 'Arbitration initializations' algorithm generated code
-  listRequestInfo = 0;
-  listAckInfo = 0;
+  counter = 0;
   // End of 'Arbitration initializations' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
 }

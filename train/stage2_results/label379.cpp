@@ -22,12 +22,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_opp_usecase : cf_application(name),
-                  cfm_opp_usecase_dp_if(),
-                  ev_StartEv("StartEv"),
-                  ev_UnusedEv("UnusedEv"),
-                  mq_M2S("M2S"),
-                  mq_S2M("S2M") {
+cfm_opp_usecase ::cfm_opp_usecase()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name), cfm_opp_usecase_dp_if(), ev_StartEv("StartEv"),
+      ev_UnusedEv("UnusedEv"), mq_M2S("M2S"), mq_S2M("S2M") {
   cf_application::init();
   // instantiation of models
   Master = new cfm_master("Master");
@@ -35,8 +33,10 @@ cfm_opp_usecase : cf_application(name),
   StartFunc = new cfm_startfunc("StartFunc");
   UnusedFunc = new cfm_unusedfunc("UnusedFunc");
   // connections
-  StartFunc->p_ev_StartEv(ev_StartEv);
-  UnusedFunc->p_ev_UnusedEv(ev_UnusedEv);
+  // model connect to relation
+  StartFunc->p_ev_StartEv(ev_StartEv.p_target_socket);
+  // model connect to relation
+  UnusedFunc->p_ev_UnusedEv(ev_UnusedEv.p_target_socket);
   cf_application::elab_end();
 }
 //@}

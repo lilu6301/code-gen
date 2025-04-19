@@ -13,25 +13,27 @@
 #include "cfm_softwaredefinedradioapp_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_reading_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defcall.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
-//Start of 'Readings includes' algorithm generated code
+//Start of 'Reading includes' algorithm generated code
 
-//End of 'Readings includes' algorithm generated code
+//End of 'Reading includes' algorithm generated code
 //<#!@READ-ONLY-SECTION-START@!#>
 /// Model Header includes end
 
-///    \defgroup dxgReadings Function Reading
+///    \defgroup dxgReading Function Reading
 //@{
-///        \page dxpReadings
+///        \page dxpReading
 //@{
-///    \brief Readings function model start
+///    \brief Reading function model start
 class cfm_reading: public cf_core::cf_function, public cfm_reading_dp_if {
 public:
 	/// cfm_reading type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_reading, cft_defcall> p_mq_Request_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_reading, cft_defcall> p_mq_Response_t;
 	/// cfm_reading type define end
@@ -48,6 +50,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_Request_t p_mq_Request;
 	p_mq_Response_t p_mq_Response;
 	//@}
@@ -63,13 +66,13 @@ protected:
 
 	/// \name user-defined local declarations
 	//<#!@READ-ONLY-SECTION-END@!#>
-	//Start of 'Readings local declarations' algorithm generated code
+	//Start of 'Reading local declarations' algorithm generated code
 
-	//End of 'Readings local declarations' algorithm generated code
+	//End of 'Reading local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 
 };
-///    \brief Readings function model end
+///    \brief Reading function model end
 
 //@}
 //@}

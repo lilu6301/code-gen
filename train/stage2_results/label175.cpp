@@ -22,10 +22,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_wdatadmux : cf_function_router(name),
-                cfm_wdatadmux_dp_if(),
-                p_mq_WDATAchn("p_mq_WDATAchn"),
-                p_mq_WDATAin("p_mq_WDATAin") {
+cfm_wdatadmux ::cfm_wdatadmux()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_router(name), cfm_wdatadmux_dp_if(),
+      p_mq_WDATAchn("p_mq_WDATAchn"), p_mq_WDATAin("p_mq_WDATAin") {
   cf_function_router::init();
   // connections
   cf_function_router::elab_end();

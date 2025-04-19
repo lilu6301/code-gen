@@ -30,22 +30,23 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_l2cap_layer : cf_function_container(name),
-                  cfm_l2cap_layer_dp_if(),
-                  p_mq_L2CAP_In("p_mq_L2CAP_In"),
-                  p_mq_L2CAP_Out("p_mq_L2CAP_Out"),
-                  p_mq_RFCOMM_In("p_mq_RFCOMM_In"),
-                  p_mq_RFCOMM_Out("p_mq_RFCOMM_Out") {
+cfm_l2cap_layer ::cfm_l2cap_layer()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_container(name), cfm_l2cap_layer_dp_if(),
+      p_mq_L2CAP_In("p_mq_L2CAP_In"), p_mq_L2CAP_Out("p_mq_L2CAP_Out"),
+      p_mq_RFCOMM_In("p_mq_RFCOMM_In"), p_mq_RFCOMM_Out("p_mq_RFCOMM_Out") {
   cf_function_container::init();
   // instantiation of models
   L2CAP_Receive = new cfm_l2cap_receive("L2CAP_Receive");
   L2CAP_Send = new cfm_l2cap_send("L2CAP_Send");
   // connections
-L2CAP_Receive->p_mq_L2CAP_In((p_mq_L2CAP_In);
-L2CAP_Receive->p_mq_RFCOMM_In((p_mq_RFCOMM_In);
-L2CAP_Send->p_mq_L2CAP_Out((p_mq_L2CAP_Out);
-L2CAP_Send->p_mq_RFCOMM_Out((p_mq_RFCOMM_Out);
-	cf_function_container::elab_end();
+  // model connect to port
+  L2CAP_Receive->p_mq_L2CAP_In(p_mq_L2CAP_In);
+  L2CAP_Receive->p_mq_RFCOMM_In(p_mq_RFCOMM_In);
+  // model connect to port
+  L2CAP_Send->p_mq_L2CAP_Out(p_mq_L2CAP_Out);
+  L2CAP_Send->p_mq_RFCOMM_Out(p_mq_RFCOMM_Out);
+  cf_function_container::elab_end();
 }
 //@}
 

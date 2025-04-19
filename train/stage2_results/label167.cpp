@@ -30,11 +30,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_sender : cf_function(name),
-             cfm_sender_dp_if(),
-             p_mq_ARADDRchn("p_mq_ARADDRchn"),
-             p_mq_AWADDRchn("p_mq_AWADDRchn"),
-             p_mq_WDATAchn("p_mq_WDATAchn") {
+cfm_sender ::cfm_sender()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_sender_dp_if(), p_mq_ARADDRchn("p_mq_ARADDRchn"),
+      p_mq_AWADDRchn("p_mq_AWADDRchn"), p_mq_WDATAchn("p_mq_WDATAchn") {
   cf_function::init();
   // connections
   cf_function::elab_end();

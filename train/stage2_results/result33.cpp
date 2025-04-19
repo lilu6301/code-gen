@@ -31,21 +31,23 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_httptcp : cf_function_container(name),
-              p_mq_AppToHTTP("p_mq_AppToHTTP"),
-              p_mq_HTTPToApp("p_mq_HTTPToApp"),
-              p_mq_HTTPToIP("p_mq_HTTPToIP"),
-              p_mq_IPToHTTP("p_mq_IPToHTTP") {
+cfm_httptcp ::cfm_httptcp()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_container(name), cfm_httptcp_dp_if(),
+      p_mq_AppToHTTP("p_mq_AppToHTTP"), p_mq_HTTPToIP("p_mq_HTTPToIP"),
+      p_mq_IPToHTTP("p_mq_IPToHTTP"), p_mq_HTTPToApp("p_mq_HTTPToApp") {
   cf_function_container::init();
   // instantiation of models
   HTTPTCP_Receive = new cfm_httptcp_receive("HTTPTCP_Receive");
   HTTPTCP_Send = new cfm_httptcp_send("HTTPTCP_Send");
   // connections
-HTTPTCP_Receive->p_mq_HTTPToApp((p_mq_HTTPToApp);
-HTTPTCP_Receive->p_mq_IPToHTTP((p_mq_IPToHTTP);
-HTTPTCP_Send->p_mq_AppToHTTP((p_mq_AppToHTTP);
-HTTPTCP_Send->p_mq_HTTPToIP((p_mq_HTTPToIP);
-	cf_function_container::elab_end();
+  // model connect to port
+  HTTPTCP_Receive->p_mq_HTTPToApp(p_mq_HTTPToApp);
+  HTTPTCP_Receive->p_mq_IPToHTTP(p_mq_IPToHTTP);
+  // model connect to port
+  HTTPTCP_Send->p_mq_AppToHTTP(p_mq_AppToHTTP);
+  HTTPTCP_Send->p_mq_HTTPToIP(p_mq_HTTPToIP);
+  cf_function_container::elab_end();
 }
 //@}
 

@@ -30,14 +30,12 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_obex_receive : cf_function(name),
-                   cfm_obex_receive_dp_if(),
-                   p_ev_WrOK("p_ev_WrOK"),
-                   p_ev_continueEv("p_ev_continueEv"),
-                   p_mq_DataIn("p_mq_DataIn"),
-                   p_mq_OBEX_In("p_mq_OBEX_In"),
-                   p_mq_OB_Out1("p_mq_OB_Out1"),
-                   p_mq_ReadWrite("p_mq_ReadWrite") {
+cfm_obex_receive ::cfm_obex_receive()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_obex_receive_dp_if(), p_ev_WrOK("p_ev_WrOK"),
+      p_ev_continueEv("p_ev_continueEv"), p_mq_DataIn("p_mq_DataIn"),
+      p_mq_OBEX_In("p_mq_OBEX_In"), p_mq_OB_Out1("p_mq_OB_Out1"),
+      p_mq_ReadWrite("p_mq_ReadWrite") {
   cf_function::init();
   // connections
   cf_function::elab_end();

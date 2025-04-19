@@ -31,21 +31,15 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_bt_stack : cf_function_container(name),
-               cfm_bt_stack_dp_if(),
-               mq_L2CAP_In("L2CAP_In"),
-               mq_L2CAP_Out("L2CAP_Out"),
-               mq_OBEX_In("OBEX_In"),
-               mq_OBEX_Out("OBEX_Out"),
-               mq_RFCOMM_In("RFCOMM_In"),
-               mq_RFCOMM_Out("RFCOMM_Out"),
-               p_ev_startEv("p_ev_startEv"),
-               p_ev_WrOK("p_ev_WrOK"),
-               p_mq_BaseBand_In("p_mq_BaseBand_In"),
-               p_mq_BaseBand_Out("p_mq_BaseBand_Out"),
-               p_mq_DataIn("p_mq_DataIn"),
-               p_mq_DataOut("p_mq_DataOut"),
-               p_mq_ReadWrite("p_mq_ReadWrite") {
+cfm_bt_stack ::cfm_bt_stack()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_container(name), cfm_bt_stack_dp_if(),
+      mq_L2CAP_In("L2CAP_In"), mq_L2CAP_Out("L2CAP_Out"), mq_OBEX_In("OBEX_In"),
+      mq_OBEX_Out("OBEX_Out"), mq_RFCOMM_In("RFCOMM_In"), mq_RFCOMM_Out("RFCOMM_Out"),
+      p_ev_BaseBand_In("p_ev_BaseBand_In"),
+      p_ev_BaseBand_Out("p_ev_BaseBand_Out"), p_ev_DataIn("p_ev_DataIn"),
+      p_ev_DataOut("p_ev_DataOut"), p_ev_ReadWrite("p_ev_ReadWrite"),
+      p_ev_WrOK("p_ev_WrOK"), p_ev_startEv("p_ev_startEv") {
   cf_function_container::init();
   // instantiation of models
   BaseBand_Layer = new cfm_baseband_layer("BaseBand_Layer");
@@ -53,28 +47,31 @@ cfm_bt_stack : cf_function_container(name),
   OBEX_Layer = new cfm_obex_layer("OBEX_Layer");
   RFCOMM_Layer = new cfm_rfcomm_layer("RFCOMM_Layer");
   // connections
-  BaseBand_Layer->p_mq_L2CAP_In(mq_L2CAP_In);
-  BaseBand_Layer->p_mq_L2CAP_Out(mq_L2CAP_Out);
-  BaseBand_Layer->p_mq_RFCOMM_In(mq_RFCOMM_In);
-  BaseBand_Layer->p_mq_RFCOMM_Out(mq_RFCOMM_Out);
-BaseBand_Layer->p_mq_BaseBand_In((p_mq_BaseBand_In);
-BaseBand_Layer->p_mq_BaseBand_Out((p_mq_BaseBand_Out);
-L2CAP_Layer->p_mq_L2CAP_In(mq_L2CAP_In);
-L2CAP_Layer->p_mq_L2CAP_Out(mq_L2CAP_Out);
-L2CAP_Layer->p_mq_RFCOMM_In(mq_RFCOMM_In);
-L2CAP_Layer->p_mq_RFCOMM_Out(mq_RFCOMM_Out);
-OBEX_Layer->p_mq_OBEX_In(mq_OBEX_In);
-OBEX_Layer->p_mq_OBEX_Out(mq_OBEX_Out);
-OBEX_Layer->p_mq_DataIn((p_mq_DataIn);
-OBEX_Layer->p_mq_DataOut((p_mq_DataOut);
-OBEX_Layer->p_mq_ReadWrite((p_mq_ReadWrite);
-OBEX_Layer->p_mq_WrOK((p_mq_WrOK);
-OBEX_Layer->p_mq_startEv((p_mq_startEv);
-RFCOMM_Layer->p_mq_OBEX_In(mq_OBEX_In);
-RFCOMM_Layer->p_mq_OBEX_Out(mq_OBEX_Out);
-RFCOMM_Layer->p_mq_RFCOMM_In(mq_RFCOMM_In);
-RFCOMM_Layer->p_mq_RFCOMM_Out(mq_RFCOMM_Out);
-	cf_function_container::elab_end();
+  // model connect to relation
+  BaseBand_Layer->p_mq_L2CAP_In(mq_L2CAP_In.p_target_socket);
+  BaseBand_Layer->p_mq_L2CAP_Out(mq_L2CAP_Out.p_target_socket);
+  // model connect to port
+  BaseBand_Layer->p_mq_BaseBand_In(p_mq_BaseBand_In);
+  BaseBand_Layer->p_mq_BaseBand_Out(p_mq_BaseBand_Out);
+  // model connect to relation
+  L2CAP_Layer->p_mq_L2CAP_In(mq_L2CAP_In.p_target_socket);
+  L2CAP_Layer->p_mq_L2CAP_Out(mq_L2CAP_Out.p_target_socket);
+  L2CAP_Layer->p_mq_RFCOMM_In(mq_RFCOMM_In.p_target_socket);
+  L2CAP_Layer->p_mq_RFCOMM_Out(mq_RFCOMM_Out.p_target_socket);
+  // model connect to relation
+  OBEX_Layer->p_mq_OBEX_In(mq_OBEX_In.p_target_socket);
+  OBEX_Layer->p_mq_OBEX_Out(mq_OBEX_Out.p_target_socket);
+  // model connect to port
+  OBEX_Layer->p_mq_DataIn(p_mq_DataIn);
+  OBEX_Layer->p_mq_DataOut(p_mq_DataOut);
+  OBEX_Layer->p_mq_ReadWrite(p_mq_ReadWrite);
+  OBEX_Layer->p_mq_WrOK(p_mq_WrOK);
+  // model connect to relation
+  RFCOMM_Layer->p_mq_OBEX_In(mq_OBEX_In.p_target_socket);
+  RFCOMM_Layer->p_mq_OBEX_Out(mq_OBEX_Out.p_target_socket);
+  RFCOMM_Layer->p_mq_RFCOMM_In(mq_RFCOMM_In.p_target_socket);
+  RFCOMM_Layer->p_mq_RFCOMM_Out(mq_RFCOMM_Out.p_target_socket);
+  cf_function_container::elab_end();
 }
 //@}
 
@@ -133,43 +130,43 @@ void cfm_bt_stack::cb_init_attributes() {
 
   // initialize function attributes
   // initialize relations attributes
-  mq_L2CAP_In.cfa_send_time.init(cf_expr_duration(0, CF_NS));
-  mq_L2CAP_In.cfa_receive_time.init(cf_expr_duration(0, CF_NS));
+  mq_L2CAP_In.cfa_send_time.init(cf_expr_duration(1, CF_NS));
+  mq_L2CAP_In.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
   mq_L2CAP_In.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
   mq_L2CAP_In.cfa_queue_capacity.init((cf_nonzero_count)1);
   mq_L2CAP_In.cfa_concurrency.init((cf_nonzero_count)1);
   mq_L2CAP_In.cfa_send_threshold.init((cf_nonzero_count)1);
   mq_L2CAP_In.cfa_receive_threshold.init((cf_nonzero_count)1);
-  mq_L2CAP_Out.cfa_send_time.init(cf_expr_duration(0, CF_NS));
-  mq_L2CAP_Out.cfa_receive_time.init(cf_expr_duration(0, CF_NS));
+  mq_L2CAP_Out.cfa_send_time.init(cf_expr_duration(1, CF_NS));
+  mq_L2CAP_Out.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
   mq_L2CAP_Out.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
   mq_L2CAP_Out.cfa_queue_capacity.init((cf_nonzero_count)1);
   mq_L2CAP_Out.cfa_concurrency.init((cf_nonzero_count)1);
   mq_L2CAP_Out.cfa_send_threshold.init((cf_nonzero_count)1);
   mq_L2CAP_Out.cfa_receive_threshold.init((cf_nonzero_count)1);
-  mq_OBEX_In.cfa_send_time.init(cf_expr_duration(0, CF_NS));
-  mq_OBEX_In.cfa_receive_time.init(cf_expr_duration(0, CF_NS));
+  mq_OBEX_In.cfa_send_time.init(cf_expr_duration(1, CF_NS));
+  mq_OBEX_In.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
   mq_OBEX_In.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
   mq_OBEX_In.cfa_queue_capacity.init((cf_nonzero_count)1);
   mq_OBEX_In.cfa_concurrency.init((cf_nonzero_count)1);
   mq_OBEX_In.cfa_send_threshold.init((cf_nonzero_count)1);
   mq_OBEX_In.cfa_receive_threshold.init((cf_nonzero_count)1);
-  mq_OBEX_Out.cfa_send_time.init(cf_expr_duration(0, CF_NS));
-  mq_OBEX_Out.cfa_receive_time.init(cf_expr_duration(0, CF_NS));
+  mq_OBEX_Out.cfa_send_time.init(cf_expr_duration(1, CF_NS));
+  mq_OBEX_Out.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
   mq_OBEX_Out.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
   mq_OBEX_Out.cfa_queue_capacity.init((cf_nonzero_count)1);
   mq_OBEX_Out.cfa_concurrency.init((cf_nonzero_count)1);
   mq_OBEX_Out.cfa_send_threshold.init((cf_nonzero_count)1);
   mq_OBEX_Out.cfa_receive_threshold.init((cf_nonzero_count)1);
-  mq_RFCOMM_In.cfa_send_time.init(cf_expr_duration(0, CF_NS));
-  mq_RFCOMM_In.cfa_receive_time.init(cf_expr_duration(0, CF_NS));
+  mq_RFCOMM_In.cfa_send_time.init(cf_expr_duration(1, CF_NS));
+  mq_RFCOMM_In.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
   mq_RFCOMM_In.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
   mq_RFCOMM_In.cfa_queue_capacity.init((cf_nonzero_count)1);
   mq_RFCOMM_In.cfa_concurrency.init((cf_nonzero_count)1);
   mq_RFCOMM_In.cfa_send_threshold.init((cf_nonzero_count)1);
   mq_RFCOMM_In.cfa_receive_threshold.init((cf_nonzero_count)1);
-  mq_RFCOMM_Out.cfa_send_time.init(cf_expr_duration(0, CF_NS));
-  mq_RFCOMM_Out.cfa_receive_time.init(cf_expr_duration(0, CF_NS));
+  mq_RFCOMM_Out.cfa_send_time.init(cf_expr_duration(1, CF_NS));
+  mq_RFCOMM_Out.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
   mq_RFCOMM_Out.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
   mq_RFCOMM_Out.cfa_queue_capacity.init((cf_nonzero_count)1);
   mq_RFCOMM_Out.cfa_concurrency.init((cf_nonzero_count)1);

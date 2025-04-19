@@ -12,6 +12,7 @@
 #include "cfm_softwaredefinedradioapp_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_interactivenetwork_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defcall.h"
 #include "dt/cft_defnet.h"
 
@@ -33,6 +34,7 @@ public:
 	/// cfm_interactivenetwork type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_interactivenetwork, cft_defcall> p_mq_NetToUMTS_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_interactivenetwork, cft_defcall> p_mq_UMTSToNet_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_interactivenetwork, cft_defnet> p_mq_VideoNet_t;
@@ -51,6 +53,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_NetToUMTS_t p_mq_NetToUMTS;
 	p_mq_UMTSToNet_t p_mq_UMTSToNet;
 	p_mq_VideoNet_t p_mq_VideoNet;

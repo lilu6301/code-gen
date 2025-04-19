@@ -16,6 +16,7 @@
 #include "cfm_callprotocolstack.h"
 #include "cfm_controller.h"
 #include "cfm_videoprotocolstack.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defcall.h"
 #include "dt/cft_defvideo.h"
 
@@ -36,12 +37,14 @@ class cfm_mobilephone: public cf_core::cf_function_container,
 public:
 	/// cfm_mobilephone type define start
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_message_queue<cft_defcall> mq_AppToCtrl_t;
 	typedef cf_core::cf_message_queue<cft_defcall> mq_AppToHTTP_t;
 	typedef cf_core::cf_message_queue<cft_defcall> mq_HTTPToApp_t;
 	typedef cf_core::cf_message_queue<cft_defvideo> mq_RTPToApp_t;
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_mobilephone, cft_defvideo> p_mq_NetToDVB_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_mobilephone, cft_defcall> p_mq_NetToUMTS_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_mobilephone, cft_defcall> p_mq_Request_t;
@@ -62,6 +65,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_NetToDVB_t p_mq_NetToDVB;
 	p_mq_NetToUMTS_t p_mq_NetToUMTS;
 	p_mq_Request_t p_mq_Request;
@@ -73,6 +77,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_applicationlayer* ApplicationLayer;
 	cfm_callprotocolstack* CallProtocolStack;
 	cfm_controller* Controller;
@@ -88,6 +93,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	mq_AppToCtrl_t mq_AppToCtrl;
 	mq_AppToHTTP_t mq_AppToHTTP;
 	mq_HTTPToApp_t mq_HTTPToApp;

@@ -30,34 +30,33 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_bt_system : cf_function_container(name),
-                cfm_bt_system_dp_if(),
-                ev_WrOK("WrOK"),
-                mq_DataIn("DataIn"),
-                mq_DataOut("DataOut"),
-                mq_ReadWrite("ReadWrite"),
-                p_ev_startEv("p_ev_startEv"),
-                p_mq_BaseBand_In("p_mq_BaseBand_In"),
-                p_mq_BaseBand_Out("p_mq_BaseBand_Out"),
-                sv_Data("Data") {
+cfm_bt_system ::cfm_bt_system()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_container(name), cfm_bt_system_dp_if(), ev_WrOK("WrOK"),
+      mq_DataIn("DataIn"), mq_DataOut("DataOut"), mq_ReadWrite("ReadWrite"),
+      p_ev_startEv("p_ev_startEv"), p_mq_BaseBand_In("p_mq_BaseBand_In"),
+      p_mq_BaseBand_Out("p_mq_BaseBand_Out"), sv_Data("Data") {
   cf_function_container::init();
   // instantiation of models
   BT_Stack = new cfm_bt_stack("BT_Stack");
   FileSystem = new cfm_filesystem("FileSystem");
   // connections
-  BT_Stack->p_mq_DataIn(mq_DataIn);
-  BT_Stack->p_mq_DataOut(mq_DataOut);
-  BT_Stack->p_mq_ReadWrite(mq_ReadWrite);
-  BT_Stack->p_ev_WrOK(ev_WrOK);
-BT_Stack->p_mq_BaseBand_In((p_mq_BaseBand_In);
-BT_Stack->p_mq_BaseBand_Out((p_mq_BaseBand_Out);
-BT_Stack->p_mq_startEv((p_mq_startEv);
-FileSystem->p_sv_Data(sv_Data);
-FileSystem->p_mq_DataIn(mq_DataIn);
-FileSystem->p_mq_DataOut(mq_DataOut);
-FileSystem->p_mq_ReadWrite(mq_ReadWrite);
-FileSystem->p_ev_WrOK(ev_WrOK);
-	cf_function_container::elab_end();
+  // model connect to relation
+  BT_Stack->p_mq_DataIn(mq_DataIn.p_target_socket);
+  BT_Stack->p_mq_DataOut(mq_DataOut.p_target_socket);
+  BT_Stack->p_mq_ReadWrite(mq_ReadWrite.p_target_socket);
+  BT_Stack->p_ev_WrOK(ev_WrOK.p_target_socket);
+  // model connect to port
+  BT_Stack->p_mq_BaseBand_In(p_mq_BaseBand_In);
+  BT_Stack->p_mq_BaseBand_Out(p_mq_BaseBand_Out);
+  BT_Stack->p_mq_startEv(p_mq_startEv);
+  // model connect to relation
+  FileSystem->p_sv_Data(sv_Data.p_target_socket);
+  FileSystem->p_mq_DataIn(mq_DataIn.p_target_socket);
+  FileSystem->p_mq_DataOut(mq_DataOut.p_target_socket);
+  FileSystem->p_mq_ReadWrite(mq_ReadWrite.p_target_socket);
+  FileSystem->p_ev_WrOK(ev_WrOK.p_target_socket);
+  cf_function_container::elab_end();
 }
 //@}
 

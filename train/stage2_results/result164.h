@@ -16,8 +16,9 @@
 #include "dp/cfm_memory_dp_if.h"
 #include "cfm_bankdmuxer.h"
 #include "cfm_memorycommandexecution.h"
+//set of dataType, sort alphabetically
+#include "dt/cft_defddrcommand.h"
 #include "dt/cft_defdqs.h"
-#include "dt/cft_defdrrcommand.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'Memory includes' algorithm generated code
@@ -35,11 +36,13 @@ class cfm_memory: public cf_core::cf_function_container, public cfm_memory_dp_if
 public:
 	/// cfm_memory type define start
 	/// relations typedef
-	typedef cf_core::cf_message_queue<cft_defdrrcommand> mq_DDRAction_t;
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
+	typedef cf_core::cf_message_queue<cft_defddrcommand> mq_DDRAction_t;
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_memory, cft_defdqs> p_mq_DQs_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_memory, cft_defdrrcommand> p_mq_DDRCommand_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memory, cft_defddrcommand> p_mq_DDRCommand_t;
 	/// cfm_memory type define end
 
 	/// constructor
@@ -54,6 +57,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_DQs_t* p_mq_DQs;
 	p_mq_DDRCommand_t p_mq_DDRCommand;
 	//@}
@@ -61,6 +65,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_bankdmuxer* BankDmuxer;
 	std::vector<cfm_memorycommandexecution*> MemoryCommandExecution_vec;
 	//@}
@@ -74,6 +79,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	std::vector<mq_DDRAction_t*> mq_DDRAction_vec;
 	//@}
 

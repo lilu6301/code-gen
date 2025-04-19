@@ -14,6 +14,7 @@
 #include "cfm_hwmodel.h"
 #include "cfm_mqtocommand.h"
 #include "cfm_swinterface.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defframe.h"
 #include "dt/cft_defprocessingmode.h"
 
@@ -34,12 +35,14 @@ class cfm_device: public cf_core::cf_function_container {
 public:
 	/// cfm_device type define start
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
+	typedef cf_core::cf_event ev_startProcess_t;
 	typedef cf_core::cf_message_queue<cft_defframe> mq_inputFrame_t;
 	typedef cf_core::cf_message_queue<cft_defframe> mq_outputFrame_t;
 	typedef cf_core::cf_shared_variable<cft_defprocessingmode> sv_processingMode_t;
-	typedef cf_core::cf_event ev_startProcess_t;
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mci_port<cfm_dpv> dpv_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_device> p_ev_newFrame_t;
 	/// cfm_device type define end
@@ -56,6 +59,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	dpv_t dpv;
 	p_ev_newFrame_t p_ev_newFrame;
 	//@}
@@ -63,6 +67,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_hwmodel* hwModel;
 	cfm_mqtocommand* mqToCommand;
 	cfm_swinterface* swInterface;
@@ -77,6 +82,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	ev_startProcess_t ev_startProcess;
 	mq_inputFrame_t mq_inputFrame;
 	mq_outputFrame_t mq_outputFrame;

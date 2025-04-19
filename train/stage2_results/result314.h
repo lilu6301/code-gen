@@ -15,6 +15,7 @@
 #include "dp/cfm_hwdevice test_dp_if.h"
 #include "cfm_hwmodel.h"
 #include "cfm_hwtestbench.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defframe.h"
 #include "dt/cft_defprocessingmode.h"
 
@@ -35,12 +36,14 @@ class cfm_hwdevice test: public cf_core::cf_function_container,
 public:
 	/// cfm_hwdevice test type define start
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
+	typedef cf_core::cf_event ev_startProcess_t;
 	typedef cf_core::cf_message_queue<cft_defframe> mq_inputFrame_t;
 	typedef cf_core::cf_message_queue<cft_defframe> mq_outputFrame_t;
 	typedef cf_core::cf_shared_variable<cft_defprocessingmode> sv_processingMode_t;
-	typedef cf_core::cf_event ev_startProcess_t;
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_sv_initiator_socket<cfm_hwdevice test, cft_defframe> p_sv_inputStream_t;
 	typedef cf_core::cf_sv_initiator_socket<cfm_hwdevice test, cft_defframe> p_sv_outputStream_t;
 	/// cfm_hwdevice test type define end
@@ -57,6 +60,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_sv_inputStream_t p_sv_inputStream;
 	p_sv_outputStream_t p_sv_outputStream;
 	//@}
@@ -64,6 +68,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_hwmodel* hwModel;
 	cfm_hwtestbench* hwTestBench;
 	//@}
@@ -77,6 +82,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	ev_startProcess_t ev_startProcess;
 	mq_inputFrame_t mq_inputFrame;
 	mq_outputFrame_t mq_outputFrame;

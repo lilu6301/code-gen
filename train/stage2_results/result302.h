@@ -13,10 +13,12 @@
 #include "cfm_tlm2at_global_types.h"
 #include "cofluent.h"
 #include "cfm_reader.h"
+#include "cfm_tlm2platfom.h"
 #include "cfm_target.h"
 #include "cfm_target_2.h"
 #include "cfm_writer.h"
-#include "dt/cft_defdatatype.h"
+//set of dataType, sort alphabetically
+#include "dt/cft_defdat.h"
 #include "dt/cft_defmsgq.h"
 #include "dt/cft_initiator.h"
 
@@ -35,21 +37,20 @@
 class cfm_tlm2at: public cf_core::cf_application {
 public:
 	/// cfm_tlm2at type define start
-	/// systemC IPs typedef
-	typedef cfm_target_2 SystemCIP_t;
 	/// relations typedef
-	typedef cf_core::cf_message_queue<cft_initiator> mq_InitiatorReader_t;
-	typedef cf_core::cf_message_queue<cft_initiator> mq_InitiatorWriter_t;
-	typedef cf_core::cf_message_queue<cft_defdatatype> mq_ReaderResponse_t;
-	typedef cf_core::cf_message_queue<cft_defmsgq> mq_ReferenceQueue_t;
-	typedef cf_core::cf_message_queue<cft_defmsgq> mq_ReferenceQueue2_t;
-	typedef cf_core::cf_message_queue<cft_defmsgq> mq_ReferenceQueue3_t;
-	typedef cf_core::cf_event ev_Sync_t;
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_event ev_Sync2_t;
 	typedef cf_core::cf_event ev_Sync3_t;
-	typedef cf_core::cf_message_queue<cft_target> mq_TargetRequest_t;
-	typedef cf_core::cf_message_queue<cft_target> mq_TargetResponse_t;
-	typedef cf_core::cf_message_queue<cft_target> mq_TargetWrapper_t;
+	typedef cf_core::cf_event ev_Sync_t;
+	typedef cf_core::cf_message_queue<cft_defdat> mq_InitiatorReader_t;
+	typedef cf_core::cf_message_queue<cft_defdat> mq_InitiatorWriter_t;
+	typedef cf_core::cf_message_queue<cft_defdat> mq_ReaderResponse_t;
+	typedef cf_core::cf_message_queue<cft_defmsgq> mq_ReferenceQueue2_t;
+	typedef cf_core::cf_message_queue<cft_defdat> mq_ReferenceQueue3_t;
+	typedef cf_core::cf_message_queue<cft_defdat> mq_ReferenceQueue_t;
+	typedef cf_core::cf_message_queue<cft_defdat> mq_TargetRequest_t;
+	typedef cf_core::cf_message_queue<cft_defdat> mq_TargetResponse_t;
+	typedef cf_core::cf_message_queue<cft_defdat> mq_TargetWrapper_t;
 
 	/// cfm_tlm2at type define end
 
@@ -66,8 +67,9 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_reader* Reader;
-	SystemCIP_t* TLM2Platfom;
+	cfm_tlm2platfom* TLM2Platfom;
 	cfm_target* Target;
 	cfm_target_2* Target_2;
 	cfm_writer* Writer;
@@ -82,6 +84,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	ev_Sync2_t ev_Sync2;
 	ev_Sync3_t ev_Sync3;
 	ev_Sync_t ev_Sync;

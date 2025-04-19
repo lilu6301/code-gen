@@ -30,10 +30,11 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_inboundaggswitch : cf_function(name),
-                       cfm_inboundaggswitch_dp_if(),
-                       p_mq_MsgQInboundAGGSwitch("p_mq_MsgQInboundAGGSwitch"),
-                       p_mq_MsgQToRack("p_mq_MsgQToRack") {
+cfm_inboundaggswitch ::cfm_inboundaggswitch()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_inboundaggswitch_dp_if(),
+      p_mq_MsgQInboundAGGSwitch("p_mq_MsgQInboundAGGSwitch"),
+      p_mq_MsgQToRack("p_mq_MsgQToRack") {
   cf_function::init();
   // connections
   cf_function::elab_end();

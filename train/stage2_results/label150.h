@@ -14,6 +14,7 @@
 #include "dp/cfm_ddrmemory_dp_if.h"
 #include "cfm_clientside.h"
 #include "cfm_target.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defaraddrchn.h"
 #include "dt/cft_defawaddrchn.h"
 #include "dt/cft_defbrespchn.h"
@@ -36,6 +37,7 @@ class cfm_ddrmemory: public cf_core::cf_application, public cfm_ddrmemory_dp_if 
 public:
 	/// cfm_ddrmemory type define start
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_message_queue<cft_defaraddrchn> mq_ARADDRchn_t;
 	typedef cf_core::cf_message_queue<cft_defawaddrchn> mq_AWADDRchn_t;
 	typedef cf_core::cf_message_queue<cft_defbrespchn> mq_BRESPchn_t;
@@ -57,6 +59,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_clientside* ClientSide;
 	cfm_target* Target;
 	//@}
@@ -74,6 +77,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	mq_ARADDRchn_t mq_ARADDRchn;
 	mq_AWADDRchn_t mq_AWADDRchn;
 	mq_BRESPchn_t mq_BRESPchn;

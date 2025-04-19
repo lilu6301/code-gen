@@ -22,15 +22,17 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_hwdevicemodel : cf_application(name),
-                    sv_inputStream("inputStream"),
-                    sv_outputStream("outputStream") {
+cfm_hwdevicemodel ::cfm_hwdevicemodel()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name), sv_inputStream("inputStream"),
+      sv_outputStream("outputStream") {
   cf_application::init();
   // instantiation of models
   hwDeviceTest = new cfm_hwdevicetest("hwDeviceTest");
   // connections
-  hwDeviceTest->p_sv_inputStream(sv_inputStream);
-  hwDeviceTest->p_sv_outputStream(sv_outputStream);
+  // model connect to relation
+  hwDeviceTest->p_sv_inputStream(sv_inputStream.p_target_socket);
+  hwDeviceTest->p_sv_outputStream(sv_outputStream.p_target_socket);
   cf_application::elab_end();
 }
 //@}

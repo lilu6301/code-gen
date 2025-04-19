@@ -32,6 +32,7 @@ class cfm_transactiontrackermsgqapp: public cf_core::cf_application {
 public:
 	/// cfm_transactiontrackermsgqapp type define start
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_MsgQIn_t;
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_MsgQOut1_t;
 	typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_MsgQOut2_t;
@@ -51,6 +52,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_consumer1* Consumer1;
 	cfm_consumer2* Consumer2;
 	cfm_messagerouting* MessageRouting;
@@ -66,6 +68,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	mq_MsgQIn_t mq_MsgQIn;
 	mq_MsgQOut1_t mq_MsgQOut1;
 	mq_MsgQOut2_t mq_MsgQOut2;

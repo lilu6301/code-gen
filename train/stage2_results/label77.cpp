@@ -30,9 +30,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_cof_initiator : cf_function(name),
-                    p_mq_MsgBwQ("p_mq_MsgBwQ"),
-                    p_mq_MsgFwQ("p_mq_MsgFwQ") {
+cfm_cof_initiator ::cfm_cof_initiator()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), p_mq_MsgBwQ("p_mq_MsgBwQ"),
+      p_mq_MsgFwQ("p_mq_MsgFwQ") {
   cf_function::init();
   // connections
   cf_function::elab_end();

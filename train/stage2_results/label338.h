@@ -30,6 +30,7 @@ public:
 	/// cfm_start type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_ev_initiator_socket<cfm_start> p_ev_startEv_t;
 	/// cfm_start type define end
 
@@ -45,6 +46,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_ev_startEv_t p_ev_startEv;
 	//@}
 

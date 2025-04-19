@@ -30,14 +30,15 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_torswitch : cf_function_container(name),
-                cfm_torswitch_dp_if(),
-                mq_MsgQInboundAGGSwitch("MsgQInboundAGGSwitch"),
-                mq_MsgQOutboundAGGSwitch("MsgQOutboundAGGSwitch"),
-                p_mq_MsgQToAggSwitch("p_mq_MsgQToAggSwitch"),
-                p_mq_MsgQToRack("p_mq_MsgQToRack"),
-                p_mq_MsgQServerToToRSwitch("p_mq_MsgQServerToToRSwitch"),
-                p_mq_MsgQToServer("p_mq_MsgQToServer") {
+cfm_torswitch ::cfm_torswitch()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_container(name), cfm_torswitch_dp_if(),
+      mq_MsgQInboundAGGSwitch("MsgQInboundAGGSwitch"),
+      mq_MsgQOutboundAGGSwitch("MsgQOutboundAGGSwitch"),
+      p_mq_MsgQToAggSwitch("p_mq_MsgQToAggSwitch"),
+      p_mq_MsgQToRack("p_mq_MsgQToRack"),
+      p_mq_MsgQServerToToRSwitch("p_mq_MsgQServerToToRSwitch"),
+      p_mq_MsgQToServer("p_mq_MsgQToServer") {
   cf_function_container::init();
   // instantiation of models
   InboundAGGSwitch = new cfm_inboundaggswitch("InboundAGGSwitch");
@@ -69,41 +70,54 @@ cfm_torswitch : cf_function_container(name),
     mq_MsgQOutboundServer_vec.push_back(module);
   }
   // connections
-  InboundAGGSwitch->p_mq_MsgQInboundAGGSwitch(mq_MsgQInboundAGGSwitch);
-InboundAGGSwitch->p_mq_MsgQToRack((p_mq_MsgQToRack);
-	for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
+  // model connect to relation
+  InboundAGGSwitch->p_mq_MsgQInboundAGGSwitch(
+      mq_MsgQInboundAGGSwitch.p_target_socket);
+  // model connect to port
+  InboundAGGSwitch->p_mq_MsgQToRack(p_mq_MsgQToRack);
+  for (cf_count i = 0; i < (cf_count)(dpServerPerRackNb + 1); i++) {
     cfm_inboundserver *module = InboundServer_vec[i];
     if (module != nullptr) {
+      // model connect to relation
       for (cf_count j = 0; j < (cf_count)(dpServerPerRackNb + 1); j++) {
         module->p_mq_MsgQInboundServer(
             mq_MsgQInboundServer_vec[j]->p_target_socket);
       }
-module->p_mq_MsgQServerToToRSwitch((p_mq_MsgQServerToToRSwitch);
+      // model connect to port
+      module->p_mq_MsgQServerToToRSwitch(p_mq_MsgQServerToToRSwitch);
     }
-}
-OutboundAGGSwitch->p_mq_MsgQOutboundAGGSwitch(mq_MsgQOutboundAGGSwitch);
-OutboundAGGSwitch->p_mq_MsgQToAggSwitch((p_mq_MsgQToAggSwitch);
-	for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
+  }
+  // model connect to relation
+  OutboundAGGSwitch->p_mq_MsgQOutboundAGGSwitch(
+      mq_MsgQOutboundAGGSwitch.p_target_socket);
+  // model connect to port
+  OutboundAGGSwitch->p_mq_MsgQToAggSwitch(p_mq_MsgQToAggSwitch);
+  for (cf_count i = 0; i < (cf_count)(dpServerPerRackNb + 1); i++) {
     cfm_outboundserver *module = OutboundServer_vec[i];
     if (module != nullptr) {
+      // model connect to relation
       for (cf_count j = 0; j < (cf_count)(dpServerPerRackNb + 1); j++) {
         module->p_mq_MsgQOutboundServer(
             mq_MsgQOutboundServer_vec[j]->p_target_socket);
       }
-module->p_mq_MsgQToServer((p_mq_MsgQToServer);
+      // model connect to port
+      module->p_mq_MsgQToServer(p_mq_MsgQToServer);
     }
-}
-RoutingFunction->p_mq_MsgQInboundAGGSwitch(mq_MsgQInboundAGGSwitch);
-for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
+  }
+  // model connect to relation
+  RoutingFunction->p_mq_MsgQInboundAGGSwitch(
+      mq_MsgQInboundAGGSwitch.p_target_socket);
+  for (cf_count i = 0; i < (cf_count)(dpServerPerRackNb + 1); i++) {
     RoutingFunction->p_mq_MsgQInboundServer(
         mq_MsgQInboundServer_vec[i]->p_target_socket);
-	}
-RoutingFunction->p_mq_MsgQOutboundAGGSwitch(mq_MsgQOutboundAGGSwitch);
-for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
+  }
+  RoutingFunction->p_mq_MsgQOutboundAGGSwitch(
+      mq_MsgQOutboundAGGSwitch.p_target_socket);
+  for (cf_count i = 0; i < (cf_count)(dpServerPerRackNb + 1); i++) {
     RoutingFunction->p_mq_MsgQOutboundServer(
         mq_MsgQOutboundServer_vec[i]->p_target_socket);
-	}
-	cf_function_container::elab_end();
+  }
+  cf_function_container::elab_end();
 }
 //@}
 

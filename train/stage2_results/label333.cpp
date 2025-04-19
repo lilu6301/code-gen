@@ -22,23 +22,25 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_bluetooth_ips : cf_application(name),
-                    cfm_bluetooth_ips_dp_if(),
-                    ev_startEv("startEv"),
-                    mq_BaseBand_In("BaseBand_In"),
-                    mq_BaseBand_Out("BaseBand_Out") {
+cfm_bluetooth_ips ::cfm_bluetooth_ips()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name), cfm_bluetooth_ips_dp_if(), ev_startEv("startEv"),
+      mq_BaseBand_In("BaseBand_In"), mq_BaseBand_Out("BaseBand_Out") {
   cf_application::init();
   // instantiation of models
   BT_System = new cfm_bt_system("BT_System");
   Slave_Stub = new cfm_slave_stub("Slave_Stub");
   Start = new cfm_start("Start");
   // connections
-  BT_System->p_mq_BaseBand_In(mq_BaseBand_In);
-  BT_System->p_mq_BaseBand_Out(mq_BaseBand_Out);
-  BT_System->p_ev_startEv(ev_startEv);
-  Slave_Stub->p_mq_BaseBand_In(mq_BaseBand_In);
-  Slave_Stub->p_mq_BaseBand_Out(mq_BaseBand_Out);
-  Start->p_ev_startEv(ev_startEv);
+  // model connect to relation
+  BT_System->p_mq_BaseBand_In(mq_BaseBand_In.p_target_socket);
+  BT_System->p_mq_BaseBand_Out(mq_BaseBand_Out.p_target_socket);
+  BT_System->p_ev_startEv(ev_startEv.p_target_socket);
+  // model connect to relation
+  Slave_Stub->p_mq_BaseBand_In(mq_BaseBand_In.p_target_socket);
+  Slave_Stub->p_mq_BaseBand_Out(mq_BaseBand_Out.p_target_socket);
+  // model connect to relation
+  Start->p_ev_startEv(ev_startEv.p_target_socket);
   cf_application::elab_end();
 }
 //@}

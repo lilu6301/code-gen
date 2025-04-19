@@ -11,7 +11,7 @@
 #ifdef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #undef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #endif
-#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_ddrmemory
+#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_memory
 #ifdef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #undef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #endif
@@ -31,11 +31,11 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_writedriver : cf_function(name),
-                  cfm_writedriver_dp_if(),
-                  p_mq_AWADDRin("p_mq_AWADDRin"),
-                  p_mq_MemWriteRequest("p_mq_MemWriteRequest"),
-                  p_mq_WDATAin("p_mq_WDATAin") {
+cfm_writedriver ::cfm_writedriver()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_writedriver_dp_if(),
+      p_mq_AWADDRin("p_mq_AWADDRin"), p_mq_MemWriteRequest("p_mq_MemWriteRequest"),
+      p_mq_WDATAin("p_mq_WDATAin") {
   cf_function::init();
   // connections
   cf_function::elab_end();
@@ -103,10 +103,12 @@ void cfm_writedriver::cb_init_local_vars(void) {
 
   //<#!@READ-ONLY-SECTION-END@!#>
   // Start of 'WriteDriver initializations' algorithm generated code
-  bus_width = DP_DDR_BUS_WIDTH.get_value().to_scalar(CF_BYTE);
-  bus_efficiency = DP_DDR_EFFICIENCY.get_value();
-  frequency_map_GL[DDRMemory] =
-      DP_DDR_INIT_FREQ.get_value().to_scalar(CF_HZ);
+  bus_width = DP_DDM_MEMSS_CHANNEL_BUS_WIDTH.get_value().to_scalar(CF_BYTE);
+  bus_efficiency = DP_DDM_MEMSS_EFFICIENCY.get_value();
+  frequency_map_GL[MEMORY] =
+      DP_DDM_MEMSS_INITIAL_QCLK_FREQ.get_value().to_scalar(CF_HZ);
+  freq_gear = DP_DDM_MEMSS_GEAR.get_value();
+
   // End of 'WriteDriver initializations' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
 }

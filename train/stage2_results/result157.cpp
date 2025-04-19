@@ -31,25 +31,27 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_device : cf_function_container(name),
-             cfm_device_dp_if(),
-             p_mq_ARADDRchn("p_mq_ARADDRchn"),
-             p_mq_AWADDRchn("p_mq_AWADDRchn"),
-             p_mq_BRESPin("p_mq_BRESPin"),
-             p_mq_RDATAin("p_mq_RDATAin"),
-             p_mq_WDATAchn("p_mq_WDATAchn") {
+cfm_device ::cfm_device()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_container(name), cfm_device_dp_if(),
+      p_mq_ARADDRchn("p_mq_ARADDRchn"), p_mq_AWADDRchn("p_mq_AWADDRchn"),
+      p_mq_BRESPin("p_mq_BRESPin"), p_mq_RDATAin("p_mq_RDATAin"),
+      p_mq_WDATAchn("p_mq_WDATAchn") {
   cf_function_container::init();
   // instantiation of models
   ReceiveWACK = new cfm_receivewack("ReceiveWACK");
-  ReceiverRData = new cfm_receiverrdata("ReceiverRData");
+  ReceiverRData = new cfm_receivererdata("ReceiverRData");
   Sender = new cfm_sender("Sender");
   // connections
-ReceiveWACK->p_mq_BRESPin((p_mq_BRESPin);
-ReceiverRData->p_mq_RDATAin((p_mq_RDATAin);
-Sender->p_mq_ARADDRchn((p_mq_ARADDRchn);
-Sender->p_mq_AWADDRchn((p_mq_AWADDRchn);
-Sender->p_mq_WDATAchn((p_mq_WDATAchn);
-	cf_function_container::elab_end();
+  // model connect to port
+  ReceiveWACK->p_mq_BRESPin(p_mq_BRESPin);
+  // model connect to port
+  ReceiverRData->p_mq_RDATAin(p_mq_RDATAin);
+  // model connect to port
+  Sender->p_mq_ARADDRchn(p_mq_ARADDRchn);
+  Sender->p_mq_AWADDRchn(p_mq_AWADDRchn);
+  Sender->p_mq_WDATAchn(p_mq_WDATAchn);
+  cf_function_container::elab_end();
 }
 //@}
 

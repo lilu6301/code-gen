@@ -31,10 +31,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_umts_send : cf_function(name),
-                cfm_umts_send_dp_if(),
-                p_mq_IPToUMTS("p_mq_IPToUMTS"),
-                p_mq_UMTSToNet("p_mq_UMTSToNet") {
+cfm_umts_send ::cfm_umts_send()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_umts_send_dp_if(),
+      p_mq_IPToUMTS("p_mq_IPToUMTS"), p_mq_UMTSToNet("p_mq_UMTSToNet") {
   cf_function::init();
   // connections
   cf_function::elab_end();

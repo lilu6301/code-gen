@@ -13,6 +13,7 @@
 #include "cofluent.h"
 #include "behavior/cf_function_router.h"
 #include "dp/cfm_rddmux_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defrdatachn.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -32,6 +33,7 @@ public:
 	/// cfm_rddmux type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_rddmux, cft_defrdatachn> p_mq_RDATAchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_rddmux, cft_defrdatachn> p_mq_RDATAin_t;
 	/// cfm_rddmux type define end
@@ -47,6 +49,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_RDATAchn_t p_mq_RDATAchn;
 	p_mq_RDATAin_t p_mq_RDATAin;
 	//@}

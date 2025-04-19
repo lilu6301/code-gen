@@ -23,30 +23,32 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_datacenter : cf_application(name), cfm_datacenter_dp_if() {
+cfm_datacenter ::cfm_datacenter()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name), cfm_datacenter_dp_if() {
   cf_application::init();
   // instantiation of models
   DataCenterSwitch = new cfm_datacenterswitch("DataCenterSwitch");
   for (cf_count i = 0; i < (cf_count)(dpServerRoomNb + 1); i++) {
-    cfm_serverroom *module =
-        new cfm_serverroom(cf_string("ServerRoom[%d]", i).c_str());
+    cfm_serverroom *module = new cfm_serverroom(cf_string("ServerRoom[%d]", i).c_str());
     CF_ASSERT(module)
     ServerRoom_vec.push_back(module);
   }
   // instantiation of relations
   for (cf_count i = 0; i < (cf_count)(dpServerRoomNb + 1); i++) {
-    mq_MsgQToDataCenterSwitch_t *module = new mq_MsgQToDataCenterSwitch_t(
-        cf_string("MsgQToDataCenterSwitch[%d]", i).c_str());
+    mq_MsgQToDataCenterSwitch_t *module =
+        new mq_MsgQToDataCenterSwitch_t(cf_string("MsgQToDataCenterSwitch[%d]", i).c_str());
     CF_ASSERT(module)
     mq_MsgQToDataCenterSwitch_vec.push_back(module);
   }
   for (cf_count i = 0; i < (cf_count)(dpServerRoomNb + 1); i++) {
-    mq_MsgQToServerRoom_t *module = new mq_MsgQToServerRoom_t(
-        cf_string("MsgQToServerRoom[%d]", i).c_str());
+    mq_MsgQToServerRoom_t *module =
+        new mq_MsgQToServerRoom_t(cf_string("MsgQToServerRoom[%d]", i).c_str());
     CF_ASSERT(module)
     mq_MsgQToServerRoom_vec.push_back(module);
   }
   // connections
+  // model connect to relation
   for (cf_count i = 0; i < (cf_count)(dpServerRoomNb + 1); i++) {
     DataCenterSwitch->p_mq_MsgQToDataCenterSwitch(
         mq_MsgQToDataCenterSwitch_vec[i]->p_target_socket);
@@ -58,6 +60,7 @@ cfm_datacenter : cf_application(name), cfm_datacenter_dp_if() {
   for (cf_count i = 0; i < (cf_count)(dpServerRoomNb + 1); i++) {
     cfm_serverroom *module = ServerRoom_vec[i];
     if (module != nullptr) {
+      // model connect to relation
       for (cf_count j = 0; j < (cf_count)(dpServerRoomNb + 1); j++) {
         module->p_mq_MsgQToDataCenterSwitch(
             mq_MsgQToDataCenterSwitch_vec[j]->p_target_socket);
@@ -142,31 +145,27 @@ void cfm_datacenter::cb_init_attributes() {
   // initialize relations attributes
   for (cf_count i = 0; i < (cf_count)(dpServerRoomNb + 1); i++) {
     (*mq_MsgQToDataCenterSwitch_vec[i]).cfa_send_time.init(
-        cf_expr_duration(0, CF_NS));
+        cf_expr_duration(dpServerRoomToDataCenterSwitchTime, CF_NS));
     (*mq_MsgQToDataCenterSwitch_vec[i]).cfa_receive_time.init(
-        cf_expr_duration(0, CF_NS));
+        cf_expr_duration(dpDataCenterSwitchToServerRoomTime, CF_NS));
     (*mq_MsgQToDataCenterSwitch_vec[i]).cfa_queue_policy.init(
         CF_MQ_POLICY_FIFO_FINITE);
-    (*mq_MsgQToDataCenterSwitch_vec[i]).cfa_queue_capacity.init(
-        (cf_nonzero_count)dpDataCenterSwitchPortBufferSize);
+    (*mq_MsgQToDataCenterSwitch_vec[i]).cfa_queue_capacity.init((cf_nonzero_count)1);
     (*mq_MsgQToDataCenterSwitch_vec[i]).cfa_concurrency.init((cf_nonzero_count)1);
     (*mq_MsgQToDataCenterSwitch_vec[i]).cfa_send_threshold.init((cf_nonzero_count)1);
-    (*mq_MsgQToDataCenterSwitch_vec[i]).cfa_receive_threshold.init(
-        (cf_nonzero_count)1);
+    (*mq_MsgQToDataCenterSwitch_vec[i]).cfa_receive_threshold.init((cf_nonzero_count)1);
   }
   for (cf_count i = 0; i < (cf_count)(dpServerRoomNb + 1); i++) {
     (*mq_MsgQToServerRoom_vec[i]).cfa_send_time.init(
-        cf_expr_duration(0, CF_NS));
+        cf_expr_duration(dpServerRoomToServerRoomTime, CF_NS));
     (*mq_MsgQToServerRoom_vec[i]).cfa_receive_time.init(
-        cf_expr_duration(0, CF_NS));
+        cf_expr_duration(dpServerRoomToDataCenterSwitchTime, CF_NS));
     (*mq_MsgQToServerRoom_vec[i]).cfa_queue_policy.init(
         CF_MQ_POLICY_FIFO_FINITE);
-    (*mq_MsgQToServerRoom_vec[i]).cfa_queue_capacity.init(
-        (cf_nonzero_count)dpServerRoomSwitchPortBufferSize);
+    (*mq_MsgQToServerRoom_vec[i]).cfa_queue_capacity.init((cf_nonzero_count)1);
     (*mq_MsgQToServerRoom_vec[i]).cfa_concurrency.init((cf_nonzero_count)1);
     (*mq_MsgQToServerRoom_vec[i]).cfa_send_threshold.init((cf_nonzero_count)1);
-    (*mq_MsgQToServerRoom_vec[i]).cfa_receive_threshold.init(
-        (cf_nonzero_count)1);
+    (*mq_MsgQToServerRoom_vec[i]).cfa_receive_threshold.init((cf_nonzero_count)1);
   }
 
   return;

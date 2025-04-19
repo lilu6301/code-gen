@@ -12,6 +12,7 @@
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_readdriver_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defaraddrchn.h"
 #include "dt/cft_defmemreadrequest.h"
 
@@ -32,6 +33,7 @@ public:
 	/// cfm_readdriver type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_readdriver, cft_defaraddrchn> p_mq_ARADDRin_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_readdriver,
 			cft_defmemreadrequest> p_mq_MemReadRequest_t;
@@ -49,6 +51,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_ARADDRin_t p_mq_ARADDRin;
 	p_mq_MemReadRequest_t p_mq_MemReadRequest;
 	//@}

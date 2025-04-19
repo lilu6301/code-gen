@@ -22,21 +22,24 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_cosimvcsuvmapp : cf_application(name),
-                     data_tlm2_lt_initiator("data_tlm2_lt_initiator"),
-                     mq_data("data"),
-                     mq_read("read"),
-                     read_tlm2_lt_target("read_tlm2_lt_target") {
+cfm_cosimvcsuvmapp ::cfm_cosimvcsuvmapp()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name), data_tlm2_lt_initiator("data_tlm2_lt_initiator"),
+      mq_data("data"), mq_read("read"),
+      read_tlm2_lt_target("read_tlm2_lt_target") {
   cf_application::init();
   // instantiation of models
   Consumer = new cfm_consumer("Consumer");
   ProcessingFunction = new cfm_processingfunction("ProcessingFunction");
   Producer = new cfm_producer("Producer");
   // connections
-  Consumer->p_mq_read(mq_read);
-  ProcessingFunction->p_mq_data(mq_data);
-  ProcessingFunction->p_mq_read(mq_read);
-  Producer->p_mq_data(mq_data);
+  // model connect to relation
+  Consumer->p_mq_read(mq_read.p_target_socket);
+  // model connect to relation
+  ProcessingFunction->p_mq_data(mq_data.p_target_socket);
+  ProcessingFunction->p_mq_read(mq_read.p_target_socket);
+  // model connect to relation
+  Producer->p_mq_data(mq_data.p_target_socket);
   cf_application::elab_end();
 }
 //@}

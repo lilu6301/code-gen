@@ -31,12 +31,13 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_collectrequests : cf_function(name),
-                    cfm_collectrequests_dp_if(),
-                    p_ev_RequestCounter("p_ev_RequestCounter"),
-                    p_mq_MemReadRequest("p_mq_MemReadRequest"),
-                    p_mq_MemWriteRequest("p_mq_MemWriteRequest"),
-                    p_sv_ListRequestsPtr("p_sv_ListRequestsPtr") {
+cfm_collectrequests ::cfm_collectrequests()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_collectrequests_dp_if(),
+      p_ev_RequestCounter("p_ev_RequestCounter"),
+      p_mq_MemReadRequest("p_mq_MemReadRequest"),
+      p_mq_MemWriteRequest("p_mq_MemWriteRequest"),
+      p_sv_ListRequestsPtr("p_sv_ListRequestsPtr") {
   cf_function::init();
   // connections
   cf_function::elab_end();
@@ -104,12 +105,7 @@ void cfm_collectrequests::cb_init_local_vars(void) {
 
   //<#!@READ-ONLY-SECTION-END@!#>
   // Start of 'CollectRequests initializations' algorithm generated code
-  numBatch = 0;
-  numByte = 0;
-  bus_width = DP_DDR_BUS_WIDTH.get_value().to_scalar(CF_BYTE);
-  bus_efficiency = DP_DDR_EFFICIENCY.get_value();
-  frequency_map_GL[DDRMemory] =
-      DP_DDR_INIT_FREQ.get_value().to_scalar(CF_HZ);
+  counter = 0;
   // End of 'CollectRequests initializations' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
 }

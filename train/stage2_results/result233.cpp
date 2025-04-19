@@ -31,18 +31,21 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_server : cf_function_container(name),
-             cfm_server_dp_if(),
-             p_mq_MsgQServerToToRSwitch("p_mq_MsgQServerToToRSwitch"),
-             p_mq_MsgQToServer("p_mq_MsgQToServer") {
+cfm_server ::cfm_server()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_container(name), cfm_server_dp_if(),
+      p_mq_MsgQServerToToRSwitch("p_mq_MsgQServerToToRSwitch"),
+      p_mq_MsgQToServer("p_mq_MsgQToServer") {
   cf_function_container::init();
   // instantiation of models
   Consumer = new cfm_consumer("Consumer");
   Producer = new cfm_producer("Producer");
   // connections
-Consumer->p_mq_MsgQToServer((p_mq_MsgQToServer);
-Producer->p_mq_MsgQServerToToRSwitch((p_mq_MsgQServerToToRSwitch);
-	cf_function_container::elab_end();
+  // model connect to port
+  Consumer->p_mq_MsgQToServer(p_mq_MsgQToServer);
+  // model connect to port
+  Producer->p_mq_MsgQServerToToRSwitch(p_mq_MsgQServerToToRSwitch);
+  cf_function_container::elab_end();
 }
 //@}
 

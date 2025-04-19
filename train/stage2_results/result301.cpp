@@ -31,10 +31,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_packet_process : cf_function(name),
-                    cfm_packet_process_dp_if(),
-                    p_in("p_in"),
-                    p_out("p_out") {
+cfm_packet_process ::cfm_packet_process()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_packet_process_dp_if(), p_mq_p_in("p_mq_p_in"),
+      p_mq_p_out("p_mq_p_out") {
   cf_function::init();
   // connections
   cf_function::elab_end();

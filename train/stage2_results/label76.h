@@ -11,6 +11,7 @@
 #include "cfm_cofluentapifromexternalip_global.h"
 #include "cfm_cofluentapifromexternalip_global_types.h"
 #include "cofluent.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defmsgq.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -30,6 +31,7 @@ public:
 	/// cfm_cof_initiator type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_cof_initiator, cft_defmsgq> p_mq_MsgBwQ_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_cof_initiator, cft_defmsgq> p_mq_MsgFwQ_t;
 	/// cfm_cof_initiator type define end
@@ -46,6 +48,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_MsgBwQ_t p_mq_MsgBwQ;
 	p_mq_MsgFwQ_t p_mq_MsgFwQ;
 	//@}

@@ -14,6 +14,7 @@
 #include "dp/cfm_applicationmodelrefinement_dp_if.h"
 #include "cfm_producer.h"
 #include "cfm_receiver.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defack.h"
 #include "dt/cft_defmsg.h"
 
@@ -34,6 +35,7 @@ class cfm_applicationmodelrefinement: public cf_core::cf_application,
 public:
 	/// cfm_applicationmodelrefinement type define start
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_message_queue<cft_defack> mq_Ack_t;
 	typedef cf_core::cf_message_queue<cft_defmsg> mq_Msg_t;
 
@@ -52,6 +54,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_producer* Producer;
 	cfm_receiver* Receiver;
 	//@}
@@ -65,6 +68,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	mq_Ack_t mq_Ack;
 	mq_Msg_t mq_Msg;
 	//@}

@@ -31,10 +31,11 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_rack : cf_function_container(name),
-           cfm_rack_dp_if(),
-           p_mq_MsgQToAggSwitch("p_mq_MsgQToAggSwitch"),
-           p_mq_MsgQToRack("p_mq_MsgQToRack") {
+cfm_rack ::cfm_rack()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_container(name), cfm_rack_dp_if(),
+      p_mq_MsgQToAggSwitch("p_mq_MsgQToAggSwitch"),
+      p_mq_MsgQToRack("p_mq_MsgQToRack") {
   cf_function_container::init();
   // instantiation of models
   for (cf_count i = 0; i < (cf_count)(dpServerPerRackNb + 1); i++) {
@@ -45,8 +46,8 @@ cfm_rack : cf_function_container(name),
   ToRSwitch = new cfm_torswitch("ToRSwitch");
   // instantiation of relations
   for (cf_count i = 0; i < (cf_count)(dpServerPerRackNb + 1); i++) {
-    mq_MsgQServerToToRSwitch_t *module = new mq_MsgQServerToToRSwitch_t(
-        cf_string("MsgQServerToToRSwitch[%d]", i).c_str());
+    mq_MsgQServerToToRSwitch_t *module =
+        new mq_MsgQServerToToRSwitch_t(cf_string("MsgQServerToToRSwitch[%d]", i).c_str());
     CF_ASSERT(module)
     mq_MsgQServerToToRSwitch_vec.push_back(module);
   }
@@ -60,6 +61,7 @@ cfm_rack : cf_function_container(name),
   for (cf_count i = 0; i < (cf_count)(dpServerPerRackNb + 1); i++) {
     cfm_server *module = Server_vec[i];
     if (module != nullptr) {
+      // model connect to relation
       for (cf_count j = 0; j < (cf_count)(dpServerPerRackNb + 1); j++) {
         module->p_mq_MsgQServerToToRSwitch(
             mq_MsgQServerToToRSwitch_vec[j]->p_target_socket);
@@ -69,6 +71,7 @@ cfm_rack : cf_function_container(name),
       }
     }
   }
+  // model connect to relation
   for (cf_count i = 0; i < (cf_count)(dpServerPerRackNb + 1); i++) {
     ToRSwitch->p_mq_MsgQServerToToRSwitch(
         mq_MsgQServerToToRSwitch_vec[i]->p_target_socket);
@@ -76,9 +79,10 @@ cfm_rack : cf_function_container(name),
   for (cf_count i = 0; i < (cf_count)(dpServerPerRackNb + 1); i++) {
     ToRSwitch->p_mq_MsgQToServer(mq_MsgQToServer_vec[i]->p_target_socket);
   }
-ToRSwitch->p_mq_MsgQToAggSwitch((p_mq_MsgQToAggSwitch);
-ToRSwitch->p_mq_MsgQToRack((p_mq_MsgQToRack);
-	cf_function_container::elab_end();
+  // model connect to port
+  ToRSwitch->p_mq_MsgQToAggSwitch(p_mq_MsgQToAggSwitch);
+  ToRSwitch->p_mq_MsgQToRack(p_mq_MsgQToRack);
+  cf_function_container::elab_end();
 }
 //@}
 
@@ -150,24 +154,19 @@ void cfm_rack::cb_init_attributes() {
   // initialize function attributes
   // initialize relations attributes
   for (cf_count i = 0; i < (cf_count)(dpServerPerRackNb + 1); i++) {
-    (*mq_MsgQServerToToRSwitch_vec[i]).cfa_send_time.init(cf_expr_duration(0, CF_NS));
+    (*mq_MsgQServerToToRSwitch_vec[i]).cfa_send_time.init(cf_expr_duration(1, CF_NS));
     (*mq_MsgQServerToToRSwitch_vec[i]).cfa_receive_time.init(
-        cf_expr_duration(0, CF_NS));
+        cf_expr_duration(1, CF_NS));
     (*mq_MsgQServerToToRSwitch_vec[i]).cfa_queue_policy.init(
         CF_MQ_POLICY_FIFO_FINITE);
-    (*mq_MsgQServerToToRSwitch_vec[i]).cfa_queue_capacity.init(
-        (cf_nonzero_count)dpServerToToRSwitchBufferSize);
+    (*mq_MsgQServerToToRSwitch_vec[i]).cfa_queue_capacity.init((cf_nonzero_count)1);
     (*mq_MsgQServerToToRSwitch_vec[i]).cfa_concurrency.init((cf_nonzero_count)1);
     (*mq_MsgQServerToToRSwitch_vec[i]).cfa_send_threshold.init((cf_nonzero_count)1);
-    (*mq_MsgQServerToToRSwitch_vec[i]).cfa_receive_threshold.init(
-        (cf_nonzero_count)1);
+    (*mq_MsgQServerToToRSwitch_vec[i]).cfa_receive_threshold.init((cf_nonzero_count)1);
   }
   for (cf_count i = 0; i < (cf_count)(dpServerPerRackNb + 1); i++) {
-    (*mq_MsgQToServer_vec[i]).cfa_send_time.init(cf_expr_duration(0, CF_NS));
-    (*mq_MsgQToServer_vec[i]).cfa_receive_time.init(cf_expr_duration(0, CF_NS));
     (*mq_MsgQToServer_vec[i]).cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
-    (*mq_MsgQToServer_vec[i]).cfa_queue_capacity.init(
-        (cf_nonzero_count)dpToRSwitchToServerBufferSize);
+    (*mq_MsgQToServer_vec[i]).cfa_queue_capacity.init((cf_nonzero_count)1);
     (*mq_MsgQToServer_vec[i]).cfa_concurrency.init((cf_nonzero_count)1);
     (*mq_MsgQToServer_vec[i]).cfa_send_threshold.init((cf_nonzero_count)1);
     (*mq_MsgQToServer_vec[i]).cfa_receive_threshold.init((cf_nonzero_count)1);
@@ -186,6 +185,47 @@ void cfm_rack::cb_init_local_vars(void) {
 
   // End of 'Rack initializations' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
+}
+//@}
+
+/// \name Overload function for mq_MsgQServerToToRSwitch message queue send time
+//@{
+cf_duration
+cfm_rack::mq_MsgQServerToToRSwitch_cb_send_time(cf_payload_b *_trans) {
+  CF_COMM_DEF_TRANS_REF(cft_defpacket, MsgQServerToToRSwitch_trans, _trans);
+  //#COFS_MESSAGE_QUEUE_SEND_TIME_BEGIN
+  return cf_expr_duration(dpServerToToRSwitchTime / 2, CF_NS);
+  //#COFS_MESSAGE_QUEUE_SEND_TIME_END
+}
+//@}
+/// \name Overload function for mq_MsgQServerToToRSwitch message queue receive time
+//@{
+cf_duration
+cfm_rack::mq_MsgQServerToToRSwitch_cb_receive_time(cf_payload_b *_trans) {
+  CF_COMM_DEF_TRANS_REF(cft_defpacket, MsgQServerToToRSwitch_trans, _trans);
+  //#COFS_MESSAGE_QUEUE_RECEIVE_TIME_BEGIN
+  return cf_expr_duration(dpServerToToRSwitchTime / 2, CF_NS);
+  //#COFS_MESSAGE_QUEUE_RECEIVE_TIME_END
+}
+//@}
+/// \name Overload function for mq_MsgQToServer message queue send time
+//@{
+cf_duration
+cfm_rack::mq_MsgQToServer_cb_send_time(cf_payload_b *_trans) {
+  CF_COMM_DEF_TRANS_REF(cft_defpacket, MsgQToServer_trans, _trans);
+  //#COFS_MESSAGE_QUEUE_SEND_TIME_BEGIN
+  return cf_expr_duration(dpToRSwitchToServerTime / 2, CF_NS);
+  //#COFS_MESSAGE_QUEUE_SEND_TIME_END
+}
+//@}
+/// \name Overload function for mq_MsgQToServer message queue receive time
+//@{
+cf_duration
+cfm_rack::mq_MsgQToServer_cb_receive_time(cf_payload_b *_trans) {
+  CF_COMM_DEF_TRANS_REF(cft_defpacket, MsgQToServer_trans, _trans);
+  //#COFS_MESSAGE_QUEUE_RECEIVE_TIME_BEGIN
+  return cf_expr_duration(dpToRSwitchToServerTime / 2, CF_NS);
+  //#COFS_MESSAGE_QUEUE_RECEIVE_TIME_END
 }
 //@}
 

@@ -30,18 +30,21 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_slave_stub : cf_function_container(name),
-                 cfm_slave_stub_dp_if(),
-                 p_mq_BaseBand_In("p_mq_BaseBand_In"),
-                 p_mq_BaseBand_Out("p_mq_BaseBand_Out") {
+cfm_slave_stub ::cfm_slave_stub()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_container(name), cfm_slave_stub_dp_if(),
+      p_mq_BaseBand_In("p_mq_BaseBand_In"),
+      p_mq_BaseBand_Out("p_mq_BaseBand_Out") {
   cf_function_container::init();
   // instantiation of models
   In_Stub = new cfm_in_stub("In_Stub");
   Out_Stub = new cfm_out_stub("Out_Stub");
   // connections
-In_Stub->p_mq_BaseBand_In((p_mq_BaseBand_In);
-Out_Stub->p_mq_BaseBand_Out((p_mq_BaseBand_Out);
-	cf_function_container::elab_end();
+  // model connect to port
+  In_Stub->p_mq_BaseBand_In(p_mq_BaseBand_In);
+  // model connect to port
+  Out_Stub->p_mq_BaseBand_Out(p_mq_BaseBand_Out);
+  cf_function_container::elab_end();
 }
 //@}
 

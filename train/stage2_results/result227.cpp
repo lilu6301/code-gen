@@ -31,9 +31,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_inbounddatacenterswitch
-    : cf_function(name),
-      cfm_inbounddatacenterswitch_dp_if(),
+cfm_inbounddatacenterswitch ::cfm_inbounddatacenterswitch()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_inbounddatacenterswitch_dp_if(),
       p_mq_MsgQInboundDataCenterSwitch("p_mq_MsgQInboundDataCenterSwitch"),
       p_mq_MsgQToServerRoom("p_mq_MsgQToServerRoom") {
   cf_function::init();
@@ -57,7 +57,8 @@ cfm_inbounddatacenterswitch::~cfm_inbounddatacenterswitch(void) {
 //@{
 void cfm_inbounddatacenterswitch::cb_before_elaboration(void) {
   //<#!@READ-ONLY-SECTION-END@!#>
-  // Start of 'InboundDataCenterSwitch pre elaboration' algorithm generated code
+  // Start of 'InboundDataCenterSwitch pre elaboration' algorithm generated
+  // code
 
   // End of 'InboundDataCenterSwitch pre elaboration' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
@@ -80,7 +81,8 @@ void cfm_inbounddatacenterswitch::cb_end_of_elaboration(void) {
 //@{
 void cfm_inbounddatacenterswitch::cb_end_of_simulation(void) {
   //<#!@READ-ONLY-SECTION-END@!#>
-  // Start of 'InboundDataCenterSwitch post simulation' algorithm generated code
+  // Start of 'InboundDataCenterSwitch post simulation' algorithm generated
+  // code
 
   // End of 'InboundDataCenterSwitch post simulation' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
@@ -103,9 +105,9 @@ void cfm_inbounddatacenterswitch::cb_init_attributes() {
 void cfm_inbounddatacenterswitch::cb_init_local_vars(void) {
 
   //<#!@READ-ONLY-SECTION-END@!#>
-  // Start of 'InboundDataCenterSwitch initializations' algorithm generated code
+  // Start of 'InboundDataCenterSwitch initializations' algorithm generated
+  // code
   server_room_id = get_container()->get_container()->get_cp_index();
-  rack_id = get_container()->get_cp_index();
   // End of 'InboundDataCenterSwitch initializations' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
 }

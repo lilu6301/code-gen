@@ -23,16 +23,17 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_hwdevicemodel : cf_application(name),
-                    cfm_hwdevicemodel_dp_if(),
-                    sv_inputStream("inputStream"),
-                    sv_outputStream("outputStream") {
+cfm_hwdevicemodel ::cfm_hwdevicemodel()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name), cfm_hwdevicemodel_dp_if(),
+      sv_inputStream("inputStream"), sv_outputStream("outputStream") {
   cf_application::init();
   // instantiation of models
   hwDeviceTest = new cfm_hwdevice test("hwDeviceTest");
   // connections
-  hwDeviceTest->p_sv_inputStream(sv_inputStream);
-  hwDeviceTest->p_sv_outputStream(sv_outputStream);
+  // model connect to relation
+  hwDeviceTest->p_sv_inputStream(sv_inputStream.p_target_socket);
+  hwDeviceTest->p_sv_outputStream(sv_outputStream.p_target_socket);
   cf_application::elab_end();
 }
 //@}
@@ -90,12 +91,12 @@ void cfm_hwdevicemodel::cb_init_attributes() {
   // initialize function attributes
   cfa_cycle_period.init(cf_expr_time(10, CF_NS));
   // initialize relations attributes
-  sv_inputStream.cfa_write_time.init(cf_expr_duration(10, CF_US));
-  sv_inputStream.cfa_read_time.init(cf_expr_duration(10, CF_US));
+  sv_inputStream.cfa_write_time.init(cf_expr_duration(1, CF_NS));
+  sv_inputStream.cfa_read_time.init(cf_expr_duration(1, CF_NS));
   sv_inputStream.cfa_semaphore.init(false);
   sv_inputStream.cfa_concurrency.init((cf_nonzero_count)1);
-  sv_outputStream.cfa_write_time.init(cf_expr_duration(10, CF_US));
-  sv_outputStream.cfa_read_time.init(cf_expr_duration(10, CF_US));
+  sv_outputStream.cfa_write_time.init(cf_expr_duration(1, CF_NS));
+  sv_outputStream.cfa_read_time.init(cf_expr_duration(1, CF_NS));
   sv_outputStream.cfa_semaphore.init(false);
   sv_outputStream.cfa_concurrency.init((cf_nonzero_count)1);
 
@@ -112,47 +113,6 @@ void cfm_hwdevicemodel::cb_init_local_vars(void) {
 
   // End of 'HwDeviceModel initializations' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
-}
-//@}
-
-/// \name Overload function for sv_inputStream shared variable write time
-//@{
-cf_duration cfm_hwdevicemodel::sv_inputStream_cb_write_time(
-    cf_payload_b *_trans) {
-  CF_COMM_DEF_TRANS_REF(cft_defframe, inputStream_trans, _trans);
-  //#COFS_SHARED_VARIABLE_WRITE_TIME_BEGIN
-  return cf_expr_duration(WriteTime, CF_US);
-  //#COFS_SHARED_VARIABLE_WRITE_TIME_END
-}
-//@}
-/// \name Overload function for sv_inputStream shared variable read time
-//@{
-cf_duration cfm_hwdevicemodel::sv_inputStream_cb_read_time(
-    cf_payload_b *_trans) {
-  CF_COMM_DEF_TRANS_REF(cft_defframe, inputStream_trans, _trans);
-  //#COFS_SHARED_VARIABLE_READ_TIME_BEGIN
-  return cf_expr_duration(ReadTime, CF_US);
-  //#COFS_SHARED_VARIABLE_READ_TIME_END
-}
-//@}
-/// \name Overload function for sv_outputStream shared variable write time
-//@{
-cf_duration cfm_hwdevicemodel::sv_outputStream_cb_write_time(
-    cf_payload_b *_trans) {
-  CF_COMM_DEF_TRANS_REF(cft_defframe, outputStream_trans, _trans);
-  //#COFS_SHARED_VARIABLE_WRITE_TIME_BEGIN
-  return cf_expr_duration(WriteTime, CF_US);
-  //#COFS_SHARED_VARIABLE_WRITE_TIME_END
-}
-//@}
-/// \name Overload function for sv_outputStream shared variable read time
-//@{
-cf_duration cfm_hwdevicemodel::sv_outputStream_cb_read_time(
-    cf_payload_b *_trans) {
-  CF_COMM_DEF_TRANS_REF(cft_defframe, outputStream_trans, _trans);
-  //#COFS_SHARED_VARIABLE_READ_TIME_BEGIN
-  return cf_expr_duration(ReadTime, CF_US);
-  //#COFS_SHARED_VARIABLE_READ_TIME_END
 }
 //@}
 

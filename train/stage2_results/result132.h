@@ -12,9 +12,8 @@
 #include "cfm_tlm2lt_global.h"
 #include "cfm_tlm2lt_global_types.h"
 #include "cofluent.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defmsgq.h"
-#include "dt/cft_initiator.h"
-#include "dt/cft_target.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'Reader includes' algorithm generated code
@@ -33,10 +32,11 @@ public:
 	/// cfm_reader type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_ev_initiator_socket<cfm_reader> p_ev_Sync_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_reader, cft_defmsgq> p_mq_InitiatorReader_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_reader, cft_defmsgq> p_mq_ReferenceQueue3_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_reader, cft_target> p_mq_ReaderResponse_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_reader, cft_defmsgq> p_mq_ReaderResponse_t;
 	/// cfm_reader type define end
 
 	/// constructor
@@ -51,6 +51,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_ev_Sync_t p_ev_Sync;
 	p_mq_InitiatorReader_t p_mq_InitiatorReader;
 	p_mq_ReferenceQueue3_t p_mq_ReferenceQueue3;
@@ -69,7 +70,7 @@ protected:
 	/// \name user-defined local declarations
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'Reader local declarations' algorithm generated code
-
+	int InitDuration;
 	//End of 'Reader local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 

@@ -23,22 +23,25 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_bluetooth_ips : cf_application(name),
-                    mq_BaseBand_In("BaseBand_In"),
-                    mq_BaseBand_Out("BaseBand_Out"),
-                    ev_startEv("startEv") {
+cfm_bluetooth_ips ::cfm_bluetooth_ips()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name), cfm_bluetooth_ips_dp_if(), ev_startEv("startEv"),
+      mq_BaseBand_In("BaseBand_In"), mq_BaseBand_Out("BaseBand_Out") {
   cf_application::init();
   // instantiation of models
   BT_System = new cfm_bt_system("BT_System");
   Slave_Stub = new cfm_slave_stub("Slave_Stub");
   Start = new cfm_start("Start");
   // connections
-  BT_System->p_mq_BaseBand_In(mq_BaseBand_In);
-  BT_System->p_mq_BaseBand_Out(mq_BaseBand_Out);
-  BT_System->p_ev_startEv(ev_startEv);
-  Slave_Stub->p_mq_BaseBand_In(mq_BaseBand_In);
-  Slave_Stub->p_mq_BaseBand_Out(mq_BaseBand_Out);
-  Start->p_ev_startEv(ev_startEv);
+  // model connect to relation
+  BT_System->p_mq_BaseBand_In(mq_BaseBand_In.p_target_socket);
+  BT_System->p_mq_BaseBand_Out(mq_BaseBand_Out.p_target_socket);
+  BT_System->p_ev_startEv(ev_startEv.p_target_socket);
+  // model connect to relation
+  Slave_Stub->p_mq_BaseBand_In(mq_BaseBand_In.p_target_socket);
+  Slave_Stub->p_mq_BaseBand_Out(mq_BaseBand_Out.p_target_socket);
+  // model connect to relation
+  Start->p_ev_startEv(ev_startEv.p_target_socket);
   cf_application::elab_end();
 }
 //@}
@@ -98,20 +101,18 @@ void cfm_bluetooth_ips::cb_init_attributes() {
   // initialize function attributes
   cfa_cycle_period.init(cf_expr_time(10, CF_NS));
   // initialize relations attributes
-  mq_BaseBand_In.cfa_send_time.init(cf_expr_duration(10, CF_US));
-  mq_BaseBand_In.cfa_receive_time.init(cf_expr_duration(10, CF_US));
+  mq_BaseBand_In.cfa_send_time.init(cf_expr_duration(1, CF_NS));
+  mq_BaseBand_In.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
   mq_BaseBand_In.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
   mq_BaseBand_In.cfa_queue_capacity.init((cf_nonzero_count)1);
   mq_BaseBand_In.cfa_concurrency.init((cf_nonzero_count)1);
   mq_BaseBand_In.cfa_send_threshold.init((cf_nonzero_count)1);
   mq_BaseBand_In.cfa_receive_threshold.init((cf_nonzero_count)1);
-  mq_BaseBand_Out.cfa_send_time.init(cf_expr_duration(10, CF_US));
-  mq_BaseBand_Out.cfa_receive_time.init(cf_expr_duration(10, CF_US));
+  mq_BaseBand_Out.cfa_send_time.init(cf_expr_duration(1, CF_NS));
+  mq_BaseBand_Out.cfa_receive_time.init(cf_expr_duration(1, CF_NS));
   mq_BaseBand_Out.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
   mq_BaseBand_Out.cfa_queue_capacity.init((cf_nonzero_count)1);
   mq_BaseBand_Out.cfa_concurrency.init((cf_nonzero_count)1);
-  mq_BaseBand_Out.cfa_send_threshold.init((cf_nonzero_count)1);
-  mq_BaseBand_Out.cfa_receive_threshold.init((cf_nonzero_count)1);
   ev_startEv.cfa_set_time.init(cf_expr_duration(1, CF_NS));
   ev_startEv.cfa_get_time.init(cf_expr_duration(1, CF_NS));
   ev_startEv.cfa_event_policy.init(CF_EV_POLICY_BOOLEAN);

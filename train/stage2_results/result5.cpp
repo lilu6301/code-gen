@@ -31,30 +31,33 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_networks : cf_function_container(name),
-               cfm_networks_dp_if(),
-               ev_BurstClock("BurstClock"),
-               mq_VideoNet("VideoNet"),
-               p_mq_NetToDVB("p_mq_NetToDVB"),
-               p_mq_NetToUMTS("p_mq_NetToUMTS"),
-               p_mq_UMTSToNet("p_mq_UMTSToNet"),
-               sv_VideoFiles("VideoFiles") {
+cfm_networks ::cfm_networks()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_container(name), cfm_networks_dp_if(),
+      ev_BurstClock("BurstClock"), mq_VideoNet("VideoNet"),
+      p_mq_NetToDpvb("p_mq_NetToDpvb"), p_mq_NetToUMTS("p_mq_NetToUMTS"),
+      p_mq_UMTSToNet("p_mq_UMTSToNet"), sv_VideoFiles("VideoFiles") {
   cf_function_container::init();
   // instantiation of models
   BroadcastNetwork = new cfm_broadcastnetwork("BroadcastNetwork");
   ClockGenerator = new cfm_clockgenerator("ClockGenerator");
   InteractiveNetwork = new cfm_interactivenetwork("InteractiveNetwork");
   // connections
-  BroadcastNetwork->p_ev_BurstClock(ev_BurstClock);
-  BroadcastNetwork->p_sv_VideoFiles(sv_VideoFiles);
-  BroadcastNetwork->p_mq_VideoNet(mq_VideoNet);
-BroadcastNetwork->p_mq_NetToDVB((p_mq_NetToDVB);
-ClockGenerator->p_ev_BurstClock(ev_BurstClock);
-InteractiveNetwork->p_sv_VideoFiles(sv_VideoFiles);
-InteractiveNetwork->p_mq_VideoNet(mq_VideoNet);
-InteractiveNetwork->p_mq_NetToUMTS((p_mq_NetToUMTS);
-InteractiveNetwork->p_mq_UMTSToNet((p_mq_UMTSToNet);
-	cf_function_container::elab_end();
+  // model connect to relation
+  BroadcastNetwork->p_ev_BurstClock(ev_BurstClock.p_target_socket);
+  BroadcastNetwork->p_sv_VideoFiles(sv_VideoFiles.p_target_socket);
+  BroadcastNetwork->p_mq_VideoNet(mq_VideoNet.p_target_socket);
+  // model connect to port
+  BroadcastNetwork->p_mq_NetToDpvb(p_mq_NetToDpvb);
+  // model connect to relation
+  ClockGenerator->p_ev_BurstClock(ev_BurstClock.p_target_socket);
+  // model connect to relation
+  InteractiveNetwork->p_sv_VideoFiles(sv_VideoFiles.p_target_socket);
+  InteractiveNetwork->p_mq_VideoNet(mq_VideoNet.p_target_socket);
+  // model connect to port
+  InteractiveNetwork->p_mq_NetToUMTS(p_mq_NetToUMTS);
+  InteractiveNetwork->p_mq_UMTSToNet(p_mq_UMTSToNet);
+  cf_function_container::elab_end();
 }
 //@}
 
@@ -111,16 +114,17 @@ void cfm_networks::cb_end_of_simulation(void) {
 void cfm_networks::cb_init_attributes() {
 
   // initialize function attributes
+  cfa_cycle_period.init(cf_expr_time(10, CF_NS));
   // initialize relations attributes
-  ev_BurstClock.cfa_set_time.init(cf_expr_duration(1, CF_NS));
-  ev_BurstClock.cfa_get_time.init(cf_expr_duration(1, CF_NS));
+  ev_BurstClock.cfa_set_time.init(cf_expr_duration(1, CF_US));
+  ev_BurstClock.cfa_get_time.init(cf_expr_duration(1, CF_US));
   ev_BurstClock.cfa_event_policy.init(CF_EV_POLICY_BOOLEAN);
   sv_VideoFiles.cfa_write_time.init(cf_expr_duration(10, CF_US));
   sv_VideoFiles.cfa_read_time.init(cf_expr_duration(10, CF_US));
   sv_VideoFiles.cfa_semaphore.init(false);
   sv_VideoFiles.cfa_concurrency.init((cf_nonzero_count)1);
-  mq_VideoNet.cfa_send_time.init(cf_expr_duration(10, CF_US));
-  mq_VideoNet.cfa_receive_time.init(cf_expr_duration(10, CF_US));
+  mq_VideoNet.cfa_send_time.init(cf_expr_duration(1, CF_US));
+  mq_VideoNet.cfa_receive_time.init(cf_expr_duration(1, CF_US));
   mq_VideoNet.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
   mq_VideoNet.cfa_queue_capacity.init((cf_nonzero_count)1);
   mq_VideoNet.cfa_concurrency.init((cf_nonzero_count)1);

@@ -30,10 +30,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_sendwackdriver : cf_function(name),
-                     cfm_sendwackdriver_dp_if(),
-                     p_mq_BRESPchn("p_mq_BRESPchn"),
-                     p_mq_WriteAck("p_mq_WriteAck") {
+cfm_sendwackdriver ::cfm_sendwackdriver()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_sendwackdriver_dp_if(),
+      p_mq_BRESPchn("p_mq_BRESPchn"), p_mq_WriteAck("p_mq_WriteAck") {
   cf_function::init();
   // connections
   cf_function::elab_end();

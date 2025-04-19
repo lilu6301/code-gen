@@ -18,6 +18,7 @@
 #include "cfm_inboundrack.h"
 #include "cfm_outbounddatacenterswitch.h"
 #include "cfm_outboundrack.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defpacket.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -37,12 +38,14 @@ class cfm_aggswitch: public cf_core::cf_function_container,
 public:
 	/// cfm_aggswitch type define start
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQInboundDataCenterSwitch_t;
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQInboundRack_t;
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQOutboundDataCenterSwitch_t;
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQOutboundRack_t;
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_aggswitch, cft_defpacket> p_mq_MsgQToAggSwitch_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_aggswitch, cft_defpacket> p_mq_MsgQToDataCenterSwitch_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_aggswitch, cft_defpacket> p_mq_MsgQToRack_t;
@@ -61,6 +64,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_MsgQToAggSwitch_t* p_mq_MsgQToAggSwitch;
 	p_mq_MsgQToDataCenterSwitch_t p_mq_MsgQToDataCenterSwitch;
 	p_mq_MsgQToRack_t* p_mq_MsgQToRack;
@@ -70,6 +74,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_inbounddatacenterswitch* InboundDataCenterSwitch;
 	std::vector<cfm_inboundrack*> InboundRack_vec;
 	cfm_outbounddatacenterswitch* OutboundDataCenterSwitch;
@@ -86,6 +91,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	mq_MsgQInboundDataCenterSwitch_t mq_MsgQInboundDataCenterSwitch;
 	std::vector<mq_MsgQInboundRack_t*> mq_MsgQInboundRack_vec;
 	mq_MsgQOutboundDataCenterSwitch_t mq_MsgQOutboundDataCenterSwitch;

@@ -30,10 +30,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_httptcp_send : cf_function(name),
-                   cfm_httptcp_send_dp_if(),
-                   p_mq_AppToHTTP("p_mq_AppToHTTP"),
-                   p_mq_HTTPToIP("p_mq_HTTPToIP") {
+cfm_httptcp_send ::cfm_httptcp_send()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_httptcp_send_dp_if(),
+      p_mq_AppToHTTP("p_mq_AppToHTTP"), p_mq_HTTPToIP("p_mq_HTTPToIP") {
   cf_function::init();
   // connections
   cf_function::elab_end();

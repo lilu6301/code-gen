@@ -15,6 +15,7 @@
 #include "cfm_reading.h"
 #include "cfm_requesting.h"
 #include "cfm_watching.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defcall.h"
 #include "dt/cft_defvideo.h"
 
@@ -35,6 +36,7 @@ public:
 	/// cfm_user type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_user, cft_defcall> p_mq_Request_0_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_user, cft_defcall> p_mq_Request_1_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_user, cft_defcall> p_mq_Response_t;
@@ -53,6 +55,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_Request_0_t p_mq_Request_0;
 	p_mq_Request_1_t p_mq_Request_1;
 	p_mq_Response_t p_mq_Response;
@@ -62,6 +65,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_reading* Reading;
 	cfm_requesting* Requesting;
 	cfm_watching* Watching;

@@ -88,11 +88,11 @@ void cfm_hwmodel::revert_frame() {
 
 /// \name constructor
 //@{
-cfm_hwmodel : cf_function(name),
-              p_ev_startProcess("p_ev_startProcess"),
-              p_mq_inputFrame("p_mq_inputFrame"),
-              p_mq_outputFrame("p_mq_outputFrame"),
-              p_sv_processingMode("p_sv_processingMode") {
+cfm_hwmodel ::cfm_hwmodel()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), p_ev_startProcess("p_ev_startProcess"),
+      p_mq_inputFrame("p_mq_inputFrame"), p_mq_outputFrame("p_mq_outputFrame"),
+      p_sv_processingMode("p_sv_processingMode") {
   cf_function::init();
   // connections
   cf_function::elab_end();

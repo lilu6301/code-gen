@@ -30,32 +30,34 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_device : cf_function_container(name),
-             dpv("dpv"),
-             ev_startProcess("startProcess"),
-             mq_inputFrame("inputFrame"),
-             mq_outputFrame("outputFrame"),
-             p_ev_newFrame("p_ev_newFrame"),
-             sv_processingMode("processingMode") {
+cfm_device ::cfm_device()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_container(name), dpv("dpv"), ev_startProcess("startProcess"),
+      mq_inputFrame("inputFrame"), mq_outputFrame("outputFrame"),
+      p_ev_newFrame("p_ev_newFrame"), sv_processingMode("processingMode") {
   cf_function_container::init();
   // instantiation of models
   hwModel = new cfm_hwmodel("hwModel");
   mqToCommand = new cfm_mqtocommand("mqToCommand");
   swInterface = new cfm_swinterface("swInterface");
   // connections
-  hwModel->p_mq_inputFrame(mq_inputFrame);
-  hwModel->p_mq_outputFrame(mq_outputFrame);
-  hwModel->p_sv_processingMode(sv_processingMode);
-  hwModel->p_ev_startProcess(ev_startProcess);
-  mqToCommand->p_mq_outputFrame(mq_outputFrame);
-  mqToCommand->p_mq_storeFrame(mq_storeFrame);
-  swInterface->p_mq_inputFrame(mq_inputFrame);
-  swInterface->p_sv_processingMode(sv_processingMode);
-  swInterface->p_ev_startProcess(ev_startProcess);
-  swInterface->p_mq_storeFrame(mq_storeFrame);
-swInterface->p_mq_dpv((p_mq_dpv);
-swInterface->p_mq_newFrame((p_mq_newFrame);
-	cf_function_container::elab_end();
+  // model connect to relation
+  hwModel->p_mq_inputFrame(mq_inputFrame.p_target_socket);
+  hwModel->p_mq_outputFrame(mq_outputFrame.p_target_socket);
+  hwModel->p_sv_processingMode(sv_processingMode.p_target_socket);
+  hwModel->p_ev_startProcess(ev_startProcess.p_target_socket);
+  // model connect to relation
+  mqToCommand->p_mq_outputFrame(mq_outputFrame.p_target_socket);
+  mqToCommand->p_mq_storeFrame(mq_storeFrame.p_target_socket);
+  // model connect to relation
+  swInterface->p_mq_inputFrame(mq_inputFrame.p_target_socket);
+  swInterface->p_sv_processingMode(sv_processingMode.p_target_socket);
+  swInterface->p_ev_startProcess(ev_startProcess.p_target_socket);
+  swInterface->p_mq_storeFrame(mq_storeFrame.p_target_socket);
+  // model connect to port
+  swInterface->p_mq_dpv(p_mq_dpv);
+  swInterface->p_mq_newFrame(p_mq_newFrame);
+  cf_function_container::elab_end();
 }
 //@}
 

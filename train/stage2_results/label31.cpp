@@ -30,10 +30,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_videoapplication : cf_function(name),
-                       cfm_videoapplication_dp_if(),
-                       p_mq_RTPToApp("p_mq_RTPToApp"),
-                       p_mq_Video("p_mq_Video") {
+cfm_videoapplication ::cfm_videoapplication()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_videoapplication_dp_if(),
+      p_mq_RTPToApp("p_mq_RTPToApp"), p_mq_Video("p_mq_Video") {
   cf_function::init();
   // connections
   cf_function::elab_end();

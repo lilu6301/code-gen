@@ -13,6 +13,7 @@
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_writedriver_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defawaddrchn.h"
 #include "dt/cft_defmemwriterequest.h"
 #include "dt/cft_defwdatachn.h"
@@ -34,9 +35,10 @@ public:
 	/// cfm_writedriver type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_writedriver, cft_defwdatachn> p_mq_WDATAin_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_writedriver, cft_defmemwriterequest> p_mq_MemWriteRequest_t;
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_writedriver, cft_defawaddrchn> p_mq_AWADDRin_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_writedriver, cft_defmemwriterequest> p_mq_MemWriteRequest_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_writedriver, cft_defwdatachn> p_mq_WDATAin_t;
 	/// cfm_writedriver type define end
 
 	/// constructor
@@ -51,9 +53,10 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_WDATAin_t p_mq_WDATAin;
-	p_mq_MemWriteRequest_t p_mq_MemWriteRequest;
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_AWADDRin_t p_mq_AWADDRin;
+	p_mq_MemWriteRequest_t p_mq_MemWriteRequest;
+	p_mq_WDATAin_t p_mq_WDATAin;
 	//@}
 
 protected:
@@ -68,16 +71,8 @@ protected:
 	/// \name user-defined local declarations
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'WriteDriver local declarations' algorithm generated code
-	int remainingDataSize;
-	int transId;
-	int dma_size;
-	DEVICEIDTYPE message_targetid;
-	DEVICEIDTYPE message_sourceid;
-	OPERATIONTYPE message_operation;
-	cf_dt::cf_time transfer_time;
-	cf_dt::cf_time message_time_stamp;
-	cf_dt::cf_data_size message_size;
-	cf_dt::cf_throughput bus_throughput;
+	int index;
+	int max_channels;
 	//End of 'WriteDriver local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 

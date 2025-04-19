@@ -16,6 +16,7 @@
 #include "cfm_l2cap_layer.h"
 #include "cfm_obex_layer.h"
 #include "cfm_rfcomm_layer.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defbaseband.h"
 #include "dt/cft_defdatain.h"
 #include "dt/cft_defdataout.h"
@@ -44,6 +45,7 @@ class cfm_bt_stack: public cf_core::cf_function_container,
 public:
 	/// cfm_bt_stack type define start
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_message_queue<cft_defl2cap_in> mq_L2CAP_In_t;
 	typedef cf_core::cf_message_queue<cft_defl2cap_out> mq_L2CAP_Out_t;
 	typedef cf_core::cf_message_queue<cft_defobex_in> mq_OBEX_In_t;
@@ -52,6 +54,7 @@ public:
 	typedef cf_core::cf_message_queue<cft_defrfcomm_out> mq_RFCOMM_Out_t;
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_ev_initiator_socket<cfm_bt_stack> p_ev_WrOK_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_bt_stack> p_ev_startEv_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defbaseband> p_mq_BaseBand_In_t;
@@ -74,6 +77,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_ev_WrOK_t p_ev_WrOK;
 	p_ev_startEv_t p_ev_startEv;
 	p_mq_BaseBand_In_t p_mq_BaseBand_In;
@@ -87,6 +91,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_baseband_layer* BaseBand_Layer;
 	cfm_l2cap_layer* L2CAP_Layer;
 	cfm_obex_layer* OBEX_Layer;
@@ -102,6 +107,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	mq_L2CAP_In_t mq_L2CAP_In;
 	mq_L2CAP_Out_t mq_L2CAP_Out;
 	mq_OBEX_In_t mq_OBEX_In;

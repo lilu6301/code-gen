@@ -13,8 +13,10 @@
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_ddrcommandgeneration_dp_if.h"
-#include "dt/cft_defddrcommand.h"
-#include "dt/cft_defr memorystatus.h"
+//set of dataType, sort alphabetically
+#include "dt/cft_defdrc.h"
+#include "dt/cft_defmemorystatus.h"
+#include "dt/cft_defroutingstop.h"
 #include "dt/cft_defrequests2memory.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -35,12 +37,13 @@ public:
 	/// cfm_ddrcommandgeneration type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_ddrcommandgeneration,
-			cft_defddrcommand> p_mq_DDRCommand_t;
+			cft_defdrc> p_mq_DDRCommand_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_ddrcommandgeneration,
+			cft_defroutingstop> p_mq_MemoryStatus_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_ddrcommandgeneration,
 			cft_defrequests2memory> p_mq_Requests2Memory_t;
-	typedef cf_core::cf_sv_initiator_socket<cfm_ddrcommandgeneration,
-			cft_defr memorystatus> p_sv_MemoryStatus_t;
 	/// cfm_ddrcommandgeneration type define end
 
 	/// constructor
@@ -55,9 +58,10 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_DDRCommand_t p_mq_DDRCommand;
+	p_mq_MemoryStatus_t p_mq_MemoryStatus;
 	p_mq_Requests2Memory_t p_mq_Requests2Memory;
-	p_sv_MemoryStatus_t p_sv_MemoryStatus;
 	//@}
 
 protected:
@@ -72,36 +76,8 @@ protected:
 	/// \name user-defined local declarations
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'DDRCommandGeneration local declarations' algorithm generated code
-	int remainingDataSize;
-	int transId;
-	int PCIeLane;
-	DEVICEIDTYPE requesterId;
-	int dma_size;
-	float write_gap;
-
-	cf_dt::cf_time send_time;
-	cf_dt::cf_time message_time_stamp;
-	cf_dt::cf_data_size message_size;
-	cf_dt::cf_throughput pcie_throughput;
-	cf_dt::cf_time total_pcie_running_time;
-	double pcie_bus_usage;
-	cf_dt::cf_data_size total_pcie_data_processed;
-
-	cf_dt::cf_time read_time;
-	cf_dt::cf_throughput memory_read_throughput;
-	cf_dt::cf_time total_memory_read_time;
-	cf_dt::cf_throughput memory_write_throughput;
-
-	float total_memory_improvement;
-	int total_memory_channels;
-	int number_of_memory_channel_groups;
-	int memory_channel_group_size;
-
-	int soc_priority;
-	int cpu_priority;
-	int total_priority;
-
-	cf_dt::cf_time oldest_message_time_stamp;
+	int index;
+	int max_channels;
 	//End of 'DDRCommandGeneration local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 

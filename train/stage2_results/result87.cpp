@@ -31,10 +31,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_messagerouting : cf_function(name),
-                     p_mq_MsgQIn("p_mq_MsgQIn"),
-                     p_mq_MsgQOut1("p_mq_MsgQOut1"),
-                     p_mq_MsgQOut2("p_mq_MsgQOut2") {
+cfm_messagerouting ::cfm_messagerouting()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), p_mq_MsgQIn("p_mq_MsgQIn"),
+      p_mq_MsgQOut1("p_mq_MsgQOut1"), p_mq_MsgQOut2("p_mq_MsgQOut2") {
   cf_function::init();
   // connections
   cf_function::elab_end();

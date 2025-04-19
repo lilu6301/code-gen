@@ -30,11 +30,12 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_reader : cf_function(name),
-             p_ev_Sync("p_ev_Sync"),
-             p_mq_InitiatorReader("p_mq_InitiatorReader"),
-             p_mq_ReaderResponse("p_mq_ReaderResponse"),
-             p_mq_ReferenceQueue3("p_mq_ReferenceQueue3") {
+cfm_reader ::cfm_reader()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), p_ev_Sync("p_ev_Sync"),
+      p_mq_InitiatorReader("p_mq_InitiatorReader"),
+      p_mq_ReaderResponse("p_mq_ReaderResponse"),
+      p_mq_ReferenceQueue3("p_mq_ReferenceQueue3") {
   cf_function::init();
   // connections
   cf_function::elab_end();

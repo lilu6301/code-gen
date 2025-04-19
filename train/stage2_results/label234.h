@@ -18,6 +18,7 @@
 #include "cfm_outboundaggswitch.h"
 #include "cfm_outboundserver.h"
 #include "cfm_torswitch_routingfunction.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defpacket.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -37,12 +38,14 @@ class cfm_torswitch: public cf_core::cf_function_container,
 public:
 	/// cfm_torswitch type define start
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQInboundAGGSwitch_t;
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQInboundServer_t;
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQOutboundAGGSwitch_t;
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQOutboundServer_t;
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_torswitch, cft_defpacket> p_mq_MsgQServerToToRSwitch_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_torswitch, cft_defpacket> p_mq_MsgQToAggSwitch_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_torswitch, cft_defpacket> p_mq_MsgQToRack_t;
@@ -61,6 +64,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_MsgQServerToToRSwitch_t* p_mq_MsgQServerToToRSwitch;
 	p_mq_MsgQToAggSwitch_t p_mq_MsgQToAggSwitch;
 	p_mq_MsgQToRack_t p_mq_MsgQToRack;
@@ -70,6 +74,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_inboundaggswitch* InboundAGGSwitch;
 	std::vector<cfm_inboundserver*> InboundServer_vec;
 	cfm_outboundaggswitch* OutboundAGGSwitch;
@@ -86,6 +91,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	mq_MsgQInboundAGGSwitch_t mq_MsgQInboundAGGSwitch;
 	std::vector<mq_MsgQInboundServer_t*> mq_MsgQInboundServer_vec;
 	mq_MsgQOutboundAGGSwitch_t mq_MsgQOutboundAGGSwitch;

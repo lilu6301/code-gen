@@ -31,12 +31,11 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_interactivenetwork : cf_function(name),
-                         cfm_interactivenetwork_dp_if(),
-                         p_mq_NetToUMTS("p_mq_NetToUMTS"),
-                         p_mq_UMTSToNet("p_mq_UMTSToNet"),
-                         p_sv_VideoFiles("p_sv_VideoFiles"),
-                         p_mq_VideoNet("p_mq_VideoNet") {
+cfm_interactivenetwork ::cfm_interactivenetwork()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_interactivenetwork_dp_if(),
+      p_mq_NetToUMTS("p_mq_NetToUMTS"), p_mq_UMTSToNet("p_mq_UMTSToNet"),
+      p_sv_VideoFiles("p_sv_VideoFiles"), p_mq_VideoNet("p_mq_VideoNet") {
   cf_function::init();
   // connections
   cf_function::elab_end();
@@ -105,8 +104,7 @@ void cfm_interactivenetwork::cb_init_local_vars(void) {
 
   //<#!@READ-ONLY-SECTION-END@!#>
   // Start of 'InteractiveNetwork initializations' algorithm generated code
-  UMTSToNet = false;
-  NetToUMTS = false;
+  VideoFile = 0;
   VideoNet = 0;
   // End of 'InteractiveNetwork initializations' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>

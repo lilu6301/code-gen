@@ -30,9 +30,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_unusedfunc : cf_function(name),
-                 cfm_unusedfunc_dp_if(),
-                 p_ev_UnusedEv("p_ev_UnusedEv") {
+cfm_unusedfunc ::cfm_unusedfunc()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_unusedfunc_dp_if(),
+      p_ev_UnusedEv("p_ev_UnusedEv") {
   cf_function::init();
   // connections
   cf_function::elab_end();

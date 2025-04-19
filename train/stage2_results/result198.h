@@ -13,10 +13,12 @@
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_arbitration_dp_if.h"
-#include "dt/cft_deflistrequestsptr.h"
-#include "dt/cft_defrightack.h"
+//set of dataType, sort alphabetically
+#include "dt/cft_defack.h"
+#include "dt/cft_defcounter.h"
+#include "dt/cft_defmemory.h"
 #include "dt/cft_defrequestinformation.h"
-#include "dt/cft_defrmemory.h"
+#include "dt/cft_deflatptr.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'Arbitration includes' algorithm generated code
@@ -30,19 +32,19 @@
 ///        \page dxpArbitration
 //@{
 ///    \brief Arbitration function model start
-class cfm_arbitration: public cf_core::cf_function, public cfm_arbitration_dp_if {
+class cfm_arbitration: public cf_core::cf_function,
+		public cfm_arbitration_dp_if {
 public:
 	/// cfm_arbitration type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_ev_initiator_socket<cfm_arbitration> p_ev_RequestCounter_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_arbitration, cft_defrightack> p_mq_WriteAck_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_arbitration,
+			cft_defack> p_mq_ListRequestsPtr_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_arbitration,
 			cft_defrequestinformation> p_mq_RequestInformation_t;
-	typedef cf_core::cf_sv_initiator_socket<cfm_arbitration,
-			cft_defrmemory> p_sv_ListRequestsPtr_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_arbitration,
-			cft_defrmemory> p_mq_Requests2Memory_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_arbitration, cft_defmemory> p_mq_WriteAck_t;
 	/// cfm_arbitration type define end
 
 	/// constructor
@@ -57,11 +59,11 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_ev_RequestCounter_t p_ev_RequestCounter;
-	p_mq_WriteAck_t p_mq_WriteAck;
+	p_mq_ListRequestsPtr_t p_mq_ListRequestsPtr;
 	p_mq_RequestInformation_t p_mq_RequestInformation;
-	p_sv_ListRequestsPtr_t p_sv_ListRequestsPtr;
-	p_mq_Requests2Memory_t p_mq_Requests2Memory;
+	p_mq_WriteAck_t p_mq_WriteAck;
 	//@}
 
 protected:
@@ -77,6 +79,8 @@ protected:
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'Arbitration local declarations' algorithm generated code
 	int counter;
+	int index;
+	int list_requests_ptr;
 	//End of 'Arbitration local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 

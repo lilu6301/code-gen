@@ -22,10 +22,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_wrdmux : cf_function_router(name),
-             cfm_wrdmux_dp_if(),
-             p_mq_BRESPchn("p_mq_BRESPchn"),
-             p_mq_BRESPin("p_mq_BRESPin") {
+cfm_wrdmux ::cfm_wrdmux()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_router(name), cfm_wrdmux_dp_if(),
+      p_mq_BRESPchn("p_mq_BRESPchn"), p_mq_BRESPin("p_mq_BRESPin") {
   cf_function_router::init();
   // connections
   cf_function_router::elab_end();

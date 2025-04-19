@@ -31,9 +31,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_receiverrdata : cf_function(name),
-                   cfm_receiverrdata_dp_if(),
-                   p_mq_RDATAin("p_mq_RDATAin") {
+cfm_receiverrdata ::cfm_receiverrdata()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_receiverrdata_dp_if(),
+      p_mq_RDATAin("p_mq_RDATAin") {
   cf_function::init();
   // connections
   cf_function::elab_end();

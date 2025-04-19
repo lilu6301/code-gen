@@ -31,11 +31,12 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_target_2 : cf_function(name),
-               p_ev_Sync3("p_ev_Sync3"),
-               p_mq_ReferenceQueue("p_mq_ReferenceQueue"),
-               p_mq_TargetRequest("p_mq_TargetRequest"),
-               p_mq_TargetResponse("p_mq_TargetResponse") {
+cfm_target_2 ::cfm_target_2()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_target_2_dp_if(), p_ev_Sync3("p_ev_Sync3"),
+      p_mq_ReferenceQueue("p_mq_ReferenceQueue"),
+      p_mq_TargetRequest("p_mq_TargetRequest"),
+      p_mq_TargetResponse("p_mq_TargetResponse") {
   cf_function::init();
   // connections
   cf_function::elab_end();

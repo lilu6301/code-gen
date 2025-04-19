@@ -13,6 +13,7 @@
 #include "cfm_hwdevicemodel_global_types.h"
 #include "cofluent.h"
 #include "cfm_hwdevice test.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defframe.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -31,6 +32,7 @@ class cfm_hwdevicemodel: public cf_core::cf_application {
 public:
 	/// cfm_hwdevicemodel type define start
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_shared_variable<cft_defframe> sv_inputStream_t;
 	typedef cf_core::cf_shared_variable<cft_defframe> sv_outputStream_t;
 
@@ -49,7 +51,8 @@ public:
 public:
 	/// \name functions
 	//@{
-	cfm_hwdevice test* hwDeviceTest;
+//set of model, sort alphabetically. format: model_type* model_name
+	cfm_hwdevice test;
 	//@}
 
 protected:
@@ -61,6 +64,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	sv_inputStream_t sv_inputStream;
 	sv_outputStream_t sv_outputStream;
 	//@}

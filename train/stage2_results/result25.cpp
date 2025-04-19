@@ -31,7 +31,9 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_watching : cf_function(name), p_mq_Video("p_mq_Video") {
+cfm_watching ::cfm_watching()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_watching_dp_if(), p_mq_Video("p_mq_Video") {
   cf_function::init();
   // connections
   cf_function::elab_end();
@@ -100,7 +102,7 @@ void cfm_watching::cb_init_local_vars(void) {
 
   //<#!@READ-ONLY-SECTION-END@!#>
   // Start of 'Watching initializations' algorithm generated code
-
+  cpt = 0;
   // End of 'Watching initializations' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
 }

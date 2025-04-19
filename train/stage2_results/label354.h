@@ -14,6 +14,7 @@
 #include "dp/cfm_l2cap_layer_dp_if.h"
 #include "cfm_l2cap_receive.h"
 #include "cfm_l2cap_send.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defl2cap_in.h"
 #include "dt/cft_defl2cap_out.h"
 #include "dt/cft_defrfcomm_in.h"
@@ -37,6 +38,7 @@ public:
 	/// cfm_l2cap_layer type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_l2cap_layer, cft_defl2cap_in> p_mq_L2CAP_In_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_l2cap_layer, cft_defl2cap_out> p_mq_L2CAP_Out_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_l2cap_layer, cft_defrfcomm_in> p_mq_RFCOMM_In_t;
@@ -55,6 +57,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_L2CAP_In_t p_mq_L2CAP_In;
 	p_mq_L2CAP_Out_t p_mq_L2CAP_Out;
 	p_mq_RFCOMM_In_t p_mq_RFCOMM_In;
@@ -64,6 +67,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_l2cap_receive* L2CAP_Receive;
 	cfm_l2cap_send* L2CAP_Send;
 	//@}

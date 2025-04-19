@@ -31,10 +31,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_bankdmuxer : cf_function(name),
-                 cfm_bankdmuxer_dp_if(),
-                 p_mq_DDRAction("p_mq_DDRAction"),
-                 p_mq_DDRCommand("p_mq_DDRCommand") {
+cfm_bankdmuxer ::cfm_bankdmuxer()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_bankdmuxer_dp_if(),
+      p_mq_DDRAction("p_mq_DDRAction"), p_mq_DDRCommand("p_mq_DDRCommand") {
   cf_function::init();
   // connections
   cf_function::elab_end();

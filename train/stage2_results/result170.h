@@ -13,6 +13,7 @@
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_receivewack_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defbrespchn.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -32,6 +33,7 @@ public:
 	/// cfm_receivewack type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_receivewack, cft_defbrespchn> p_mq_BRESPin_t;
 	/// cfm_receivewack type define end
 
@@ -47,6 +49,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_BRESPin_t p_mq_BRESPin;
 	//@}
 
@@ -62,7 +65,24 @@ protected:
 	/// \name user-defined local declarations
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'ReceiveWACK local declarations' algorithm generated code
+	bool isRequest;
+	bool isAck;
+	int BlockSize;
+	int CurrentReceivedSize;
+	DEVICEIDTYPE requesterId;
+	bool memory_enable;
 
+	cf_dt::cf_time rec_time;
+	cf_dt::cf_time message_time_stamp;
+	cf_dt::cf_data_size message_size;
+	cf_dt::cf_throughput bus_throughput;
+	cf_dt::cf_time total_internal_bus_running_time;
+	double internal_bus_usage;
+	cf_dt::cf_data_size total_data_processed;
+	int total_nb_of_packets_processed;
+
+	int index;
+	cf_dt::cf_time oldest_message_time_stamp;
 	//End of 'ReceiveWACK local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 

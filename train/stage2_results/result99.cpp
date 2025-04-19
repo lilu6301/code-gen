@@ -23,14 +23,18 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_mapdatatypeapiapp : cf_application(name), mq_MsgQMap("MsgQMap") {
+cfm_mapdatatypeapiapp ::cfm_mapdatatypeapiapp()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name), mq_MsgQMap("MsgQMap") {
   cf_application::init();
   // instantiation of models
   ConsumerMap = new cfm_consumermap("ConsumerMap");
   ProducerMap = new cfm_producermap("ProducerMap");
   // connections
-  ConsumerMap->p_mq_MsgQMap(mq_MsgQMap);
-  ProducerMap->p_mq_MsgQMap(mq_MsgQMap);
+  // model connect to relation
+  ConsumerMap->p_mq_MsgQMap(mq_MsgQMap.p_target_socket);
+  // model connect to relation
+  ProducerMap->p_mq_MsgQMap(mq_MsgQMap.p_target_socket);
   cf_application::elab_end();
 }
 //@}

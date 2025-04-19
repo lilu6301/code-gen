@@ -12,9 +12,11 @@
 #include "cfm_ddrmemory_global.h"
 #include "cfm_ddrmemory_global_types.h"
 #include "cofluent.h"
+#include "dp/cfm_sender_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defawaddrchn.h"
-#include "dt/cft_defaraddrchn.h"
 #include "dt/cft_defwdatachn.h"
+#include "dt/cft_defaraddrchn.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'Sender includes' algorithm generated code
@@ -28,14 +30,15 @@
 ///        \page dxpSender
 //@{
 ///    \brief Sender function model start
-class cfm_sender: public cf_core::cf_function {
+class cfm_sender: public cf_core::cf_function, public cfm_sender_dp_if {
 public:
 	/// cfm_sender type define start
 
 	/// ports typedef
-	typedef cf_core::cf_mq_initiator_socket<cfm_sender, cft_defawaddrchn> p_mq_AWADDRchn_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_sender, cft_defaraddrchn> p_mq_ARADDRchn_t;
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
+	typedef cf_core::cf_mq_initiator_socket<cfm_sender, cft_defawaddrchn> p_mq_ARADDRchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_sender, cft_defwdatachn> p_mq_WDATAchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_sender, cft_defaraddrchn> p_mq_AWADDRchn_t;
 	/// cfm_sender type define end
 
 	/// constructor
@@ -50,9 +53,10 @@ public:
 public:
 	/// \name input/output ports
 	//@{
-	p_mq_AWADDRchn_t p_mq_AWADDRchn;
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_ARADDRchn_t p_mq_ARADDRchn;
 	p_mq_WDATAchn_t p_mq_WDATAchn;
+	p_mq_AWADDRchn_t p_mq_AWADDRchn;
 	//@}
 
 protected:
@@ -67,7 +71,7 @@ protected:
 	/// \name user-defined local declarations
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'Sender local declarations' algorithm generated code
-
+	int index;
 	//End of 'Sender local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 

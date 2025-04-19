@@ -16,6 +16,7 @@
 #include "cfm_datacenterswitch_routingfunction.h"
 #include "cfm_inbound.h"
 #include "cfm_outbound.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defpacket.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -35,10 +36,12 @@ class cfm_datacenterswitch: public cf_core::cf_function_container,
 public:
 	/// cfm_datacenterswitch type define start
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQRouting_in_t;
 	typedef cf_core::cf_message_queue<cft_defpacket> mq_MsgQRouting_out_t;
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_datacenterswitch, cft_defpacket> p_mq_MsgQToDataCenterSwitch_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_datacenterswitch, cft_defpacket> p_mq_MsgQToServerRoom_t;
 	/// cfm_datacenterswitch type define end
@@ -55,6 +58,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_MsgQToDataCenterSwitch_t* p_mq_MsgQToDataCenterSwitch;
 	p_mq_MsgQToServerRoom_t* p_mq_MsgQToServerRoom;
 	//@}
@@ -62,6 +66,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	std::vector<cfm_inbound*> Inbound_vec;
 	std::vector<cfm_outbound*> Outbound_vec;
 	cfm_datacenterswitch_routingfunction* RoutingFunction;
@@ -76,6 +81,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	std::vector<mq_MsgQRouting_in_t*> mq_MsgQRouting_in_vec;
 	std::vector<mq_MsgQRouting_out_t*> mq_MsgQRouting_out_vec;
 	//@}

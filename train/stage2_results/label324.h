@@ -11,6 +11,7 @@
 #include "cfm_completedevice_global.h"
 #include "cfm_completedevice_global_types.h"
 #include "cofluent.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defframe.h"
 
 #include "mci/cfm_dpv.h"
@@ -31,6 +32,7 @@ public:
 	/// cfm_testbench type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mci_port<cfm_dpv> dpv_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_testbench> p_ev_newFrame_t;
 	typedef cf_core::cf_sv_initiator_socket<cfm_testbench, cft_defframe> p_sv_inputStream_t;
@@ -49,6 +51,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	dpv_t dpv;
 	p_ev_newFrame_t p_ev_newFrame;
 	p_sv_inputStream_t p_sv_inputStream;

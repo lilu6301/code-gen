@@ -31,9 +31,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_clockgenerator : cf_function(name),
-                     cfm_clockgenerator_dp_if(),
-                     p_ev_BurstClock("p_ev_BurstClock") {
+cfm_clockgenerator ::cfm_clockgenerator()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_clockgenerator_dp_if(),
+      p_ev_BurstClock("p_ev_BurstClock") {
   cf_function::init();
   // connections
   cf_function::elab_end();
@@ -102,7 +103,7 @@ void cfm_clockgenerator::cb_init_local_vars(void) {
 
   //<#!@READ-ONLY-SECTION-END@!#>
   // Start of 'ClockGenerator initializations' algorithm generated code
-
+  clock_counter = 0;
   // End of 'ClockGenerator initializations' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
 }

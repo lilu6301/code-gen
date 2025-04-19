@@ -30,9 +30,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_protocolreceive : cf_function(name),
-                      p_mq_protocol_data("p_mq_protocol_data"),
-                      p_mq_user_data_out("p_mq_user_data_out") {
+cfm_protocolreceive ::cfm_protocolreceive()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), p_mq_protocol_data("p_mq_protocol_data"),
+      p_mq_user_data_out("p_mq_user_data_out") {
   cf_function::init();
   // connections
   cf_function::elab_end();

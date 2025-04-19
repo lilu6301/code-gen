@@ -11,7 +11,7 @@
 #ifdef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #undef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #endif
-#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_producermapdatatypeapp
+#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_protocolmapdatatypeapp
 #ifdef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #undef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #endif
@@ -31,9 +31,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_protocolsend : cf_function(name),
-                   p_mq_protocol_data("p_mq_protocol_data"),
-                   p_mq_user_data_in("p_mq_user_data_in") {
+cfm_protocolsend ::cfm_protocolsend()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), p_mq_protocol_data("p_mq_protocol_data"),
+      p_mq_user_data_in("p_mq_user_data_in") {
   cf_function::init();
   // connections
   cf_function::elab_end();

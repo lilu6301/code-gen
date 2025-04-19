@@ -14,6 +14,7 @@
 #include "dp/cfm_umts_dp_if.h"
 #include "cfm_umts_receive.h"
 #include "cfm_umts_send.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defcall.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -33,6 +34,7 @@ public:
 	/// cfm_umts type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_umts, cft_defcall> p_mq_IPToUMTS_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_umts, cft_defcall> p_mq_NetToUMTS_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_umts, cft_defcall> p_mq_UMTSToIP_t;
@@ -51,6 +53,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_IPToUMTS_t p_mq_IPToUMTS;
 	p_mq_NetToUMTS_t p_mq_NetToUMTS;
 	p_mq_UMTSToIP_t p_mq_UMTSToIP;
@@ -60,6 +63,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_umts_receive* UMTS_Receive;
 	cfm_umts_send* UMTS_Send;
 	//@}

@@ -23,10 +23,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_waddrdmux : cf_function_router(name),
-                cfm_waddrdmux_dp_if(),
-                p_mq_AWADDRchn("p_mq_AWADDRchn"),
-                p_mq_AWADDRin("p_mq_AWADDRin") {
+cfm_waddrdmux ::cfm_waddrdmux()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_router(name), cfm_waddrdmux_dp_if(),
+      p_mq_AWADDRchn("p_mq_AWADDRchn"), p_mq_AWADDRin("p_mq_AWADDRin") {
   cf_function_router::init();
   // connections
   cf_function_router::elab_end();
@@ -96,7 +96,7 @@ string cfm_waddrdmux::cb_select_destination_name(cf_payload_b *_trans) {
   string source_name = get_source_name();
   //<#!@READ-ONLY-SECTION-END@!#>
   // Start of 'WAddrDmux destination' algorithm generated code
-  return "DDRMemory";
+  return source_name;
   // End of 'WAddrDmux destination' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
   return "";

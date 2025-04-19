@@ -12,6 +12,7 @@
 #include "cfm_cosimverilatorchiselapp_global.h"
 #include "cfm_cosimverilatorchiselapp_global_types.h"
 #include "cofluent.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defdata1.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -31,6 +32,7 @@ public:
 	/// cfm_producer2 type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_producer2, cft_defdata1> p_mq_data2_t;
 	/// cfm_producer2 type define end
 
@@ -46,6 +48,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_data2_t p_mq_data2;
 	//@}
 
@@ -61,7 +64,7 @@ protected:
 	/// \name user-defined local declarations
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'Producer2 local declarations' algorithm generated code
-	int value;
+	int index;
 	//End of 'Producer2 local declarations' algorithm generated code
 	//<#!@READ-ONLY-SECTION-START@!#>
 

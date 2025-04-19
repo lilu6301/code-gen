@@ -12,6 +12,7 @@
 #include "cfm_bluetooth_ips_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_creditsordata_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defrfcomm_in.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -32,6 +33,7 @@ public:
 	/// cfm_creditsordata type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_creditsordata, cft_defrfcomm_in> p_mq_RFCOMM_In_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_creditsordata, cft_defrfcomm_in> p_mq_RFC_Cdts_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_creditsordata, cft_defrfcomm_in> p_mq_RFC_Data_t;
@@ -49,6 +51,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_RFCOMM_In_t p_mq_RFCOMM_In;
 	p_mq_RFC_Cdts_t p_mq_RFC_Cdts;
 	p_mq_RFC_Data_t p_mq_RFC_Data;

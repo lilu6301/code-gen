@@ -22,14 +22,18 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_copypayloadnonpod : cf_application(name), mq_MsgQ("MsgQ") {
+cfm_copypayloadnonpod ::cfm_copypayloadnonpod()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name), mq_MsgQ("MsgQ") {
   cf_application::init();
   // instantiation of models
   Consumer = new cfm_consumer("Consumer");
   Producer = new cfm_producer("Producer");
   // connections
-  Consumer->p_mq_MsgQ(mq_MsgQ);
-  Producer->p_mq_MsgQ(mq_MsgQ);
+  // model connect to relation
+  Consumer->p_mq_MsgQ(mq_MsgQ.p_target_socket);
+  // model connect to relation
+  Producer->p_mq_MsgQ(mq_MsgQ.p_target_socket);
   cf_application::elab_end();
 }
 //@}

@@ -22,22 +22,18 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_tlm2lt
-    : cf_application(name),
-      ev_Sync("Sync"),
-      ev_Sync2("Sync2"),
+cfm_tlm2lt ::cfm_tlm2lt()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_application(name), ev_Sync("Sync"), ev_Sync2("Sync2"),
       ev_Sync3("Sync3"),
       initiatorreader_tlm2_lt_initiator("initiatorreader_tlm2_lt_initiator"),
       initiatorwriter_tlm2_lt_initiator("initiatorwriter_tlm2_lt_initiator"),
       mq_InitiatorReader("InitiatorReader"),
       mq_InitiatorWriter("InitiatorWriter"),
-      mq_ReaderResponse("ReaderResponse"),
-      mq_ReferenceQueue("ReferenceQueue"),
+      mq_ReaderResponse("ReaderResponse"), mq_ReferenceQueue("ReferenceQueue"),
       mq_ReferenceQueue2("ReferenceQueue2"),
-      mq_ReferenceQueue3("ReferenceQueue3"),
-      mq_TargetRequest("TargetRequest"),
-      mq_TargetResponse("TargetResponse"),
-      mq_TargetWrapper("TargetWrapper"),
+      mq_ReferenceQueue3("ReferenceQueue3"), mq_TargetRequest("TargetRequest"),
+      mq_TargetResponse("TargetResponse"), mq_TargetWrapper("TargetWrapper"),
       targetrequest_tlm2_lt_target("targetrequest_tlm2_lt_target"),
       targetwrapper_tlm2_lt_target("targetwrapper_tlm2_lt_target") {
   cf_application::init();
@@ -48,24 +44,28 @@ cfm_tlm2lt
   Target_2 = new cfm_target_2("Target_2");
   Writer = new cfm_writer("Writer");
   // connections
-  Reader->p_mq_InitiatorReader(mq_InitiatorReader);
-  Reader->p_mq_ReaderResponse(mq_ReaderResponse);
-  Reader->p_mq_ReferenceQueue3(mq_ReferenceQueue3);
-  Reader->p_ev_Sync(ev_Sync);
-  Target->p_mq_ReferenceQueue2(mq_ReferenceQueue2);
-  Target->p_ev_Sync2(ev_Sync2);
-  Target->p_mq_TargetWrapper(mq_TargetWrapper);
-  Target_2->p_mq_ReferenceQueue(mq_ReferenceQueue);
-  Target_2->p_ev_Sync3(ev_Sync3);
-  Target_2->p_mq_TargetRequest(mq_TargetRequest);
-  Target_2->p_mq_TargetResponse(mq_TargetResponse);
-  Writer->p_mq_InitiatorWriter(mq_InitiatorWriter);
-  Writer->p_mq_ReferenceQueue(mq_ReferenceQueue);
-  Writer->p_mq_ReferenceQueue2(mq_ReferenceQueue2);
-  Writer->p_mq_ReferenceQueue3(mq_ReferenceQueue3);
-  Writer->p_ev_Sync(ev_Sync);
-  Writer->p_ev_Sync2(ev_Sync2);
-  Writer->p_ev_Sync3(ev_Sync3);
+  // model connect to relation
+  Reader->p_mq_InitiatorReader(mq_InitiatorReader.p_target_socket);
+  Reader->p_mq_ReaderResponse(mq_ReaderResponse.p_target_socket);
+  Reader->p_mq_ReferenceQueue3(mq_ReferenceQueue3.p_target_socket);
+  Reader->p_ev_Sync(ev_Sync.p_target_socket);
+  // model connect to relation
+  Target->p_mq_ReferenceQueue2(mq_ReferenceQueue2.p_target_socket);
+  Target->p_ev_Sync2(ev_Sync2.p_target_socket);
+  Target->p_mq_TargetWrapper(mq_TargetWrapper.p_target_socket);
+  // model connect to relation
+  Target_2->p_mq_ReferenceQueue(mq_ReferenceQueue.p_target_socket);
+  Target_2->p_ev_Sync3(ev_Sync3.p_target_socket);
+  Target_2->p_mq_TargetRequest(mq_TargetRequest.p_target_socket);
+  Target_2->p_mq_TargetResponse(mq_TargetResponse.p_target_socket);
+  // model connect to relation
+  Writer->p_mq_InitiatorWriter(mq_InitiatorWriter.p_target_socket);
+  Writer->p_mq_ReferenceQueue(mq_ReferenceQueue.p_target_socket);
+  Writer->p_mq_ReferenceQueue2(mq_ReferenceQueue2.p_target_socket);
+  Writer->p_mq_ReferenceQueue3(mq_ReferenceQueue3.p_target_socket);
+  Writer->p_ev_Sync(ev_Sync.p_target_socket);
+  Writer->p_ev_Sync2(ev_Sync2.p_target_socket);
+  Writer->p_ev_Sync3(ev_Sync3.p_target_socket);
   cf_application::elab_end();
 }
 //@}

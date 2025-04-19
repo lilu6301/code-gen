@@ -11,6 +11,7 @@
 #include "cfm_tlm2at_global.h"
 #include "cfm_tlm2at_global_types.h"
 #include "cofluent.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defdata.h"
 #include "dt/cft_defmsgq.h"
 
@@ -32,6 +33,7 @@ public:
 	/// cfm_writer type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_ev_initiator_socket<cfm_writer> p_ev_Sync2_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_writer> p_ev_Sync3_t;
 	typedef cf_core::cf_ev_initiator_socket<cfm_writer> p_ev_Sync_t;
@@ -53,6 +55,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_ev_Sync2_t p_ev_Sync2;
 	p_ev_Sync3_t p_ev_Sync3;
 	p_ev_Sync_t p_ev_Sync;

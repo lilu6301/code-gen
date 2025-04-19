@@ -30,10 +30,11 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_serverroom : cf_function_container(name),
-                 cfm_serverroom_dp_if(),
-                 p_mq_MsgQToDataCenterSwitch("p_mq_MsgQToDataCenterSwitch"),
-                 p_mq_MsgQToServerRoom("p_mq_MsgQToServerRoom") {
+cfm_serverroom ::cfm_serverroom()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_container(name), cfm_serverroom_dp_if(),
+      p_mq_MsgQToDataCenterSwitch("p_mq_MsgQToDataCenterSwitch"),
+      p_mq_MsgQToServerRoom("p_mq_MsgQToServerRoom") {
   cf_function_container::init();
   // instantiation of models
   AGGSwitch = new cfm_aggswitch("AGGSwitch");
@@ -56,17 +57,20 @@ cfm_serverroom : cf_function_container(name),
     mq_MsgQToRack_vec.push_back(module);
   }
   // connections
+  // model connect to relation
   for (cf_count i = 0; i < (cf_count)(dpRackNb + 1); i++) {
     AGGSwitch->p_mq_MsgQToAggSwitch(mq_MsgQToAggSwitch_vec[i]->p_target_socket);
   }
   for (cf_count i = 0; i < (cf_count)(dpRackNb + 1); i++) {
     AGGSwitch->p_mq_MsgQToRack(mq_MsgQToRack_vec[i]->p_target_socket);
   }
-AGGSwitch->p_mq_MsgQToDataCenterSwitch((p_mq_MsgQToDataCenterSwitch);
-AGGSwitch->p_mq_MsgQToServerRoom((p_mq_MsgQToServerRoom);
-	for (cf_count i = 0; i < (cf_count)( dpRackNb + 1); i++) {
+  // model connect to port
+  AGGSwitch->p_mq_MsgQToDataCenterSwitch(p_mq_MsgQToDataCenterSwitch);
+  AGGSwitch->p_mq_MsgQToServerRoom(p_mq_MsgQToServerRoom);
+  for (cf_count i = 0; i < (cf_count)(dpRackNb + 1); i++) {
     cfm_rack *module = Rack_vec[i];
     if (module != nullptr) {
+      // model connect to relation
       for (cf_count j = 0; j < (cf_count)(dpRackNb + 1); j++) {
         module->p_mq_MsgQToAggSwitch(
             mq_MsgQToAggSwitch_vec[j]->p_target_socket);
@@ -75,8 +79,8 @@ AGGSwitch->p_mq_MsgQToServerRoom((p_mq_MsgQToServerRoom);
         module->p_mq_MsgQToRack(mq_MsgQToRack_vec[j]->p_target_socket);
       }
     }
-}
-	cf_function_container::elab_end();
+  }
+  cf_function_container::elab_end();
 }
 //@}
 

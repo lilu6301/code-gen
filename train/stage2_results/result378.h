@@ -16,6 +16,7 @@
 #include "cfm_slave.h"
 #include "cfm_startfunc.h"
 #include "cfm_unusedfunc.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defbaseband.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -34,10 +35,11 @@ class cfm_opp_usecase: public cf_core::cf_application {
 public:
 	/// cfm_opp_usecase type define start
 	/// relations typedef
-	typedef cf_core::cf_message_queue<cft_defbaseband> mq_M2S_t;
-	typedef cf_core::cf_message_queue<cft_defbaseband> mq_S2M_t;
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_event ev_StartEv_t;
 	typedef cf_core::cf_event ev_UnusedEv_t;
+	typedef cf_core::cf_message_queue<cft_defbaseband> mq_M2S_t;
+	typedef cf_core::cf_message_queue<cft_defbaseband> mq_S2M_t;
 
 	/// cfm_opp_usecase type define end
 
@@ -54,6 +56,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_master* Master;
 	cfm_slave* Slave;
 	cfm_startfunc* StartFunc;
@@ -69,6 +72,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	ev_StartEv_t ev_StartEv;
 	ev_UnusedEv_t ev_UnusedEv;
 	mq_M2S_t mq_M2S;

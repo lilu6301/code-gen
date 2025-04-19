@@ -11,7 +11,7 @@
 #ifdef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #undef COFLUENT_CONTAINER_FUNCTION_CLASS_NAME
 #endif
-#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_rfm_data
+#define COFLUENT_CONTAINER_FUNCTION_CLASS_NAME cfm_bluetooth_ips
 #ifdef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #undef COFLUENT_SELF_FUNCTION_CLASS_NAME
 #endif
@@ -31,11 +31,11 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_rfcomm_receive : cf_function(name),
-                    cfm_rfcomm_receive_dp_if(),
-                    p_mq_OBEX_In("p_mq_OBEX_In"),
-                    p_mq_RFC_Data("p_mq_RFC_Data"),
-                    p_mq_RFC_Out1("p_mq_RFC_Out1") {
+cfm_rfcomm_receive ::cfm_rfcomm_receive()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_rfcomm_receive_dp_if(),
+      p_mq_OBEX_In("p_mq_OBEX_In"), p_mq_RFC_Data("p_mq_RFC_Data"),
+      p_mq_RFC_Out1("p_mq_RFC_Out1") {
   cf_function::init();
   // connections
   cf_function::elab_end();

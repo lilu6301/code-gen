@@ -31,9 +31,10 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_producer : cf_function(name),
-               cfm_producer_dp_if(),
-               p_mq_MsgQServerToToRSwitch("p_mq_MsgQServerToToRSwitch") {
+cfm_producer ::cfm_producer()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_producer_dp_if(),
+      p_mq_MsgQServerToToRSwitch("p_mq_MsgQServerToToRSwitch") {
   cf_function::init();
   // connections
   cf_function::elab_end();
@@ -102,10 +103,9 @@ void cfm_producer::cb_init_local_vars(void) {
   //<#!@READ-ONLY-SECTION-END@!#>
   // Start of 'Producer initializations' algorithm generated code
   // Initialize components ID
-  server_room_id =
-      get_container()->get_container()->get_cp_index();
+  server_room_id = get_container()->get_container()->get_cp_index();
   rack_id = get_container()->get_container()->get_cp_index();
-  server_id = get_container()->get_cp_index();
+  server_id = get_container()->get_container()->get_cp_index();
   // Init latency
   latency = cf_dt::cf_time(0, CF_SEC);
   // End of 'Producer initializations' algorithm generated code

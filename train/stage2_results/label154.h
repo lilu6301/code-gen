@@ -15,6 +15,7 @@
 #include "dp/cfm_target_dp_if.h"
 #include "cfm_memory.h"
 #include "cfm_memorycontroller.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defaraddrchn.h"
 #include "dt/cft_defawaddrchn.h"
 #include "dt/cft_defbrespchn.h"
@@ -39,10 +40,12 @@ class cfm_target: public cf_core::cf_function_container, public cfm_target_dp_if
 public:
 	/// cfm_target type define start
 	/// relations typedef
+//set of relation, sort alphabetically. format: cf_type<dataType> relation_name
 	typedef cf_core::cf_message_queue<cft_defddrcommand> mq_DDRCommand_t;
 	typedef cf_core::cf_message_queue<cft_defdqs> mq_DQs_t;
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_target, cft_defaraddrchn> p_mq_ARADDRchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_target, cft_defawaddrchn> p_mq_AWADDRchn_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_target, cft_defbrespchn> p_mq_BRESPchn_t;
@@ -62,6 +65,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_ARADDRchn_t p_mq_ARADDRchn;
 	p_mq_AWADDRchn_t p_mq_AWADDRchn;
 	p_mq_BRESPchn_t* p_mq_BRESPchn;
@@ -72,6 +76,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_memorycontroller* MemoryController;
 	std::vector<cfm_memory*> Memory_vec;
 	//@}
@@ -89,6 +94,7 @@ protected:
 public:
 	/// \name relations
 	//@{
+//set of relation, sort alphabetically. format: relation_type relation_name
 	std::vector<mq_DDRCommand_t*> mq_DDRCommand_vec;
 	std::vector<mq_DQs_t*> mq_DQs_vec;
 	//@}

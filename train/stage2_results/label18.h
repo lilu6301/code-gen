@@ -12,6 +12,7 @@
 #include "cfm_softwaredefinedradioapp_global_types.h"
 #include "cofluent.h"
 #include "dp/cfm_broadcastnetwork_dp_if.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defnet.h"
 #include "dt/cft_defvideo.h"
 
@@ -33,6 +34,7 @@ public:
 	/// cfm_broadcastnetwork type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_ev_initiator_socket<cfm_broadcastnetwork> p_ev_BurstClock_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_broadcastnetwork, cft_defvideo> p_mq_NetToDVB_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_broadcastnetwork, cft_defnet> p_mq_VideoNet_t;
@@ -51,6 +53,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_ev_BurstClock_t p_ev_BurstClock;
 	p_mq_NetToDVB_t p_mq_NetToDVB;
 	p_mq_VideoNet_t p_mq_VideoNet;

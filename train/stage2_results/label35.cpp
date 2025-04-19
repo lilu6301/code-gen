@@ -30,22 +30,23 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_ipcall : cf_function_container(name),
-             cfm_ipcall_dp_if(),
-             p_mq_HTTPToIP("p_mq_HTTPToIP"),
-             p_mq_IPToHTTP("p_mq_IPToHTTP"),
-             p_mq_IPToUMTS("p_mq_IPToUMTS"),
-             p_mq_UMTSToIP("p_mq_UMTSToIP") {
+cfm_ipcall ::cfm_ipcall()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function_container(name), cfm_ipcall_dp_if(),
+      p_mq_HTTPToIP("p_mq_HTTPToIP"), p_mq_IPToHTTP("p_mq_IPToHTTP"),
+      p_mq_IPToUMTS("p_mq_IPToUMTS"), p_mq_UMTSToIP("p_mq_UMTSToIP") {
   cf_function_container::init();
   // instantiation of models
   IPCall_Receive = new cfm_ipcall_receive("IPCall_Receive");
   IPCall_Send = new cfm_ipcall_send("IPCall_Send");
   // connections
-IPCall_Receive->p_mq_IPToHTTP((p_mq_IPToHTTP);
-IPCall_Receive->p_mq_UMTSToIP((p_mq_UMTSToIP);
-IPCall_Send->p_mq_HTTPToIP((p_mq_HTTPToIP);
-IPCall_Send->p_mq_IPToUMTS((p_mq_IPToUMTS);
-	cf_function_container::elab_end();
+  // model connect to port
+  IPCall_Receive->p_mq_IPToHTTP(p_mq_IPToHTTP);
+  IPCall_Receive->p_mq_UMTSToIP(p_mq_UMTSToIP);
+  // model connect to port
+  IPCall_Send->p_mq_HTTPToIP(p_mq_HTTPToIP);
+  IPCall_Send->p_mq_IPToUMTS(p_mq_IPToUMTS);
+  cf_function_container::elab_end();
 }
 //@}
 

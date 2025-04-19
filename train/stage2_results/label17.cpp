@@ -30,12 +30,11 @@ using namespace cf_core;
 
 /// \name constructor
 //@{
-cfm_interactivenetwork : cf_function(name),
-                         cfm_interactivenetwork_dp_if(),
-                         p_mq_NetToUMTS("p_mq_NetToUMTS"),
-                         p_mq_UMTSToNet("p_mq_UMTSToNet"),
-                         p_mq_VideoNet("p_mq_VideoNet"),
-                         p_sv_VideoFiles("p_sv_VideoFiles") {
+cfm_interactivenetwork ::cfm_interactivenetwork()
+    : // instantiation of non-vector Event, MessageQueue, SharedVariable
+      cf_function(name), cfm_interactivenetwork_dp_if(),
+      p_mq_NetToUMTS("p_mq_NetToUMTS"), p_mq_UMTSToNet("p_mq_UMTSToNet"),
+      p_mq_VideoNet("p_mq_VideoNet"), p_sv_VideoFiles("p_sv_VideoFiles") {
   cf_function::init();
   // connections
   cf_function::elab_end();

@@ -15,6 +15,7 @@
 #include "dp/cfm_httptcp_dp_if.h"
 #include "cfm_httptcp_receive.h"
 #include "cfm_httptcp_send.h"
+//set of dataType, sort alphabetically
 #include "dt/cft_defcall.h"
 
 //<#!@READ-ONLY-SECTION-END@!#>
@@ -35,6 +36,7 @@ public:
 	/// cfm_httptcp type define start
 
 	/// ports typedef
+//set of port, sort alphabetically, format: cf_type<dataType> port_name
 	typedef cf_core::cf_mq_initiator_socket<cfm_httptcp, cft_defcall> p_mq_AppToHTTP_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_httptcp, cft_defcall> p_mq_HTTPToApp_t;
 	typedef cf_core::cf_mq_initiator_socket<cfm_httptcp, cft_defcall> p_mq_HTTPToIP_t;
@@ -53,6 +55,7 @@ public:
 public:
 	/// \name input/output ports
 	//@{
+//set of port, sort alphabetically. format: port_type port_name
 	p_mq_AppToHTTP_t p_mq_AppToHTTP;
 	p_mq_HTTPToApp_t p_mq_HTTPToApp;
 	p_mq_HTTPToIP_t p_mq_HTTPToIP;
@@ -62,6 +65,7 @@ public:
 public:
 	/// \name functions
 	//@{
+//set of model, sort alphabetically. format: model_type* model_name
 	cfm_httptcp_receive* HTTPTCP_Receive;
 	cfm_httptcp_send* HTTPTCP_Send;
 	//@}
