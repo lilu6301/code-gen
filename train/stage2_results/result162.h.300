@@ -16,9 +16,9 @@
 #include "dp/cfm_memorycontroller_dp_if.h"
 #include "cfm_backend.h"
 #include "cfm_frontend.h"
-#include "cfm_raddmux.h"
-#include "cfm_waddmux.h"
-#include "cfm_wdatadmux.h"
+#include "cfm_raddermux.h"
+#include "cfm_waddermux.h"
+#include "cfm_wdatamux.h"
 //set of dataType, sort alphabetically
 #include "dt/cft_defaraddrchn.h"
 #include "dt/cft_defawaddrchn.h"
@@ -46,22 +46,30 @@ public:
 	/// cfm_memorycontroller type define start
 	/// relations typedef
 //set of relation, sort alphabetically. format: cf_type<dataType> relation_name
-	typedef cf_core::cf_simple_message_queue<cft_defaraddrchn> mq_ARADDRin_t;
-	typedef cf_core::cf_simple_message_queue<cft_defawaddrchn> mq_AWADDRin_t;
+	typedef cf_core::cf_message_queue<cft_defaraddrchn> mq_ARADDRin_t;
+	typedef cf_core::cf_message_queue<cft_defawaddrchn> mq_AWADDRin_t;
 	typedef cf_core::cf_message_queue<cft_defdataread> mq_DataRead_t;
-	typedef cf_core::cf_simple_message_queue<cft_defmemreadrequest> mq_MemReadRequest_t;
-	typedef cf_core::cf_simple_message_queue<cft_defmemwriterequest> mq_MemWriteRequest_t;
-	typedef cf_core::cf_simple_message_queue<cft_defwdatachn> mq_WDATAin_t;
-	typedef cf_core::cf_simple_message_queue<cft_defwriteack> mq_WriteAck_t;
+	typedef cf_core::cf_message_queue<cft_defmemreadrequest> mq_MemReadRequest_t;
+	typedef cf_core::cf_message_queue<cft_defmemwriterequest> mq_MemWriteRequest_t;
+	typedef cf_core::cf_message_queue<cft_defwdatachn> mq_WDATAin_t;
+	typedef cf_core::cf_message_queue<cft_defwriteack> mq_WriteAck_t;
 
 	/// ports typedef
 //set of port, sort alphabetically, format: cf_type<dataType> port_name
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defaraddrchn> p_mq_ARADDRchn_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defawaddrchn> p_mq_AWADDRchn_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defbrespchn> p_mq_BRESPchn_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defddrcommand> p_mq_DDRCommand_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defqs> p_mq_DQs_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defwdatachn> p_mq_WDATAchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
+			cft_defaraddrchn> p_mq_ARADDRchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
+			cft_defawaddrchn> p_mq_AWADDRchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
+			cft_defdataread> p_mq_DDRCommand_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
+			cft_defdataread> p_mq_DQs_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
+			cft_defmemreadrequest> p_mq_MemReadRequest_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
+			cft_defmemwriterequest> p_mq_MemWriteRequest_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
+			cft_defwdatachn> p_mq_WDATAchn_t;
 	/// cfm_memorycontroller type define end
 
 	/// constructor
@@ -79,9 +87,10 @@ public:
 //set of port, sort alphabetically. format: port_type port_name
 	p_mq_ARADDRchn_t p_mq_ARADDRchn;
 	p_mq_AWADDRchn_t p_mq_AWADDRchn;
-	p_mq_BRESPchn_t p_mq_BRESPchn;
 	p_mq_DDRCommand_t p_mq_DDRCommand;
 	p_mq_DQs_t p_mq_DQs;
+	p_mq_MemReadRequest_t p_mq_MemReadRequest;
+	p_mq_MemWriteRequest_t p_mq_MemWriteRequest;
 	p_mq_WDATAchn_t p_mq_WDATAchn;
 	//@}
 
@@ -91,9 +100,9 @@ public:
 //set of model, sort alphabetically. format: model_type* model_name
 	cfm_backend* BackEnd;
 	std::vector<cfm_frontend*> FrontEnd_vec;
-	cfm_raddmux* RAddrDmux;
-	cfm_waddmux* WAddrDmux;
-	cfm_wdatadmux* WdataDmux;
+	cfm_raddermux* RAddrDmux;
+	cfm_waddermux* WAddrDmux;
+	cfm_wdatamux* WDataDmux;
 	//@}
 
 protected:
@@ -111,7 +120,7 @@ public:
 	std::vector<mq_DataRead_t*> mq_DataRead_vec;
 	mq_MemReadRequest_t mq_MemReadRequest;
 	mq_MemWriteRequest_t mq_MemWriteRequest;
-	std::vector<mq_WDATAin_t*> mq_WDATAin_vec;
+	std::vector<mq_WDATAin_t*> mq_WDataIn_vec;
 	std::vector<mq_WriteAck_t*> mq_WriteAck_vec;
 	//@}
 

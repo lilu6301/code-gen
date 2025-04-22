@@ -43,7 +43,8 @@ cfm_memorycontroller ::cfm_memorycontroller()
   // instantiation of models
   BackEnd = new cfm_backend("BackEnd");
   for (cf_count i = 0; i < (cf_count)(P_Nbr + 1); i++) {
-    cfm_frontend *module = new cfm_frontend(cf_string("FrontEnd[%d]", i).c_str());
+    cfm_frontend *module =
+        new cfm_frontend(cf_string("FrontEnd[%d]", i).c_str());
     CF_ASSERT(module)
     FrontEnd_vec.push_back(module);
   }
@@ -64,7 +65,8 @@ cfm_memorycontroller ::cfm_memorycontroller()
     mq_AWADDRin_vec.push_back(module);
   }
   for (cf_count i = 0; i < (cf_count)(P_Nbr + 1); i++) {
-    mq_DataRead_t *module = new mq_DataRead_t(cf_string("DataRead[%d]", i).c_str());
+    mq_DataRead_t *module =
+        new mq_DataRead_t(cf_string("DataRead[%d]", i).c_str());
     CF_ASSERT(module)
     mq_DataRead_vec.push_back(module);
   }
@@ -109,9 +111,7 @@ cfm_memorycontroller ::cfm_memorycontroller()
     }
   }
   // model connect to relation
-  for (cf_count i = 0; i < (cf_count)(P_Nbr + 1); i++) {
-    RAddrDmux->p_mq_ARADDRin(mq_ARADDRin_vec[i]->p_target_socket);
-  }
+  RAddrDmux->p_mq_ARADDRin(mq_ARADDRin_vec[0]->p_target_socket);
   // model connect to port
   RAddrDmux->p_mq_ARADDRchn(p_mq_ARADDRchn);
   // model connect to relation
@@ -207,40 +207,28 @@ void cfm_memorycontroller::cb_init_attributes() {
   // initialize function attributes
   // initialize relations attributes
   for (cf_count i = 0; i < (cf_count)(P_Nbr + 1); i++) {
-    (*mq_ARADDRin_vec[i]).cfa_send_time.init(cf_expr_duration(0, CF_NS));
-    (*mq_ARADDRin_vec[i]).cfa_receive_time.init(cf_expr_duration(0, CF_NS));
-    (*mq_ARADDRin_vec[i]).cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
-    (*mq_ARADDRin_vec[i]).cfa_queue_capacity.init((cf_nonzero_count)1);
-    (*mq_ARADDRin_vec[i]).cfa_concurrency.init((cf_nonzero_count)1);
-    (*mq_ARADDRin_vec[i]).cfa_send_threshold.init((cf_nonzero_count)1);
-    (*mq_ARADDRin_vec[i]).cfa_receive_threshold.init((cf_nonzero_count)1);
+    (*mq_ARADDRin_vec[i]).set_send_time(cf_expr_duration(1, CF_NS));
+    (*mq_ARADDRin_vec[i]).set_receive_time(cf_expr_duration(1, CF_NS));
   }
   for (cf_count i = 0; i < (cf_count)(P_Nbr + 1); i++) {
-    (*mq_AWADDRin_vec[i]).cfa_send_time.init(cf_expr_duration(0, CF_NS));
-    (*mq_AWADDRin_vec[i]).cfa_receive_time.init(cf_expr_duration(0, CF_NS));
-    (*mq_AWADDRin_vec[i]).cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
-    (*mq_AWADDRin_vec[i]).cfa_queue_capacity.init((cf_nonzero_count)1);
-    (*mq_AWADDRin_vec[i]).cfa_concurrency.init((cf_nonzero_count)1);
-    (*mq_AWADDRin_vec[i]).cfa_send_threshold.init((cf_nonzero_count)1);
-    (*mq_AWADDRin_vec[i]).cfa_receive_threshold.init((cf_nonzero_count)1);
+    (*mq_AWADDRin_vec[i]).set_send_time(cf_expr_duration(1, CF_NS));
+    (*mq_AWADDRin_vec[i]).set_receive_time(cf_expr_duration(1, CF_NS));
   }
   for (cf_count i = 0; i < (cf_count)(P_Nbr + 1); i++) {
-    (*mq_DataRead_vec[i]).cfa_send_time.init(cf_expr_duration(0, CF_NS));
-    (*mq_DataRead_vec[i]).cfa_receive_time.init(cf_expr_duration(0, CF_NS));
-    (*mq_DataRead_vec[i]).cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
-    (*mq_DataRead_vec[i]).cfa_queue_capacity.init((cf_nonzero_count)1);
-    (*mq_DataRead_vec[i]).cfa_concurrency.init((cf_nonzero_count)1);
-    (*mq_DataRead_vec[i]).cfa_send_threshold.init((cf_nonzero_count)1);
-    (*mq_DataRead_vec[i]).cfa_receive_threshold.init((cf_nonzero_count)1);
+    (*mq_DataRead_vec[i]).set_send_time(cf_expr_duration(1, CF_NS));
+    (*mq_DataRead_vec[i]).set_receive_time(cf_expr_duration(1, CF_NS));
+  }
+  mq_MemReadRequest.set_send_time(cf_expr_duration(1, CF_NS));
+  mq_MemReadRequest.set_receive_time(cf_expr_duration(1, CF_NS));
+  mq_MemWriteRequest.set_send_time(cf_expr_duration(1, CF_NS));
+  mq_MemWriteRequest.set_receive_time(cf_expr_duration(1, CF_NS));
+  for (cf_count i = 0; i < (cf_count)(P_Nbr + 1); i++) {
+    (*mq_WDATAin_vec[i]).set_send_time(cf_expr_duration(1, CF_NS));
+    (*mq_WDATAin_vec[i]).set_receive_time(cf_expr_duration(1, CF_NS));
   }
   for (cf_count i = 0; i < (cf_count)(P_Nbr + 1); i++) {
-    (*mq_WriteAck_vec[i]).cfa_send_time.init(cf_expr_duration(0, CF_NS));
-    (*mq_WriteAck_vec[i]).cfa_receive_time.init(cf_expr_duration(0, CF_NS));
-    (*mq_WriteAck_vec[i]).cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
-    (*mq_WriteAck_vec[i]).cfa_queue_capacity.init((cf_nonzero_count)1);
-    (*mq_WriteAck_vec[i]).cfa_concurrency.init((cf_nonzero_count)1);
-    (*mq_WriteAck_vec[i]).cfa_send_threshold.init((cf_nonzero_count)1);
-    (*mq_WriteAck_vec[i]).cfa_receive_threshold.init((cf_nonzero_count)1);
+    (*mq_WriteAck_vec[i]).set_send_time(cf_expr_duration(1, CF_NS));
+    (*mq_WriteAck_vec[i]).set_receive_time(cf_expr_duration(1, CF_NS));
   }
 
   return;

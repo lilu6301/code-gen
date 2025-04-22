@@ -46,22 +46,28 @@ public:
 	/// cfm_memorycontroller type define start
 	/// relations typedef
 //set of relation, sort alphabetically. format: cf_type<dataType> relation_name
-	typedef cf_core::cf_simple_message_queue<cft_defaraddrchn> mq_ARADDRin_t;
-	typedef cf_core::cf_simple_message_queue<cft_defawaddrchn> mq_AWADDRin_t;
+	typedef cf_core::cf_message_queue<cft_defaraddrchn> mq_ARADDRin_t;
+	typedef cf_core::cf_message_queue<cft_defawaddrchn> mq_AWADDRin_t;
 	typedef cf_core::cf_message_queue<cft_defdataread> mq_DataRead_t;
-	typedef cf_core::cf_simple_message_queue<cft_defmemreadrequest> mq_MemReadRequest_t;
-	typedef cf_core::cf_simple_message_queue<cft_defmemwriterequest> mq_MemWriteRequest_t;
-	typedef cf_core::cf_simple_message_queue<cft_defwdatachn> mq_WDATAin_t;
-	typedef cf_core::cf_simple_message_queue<cft_defwriteack> mq_WriteAck_t;
+	typedef cf_core::cf_message_queue<cft_defmemreadrequest> mq_MemReadRequest_t;
+	typedef cf_core::cf_message_queue<cft_defmemwriterequest> mq_MemWriteRequest_t;
+	typedef cf_core::cf_message_queue<cft_defwdatachn> mq_WDATAin_t;
+	typedef cf_core::cf_message_queue<cft_defwriteack> mq_WriteAck_t;
 
 	/// ports typedef
 //set of port, sort alphabetically, format: cf_type<dataType> port_name
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defaraddrchn> p_mq_ARADDRchn_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defawaddrchn> p_mq_AWADDRchn_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defbrespchn> p_mq_BRESPchn_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defddrcommand> p_mq_DDRCommand_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defqs> p_mq_DQs_t;
-	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defwdatachn> p_mq_WDATAchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
+			cft_defaraddrchn> p_mq_ARADDRchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
+			cft_defawaddrchn> p_mq_AWADDRchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
+			cft_defbrespchn> p_mq_BRESPchn_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
+			cft_defddrcommand> p_mq_DDRCommand_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
+			cft_defmq> p_mq_DQs_t;
+	typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller,
+			cft_defwdatachn> p_mq_WDATAchn_t;
 	/// cfm_memorycontroller type define end
 
 	/// constructor
