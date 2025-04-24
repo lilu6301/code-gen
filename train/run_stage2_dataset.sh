@@ -11,19 +11,19 @@ Run_llama3-8b_peft_fsdp() {
 
     accelerate launch  --config_file "fsdp_config.yaml"  mle.py \
         --model_name_or_path ${model} \
-	--data_path //root/llm/fine-tuning/RTL-Coder/stage2_dataset.json \
+	--data_path //root/llm/fine-tuning/code-gen/stage2_dataset.json \
         --bf16 True \
         --model_max_length 4096 \
-        --output_dir="output" \
+        --output_dir="/localdisk/output" \
         --evaluation_strategy="no" \
         --learning_rate=1e-5 \
         --gradient_accumulation_steps=1 \
         --per_device_train_batch_size=4 \
         --per_device_eval_batch_size=8 \
         --num_train_epochs=3 \
-        --save_steps=500 \
+        --save_steps=100 \
         --logging_steps=1 \
-        --save_total_limit=8 2>&1 | tee llama3-8b_ft_fsdp_converge.log
+        --save_total_limit=8 2>&1 | tee stage2_dataset.log
 
 }
 
