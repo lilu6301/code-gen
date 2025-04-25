@@ -33,11 +33,13 @@ using namespace cf_core;
 cfm_memorycontroller ::cfm_memorycontroller()
     : // instantiation of non-vector Event, MessageQueue, SharedVariable
       cf_function_container(name), cfm_memorycontroller_dp_if(),
+      mq_ARADDRin("ARADDRin"), mq_AWADDRin("AWADDRin"), mq_DataRead("DataRead"),
       mq_MemReadRequest("MemReadRequest"),
-      mq_MemWriteRequest("MemWriteRequest"), p_mq_ARADDRchn("p_mq_ARADDRchn"),
-      p_mq_AWADDRchn("p_mq_AWADDRchn"), p_mq_DDRCommand("p_mq_DDRCommand"),
-      p_mq_DQs("p_mq_DQs"), p_mq_WDATAchn("p_mq_WDATAchn"),
-      p_mq_BRESPchn("p_mq_BRESPchn"), p_mq_RDATAchn("p_mq_RDATAchn") {
+      mq_MemWriteRequest("MemWriteRequest"), mq_WDATAin("WDATAin"),
+      mq_WriteAck("WriteAck"), p_mq_ARADDRchn("p_mq_ARADDRchn"),
+      p_mq_AWADDRchn("p_mq_AWADDRchn"), p_mq_BRESPchn("p_mq_BRESPchn"),
+      p_mq_DDRCommand("p_mq_DDRCommand"), p_mq_DQs("p_mq_DQs"),
+      p_mq_RDATAchn("p_mq_RDATAchn"), p_mq_WDATAchn("p_mq_WDATAchn") {
   cf_function_container::init();
   // instantiation of models
   BackEnd = new cfm_backend("BackEnd");
@@ -181,106 +183,24 @@ cfm_memorycontroller::~cfm_memorycontroller(void) {
     delete (*vi);
   }
 }
-//@}
 
-/// \name pre-elaboration section
-//@{
-void cfm_memorycontroller::cb_before_elaboration(void) {
-  //<#!@READ-ONLY-SECTION-END@!#>
-  // Start of 'MemoryController pre elaboration' algorithm generated code
-
-  // End of 'MemoryController pre elaboration' algorithm generated code
-  //<#!@READ-ONLY-SECTION-START@!#>
-}
-//@}
-
-/// \name post-elaboration section
-//@{
-void cfm_memorycontroller::cb_end_of_elaboration(void) {
-  //<#!@READ-ONLY-SECTION-END@!#>
-  // Start of 'MemoryController post elaboration' algorithm generated code
-
-  // End of 'MemoryController post elaboration' algorithm generated code
-  //<#!@READ-ONLY-SECTION-START@!#>
-}
-//@}
-
-/// \name post-simulation section
-//@{
-void cfm_memorycontroller::cb_end_of_simulation(void) {
-  //<#!@READ-ONLY-SECTION-END@!#>
-  // Start of 'MemoryController post simulation' algorithm generated code
-
-  // End of 'MemoryController post simulation' algorithm generated code
-  //<#!@READ-ONLY-SECTION-START@!#>
-}
-//@}
-
-/// \name initialize attributes
 //@{
 void cfm_memorycontroller::cb_init_attributes() {
 
   // initialize function attributes
-  cfa_cycle_period.init(cf_expr_time(10, CF_NS));
-  // initialize relations attributes
-  for (cf_count i = 0; i < (cf_count)(P_Nbr + 1); i++) {
-    (*mq_ARADDRin_vec[i]).cfa_send_time.init(cf_expr_duration(0, CF_CYCLE));
-    (*mq_ARADDRin_vec[i]).cfa_receive_time.init(cf_expr_duration(0, CF_CYCLE));
-    (*mq_ARADDRin_vec[i]).cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
-    (*mq_ARADDRin_vec[i]).cfa_queue_capacity.init((cf_nonzero_count)1);
-    (*mq_ARADDRin_vec[i]).cfa_concurrency.init((cf_nonzero_count)1);
-  }
-  for (cf_count i = 0; i < (cf_count)(P_Nbr + 1); i++) {
-    (*mq_AWADDRin_vec[i]).cfa_send_time.init(cf_expr_duration(0, CF_CYCLE));
-    (*mq_AWADDRin_vec[i]).cfa_receive_time.init(cf_expr_duration(0, CF_CYCLE));
-    (*mq_AWADDRin_vec[i]).cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
-    (*mq_AWADDRin_vec[i]).cfa_queue_capacity.init((cf_nonzero_count)1);
-    (*mq_AWADDRin_vec[i]).cfa_concurrency.init((cf_nonzero_count)1);
-  }
-  for (cf_count i = 0; i < (cf_count)(P_Nbr + 1); i++) {
-    (*mq_DataRead_vec[i]).cfa_send_time.init(cf_expr_duration(1, CF_CYCLE));
-    (*mq_DataRead_vec[i]).cfa_receive_time.init(cf_expr_duration(1, CF_CYCLE));
-    (*mq_DataRead_vec[i]).cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
-    (*mq_DataRead_vec[i]).cfa_queue_capacity.init((cf_nonzero_count)1);
-    (*mq_DataRead_vec[i]).cfa_concurrency.init((cf_nonzero_count)1);
-  }
-  mq_MemReadRequest.cfa_send_time.init(cf_expr_duration(0, CF_CYCLE));
-  mq_MemReadRequest.cfa_receive_time.init(cf_expr_duration(0, CF_CYCLE));
-  mq_MemReadRequest.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_INFINITE);
-  mq_MemReadRequest.cfa_concurrency.init((cf_nonzero_count)1);
-  mq_MemWriteRequest.cfa_send_time.init(cf_expr_duration(0, CF_CYCLE));
-  mq_MemWriteRequest.cfa_receive_time.init(cf_expr_duration(0, CF_CYCLE));
-  mq_MemWriteRequest.cfa_queue_policy.init(CF_MQ_POLICY_FIFO_INFINITE);
-  mq_MemWriteRequest.cfa_concurrency.init((cf_nonzero_count)1);
-  for (cf_count i = 0; i < (cf_count)(P_Nbr + 1); i++) {
-    (*mq_WDATAin_vec[i]).cfa_send_time.init(cf_expr_duration(0, CF_CYCLE));
-    (*mq_WDATAin_vec[i]).cfa_receive_time.init(cf_expr_duration(0, CF_CYCLE));
-    (*mq_WDATAin_vec[i]).cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
-    (*mq_WDATAin_vec[i]).cfa_queue_capacity.init((cf_nonzero_count)1);
-    (*mq_WDATAin_vec[i]).cfa_concurrency.init((cf_nonzero_count)1);
-  }
-  for (cf_count i = 0; i < (cf_count)(P_Nbr + 1); i++) {
-    (*mq_WriteAck_vec[i]).cfa_send_time.init(cf_expr_duration(1, CF_CYCLE));
-    (*mq_WriteAck_vec[i]).cfa_receive_time.init(cf_expr_duration(1, CF_CYCLE));
-    (*mq_WriteAck_vec[i]).cfa_queue_policy.init(CF_MQ_POLICY_FIFO_FINITE);
-    (*mq_WriteAck_vec[i]).cfa_queue_capacity.init((cf_nonzero_count)1);
-    (*mq_WriteAck_vec[i]).cfa_concurrency.init((cf_nonzero_count)1);
-  }
 
   return;
 }
 //@}
 
-/// \name initialize definitions
 //@{
 void cfm_memorycontroller::cb_init_local_vars(void) {
 
   //<#!@READ-ONLY-SECTION-END@!#>
-  // Start of 'MemoryController initializations' algorithm generated code
+  // Start of 'Router25 initializations' algorithm generated code
 
-  // End of 'MemoryController initializations' algorithm generated code
+  // End of 'Router25 initializations' algorithm generated code
   //<#!@READ-ONLY-SECTION-START@!#>
 }
 //@}
-
 //<#!@READ-ONLY-SECTION-END@!#>
