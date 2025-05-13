@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -17,6 +16,7 @@
 #include "cfm_rddmux.h"
 #include "cfm_wrdmux.h"
 #include "dt/cft_defaraddrchn_in.h"
+#include "dt/cft_defawaddrchn_in.h"
 #include "dt/cft_defbrespchn_in.h"
 #include "dt/cft_defrdatachn_in.h"
 #include "dt/cft_defwdatachn_in.h"

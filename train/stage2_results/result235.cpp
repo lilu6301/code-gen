@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_torswitch
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -62,7 +61,7 @@ InboundAGGSwitch->p_mq_MsgQInboundAGGSwitch(mq_MsgQInboundAGGSwitch.p_target_soc
 InboundAGGSwitch->p_mq_MsgQToRack(p_mq_MsgQToRack);
 for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
 		cfm_inboundserver* module = InboundServer_vec[i];
-		if (module != nullptr) {
+		if (module!= nullptr) {
 //model connect to relation
 for (cf_count j = 0; j < (cf_count)( dpServerPerRackNb + 1); j++) {
 				module->p_mq_MsgQInboundServer(mq_MsgQInboundServer_vec[j]->p_target_socket);
@@ -77,7 +76,7 @@ OutboundAGGSwitch->p_mq_MsgQOutboundAGGSwitch(mq_MsgQOutboundAGGSwitch.p_target_
 OutboundAGGSwitch->p_mq_MsgQToAggSwitch(p_mq_MsgQToAggSwitch);
 for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
 		cfm_outboundserver* module = OutboundServer_vec[i];
-		if (module != nullptr) {
+		if (module!= nullptr) {
 //model connect to relation
 for (cf_count j = 0; j < (cf_count)( dpServerPerRackNb + 1); j++) {
 				module->p_mq_MsgQOutboundServer(mq_MsgQOutboundServer_vec[j]->p_target_socket);
@@ -110,22 +109,22 @@ cfm_torswitch::~cfm_torswitch(void) {
 //deconstruct for models
 delete InboundAGGSwitch;
 for (vector<cfm_inboundserver*>::const_iterator vi = InboundServer_vec.begin();
-			vi != InboundServer_vec.end(); vi++) {
+			vi!= InboundServer_vec.end(); vi++) {
 		delete (*vi);
 	}
 delete OutboundAGGSwitch;
 for (vector<cfm_outboundserver*>::const_iterator vi = OutboundServer_vec.begin();
-			vi != OutboundServer_vec.end(); vi++) {
+			vi!= OutboundServer_vec.end(); vi++) {
 		delete (*vi);
 	}
 delete RoutingFunction;
 //deconstructor for vector relation
 for (vector<mq_MsgQInboundServer_t*>::const_iterator vi = mq_MsgQInboundServer_vec.begin();
-			vi != mq_MsgQInboundServer_vec.end(); vi++) {
+			vi!= mq_MsgQInboundServer_vec.end(); vi++) {
 		delete (*vi);
 	}
 for (vector<mq_MsgQOutboundServer_t*>::const_iterator vi = mq_MsgQOutboundServer_vec.begin();
-			vi != mq_MsgQOutboundServer_vec.end(); vi++) {
+			vi!= mq_MsgQOutboundServer_vec.end(); vi++) {
 		delete (*vi);
 	}
 }

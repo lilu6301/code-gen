@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+/<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -25,7 +24,6 @@ typedef cf_core::cf_message_queue<cft_DefVideo> mq_NetToDVB_t;
 typedef cf_core::cf_message_queue<cft_DefCall> mq_NetToUMTS_t;
 typedef cf_core::cf_message_queue<cft_DefCall> mq_Request_t;
 typedef cf_core::cf_message_queue<cft_DefCall> mq_Response_t;
-typedef cf_core::cf_message_queue<cft_DefCall> mq_UMTSToNet_t;
 typedef cf_core::cf_message_queue<cft_DefVideo> mq_Video_t;
 
 /// constructor
@@ -47,7 +45,6 @@ mq_NetToDVB_t mq_NetToDVB;
 mq_NetToUMTS_t mq_NetToUMTS;
 mq_Request_t mq_Request;
 mq_Response_t mq_Response;
-mq_UMTSToNet_t mq_UMTSToNet;
 mq_Video_t mq_Video;
 };
 #endif

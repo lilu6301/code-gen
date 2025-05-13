@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+/<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -13,7 +12,7 @@
 #include "cfm_hwdevicemodel_global_types.h"
 #include <vector>
 #include "cofluent.h"
-#include "cfm_hwdevicetest.h"
+#include "cfm_hwdicetest.h"
 #include "dt/cft_defframe_in.h"
 
 class cfm_hwdevicemodel : public cf_core::cf_application {
@@ -27,7 +26,7 @@ cfm_hwdevicemodel(sc_core::sc_module_name name);
 /// destructor
 virtual ~cfm_hwdevicemodel(void);
 
-cfm_hwdevicetest *hwDeviceTest;
+cfm_hwdicetest *hwDeviceTest;
 
 protected:
 void cb_init_attributes(void);

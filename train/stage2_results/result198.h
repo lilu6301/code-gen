@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+ //<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -15,6 +14,7 @@
 #include "cofluent.h"
 #include "dt/cft_deflistrequestsptr_in.h"
 #include "dt/cft_defrequestinformation_in.h"
+#include "dt/cft_defrequests2memory_in.h"
 #include "dt/cft_defwriteack_in.h"
 
 class cfm_arbitration : public cf_core::cf_function {

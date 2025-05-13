@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -16,11 +15,11 @@
 #include "cfm_obex_receive.h"
 #include "cfm_obex_send.h"
 #include "cfm_ob_out.h"
-#include "dt/cft_defdatainput_in.h"
-#include "dt/cft_defdatout_in.h"
+#include "dt/cft_defdatain_in.h"
+#include "dt/cft_defdataout_in.h"
+#include "dt/cft_defobex_in.h"
+#include "dt/cft_defobex_out.h"
 #include "dt/cft_defreadwrite_in.h"
-#include "dt/cft_defobex_in_in.h"
-#include "dt/cft_defobex_out_in.h"
 
 class cfm_obex_layer : public cf_core::cf_function {
 public:
@@ -32,7 +31,7 @@ typedef cf_core::cf_mq_initiator_socket<cfm_obex_layer, cft_defdatain> p_mq_Data
 typedef cf_core::cf_mq_initiator_socket<cfm_obex_layer, cft_defdataout> p_mq_DataOut_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_obex_layer, cft_defobex_in> p_mq_OBEX_In_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_obex_layer, cft_defobex_out> p_mq_OBEX_Out_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_obex_layer, cft_deffreadwrite> p_mq_ReadWrite_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_obex_layer, cft_defreadwrite> p_mq_ReadWrite_t;
 typedef cf_core::cf_ev_initiator_socket<cfm_obex_layer> p_ev_WrOK_t;
 typedef cf_core::cf_ev_initiator_socket<cfm_obex_layer> p_ev_startEv_t;
 
@@ -52,7 +51,7 @@ p_ev_startEv_t p_ev_startEv;
 
 cfm_obex_receive *OBEX_Receive;
 cfm_obex_send *OBEX_Send;
-cfm_ob_out *OB_Out;
+cfm_obex_out *OB_Out;
 
 protected:
 void cb_init_attributes(void);

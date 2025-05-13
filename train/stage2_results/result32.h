@@ -1,4 +1,3 @@
-
 //<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
@@ -9,27 +8,27 @@
 #define COFS_MODEL_HTTPTCP
 
 
-#include "cfm_htttcp_global.h"
-#include "cfm_htttcp_global_types.h"
+#include "cfm_httptcp_global.h"
+#include "cfm_httptcp_global_types.h"
 #include <vector>
 #include "cofluent.h"
 #include "cfm_httptcp_receive.h"
 #include "cfm_httptcp_send.h"
 #include "dt/cft_defcall_in.h"
 
-class cfm_htttcp : public cf_core::cf_function {
+class cfm_httptcp : public cf_core::cf_function {
 public:
 
-typedef cf_core::cf_mq_initiator_socket<cfm_htttcp, cft_defcall> p_mq_AppToHTTP_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_htttcp, cft_defcall> p_mq_HTTPToApp_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_htttcp, cft_defcall> p_mq_HTTPToIP_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_htttcp, cft_defcall> p_mq_IPToHTTP_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_httptcp, cft_defcall> p_mq_AppToHTTP_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_httptcp, cft_defcall> p_mq_HTTPToApp_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_httptcp, cft_defcall> p_mq_HTTPToIP_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_httptcp, cft_defcall> p_mq_IPToHTTP_t;
 
 /// constructor
-cfm_htttcp(sc_core::sc_module_name name);
+cfm_httptcp(sc_core::sc_module_name name);
 
 /// destructor
-virtual ~cfm_htttcp(void);
+virtual ~cfm_httptcp(void);
 
 p_mq_AppToHTTP_t p_mq_AppToHTTP;
 p_mq_HTTPToApp_t p_mq_HTTPToApp;

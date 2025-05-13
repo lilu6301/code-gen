@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+<#!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_hwdevicetest
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -24,7 +23,7 @@ using namespace cf_core;
 //@{
 cfm_hwdevicetest ::cfm_hwdevicetest() : 
 //instantiation of non-vector Event, MessageQueue, SharedVariable
-cf_function(),ev_StartProcess("StartProcess"),mq_inputFrame("inputFrame"),mq_outputFrame("outputFrame"),p_sv_inputStream("p_sv_inputStream"),p_sv_outputStream("p_sv_outputStream"),sv_processingMode("processingMode"){
+cf_function(),ev_startProcess("startProcess"),mq_inputFrame("inputFrame"),mq_outputFrame("outputFrame"),p_sv_inputStream("p_sv_inputStream"),p_sv_outputStream("p_sv_outputStream"),sv_processingMode("processingMode"){
 cf_function_container::init();
 //instantiation of models
 hwModel = new cfm_hwmodel("hwModel");
@@ -34,12 +33,12 @@ hwTestBench = new cfm_hwtestbench("hwTestBench");
 hwModel->p_mq_inputFrame(mq_inputFrame.p_target_socket);
 hwModel->p_mq_outputFrame(mq_outputFrame.p_target_socket);
 hwModel->p_sv_processingMode(sv_processingMode.p_target_socket);
-hwModel->p_ev_StartProcess(ev_StartProcess.p_target_socket);
+hwModel->p_ev_startProcess(ev_startProcess.p_target_socket);
 //model connect to relation
 hwTestBench->p_mq_inputFrame(mq_inputFrame.p_target_socket);
 hwTestBench->p_mq_outputFrame(mq_outputFrame.p_target_socket);
 hwTestBench->p_sv_processingMode(sv_processingMode.p_target_socket);
-hwTestBench->p_ev_StartProcess(ev_StartProcess.p_target_socket);
+hwTestBench->p_ev_startProcess(ev_startProcess.p_target_socket);
 //model connect to port
 hwTestBench->p_mq_inputStream(p_mq_inputStream);
 hwTestBench->p_mq_outputStream(p_mq_outputStream);

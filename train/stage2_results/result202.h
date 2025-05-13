@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -28,9 +27,9 @@ cfm_inheritance_example3app(sc_core::sc_module_name name);
 /// destructor
 virtual ~cfm_inheritance_example3app(void);
 
-std::vector<cfm_consumer *> Inheritance_example3app_vec;
+std::vector<cfm_consumer *> Inheritance_example3App_vec;
 cfm_os *OS;
-std::vector<cfm_producer *> Inheritance_example3app_vec;
+std::vector<cfm_producer *> Inheritance_example3App_vec;
 
 protected:
 void cb_init_attributes(void);

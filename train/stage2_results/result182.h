@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+ //<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -13,7 +12,7 @@
 #include "cfm_memorycommandexecution_global_types.h"
 #include <vector>
 #include "cofluent.h"
-#include "dt/cft_defddrcommand_in.h"
+#include "dt/cft_defddrc_command_in.h"
 #include "dt/cft_defdqs_in.h"
 
 class cfm_memorycommandexecution : public cf_core::cf_function {

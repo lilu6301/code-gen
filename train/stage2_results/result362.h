@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+ //<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -13,8 +12,8 @@
 #include "cfm_l2cap_receive_global_types.h"
 #include <vector>
 #include "cofluent.h"
-#include "dt/cft_defl2cap_in_in.h"
-#include "dt/cft_defrfcomm_in_in.h"
+#include "dt/cft_defl2cap_in.h"
+#include "dt/cft_defrfcomm_in.h"
 
 class cfm_l2cap_receive : public cf_core::cf_function {
 public:

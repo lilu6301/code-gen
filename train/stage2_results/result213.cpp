@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_serverroom
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -60,7 +59,7 @@ AGGSwitch->p_mq_MsgQToDataCenterSwitch(p_mq_MsgQToDataCenterSwitch);
 AGGSwitch->p_mq_MsgQToServerRoom(p_mq_MsgQToServerRoom);
 for (cf_count i = 0; i < (cf_count)( dpRackNb + 1); i++) {
 		cfm_rack* module = Rack_vec[i];
-		if (module != nullptr) {
+		if (module!= nullptr) {
 //model connect to relation
 for (cf_count j = 0; j < (cf_count)( dpRackNb + 1); j++) {
 				module->p_mq_MsgQToAggSwitch(mq_MsgQToAggSwitch_vec[j]->p_target_socket);
@@ -85,16 +84,16 @@ cfm_serverroom::~cfm_serverroom(void) {
 //deconstruct for models
 delete AGGSwitch;
 for (vector<cfm_rack*>::const_iterator vi = Rack_vec.begin();
-			vi != Rack_vec.end(); vi++) {
+			vi!= Rack_vec.end(); vi++) {
 		delete (*vi);
 	}
 //deconstructor for vector relation
 for (vector<mq_MsgQToAggSwitch_t*>::const_iterator vi = mq_MsgQToAggSwitch_vec.begin();
-			vi != mq_MsgQToAggSwitch_vec.end(); vi++) {
+			vi!= mq_MsgQToAggSwitch_vec.end(); vi++) {
 		delete (*vi);
 	}
 for (vector<mq_MsgQToRack_t*>::const_iterator vi = mq_MsgQToRack_vec.begin();
-			vi != mq_MsgQToRack_vec.end(); vi++) {
+			vi!= mq_MsgQToRack_vec.end(); vi++) {
 		delete (*vi);
 	}
 }

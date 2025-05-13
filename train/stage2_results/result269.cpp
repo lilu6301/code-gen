@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+/<#!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_hybridschedulingapp
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -41,7 +40,7 @@ cf_application::elab_end();
 
 /// \name destructor
 //@{
-cfm_hybridsechedulingapp::~cfm_hybridsechedulingapp(void) {
+cfm_hybridschedulingapp::~cfm_hybridschedulingapp(void) {
 //<#!@READ-ONLY-SECTION-END@!#>
 //Start of 'HybridSchedulingApp destructor' algorithm generated code
 
@@ -55,7 +54,7 @@ delete Producer;
 
 
 //@{
-void cfm_hybridsechedulingapp::cb_init_attributes() {
+void cfm_hybridschedulingapp::cb_init_attributes() {
 
 // initialize function attributes
 
@@ -64,7 +63,7 @@ void cfm_hybridsechedulingapp::cb_init_attributes() {
 //@}
 
 //@{
-void cfm_hybridsechedulingapp::cb_init_local_vars(void) {
+void cfm_hybridschedulingapp::cb_init_local_vars(void) {
 
 	//<#!@READ-ONLY-SECTION-END@!#>
 	//Start of 'Router25 initializations' algorithm generated code

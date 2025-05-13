@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_datacenter
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -57,7 +56,7 @@ for (cf_count i = 0; i < (cf_count)( dpServerRoomNb + 1); i++) {
 	}
 for (cf_count i = 0; i < (cf_count)( dpServerRoomNb + 1); i++) {
 		cfm_serverroom* module = ServerRoom_vec[i];
-		if (module != nullptr) {
+		if (module!= nullptr) {
 //model connect to relation
 for (cf_count j = 0; j < (cf_count)( dpServerRoomNb + 1); j++) {
 				module->p_mq_MsgQToDataCenterSwitch(mq_MsgQToDataCenterSwitch_vec[j]->p_target_socket);
@@ -82,16 +81,16 @@ cfm_datacenter::~cfm_datacenter(void) {
 //deconstruct for models
 delete DataCenterSwitch;
 for (vector<cfm_serverroom*>::const_iterator vi = ServerRoom_vec.begin();
-			vi != ServerRoom_vec.end(); vi++) {
+			vi!= ServerRoom_vec.end(); vi++) {
 		delete (*vi);
 	}
 //deconstructor for vector relation
 for (vector<mq_MsgQToDataCenterSwitch_t*>::const_iterator vi = mq_MsgQToDataCenterSwitch_vec.begin();
-			vi != mq_MsgQToDataCenterSwitch_vec.end(); vi++) {
+			vi!= mq_MsgQToDataCenterSwitch_vec.end(); vi++) {
 		delete (*vi);
 	}
 for (vector<mq_MsgQToServerRoom_t*>::const_iterator vi = mq_MsgQToServerRoom_vec.begin();
-			vi != mq_MsgQToServerRoom_vec.end(); vi++) {
+			vi!= mq_MsgQToServerRoom_vec.end(); vi++) {
 		delete (*vi);
 	}
 }

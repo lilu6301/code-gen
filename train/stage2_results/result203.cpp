@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_inheritance_example3app
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -50,20 +49,16 @@ for (cf_count i = 0; i < (cf_count)( 1 + 1); i++) {
 //connections
 for (cf_count i = 0; i < (cf_count)( 1 + 1); i++) {
 		cfm_consumer* module = Consumer_vec[i];
-		if (module != nullptr) {
+		if (module!= nullptr) {
 //model connect to relation
 for (cf_count j = 0; j < (cf_count)( 1 + 1); j++) {
 				module->p_mq_MsgQ(mq_MsgQ_vec[j]->p_target_socket);
 			}
 }
 }
-//model connect to relation
-for (cf_count i = 0; i < (cf_count)( 1 + 1); i++) {
-		OS->p_mq_MsgQ(mq_MsgQ_vec[i]->p_target_socket);
-	}
 for (cf_count i = 0; i < (cf_count)( 1 + 1); i++) {
 		cfm_producer* module = Producer_vec[i];
-		if (module != nullptr) {
+		if (module!= nullptr) {
 //model connect to relation
 for (cf_count j = 0; j < (cf_count)( 1 + 1); j++) {
 				module->p_mq_MsgQ(mq_MsgQ_vec[j]->p_target_socket);
@@ -84,17 +79,17 @@ cfm_inheritance_example3app::~cfm_inheritance_example3app(void) {
 //<#!@READ-ONLY-SECTION-START@!#>
 //deconstruct for models
 for (vector<cfm_consumer*>::const_iterator vi = Consumer_vec.begin();
-			vi != Consumer_vec.end(); vi++) {
+			vi!= Consumer_vec.end(); vi++) {
 		delete (*vi);
 	}
 delete OS;
 for (vector<cfm_producer*>::const_iterator vi = Producer_vec.begin();
-			vi != Producer_vec.end(); vi++) {
+			vi!= Producer_vec.end(); vi++) {
 		delete (*vi);
 	}
 //deconstructor for vector relation
 for (vector<mq_MsgQ_t*>::const_iterator vi = mq_MsgQ_vec.begin();
-			vi != mq_MsgQ_vec.end(); vi++) {
+			vi!= mq_MsgQ_vec.end(); vi++) {
 		delete (*vi);
 	}
 }

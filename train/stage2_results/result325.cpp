@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+<#!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_bt_system
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -24,7 +23,7 @@ using namespace cf_core;
 //@{
 cfm_bt_system ::cfm_bt_system() : 
 //instantiation of non-vector Event, MessageQueue, SharedVariable
-cf_function(),ev_ReadWrite("ReadWrite"),ev_WrOK("WrOK"),mq_DataIn("DataIn"),mq_DataOut("DataOut"),p_ev_startEv("p_ev_startEv"),p_mq_BaseBand_In("p_mq_BaseBand_In"),p_mq_BaseBand_Out("p_mq_BaseBand_Out"){
+cf_function(),ev_WrOK("WrOK"),mq_DataIn("DataIn"),mq_DataOut("DataOut"),mq_ReadWrite("ReadWrite"),p_ev_startEv("p_ev_startEv"),p_mq_BaseBand_In("p_mq_BaseBand_In"),p_mq_BaseBand_Out("p_mq_BaseBand_Out"){
 cf_function_container::init();
 //instantiation of models
 BT_Stack = new cfm_bt_stack("BT_Stack");
@@ -40,13 +39,11 @@ BT_Stack->p_mq_BaseBand_In(p_mq_BaseBand_In);
 BT_Stack->p_mq_BaseBand_Out(p_mq_BaseBand_Out);
 BT_Stack->p_mq_startEv(p_mq_startEv);
 //model connect to relation
-FileSystem->p_mq_Data(mq_Data.p_target_socket);
+FileSystem->p_sv_Data(mq_Data.p_target_socket);
 FileSystem->p_mq_DataIn(mq_DataIn.p_target_socket);
 FileSystem->p_mq_DataOut(mq_DataOut.p_target_socket);
 FileSystem->p_mq_ReadWrite(mq_ReadWrite.p_target_socket);
 FileSystem->p_ev_WrOK(ev_WrOK.p_target_socket);
-//model connect to port
-FileSystem->p_mq_BaseBand_Out(p_mq_BaseBand_Out);
 cf_function_container::elab_end();
 }
 //@}

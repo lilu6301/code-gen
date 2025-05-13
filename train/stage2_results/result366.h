@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+/<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -9,8 +8,8 @@
 #define COFS_MODEL_OPP_USECASE
 
 
-#include "cfm_opp_usecase_global.h"
-#include "cfm_opp_usecase_global_types.h"
+#include "cfm Opp_usecase_global.h"
+#include "cfm Opp_usecase_global_types.h"
 #include <vector>
 #include "cofluent.h"
 #include "cfm_master.h"
@@ -19,7 +18,7 @@
 #include "cfm_unusedfunc.h"
 #include "dt/cft_defbaseband_in.h"
 
-class cfm_opp_usecase : public cf_core::cf_application {
+class cfm Opp_usecase : public cf_core::cf_application {
 public:
 typedef cf_core::cf_message_queue<cft_DefBaseBand> mq_M2S_t;
 typedef cf_core::cf_message_queue<cft_DefBaseBand> mq_S2M_t;
@@ -27,10 +26,10 @@ typedef cf_core::cf_event ev_StartEv_t;
 typedef cf_core::cf_event ev_UnusedEv_t;
 
 /// constructor
-cfm_opp_usecase(sc_core::sc_module_name name);
+cfm Opp_usecase(sc_core::sc_module_name name);
 
 /// destructor
-virtual ~cfm_opp_usecase(void);
+virtual ~cfm Opp_usecase(void);
 
 cfm_master *Master;
 cfm_slave *Slave;

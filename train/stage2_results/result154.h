@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -16,10 +15,11 @@
 #include "cfm_memory.h"
 #include "cfm_memorycontroller.h"
 #include "dt/cft_defaraddrchn_in.h"
-#include "dt/cft_defdqs_in.h"
+#include "dt/cft_defawaddrchn_in.h"
 #include "dt/cft_defbrespchn_in.h"
-#include "dt/cft_defrdatachn_in.h"
-#include "dt/cft_defwdatachn_in.h"
+#include "dt/cft_defdatachn_in.h"
+#include "dt/cft_defddrc_command_in.h"
+#include "dt/cft_defdqs_in.h"
 
 class cfm_target : public cf_core::cf_function {
 public:
@@ -29,7 +29,7 @@ typedef cf_core::cf_message_queue<cft_DefDQs> mq_DQs_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_target, cft_defaraddrchn> p_mq_ARADDRchn_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_target, cft_defawaddrchn> p_mq_AWADDRchn_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_target, cft_defbrespchn> p_mq_BRESPchn_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_target, cft_defrdatachn> p_mq_RDATAchn_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_target, cft_defdatachn> p_mq_RDATAchn_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_target, cft_defwdatachn> p_mq_WDATAchn_t;
 
 /// constructor

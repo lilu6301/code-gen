@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+/<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -16,8 +15,9 @@
 #include "cfm_clientside.h"
 #include "cfm_target.h"
 #include "dt/cft_defaraddrchn_in.h"
+#include "dt/cft_defawaddrchn_in.h"
 #include "dt/cft_defbrespchn_in.h"
-#include "dt/cft_defdataapplicationchn_in.h"
+#include "dt/cft_defrdatachn_in.h"
 #include "dt/cft_defwdatachn_in.h"
 
 class cfm_ddrmemory : public cf_core::cf_application {

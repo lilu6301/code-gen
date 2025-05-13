@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+ //<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -14,7 +13,7 @@
 #include <vector>
 #include "cofluent.h"
 #include "dt/cft_defbaseband_in.h"
-#include "dt/cft_deflatcap_in.h"
+#include "dt/cft_defl2cap_in.h"
 
 class cfm_bb_receive : public cf_core::cf_function {
 public:

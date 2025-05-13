@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -9,8 +8,8 @@
 #define COFS_MODEL_COSIMVERILATORCHISELAPP
 
 
-#include "cfm_consimverilatorchiselapp_global.h"
-#include "cfm_consimverilatorchiselapp_global_types.h"
+#include "cfm_cosimverilatorchiselapp_global.h"
+#include "cfm_cosimverilatorchiselapp_global_types.h"
 #include <vector>
 #include "cofluent.h"
 #include "cfm_consumer.h"
@@ -20,17 +19,17 @@
 #include "dt/cft_defdata1_in.h"
 #include "dt/cft_defsum_in.h"
 
-class cfm_consimverilatorchiselapp : public cf_core::cf_application {
+class cfm_cosimverilatorchiselapp : public cf_core::cf_application {
 public:
 typedef cf_core::cf_message_queue<cft_Defdata1> mq_data1_t;
 typedef cf_core::cf_message_queue<cft_Defdata1> mq_data2_t;
 typedef cf_core::cf_message_queue<cft_Defsum> mq_sum_t;
 
 /// constructor
-cfm_consimverilatorchiselapp(sc_core::sc_module_name name);
+cfm_cosimverilatorchiselapp(sc_core::sc_module_name name);
 
 /// destructor
-virtual ~cfm_consimverilatorchiselapp(void);
+virtual ~cfm_cosimverilatorchiselapp(void);
 
 cfm_consumer *Consumer;
 cfm_producer1 *Producer1;

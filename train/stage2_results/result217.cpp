@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_aggswitch
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -62,13 +61,13 @@ InboundDataCenterSwitch->p_mq_MsgQInboundDataCenterSwitch(mq_MsgQInboundDataCent
 InboundDataCenterSwitch->p_mq_MsgQToServerRoom(p_mq_MsgQToServerRoom);
 for (cf_count i = 0; i < (cf_count)( dpRackNb + 1); i++) {
 		cfm_inboundrack* module = InboundRack_vec[i];
-		if (module != nullptr) {
+		if (module!= nullptr) {
 //model connect to relation
 for (cf_count j = 0; j < (cf_count)( dpRackNb + 1); j++) {
 				module->p_mq_MsgQInboundRack(mq_MsgQInboundRack_vec[j]->p_target_socket);
 			}
 //model connect to port
-module->p_mq_MsgQToRack(p_mq_MsgQToRack);
+module->p_mq_MsgQToAggSwitch(p_mq_MsgQToAggSwitch);
 }
 }
 //model connect to relation
@@ -77,7 +76,7 @@ OutboundDataCenterSwitch->p_mq_MsgQOutboundDataCenterSwitch(mq_MsgQOutboundDataC
 OutboundDataCenterSwitch->p_mq_MsgQToDataCenterSwitch(p_mq_MsgQToDataCenterSwitch);
 for (cf_count i = 0; i < (cf_count)( dpRackNb + 1); i++) {
 		cfm_outboundrack* module = OutboundRack_vec[i];
-		if (module != nullptr) {
+		if (module!= nullptr) {
 //model connect to relation
 for (cf_count j = 0; j < (cf_count)( dpRackNb + 1); j++) {
 				module->p_mq_MsgQOutboundRack(mq_MsgQOutboundRack_vec[j]->p_target_socket);
@@ -95,8 +94,6 @@ RoutingFunction->p_mq_MsgQOutboundDataCenterSwitch(mq_MsgQOutboundDataCenterSwit
 for (cf_count i = 0; i < (cf_count)( dpRackNb + 1); i++) {
 		RoutingFunction->p_mq_MsgQOutboundRack(mq_MsgQOutboundRack_vec[i]->p_target_socket);
 	}
-//model connect to port
-RoutingFunction->p_mq_MsgQToServerRoom(p_mq_MsgQToServerRoom);
 cf_function_container::elab_end();
 }
 //@}
@@ -112,22 +109,22 @@ cfm_aggswitch::~cfm_aggswitch(void) {
 //deconstruct for models
 delete InboundDataCenterSwitch;
 for (vector<cfm_inboundrack*>::const_iterator vi = InboundRack_vec.begin();
-			vi != InboundRack_vec.end(); vi++) {
+			vi!= InboundRack_vec.end(); vi++) {
 		delete (*vi);
 	}
 delete OutboundDataCenterSwitch;
 for (vector<cfm_outboundrack*>::const_iterator vi = OutboundRack_vec.begin();
-			vi != OutboundRack_vec.end(); vi++) {
+			vi!= OutboundRack_vec.end(); vi++) {
 		delete (*vi);
 	}
 delete RoutingFunction;
 //deconstructor for vector relation
 for (vector<mq_MsgQInboundRack_t*>::const_iterator vi = mq_MsgQInboundRack_vec.begin();
-			vi != mq_MsgQInboundRack_vec.end(); vi++) {
+			vi!= mq_MsgQInboundRack_vec.end(); vi++) {
 		delete (*vi);
 	}
 for (vector<mq_MsgQOutboundRack_t*>::const_iterator vi = mq_MsgQOutboundRack_vec.begin();
-			vi != mq_MsgQOutboundRack_vec.end(); vi++) {
+			vi!= mq_MsgQOutboundRack_vec.end(); vi++) {
 		delete (*vi);
 	}
 }

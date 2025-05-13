@@ -1,4 +1,3 @@
-
 //<#!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_l2cap_layer

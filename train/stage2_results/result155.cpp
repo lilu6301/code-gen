@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_target
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -50,7 +49,7 @@ for (cf_count i = 0; i < (cf_count)( M_Nbr + 1); i++) {
 //connections
 for (cf_count i = 0; i < (cf_count)( M_Nbr + 1); i++) {
 		cfm_memory* module = Memory_vec[i];
-		if (module != nullptr) {
+		if (module!= nullptr) {
 //model connect to relation
 for (cf_count j = 0; j < (cf_count)( M_Nbr + 1); j++) {
 				module->p_mq_DDRCommand(mq_DDRCommand_vec[j]->p_target_socket);
@@ -65,14 +64,14 @@ for (cf_count i = 0; i < (cf_count)( M_Nbr + 1); i++) {
 		MemoryController->p_mq_DDRCommand(mq_DDRCommand_vec[i]->p_target_socket);
 	}
 for (cf_count i = 0; i < (cf_count)( M_Nbr + 1); i++) {
-		MemoryChannel->p_mq_DQs(mq_DQs_vec[i]->p_target_socket);
+		MemoryController->p_mq_DQs(mq_DQs_vec[i]->p_target_socket);
 	}
 //model connect to port
-MemoryChannel->p_mq_ARADDRchn(p_mq_ARADDRchn);
-MemoryChannel->p_mq_AWADDRchn(p_mq_AWADDRchn);
-MemoryChannel->p_mq_BRESPchn(p_mq_BRESPchn);
-MemoryChannel->p_mq_RDATAchn(p_mq_RDATAchn);
-MemoryChannel->p_mq_WDATAchn(p_mq_WDATAchn);
+MemoryController->p_mq_ARADDRchn(p_mq_ARADDRchn);
+MemoryController->p_mq_AWADDRchn(p_mq_AWADDRchn);
+MemoryController->p_mq_BRESPchn(p_mq_BRESPchn);
+MemoryController->p_mq_RDATAchn(p_mq_RDATAchn);
+MemoryController->p_mq_WDATAchn(p_mq_WDATAchn);
 cf_function_container::elab_end();
 }
 //@}
@@ -87,17 +86,17 @@ cfm_target::~cfm_target(void) {
 //<#!@READ-ONLY-SECTION-START@!#>
 //deconstruct for models
 for (vector<cfm_memory*>::const_iterator vi = Memory_vec.begin();
-			vi != Memory_vec.end(); vi++) {
+			vi!= Memory_vec.end(); vi++) {
 		delete (*vi);
 	}
-delete MemoryChannel;
+delete MemoryController;
 //deconstructor for vector relation
 for (vector<mq_DDRCommand_t*>::const_iterator vi = mq_DDRCommand_vec.begin();
-			vi != mq_DDRCommand_vec.end(); vi++) {
+			vi!= mq_DDRCommand_vec.end(); vi++) {
 		delete (*vi);
 	}
 for (vector<mq_DQs_t*>::const_iterator vi = mq_DQs_vec.begin();
-			vi != mq_DQs_vec.end(); vi++) {
+			vi!= mq_DQs_vec.end(); vi++) {
 		delete (*vi);
 	}
 }

@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+ //<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -9,21 +8,21 @@
 #define COFS_MODEL_UMTS_SEND
 
 
-#include "cfm_umts_send_global.h"
-#include "cfm_umts_send_global_types.h"
+#include "cfm_ums_send_global.h"
+#include "cfm_ums_send_global_types.h"
 #include <vector>
 #include "cofluent.h"
 #include "dt/cft_defcall_in.h"
 
-class cfm_umts_send : public cf_core::cf_function {
+class cfm_ums_send : public cf_core::cf_function {
 public:
 
 
 /// constructor
-cfm_umts_send(sc_core::sc_module_name name);
+cfm_ums_send(sc_core::sc_module_name name);
 
 /// destructor
-virtual ~cfm_umts_send(void);
+virtual ~cfm_ums_send(void);
 
 
 protected:

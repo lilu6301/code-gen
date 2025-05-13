@@ -1,4 +1,3 @@
-
 //<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
@@ -16,17 +15,16 @@
 #include "cfm_bb_receive.h"
 #include "cfm_bb_send.h"
 #include "dt/cft_defbaseband_in.h"
-#include "dt/cft_defbaseband_out.h"
-#include "dt/cft_deflatcap_in.h"
-#include "dt/cft_deflatcap_out.h"
+#include "dt/cft_defdl2cap_in.h"
+#include "dt/cft_defdl2cap_out.h"
 
 class cfm_baseband_layer : public cf_core::cf_function {
 public:
 
 typedef cf_core::cf_mq_initiator_socket<cfm_baseband_layer, cft_defbaseband> p_mq_BaseBand_In_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_baseband_layer, cft_defbaseband> p_mq_BaseBand_Out_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_baseband_layer, cft_deflatcap_in> p_mq_L2CAP_In_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_baseband_layer, cft_deflatcap_out> p_mq_L2CAP_Out_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_baseband_layer, cft_defdl2cap> p_mq_L2CAP_In_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_baseband_layer, cft_defdl2cap> p_mq_L2CAP_Out_t;
 
 /// constructor
 cfm_baseband_layer(sc_core::sc_module_name name);

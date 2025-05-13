@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+ //<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -9,21 +8,21 @@
 #define COFS_MODEL_RTPUDP
 
 
-#include "cfm_rtpp_global.h"
-#include "cfm_rtpp_global_types.h"
+#include "cfm_rtpudp_global.h"
+#include "cfm_rtpudp_global_types.h"
 #include <vector>
 #include "cofluent.h"
 #include "dt/cft_defvideo_in.h"
 
-class cfm_rtpp : public cf_core::cf_function {
+class cfm_rtpudp : public cf_core::cf_function {
 public:
 
 
 /// constructor
-cfm_rtpp(sc_core::sc_module_name name);
+cfm_rtpudp(sc_core::sc_module_name name);
 
 /// destructor
-virtual ~cfm_rtpp(void);
+virtual ~cfm_rtpudp(void);
 
 
 protected:

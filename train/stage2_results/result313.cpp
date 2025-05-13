@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+/<#!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_hwdevicemodel
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -27,7 +26,7 @@ cfm_hwdevicemodel ::cfm_hwdevicemodel() :
 cf_application(),sv_inputStream("inputStream"),sv_outputStream("outputStream"){
 cf_application::init();
 //instantiation of models
-hwDeviceTest = new cfm_hwdevicetest("hwDeviceTest");
+hwDeviceTest = new cfm_hwdicestest("hwDeviceTest");
 //connections
 //model connect to relation
 hwDeviceTest->p_sv_inputStream(sv_inputStream.p_target_socket);

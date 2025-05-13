@@ -1,4 +1,3 @@
-
 //<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
@@ -9,35 +8,35 @@
 #define COFS_MODEL_UMTS
 
 
-#include "cfm_umts_global.h"
-#include "cfm_umts_global_types.h"
+#include "cfm_ums_global.h"
+#include "cfm_ums_global_types.h"
 #include <vector>
 #include "cofluent.h"
-#include "cfm_umts_receive.h"
-#include "cfm_umts_send.h"
+#include "cfm_ums_receive.h"
+#include "cfm_ums_send.h"
 #include "dt/cft_defcall_in.h"
 
-class cfm_umts : public cf_core::cf_function {
+class cfm_ums : public cf_core::cf_function {
 public:
 
-typedef cf_core::cf_mq_initiator_socket<cfm_umts, cft_defcall> p_mq_IPToUMTS_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_umts, cft_defcall> p_mq_NetToUMTS_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_umts, cft_defcall> p_mq_UMTSToIP_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_umts, cft_defcall> p_mq_UMTSToNet_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_ums, cft_defcall> p_mq_IPToUMTS_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_ums, cft_defcall> p_mq_NetToUMTS_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_ums, cft_defcall> p_mq_UMTSToIP_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_ums, cft_defcall> p_mq_UMTSToNet_t;
 
 /// constructor
-cfm_umts(sc_core::sc_module_name name);
+cfm_ums(sc_core::sc_module_name name);
 
 /// destructor
-virtual ~cfm_umts(void);
+virtual ~cfm_ums(void);
 
 p_mq_IPToUMTS_t p_mq_IPToUMTS;
 p_mq_NetToUMTS_t p_mq_NetToUMTS;
 p_mq_UMTSToIP_t p_mq_UMTSToIP;
 p_mq_UMTSToNet_t p_mq_UMTSToNet;
 
-cfm_umts_receive *UMTS_Receive;
-cfm_umts_send *UMTS_Send;
+cfm_ums_receive *UMTS_Receive;
+cfm_ums_send *UMTS_Send;
 
 protected:
 void cb_init_attributes(void);

@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+/<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -18,10 +17,13 @@
 #include "cfm_target.h"
 #include "cfm_target_2.h"
 #include "cfm_writer.h"
-#include "dt/cft_initiator_in.h"
-#include "dt/cft_target_in.h"
-#include "dt/cft_defdataprocess_in.h"
+#include "dt/cft_defdata_in.h"
 #include "dt/cft_defmsgq_in.h"
+#include "dt/cft_initiator_in.h"
+#include "dt/cft_initiator_writer_in.h"
+#include "dt/cft_target_in.h"
+#include "dt/cft_target_2_in.h"
+#include "dt/cft_writer_in.h"
 
 class cfm_tlm2lt : public cf_core::cf_application {
 public:
@@ -34,9 +36,9 @@ typedef cf_core::cf_message_queue<cft_DefMsgQ> mq_ReferenceQueue3_t;
 typedef cf_core::cf_event ev_Sync_t;
 typedef cf_core::cf_event ev_Sync2_t;
 typedef cf_core::cf_event ev_Sync3_t;
-typedef cf_core::cf_message_queue<cft_Target> mq_TargetRequest_t;
-typedef cf_core::cf_message_queue<cft_Target> mq_TargetResponse_t;
-typedef cf_core::cf_message_queue<cft_Target> mq_TargetWrapper_t;
+typedef cf_core::cf_message_queue<cft_TargetRequest> mq_TargetRequest_t;
+typedef cf_core::cf_message_queue<cft_TargetResponse> mq_TargetResponse_t;
+typedef cf_core::cf_message_queue<cft_TargetWrapper> mq_TargetWrapper_t;
 
 /// constructor
 cfm_tlm2lt(sc_core::sc_module_name name);

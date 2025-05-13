@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+EAD-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -14,14 +13,16 @@
 #include <vector>
 #include "cofluent.h"
 #include "cfm_backend.h"
-#include "cfm_framerender.h"
+#include "cfm_frontend.h"
 #include "cfm_raddrdmux.h"
 #include "cfm_waddrdmux.h"
-#include "cfm_wdatadmux.h"
+#include "cfm_wdatadmx.h"
 #include "dt/cft_defaraddrchn_in.h"
+#include "dt/cft_defawaddrchn_in.h"
 #include "dt/cft_defdataread_in.h"
 #include "dt/cft_defmemreadrequest_in.h"
-#include "dt/cft_defmemwriterequest_in.h"
+#include "dt/cft_defmemwritereq_in.h"
+#include "dt/cft_defrdatachn_in.h"
 #include "dt/cft_defwdatachn_in.h"
 #include "dt/cft_defwriteack_in.h"
 
@@ -32,16 +33,16 @@ typedef cf_core::cf_message_queue<cft_DefAWADDRchn> mq_AWADDRin_t;
 typedef cf_core::cf_message_queue<cft_DefDataRead> mq_DataRead_t;
 typedef cf_core::cf_message_queue<cft_DefMemReadRequest> mq_MemReadRequest_t;
 typedef cf_core::cf_message_queue<cft_DefMemWriteRequest> mq_MemWriteRequest_t;
-typedef cf_core::cf_message_queue<cft_DefWDataChn> mq_WDATAin_t;
+typedef cf_core::cf_message_queue<cft_DefWDATAchn> mq_WDATAin_t;
 typedef cf_core::cf_message_queue<cft_DefWriteAck> mq_WriteAck_t;
 
 typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defaraddrchn> p_mq_ARADDRchn_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defawaddrchn> p_mq_AWADDRchn_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defbrespchn> p_mq_BRESPchn_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defddcommand> p_mq_DDRCommand_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defddrcmd> p_mq_DDRCommand_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defdqs> p_mq_DQs_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defrdatachn> p_mq_RDATAchn_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defwdatchn> p_mq_WDATAchn_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defwdatachn> p_mq_WDATAchn_t;
 
 /// constructor
 cfm_memorycontroller(sc_core::sc_module_name name);
@@ -58,10 +59,10 @@ p_mq_RDATAchn_t p_mq_RDATAchn;
 p_mq_WDATAchn_t p_mq_WDATAchn;
 
 cfm_backend *BackEnd;
-std::vector<cfm_framerender *> MemoryController_vec;
+std::vector<cfm_frontend *> MemoryController_vec;
 cfm_raddrdmux *RAddrDmux;
 cfm_waddrdmux *WAddrDmux;
-cfm_wdatadmux *WdataDmux;
+cfm_wdatadmx *WdataDmux;
 
 protected:
 void cb_init_attributes(void);

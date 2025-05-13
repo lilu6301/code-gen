@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+ //<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -9,21 +8,21 @@
 #define COFS_MODEL_HTTPTCP_SEND
 
 
-#include "cfm_htttcp_send_global.h"
-#include "cfm_htttcp_send_global_types.h"
+#include "cfm_httptcp_send_global.h"
+#include "cfm_httptcp_send_global_types.h"
 #include <vector>
 #include "cofluent.h"
 #include "dt/cft_defcall_in.h"
 
-class cfm_htttcp_send : public cf_core::cf_function {
+class cfm_httptcp_send : public cf_core::cf_function {
 public:
 
 
 /// constructor
-cfm_htttcp_send(sc_core::sc_module_name name);
+cfm_httptcp_send(sc_core::sc_module_name name);
 
 /// destructor
-virtual ~cfm_htttcp_send(void);
+virtual ~cfm_httptcp_send(void);
 
 
 protected:

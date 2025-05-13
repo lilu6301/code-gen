@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -22,7 +21,7 @@ class cfm_memory : public cf_core::cf_function {
 public:
 typedef cf_core::cf_message_queue<cft_DefDDRCommand> mq_DDRAction_t;
 
-typedef cf_core::cf_mq_initiator_socket<cfm_memory, cft_defddcommand> p_mq_DDRCommand_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_memory, cft_defddrcommand> p_mq_DDRCommand_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_memory, cft_defdqs> p_mq_DQs_t;
 
 /// constructor

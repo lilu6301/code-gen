@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -18,10 +17,14 @@
 #include "cfm_obex_layer.h"
 #include "cfm_rfcomm_layer.h"
 #include "dt/cft_defbaseband_in.h"
-#include "dt/cft_defbaseband_out.h"
 #include "dt/cft_defdatain_in.h"
 #include "dt/cft_defdataout_in.h"
-#include "dt/cft_deffreadwrite_in.h"
+#include "dt/cft_defreadwrite_in.h"
+#include "dt/cft_defl2cap_in.h"
+#include "dt/cft_defobex_in.h"
+#include "dt/cft_defobex_out.h"
+#include "dt/cft_defrfcomm_in.h"
+#include "dt/cft_defrfcomm_out.h"
 
 class cfm_bt_stack : public cf_core::cf_function {
 public:
@@ -36,7 +39,7 @@ typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defbaseband> p_mq_Base
 typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defbaseband> p_mq_BaseBand_Out_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defdatain> p_mq_DataIn_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defdataout> p_mq_DataOut_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_deffreadwrite> p_mq_ReadWrite_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defreadwrite> p_mq_ReadWrite_t;
 typedef cf_core::cf_ev_initiator_socket<cfm_bt_stack> p_ev_WrOK_t;
 typedef cf_core::cf_ev_initiator_socket<cfm_bt_stack> p_ev_startEv_t;
 

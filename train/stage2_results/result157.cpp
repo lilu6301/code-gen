@@ -1,4 +1,3 @@
-
 //<#!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_device
@@ -38,6 +37,7 @@ ReceiverRData->p_mq_RDATAin(p_mq_RDATAin);
 //model connect to port
 Sender->p_mq_ARADDRchn(p_mq_ARADDRchn);
 Sender->p_mq_AWADDRchn(p_mq_AWADDRchn);
+Sender->p_mq_BDATAchn(p_mq_BDATAchn);
 Sender->p_mq_WDATAchn(p_mq_WDATAchn);
 cf_function_container::elab_end();
 }

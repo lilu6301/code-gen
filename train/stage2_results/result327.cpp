@@ -1,4 +1,3 @@
-
 //<#!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_start
@@ -15,9 +14,9 @@ using namespace cf_pk;
 using namespace cf_core;
 
 //<#!@READ-ONLY-SECTION-END@!#>
-//Start of 'Start definitions' algorithm generated code
+//Start definitions
 
-//End of 'Start definitions' algorithm generated code
+//End definitions
 //<#!@READ-ONLY-SECTION-START@!#>
 
 /// \name constructor
@@ -35,9 +34,9 @@ cf_function::elab_end();
 //@{
 cfm_start::~cfm_start(void) {
 //<#!@READ-ONLY-SECTION-END@!#>
-//Start of 'Start destructor' algorithm generated code
+//Start definitions
 
-//End of 'Start destructor' algorithm generated code
+//End definitions
 //<#!@READ-ONLY-SECTION-START@!#>
 }
 
@@ -55,9 +54,9 @@ void cfm_start::cb_init_attributes() {
 void cfm_start::cb_init_local_vars(void) {
 
 	//<#!@READ-ONLY-SECTION-END@!#>
-	//Start of 'Router25 initializations' algorithm generated code
+	//Start of 'Router25 initializations'
 
-	//End of 'Router25 initializations' algorithm generated code
+	//End of 'Router25 initializations
 	//<#!@READ-ONLY-SECTION-START@!#>
 }
 //@}

@@ -1,4 +1,3 @@
-
 //<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
@@ -17,9 +16,10 @@
 #include "cfm_receiverrdata.h"
 #include "cfm_sender.h"
 #include "dt/cft_defaraddrchn_in.h"
+#include "dt/cft_defawaddrchn_in.h"
 #include "dt/cft_defbrespchn_in.h"
-#include "dt/cft_defwdatachn_in.h"
 #include "dt/cft_defrdatachn_in.h"
+#include "dt/cft_defwdatachn_in.h"
 
 class cfm_device : public cf_core::cf_function {
 public:

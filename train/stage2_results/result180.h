@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -17,30 +16,30 @@
 #include "cfm_collectrequests.h"
 #include "cfm_ddrcommandgeneration.h"
 #include "cfm_responseforward.h"
-#include "dt/cft_defdataread_in.h"
-#include "dt/cft_defdataprocess_in.h"
-#include "dt/cft_defmemreadrequest_in.h"
-#include "dt/cft_defmemwriterequest_in.h"
-#include "dt/cft_deffrom_in.h"
-#include "dt/cft_deffrom_ack_in.h"
-#include "dt/cft_defrequestinformation_in.h"
-#include "dt/cft_defrequest2memory_in.h"
+#include "dt/cft_defddrcommand_in.h"
 #include "dt/cft_defdqs_in.h"
-#include "dt/cft_defdrrcommand_in.h"
+#include "dt/cft_defdataread_in.h"
+#include "dt/cft_defmemreadrequest_in.h"
+#include "dt/cft_defmemwritereq_in.h"
+#include "dt/cft_defrequestinformation_in.h"
+#include "dt/cft_defrequests2memory_in.h"
+#include "dt/cft_deflistrequestsptr_in.h"
+#include "dt/cft_defmemorystatus_in.h"
 
 class cfm_backend : public cf_core::cf_function {
 public:
+
 typedef cf_core::cf_shared_variable<cft_DefListRequestsPtr> sv_ListRequestsPtr_t;
 typedef cf_core::cf_shared_variable<cft_DefMemoryStatus> sv_MemoryStatus_t;
 typedef cf_core::cf_event ev_RequestCounter_t;
 typedef cf_core::cf_message_queue<cft_DefRequestInformation> mq_RequestInformation_t;
-typedef cf_core::cf_message_queue<cft_DefRequest2Memory> mq_Requests2Memory_t;
+typedef cf_core::cf_message_queue<cft_DefRequests2Memory> mq_Requests2Memory_t;
 
-typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defdrrcommand> p_mq_DDRCommand_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defddrcommand> p_mq_DDRCommand_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defdqs> p_mq_DQs_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defdataread> p_mq_DataRead_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defmemreadrequest> p_mq_MemReadRequest_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defmemwriterequest> p_mq_MemWriteRequest_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defmemwritereq> p_mq_MemWriteRequest_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defwriteack> p_mq_WriteAck_t;
 
 /// constructor

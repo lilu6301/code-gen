@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_clientside
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -51,7 +50,7 @@ for (cf_count i = 0; i < (cf_count)( C_Nbr + 1); i++) {
 //connections
 for (cf_count i = 0; i < (cf_count)( C_Nbr + 1); i++) {
 		cfm_device* module = Device_vec[i];
-		if (module != nullptr) {
+		if (module!= nullptr) {
 //model connect to relation
 for (cf_count j = 0; j < (cf_count)( C_Nbr + 1); j++) {
 				module->p_mq_BRESPin(mq_BRESPin_vec[j]->p_target_socket);
@@ -62,7 +61,7 @@ for (cf_count j = 0; j < (cf_count)( C_Nbr + 1); j++) {
 //model connect to port
 module->p_mq_ARADDRchn(p_mq_ARADDRchn);
 module->p_mq_AWADDRchn(p_mq_AWADDRchn);
-module->p_mq_WDATAchn(p_mq_WDATAchn);
+module->p_mq_BDATAchn(p_mq_BDATAchn);
 }
 }
 //model connect to relation
@@ -91,18 +90,18 @@ cfm_clientside::~cfm_clientside(void) {
 //<#!@READ-ONLY-SECTION-START@!#>
 //deconstruct for models
 for (vector<cfm_device*>::const_iterator vi = Device_vec.begin();
-			vi != Device_vec.end(); vi++) {
+			vi!= Device_vec.end(); vi++) {
 		delete (*vi);
 	}
 delete RDDmux;
 delete WRDmux;
 //deconstructor for vector relation
 for (vector<mq_BRESPin_t*>::const_iterator vi = mq_BRESPin_vec.begin();
-			vi != mq_BRESPin_vec.end(); vi++) {
+			vi!= mq_BRESPin_vec.end(); vi++) {
 		delete (*vi);
 	}
 for (vector<mq_RDATAin_t*>::const_iterator vi = mq_RDATAin_vec.begin();
-			vi != mq_RDATAin_vec.end(); vi++) {
+			vi!= mq_RDATAin_vec.end(); vi++) {
 		delete (*vi);
 	}
 }

@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+/<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -17,10 +16,10 @@
 #include "cfm_rfcomm_receive.h"
 #include "cfm_rfcomm_send.h"
 #include "cfm_rfc_out.h"
-#include "dt/cft_defobex_in_in.h"
-#include "dt/cft_defobex_out_in.h"
-#include "dt/cft_deffrcomm_in_in.h"
-#include "dt/cft_deffrcomm_out_in.h"
+#include "dt/cft_defobex_in.h"
+#include "dt/cft_defobex_out.h"
+#include "dt/cft_defrfcomm_in.h"
+#include "dt/cft_defrfcomm_out.h"
 
 class cfm_rfcomm_layer : public cf_core::cf_function {
 public:
@@ -31,8 +30,8 @@ typedef cf_core::cf_message_queue<cft_DefRFCOMM_Out> mq_RFC_Out2_t;
 
 typedef cf_core::cf_mq_initiator_socket<cfm_rfcomm_layer, cft_defobex_in> p_mq_OBEX_In_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_rfcomm_layer, cft_defobex_out> p_mq_OBEX_Out_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_rfcomm_layer, cft_deffrcomm_in> p_mq_RFCOMM_In_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_rfcomm_layer, cft_deffrcomm_out> p_mq_RFCOMM_Out_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_rfcomm_layer, cft_defrfcomm_in> p_mq_RFCOMM_In_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_rfcomm_layer, cft_defrfcomm_out> p_mq_RFCOMM_Out_t;
 
 /// constructor
 cfm_rfcomm_layer(sc_core::sc_module_name name);

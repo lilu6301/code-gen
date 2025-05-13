@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+ //<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -9,21 +8,21 @@
 #define COFS_MODEL_HTTPTCP_RECEIVE
 
 
-#include "cfm_htttcp_receive_global.h"
-#include "cfm_htttcp_receive_global_types.h"
+#include "cfm_httptcp_receive_global.h"
+#include "cfm_httptcp_receive_global_types.h"
 #include <vector>
 #include "cofluent.h"
 #include "dt/cft_defcall_in.h"
 
-class cfm_htttcp_receive : public cf_core::cf_function {
+class cfm_httptcp_receive : public cf_core::cf_function {
 public:
 
 
 /// constructor
-cfm_htttcp_receive(sc_core::sc_module_name name);
+cfm_httptcp_receive(sc_core::sc_module_name name);
 
 /// destructor
-virtual ~cfm_htttcp_receive(void);
+virtual ~cfm_httptcp_receive(void);
 
 
 protected:

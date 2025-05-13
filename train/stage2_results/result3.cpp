@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+/<#!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_mobilephone
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -30,7 +29,7 @@ cf_function_container::init();
 ApplicationLayer = new cfm_applicationlayer("ApplicationLayer");
 CallProtocolStack = new cfm_callprotocolstack("CallProtocolStack");
 Controller = new cfm_controller("Controller");
-VideoProtocolStack = new cfm_videopathstack("VideoProtocolStack");
+VideoProtocolStack = new cfm_videoprotocolstack("VideoProtocolStack");
 //connections
 //model connect to relation
 ApplicationLayer->p_mq_AppToCtrl(mq_AppToCtrl.p_target_socket);
@@ -49,12 +48,11 @@ CallProtocolStack->p_mq_NetToUMTS(p_mq_NetToUMTS);
 CallProtocolStack->p_mq_UMTSToNet(p_mq_UMTSToNet);
 //model connect to relation
 Controller->p_mq_AppToCtrl(mq_AppToCtrl.p_target_socket);
-//model connect to port
-Controller->p_mq_NetToDVB(p_mq_NetToDVB);
 //model connect to relation
 VideoProtocolStack->p_mq_RTPToApp(mq_RTPToApp.p_target_socket);
 //model connect to port
 VideoProtocolStack->p_mq_NetToDVB(p_mq_NetToDVB);
+VideoProtocolStack->p_mq_Video(p_mq_Video);
 cf_function_container::elab_end();
 }
 //@}

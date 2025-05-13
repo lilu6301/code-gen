@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+#!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_memory
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -46,11 +45,9 @@ for (cf_count i = 0; i < (cf_count)( NbBanksperMemory + 1); i++) {
 for (cf_count i = 0; i < (cf_count)( NbBanksperMemory + 1); i++) {
 		BankDmuxer->p_mq_DDRAction(mq_DDRAction_vec[i]->p_target_socket);
 	}
-//model connect to port
-BankDmuxer->p_mq_DDRCommand(p_mq_DDRCommand);
 for (cf_count i = 0; i < (cf_count)( NbBanksperMemory + 1); i++) {
 		cfm_memorycommandexecution* module = MemoryCommandExecution_vec[i];
-		if (module != nullptr) {
+		if (module!= nullptr) {
 //model connect to relation
 for (cf_count j = 0; j < (cf_count)( NbBanksperMemory + 1); j++) {
 				module->p_mq_DDRAction(mq_DDRAction_vec[j]->p_target_socket);
@@ -59,6 +56,8 @@ for (cf_count j = 0; j < (cf_count)( NbBanksperMemory + 1); j++) {
 module->p_mq_DQs(p_mq_DQs);
 }
 }
+//model connect to port
+BankDmuxer->p_mq_DDRCommand(p_mq_DDRCommand);
 cf_function_container::elab_end();
 }
 //@}
@@ -74,12 +73,12 @@ cfm_memory::~cfm_memory(void) {
 //deconstruct for models
 delete BankDmuxer;
 for (vector<cfm_memorycommandexecution*>::const_iterator vi = MemoryCommandExecution_vec.begin();
-			vi != MemoryCommandExecution_vec.end(); vi++) {
+			vi!= MemoryCommandExecution_vec.end(); vi++) {
 		delete (*vi);
 	}
 //deconstructor for vector relation
 for (vector<mq_DDRAction_t*>::const_iterator vi = mq_DDRAction_vec.begin();
-			vi != mq_DDRAction_vec.end(); vi++) {
+			vi!= mq_DDRAction_vec.end(); vi++) {
 		delete (*vi);
 	}
 }

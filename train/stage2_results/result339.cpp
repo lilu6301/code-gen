@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+/<#!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_rfcomm_layer
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -27,9 +26,9 @@ cfm_rfcomm_layer ::cfm_rfcomm_layer() :
 cf_function(),mq_RFC_Cdts("RFC_Cdts"),mq_RFC_Data("RFC_Data"),mq_RFC_Out1("RFC_Out1"),mq_RFC_Out2("RFC_Out2"),p_mq_OBEX_In("p_mq_OBEX_In"),p_mq_OBEX_Out("p_mq_OBEX_Out"),p_mq_RFCOMM_In("p_mq_RFCOMM_In"),p_mq_RFCOMM_Out("p_mq_RFCOMM_Out"){
 cf_function_container::init();
 //instantiation of models
-CreditsOrData = new cfm_creditsordata("CreditsOrData");
-RFCOMM_Receive = new cfm_rfcomm_receive("RFCOMM_Receive");
-RFCOMM_Send = new cfm_rfcomm_send("RFCOMM_Send");
+CreditsOrData = new cfm_creditorsdata("CreditsOrData");
+RFCOMM_Receive = new cfm_receive("RFCOMM_Receive");
+RFCOMM_Send = new cfm_send("RFCOMM_Send");
 RFC_Out = new cfm_rfc_out("RFC_Out");
 //connections
 //model connect to relation

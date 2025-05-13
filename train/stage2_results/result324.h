@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -19,7 +18,6 @@
 #include "dt/cft_defdata_in.h"
 #include "dt/cft_defdataout_in.h"
 #include "dt/cft_defreadwrite_in.h"
-#include "dt/cft_defwrok_in.h"
 
 class cfm_bt_system : public cf_core::cf_function {
 public:

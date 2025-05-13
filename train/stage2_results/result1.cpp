@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+/<#!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_softwaredefinedradioapp
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -36,6 +35,8 @@ MobilePhone->p_mq_NetToDVB(mq_NetToDVB.p_target_socket);
 MobilePhone->p_mq_NetToUMTS(mq_NetToUMTS.p_target_socket);
 MobilePhone->p_mq_Request(mq_Request.p_target_socket);
 MobilePhone->p_mq_Response(mq_Response.p_target_socket);
+MobilePhone->p_mq_UMTSToNet(mq_UMTSToNet.p_target_socket);
+MobilePhone->p_mq_Video(mq_Video.p_target_socket);
 //model connect to relation
 Networks->p_mq_NetToDVB(mq_NetToDVB.p_target_socket);
 Networks->p_mq_NetToUMTS(mq_NetToUMTS.p_target_socket);

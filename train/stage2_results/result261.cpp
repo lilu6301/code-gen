@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+/<#!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_producer
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -37,7 +36,6 @@ Generator->p_sv_TestProd(sv_TestProd.p_target_socket);
 //model connect to relation
 Sender->p_sv_DataVar(sv_DataVar.p_target_socket);
 Sender->p_ev_Req(ev_Req.p_target_socket);
-Sender->p_sv_TestProd(sv_TestProd.p_target_socket);
 //model connect to port
 Sender->p_mq_Ack(p_mq_Ack);
 Sender->p_mq_Msg(p_mq_Msg);

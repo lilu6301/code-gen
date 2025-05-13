@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+/<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -28,7 +27,7 @@ typedef cf_core::cf_message_queue<cft_DefNet> mq_VideoNet_t;
 
 typedef cf_core::cf_mq_initiator_socket<cfm_networks, cft_defvideo> p_mq_NetToDVB_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_networks, cft_defcall> p_mq_NetToUMTS_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_networks, cft_defcall> p_mq_UMTSToNet_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_networks, cft_defvideo> p_mq_UMTSToNet_t;
 
 /// constructor
 cfm_networks(sc_core::sc_module_name name);

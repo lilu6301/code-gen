@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+/<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -18,10 +17,9 @@
 #include "cfm_target.h"
 #include "cfm_target_2.h"
 #include "cfm_writer.h"
+#include "dt/cft_defdata_in.h"
+#include "dt/cft_defmsgq_in.h"
 #include "dt/cft_initiator_in.h"
-#include "dt/cft_target_in.h"
-#include "dt/cft_defdatainput_in.h"
-#include "dt/cft_defmsgqinput_in.h"
 
 class cfm_tlm2at : public cf_core::cf_application {
 public:

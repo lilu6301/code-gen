@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+ //<#!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_rfcomm_send
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation

@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_datacenterswitch
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -56,7 +55,7 @@ for (cf_count i = 0; i < (cf_count)( dpServerRoomNb + 1); i++) {
 //connections
 for (cf_count i = 0; i < (cf_count)( dpServerRoomNb + 1); i++) {
 		cfm_inbound* module = Inbound_vec[i];
-		if (module != nullptr) {
+		if (module!= nullptr) {
 //model connect to relation
 for (cf_count j = 0; j < (cf_count)( dpServerRoomNb + 1); j++) {
 				module->p_mq_MsgQRouting_in(mq_MsgQRouting_in_vec[j]->p_target_socket);
@@ -67,7 +66,7 @@ module->p_mq_MsgQToDataCenterSwitch(p_mq_MsgQToDataCenterSwitch);
 }
 for (cf_count i = 0; i < (cf_count)( dpServerRoomNb + 1); i++) {
 		cfm_outbound* module = Outbound_vec[i];
-		if (module != nullptr) {
+		if (module!= nullptr) {
 //model connect to relation
 for (cf_count j = 0; j < (cf_count)( dpServerRoomNb + 1); j++) {
 				module->p_mq_MsgQRouting_out(mq_MsgQRouting_out_vec[j]->p_target_socket);
@@ -97,21 +96,21 @@ cfm_datacenterswitch::~cfm_datacenterswitch(void) {
 //<#!@READ-ONLY-SECTION-START@!#>
 //deconstruct for models
 for (vector<cfm_inbound*>::const_iterator vi = Inbound_vec.begin();
-			vi != Inbound_vec.end(); vi++) {
+			vi!= Inbound_vec.end(); vi++) {
 		delete (*vi);
 	}
 for (vector<cfm_outbound*>::const_iterator vi = Outbound_vec.begin();
-			vi != Outbound_vec.end(); vi++) {
+			vi!= Outbound_vec.end(); vi++) {
 		delete (*vi);
 	}
 delete RoutingFunction;
 //deconstructor for vector relation
 for (vector<mq_MsgQRouting_in_t*>::const_iterator vi = mq_MsgQRouting_in_vec.begin();
-			vi != mq_MsgQRouting_in_vec.end(); vi++) {
+			vi!= mq_MsgQRouting_in_vec.end(); vi++) {
 		delete (*vi);
 	}
 for (vector<mq_MsgQRouting_out_t*>::const_iterator vi = mq_MsgQRouting_out_vec.begin();
-			vi != mq_MsgQRouting_out_vec.end(); vi++) {
+			vi!= mq_MsgQRouting_out_vec.end(); vi++) {
 		delete (*vi);
 	}
 }

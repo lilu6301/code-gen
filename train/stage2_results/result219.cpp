@@ -1,5 +1,4 @@
-
-//<#!@READ-ONLY-SECTION-START@!#>
+!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_rack
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -50,7 +49,7 @@ for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
 //connections
 for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
 		cfm_server* module = Server_vec[i];
-		if (module != nullptr) {
+		if (module!= nullptr) {
 //model connect to relation
 for (cf_count j = 0; j < (cf_count)( dpServerPerRackNb + 1); j++) {
 				module->p_mq_MsgQServerToToRSwitch(mq_MsgQServerToToRSwitch_vec[j]->p_target_socket);
@@ -84,17 +83,17 @@ cfm_rack::~cfm_rack(void) {
 //<#!@READ-ONLY-SECTION-START@!#>
 //deconstruct for models
 for (vector<cfm_server*>::const_iterator vi = Server_vec.begin();
-			vi != Server_vec.end(); vi++) {
+			vi!= Server_vec.end(); vi++) {
 		delete (*vi);
 	}
 delete ToRSwitch;
 //deconstructor for vector relation
 for (vector<mq_MsgQServerToToRSwitch_t*>::const_iterator vi = mq_MsgQServerToToRSwitch_vec.begin();
-			vi != mq_MsgQServerToToRSwitch_vec.end(); vi++) {
+			vi!= mq_MsgQServerToToRSwitch_vec.end(); vi++) {
 		delete (*vi);
 	}
 for (vector<mq_MsgQToServer_t*>::const_iterator vi = mq_MsgQToServer_vec.begin();
-			vi != mq_MsgQToServer_vec.end(); vi++) {
+			vi!= mq_MsgQToServer_vec.end(); vi++) {
 		delete (*vi);
 	}
 }
