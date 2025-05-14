@@ -18,7 +18,7 @@ Run_llama3-8b_peft_fsdp() {
         --evaluation_strategy="no" \
         --learning_rate=1e-5 \
         --gradient_accumulation_steps=1 \
-        --per_device_train_batch_size=4 \
+        --per_device_train_batch_size=1 \
         --per_device_eval_batch_size=8 \
         --num_train_epochs=3 \
         --save_steps=100 \
@@ -31,7 +31,8 @@ Run_llama3-8b_peft_fsdp() {
 main() {
 
     #model='meta-llama/Meta-Llama-3-8B'
-    model='mistralai/Mistral-7B-v0.1'
+    #model='mistralai/Mistral-7B-v0.1'
+    model="meta-llama/Meta-Llama-3.1-8B"
     #model=/root/llm/fine-tuning/RTL-Coder/train/output
 
    # Run_llama3-8b_peft_singlecard

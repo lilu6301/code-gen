@@ -201,7 +201,7 @@ def validate():
     #model.gradient_checkpointing_enable()
 
     tokenizer = transformers.AutoTokenizer.from_pretrained(
-        "mistralai/Mistral-7B-v0.1",
+        "meta-llama/Meta-Llama-3.1-8B",
         #cache_dir=training_args.cache_dir,
         model_max_length=training_args.model_max_length,
         padding_side="left"
