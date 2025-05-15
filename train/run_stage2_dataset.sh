@@ -18,7 +18,7 @@ Run_llama3-8b_peft_fsdp() {
         --evaluation_strategy="no" \
         --learning_rate=1e-5 \
         --gradient_accumulation_steps=1 \
-        --per_device_train_batch_size=1 \
+        --per_device_train_batch_size=2 \
         --per_device_eval_batch_size=8 \
         --num_train_epochs=3 \
         --save_steps=100 \
