@@ -1,4 +1,4 @@
-EAD-ONLY-SECTION-START@!#>
+READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_memorycontroller
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -23,7 +23,7 @@ using namespace cf_core;
 //@{
 cfm_memorycontroller ::cfm_memorycontroller() : 
 //instantiation of non-vector Event, MessageQueue, SharedVariable
-cf_function(),mq_ARADDRin("ARADDRin"),mq_AWADDRin("AWADDRin"),mq_DataRead("DataRead"),mq_MemReadRequest("MemReadRequest"),mq_MemWriteRequest("MemWriteRequest"),mq_WDATAin("WDATAin"),mq_WriteAck("WriteAck"),p_mq_ARADDRchn("p_mq_ARADDRchn"),p_mq_AWADDRchn("p_mq_AWADDRchn"),p_mq_BRESPchn("p_mq_BRESPchn"),p_mq_DDRCommand("p_mq_DDRCommand"),p_mq_DQs("p_mq_DQs"),p_mq_RDATAchn("p_mq_RDATAchn"),p_mq_WDATAchn("p_mq_WDATAchn"){
+cf_function(),p_mq_ARADDRchn("p_mq_ARADDRchn"),p_mq_AWADDRchn("p_mq_AWADDRchn"),p_mq_BRESPchn("p_mq_BRESPchn"),p_mq_DQs("p_mq_DQs"),p_mq_MemReadRequest("p_mq_MemReadRequest"),p_mq_MemWriteRequest("p_mq_MemWriteRequest"),p_mq_RDATAchn("p_mq_RDATAchn"),p_mq_WriteAck("p_mq_WriteAck"),sv_DataRead("DataRead"),sv_DataWrite("DataWrite"),sv_MemReadRequest("MemReadRequest"),sv_MemWriteRequest("MemWriteRequest"),sv_RDATAchn("RDATAchn"),sv_WriteAck("WriteAck"),mq_ARADDRin("ARADDRin"),mq_AWADDRin("AWADDRin"),mq_DataRead("DataRead"),mq_DataWrite("DataWrite"),mq_MemReadRequest("MemReadRequest"),mq_MemWriteRequest("MemWriteRequest"),mq_RDATAchn("RDATAchn"),mq_WriteAck("WriteAck"),p_mq_WDATAchn("p_mq_WDATAchn"){
 cf_function_container::init();
 //instantiation of models
 BackEnd = new cfm_backend("BackEnd");
@@ -56,10 +56,28 @@ for (cf_count i = 0; i < (cf_count)( P_Nbr + 1); i++) {
 		mq_DataRead_vec.push_back(module);
 	}
 for (cf_count i = 0; i < (cf_count)( P_Nbr + 1); i++) {
-		mq_WDATAin_t* module = new mq_WDATAin_t(
-				cf_string("WDATAin[%d]", i).c_str());
+		mq_DataWrite_t* module = new mq_DataWrite_t(
+				cf_string("DataWrite[%d]", i).c_str());
 		CF_ASSERT (module)
-		mq_WDATAin_vec.push_back(module);
+		mq_DataWrite_vec.push_back(module);
+	}
+for (cf_count i = 0; i < (cf_count)( P_Nbr + 1); i++) {
+		mq_MemReadRequest_t* module = new mq_MemReadRequest_t(
+				cf_string("MemReadRequest[%d]", i).c_str());
+		CF_ASSERT (module)
+		mq_MemReadRequest_vec.push_back(module);
+	}
+for (cf_count i = 0; i < (cf_count)( P_Nbr + 1); i++) {
+		mq_MemWriteRequest_t* module = new mq_MemWriteRequest_t(
+				cf_string("MemWriteRequest[%d]", i).c_str());
+		CF_ASSERT (module)
+		mq_MemWriteRequest_vec.push_back(module);
+	}
+for (cf_count i = 0; i < (cf_count)( P_Nbr + 1); i++) {
+		mq_RDATAchn_t* module = new mq_RDATAchn_t(
+				cf_string("RDATAchn[%d]", i).c_str());
+		CF_ASSERT (module)
+		mq_RDATAchn_vec.push_back(module);
 	}
 for (cf_count i = 0; i < (cf_count)( P_Nbr + 1); i++) {
 		mq_WriteAck_t* module = new mq_WriteAck_t(
@@ -68,62 +86,51 @@ for (cf_count i = 0; i < (cf_count)( P_Nbr + 1); i++) {
 		mq_WriteAck_vec.push_back(module);
 	}
 //connections
-//model connect to relation
-for (cf_count i = 0; i < (cf_count)( P_Nbr + 1); i++) {
-		BackEnd->p_mq_DataRead(mq_DataRead_vec[i]->p_target_socket);
-	}
-for (cf_count i = 0; i < (cf_count)( P_Nbr + 1); i++) {
-		BackEnd->p_mq_MemReadRequest(mq_MemReadRequest_vec[i]->p_target_socket);
-	}
-for (cf_count i = 0; i < (cf_count)( P_Nbr + 1); i++) {
-		BackEnd->p_mq_MemWriteRequest(mq_MemWriteRequest_vec[i]->p_target_socket);
-	}
-for (cf_count i = 0; i < (cf_count)( P_Nbr + 1); i++) {
-		BackEnd->p_mq_WriteAck(mq_WriteAck_vec[i]->p_target_socket);
-	}
+//model connect to port
+BackEnd->p_mq_DQs(p_mq_DQs);
+BackEnd->p_mq_WriteAck(p_mq_WriteAck);
 for (cf_count i = 0; i < (cf_count)( P_Nbr + 1); i++) {
 		cfm_frontend* module = FrontEnd_vec[i];
 		if (module!= nullptr) {
-//model connect to relation
-for (cf_count j = 0; j < (cf_count)( P_Nbr + 1); j++) {
-				module->p_mq_ARADDRin(mq_ARADDRin_vec[j]->p_target_socket);
-			}
-for (cf_count j = 0; j < (cf_count)( P_Nbr + 1); j++) {
-				module->p_mq_AWADDRin(mq_AWADDRin_vec[j]->p_target_socket);
-			}
+//model connect to port
+module->p_mq_BRESPchn(p_mq_BRESPchn);
 for (cf_count j = 0; j < (cf_count)( P_Nbr + 1); j++) {
 				module->p_mq_DataRead(mq_DataRead_vec[j]->p_target_socket);
 			}
-module->p_mq_MemReadRequest(mq_MemReadRequest.p_target_socket);
-module->p_mq_MemWriteRequest(mq_MemWriteRequest.p_target_socket);
 for (cf_count j = 0; j < (cf_count)( P_Nbr + 1); j++) {
-				module->p_mq_WDATAin(mq_WDATAin_vec[j]->p_target_socket);
+				module->p_mq_DataWrite(mq_DataWrite_vec[j]->p_target_socket);
+			}
+for (cf_count j = 0; j < (cf_count)( P_Nbr + 1); j++) {
+				module->p_mq_MemReadRequest(mq_MemReadRequest_vec[j]->p_target_socket);
+			}
+for (cf_count j = 0; j < (cf_count)( P_Nbr + 1); j++) {
+				module->p_mq_MemWriteRequest(mq_MemWriteRequest_vec[j]->p_target_socket);
+			}
+for (cf_count j = 0; j < (cf_count)( P_Nbr + 1); j++) {
+				module->p_mq_RDATAchn(mq_RDATAchn_vec[j]->p_target_socket);
 			}
 for (cf_count j = 0; j < (cf_count)( P_Nbr + 1); j++) {
 				module->p_mq_WriteAck(mq_WriteAck_vec[j]->p_target_socket);
 			}
+}
+}
 //model connect to port
-module->p_mq_BRESPchn(p_mq_BRESPchn);
-module->p_mq_RDATAchn(p_mq_RDATAchn);
-}
-}
-//model connect to relation
+RAddrDmux->p_mq_ARADDRchn(p_mq_ARADDRchn);
 for (cf_count i = 0; i < (cf_count)( P_Nbr + 1); i++) {
 		RAddrDmux->p_mq_ARADDRin(mq_ARADDRin_vec[i]->p_target_socket);
 	}
-//model connect to port
-RAddrDmux->p_mq_ARADDRchn(p_mq_ARADDRchn);
-//model connect to relation
+RAddrDmux->p_mq_RDATAchn(p_mq_RDATAchn);
 for (cf_count i = 0; i < (cf_count)( P_Nbr + 1); i++) {
-		WAddrDmux->p_mq_AWADDRin(mq_AWADDRin_vec[i]->p_target_socket);
+		RAddrDmux->p_mq_WriteAck(mq_WriteAck_vec[i]->p_target_socket);
 	}
 //model connect to port
 WAddrDmux->p_mq_AWADDRchn(p_mq_AWADDRchn);
-//model connect to relation
 for (cf_count i = 0; i < (cf_count)( P_Nbr + 1); i++) {
-		WdataDmux->p_mq_WDATAin(mq_WDATAin_vec[i]->p_target_socket);
+		WAddrDmux->p_mq_AWADDRin(mq_AWADDRin_vec[i]->p_target_socket);
 	}
+WAddrDmux->p_mq_WDATAchn(p_mq_WDATAchn);
 //model connect to port
+WdataDmux->p_mq_DQs(p_mq_DQs);
 WdataDmux->p_mq_WDATAchn(p_mq_WDATAchn);
 cf_function_container::elab_end();
 }
@@ -159,6 +166,10 @@ for (vector<mq_DataRead_t*>::const_iterator vi = mq_DataRead_vec.begin();
 			vi!= mq_DataRead_vec.end(); vi++) {
 		delete (*vi);
 	}
+for (vector<mq_DataWrite_t*>::const_iterator vi = mq_DataWrite_vec.begin();
+			vi!= mq_DataWrite_vec.end(); vi++) {
+		delete (*vi);
+	}
 for (vector<mq_MemReadRequest_t*>::const_iterator vi = mq_MemReadRequest_vec.begin();
 			vi!= mq_MemReadRequest_vec.end(); vi++) {
 		delete (*vi);
@@ -167,8 +178,8 @@ for (vector<mq_MemWriteRequest_t*>::const_iterator vi = mq_MemWriteRequest_vec.b
 			vi!= mq_MemWriteRequest_vec.end(); vi++) {
 		delete (*vi);
 	}
-for (vector<mq_WDATAin_t*>::const_iterator vi = mq_WDATAin_vec.begin();
-			vi!= mq_WDATAin_vec.end(); vi++) {
+for (vector<mq_RDATAchn_t*>::const_iterator vi = mq_RDATAchn_vec.begin();
+			vi!= mq_RDATAchn_vec.end(); vi++) {
 		delete (*vi);
 	}
 for (vector<mq_WriteAck_t*>::const_iterator vi = mq_WriteAck_vec.begin();

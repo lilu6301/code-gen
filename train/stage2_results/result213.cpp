@@ -23,7 +23,7 @@ using namespace cf_core;
 //@{
 cfm_serverroom ::cfm_serverroom() : 
 //instantiation of non-vector Event, MessageQueue, SharedVariable
-cf_function(),mq_MsgQToAggSwitch("MsgQToAggSwitch"),mq_MsgQToRack("MsgQToRack"),p_mq_MsgQToDataCenterSwitch("p_mq_MsgQToDataCenterSwitch"),p_mq_MsgQToServerRoom("p_mq_MsgQToServerRoom"){
+cf_function(),p_mq_MsgQToAggSwitch("p_mq_MsgQToAggSwitch"),p_mq_MsgQToRack("p_mq_MsgQToRack"),p_mq_MsgQToServerRoom("p_mq_MsgQToServerRoom"){
 cf_function_container::init();
 //instantiation of models
 AGGSwitch = new cfm_aggswitch("AGGSwitch");
@@ -35,32 +35,24 @@ for (cf_count i = 0; i < (cf_count)( dpRackNb + 1); i++) {
 	}
 //instantiation of relations
 for (cf_count i = 0; i < (cf_count)( dpRackNb + 1); i++) {
-		mq_MsgQToAggSwitch_t* module = new mq_MsgQToAggSwitch_t(
-				cf_string("MsgQToAggSwitch[%d]", i).c_str());
-		CF_ASSERT (module)
-		mq_MsgQToAggSwitch_vec.push_back(module);
+		MessageQueue<cft_DefPacket> mq_MsgQToAggSwitch_t;
+		CF_ASSERT (mq_MsgQToAggSwitch_t)
+		mq_MsgQToAggSwitch_vec.push_back(mq_MsgQToAggSwitch_t);
 	}
 for (cf_count i = 0; i < (cf_count)( dpRackNb + 1); i++) {
-		mq_MsgQToRack_t* module = new mq_MsgQToRack_t(
-				cf_string("MsgQToRack[%d]", i).c_str());
-		CF_ASSERT (module)
-		mq_MsgQToRack_vec.push_back(module);
+		MessageQueue<cft_DefPacket> mq_MsgQToRack_t;
+		CF_ASSERT (mq_MsgQToRack_t)
+		mq_MsgQToRack_vec.push_back(mq_MsgQToRack_t);
 	}
 //connections
-//model connect to relation
-for (cf_count i = 0; i < (cf_count)( dpRackNb + 1); i++) {
-		AGGSwitch->p_mq_MsgQToAggSwitch(mq_MsgQToAggSwitch_vec[i]->p_target_socket);
-	}
-for (cf_count i = 0; i < (cf_count)( dpRackNb + 1); i++) {
-		AGGSwitch->p_mq_MsgQToRack(mq_MsgQToRack_vec[i]->p_target_socket);
-	}
 //model connect to port
-AGGSwitch->p_mq_MsgQToDataCenterSwitch(p_mq_MsgQToDataCenterSwitch);
+AGGSwitch->p_mq_MsgQToAggSwitch(p_mq_MsgQToAggSwitch);
+AGGSwitch->p_mq_MsgQToRack(p_mq_MsgQToRack);
 AGGSwitch->p_mq_MsgQToServerRoom(p_mq_MsgQToServerRoom);
 for (cf_count i = 0; i < (cf_count)( dpRackNb + 1); i++) {
 		cfm_rack* module = Rack_vec[i];
 		if (module!= nullptr) {
-//model connect to relation
+//model connect to port
 for (cf_count j = 0; j < (cf_count)( dpRackNb + 1); j++) {
 				module->p_mq_MsgQToAggSwitch(mq_MsgQToAggSwitch_vec[j]->p_target_socket);
 			}

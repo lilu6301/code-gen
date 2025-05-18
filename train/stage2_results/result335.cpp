@@ -1,4 +1,4 @@
-<#!@READ-ONLY-SECTION-START@!#>
+#!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_bt_stack
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -23,7 +23,7 @@ using namespace cf_core;
 //@{
 cfm_bt_stack ::cfm_bt_stack() : 
 //instantiation of non-vector Event, MessageQueue, SharedVariable
-cf_function(),mq_L2CAP_In("L2CAP_In"),mq_L2CAP_Out("L2CAP_Out"),mq_OBEX_In("OBEX_In"),mq_OBEX_Out("OBEX_Out"),mq_RFCOMM_In("RFCOMM_In"),mq_RFCOMM_Out("RFCOMM_Out"),p_ev_WrOK("p_ev_WrOK"),p_ev_startEv("p_ev_startEv"),p_mq_BaseBand_In("p_mq_BaseBand_In"),p_mq_BaseBand_Out("p_mq_BaseBand_Out"),p_mq_DataIn("p_mq_DataIn"),p_mq_DataOut("p_mq_DataOut"),p_mq_ReadWrite("p_mq_ReadWrite"){
+cf_function(),p_ev_Req("p_ev_Req"),p_ev_StartEv("p_ev_StartEv"),p_mq_BaseBand_In("p_mq_BaseBand_In"),p_mq_BaseBand_Out("p_mq_BaseBand_Out"),p_mq_DataIn("p_mq_DataIn"),p_mq_DataOut("p_mq_DataOut"),p_mq_L2CAP_In("p_mq_L2CAP_In"),p_mq_L2CAP_Out("p_mq_L2CAP_Out"),p_mq_OBEX_In("p_mq_OBEX_In"),p_mq_OBEX_Out("p_mq_OBEX_Out"),p_mq_RFCOMM_In("p_mq_RFCOMM_In"),p_mq_RFCOMM_Out("p_mq_RFCOMM_Out"),p_ev_WrOK("p_ev_WrOK"){
 cf_function_container::init();
 //instantiation of models
 BaseBand_Layer = new cfm_baseband_layer("BaseBand_Layer");
@@ -31,34 +31,27 @@ L2CAP_Layer = new cfm_l2cap_layer("L2CAP_Layer");
 OBEX_Layer = new cfm_obex_layer("OBEX_Layer");
 RFCOMM_Layer = new cfm_rfcomm_layer("RFCOMM_Layer");
 //connections
-//model connect to relation
-BaseBand_Layer->p_mq_L2CAP_In(mq_L2CAP_In.p_target_socket);
-BaseBand_Layer->p_mq_L2CAP_Out(mq_L2CAP_Out.p_target_socket);
 //model connect to port
 BaseBand_Layer->p_mq_BaseBand_In(p_mq_BaseBand_In);
 BaseBand_Layer->p_mq_BaseBand_Out(p_mq_BaseBand_Out);
-//model connect to relation
-L2CAP_Layer->p_mq_L2CAP_In(mq_L2CAP_In.p_target_socket);
-L2CAP_Layer->p_mq_L2CAP_Out(mq_L2CAP_Out.p_target_socket);
-L2CAP_Layer->p_mq_RFCOMM_In(mq_RFCOMM_In.p_target_socket);
-L2CAP_Layer->p_mq_RFCOMM_Out(mq_RFCOMM_Out.p_target_socket);
-//model connect to relation
-OBEX_Layer->p_mq_OBEX_In(mq_OBEX_In.p_target_socket);
-OBEX_Layer->p_mq_OBEX_Out(mq_OBEX_Out.p_target_socket);
-OBEX_Layer->p_mq_ReadWrite(p_mq_ReadWrite);
-OBEX_Layer->p_mq_WrOK(p_mq_WrOK);
-OBEX_Layer->p_mq_startEv(p_mq_startEv);
+BaseBand_Layer->p_mq_L2CAP_In(p_mq_L2CAP_In);
+BaseBand_Layer->p_mq_L2CAP_Out(p_mq_L2CAP_Out);
+//model connect to port
+L2CAP_Layer->p_mq_L2CAP_In(p_mq_L2CAP_In);
+L2CAP_Layer->p_mq_L2CAP_Out(p_mq_L2CAP_Out);
+L2CAP_Layer->p_mq_RFCOMM_In(p_mq_RFCOMM_In);
+L2CAP_Layer->p_mq_RFCOMM_Out(p_mq_RFCOMM_Out);
 //model connect to port
 OBEX_Layer->p_mq_DataIn(p_mq_DataIn);
 OBEX_Layer->p_mq_DataOut(p_mq_DataOut);
-OBEX_Layer->p_mq_ReadWrite(p_mq_ReadWrite);
+OBEX_Layer->p_mq_Req(p_mq_Req);
+OBEX_Layer->p_mq_StartEv(p_mq_StartEv);
 OBEX_Layer->p_mq_WrOK(p_mq_WrOK);
-OBEX_Layer->p_mq_startEv(p_mq_startEv);
-//model connect to relation
-RFCOMM_Layer->p_mq_OBEX_In(mq_OBEX_In.p_target_socket);
-RFCOMM_Layer->p_mq_OBEX_Out(mq_OBEX_Out.p_target_socket);
-RFCOMM_Layer->p_mq_RFCOMM_In(mq_RFCOMM_In.p_target_socket);
-RFCOMM_Layer->p_mq_RFCOMM_Out(mq_RFCOMM_Out.p_target_socket);
+//model connect to port
+RFCOMM_Layer->p_mq_OBEX_In(p_mq_OBEX_In);
+RFCOMM_Layer->p_mq_OBEX_Out(p_mq_OBEX_Out);
+RFCOMM_Layer->p_mq_RFCOMM_In(p_mq_RFCOMM_In);
+RFCOMM_Layer->p_mq_RFCOMM_Out(p_mq_RFCOMM_Out);
 cf_function_container::elab_end();
 }
 //@}

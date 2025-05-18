@@ -12,7 +12,7 @@
 #include "cfm_hwdevicemodel_global_types.h"
 #include <vector>
 #include "cofluent.h"
-#include "cfm_hwdicetest.h"
+#include "cfm_hwdevicest.h"
 #include "dt/cft_defframe_in.h"
 
 class cfm_hwdevicemodel : public cf_core::cf_application {
@@ -26,7 +26,7 @@ cfm_hwdevicemodel(sc_core::sc_module_name name);
 /// destructor
 virtual ~cfm_hwdevicemodel(void);
 
-cfm_hwdicetest *hwDeviceTest;
+cfm_hwdevicest *hwDeviceTest;
 
 protected:
 void cb_init_attributes(void);

@@ -1,4 +1,4 @@
- //<#!@READ-ONLY-SECTION-START@!#>
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -12,8 +12,8 @@
 #include "cfm_responseforward_global_types.h"
 #include <vector>
 #include "cofluent.h"
-#include "dt/cft_defdataread_in.h"
 #include "dt/cft_defdqs_in.h"
+#include "dt/cft_defdataread_in.h"
 #include "dt/cft_defrequestinformation_in.h"
 #include "dt/cft_defwriteack_in.h"
 

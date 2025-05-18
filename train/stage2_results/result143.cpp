@@ -1,4 +1,6 @@
- //<#!@READ-ONLY-SECTION-START@!#>
+:
+
+//<#!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_f12
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation

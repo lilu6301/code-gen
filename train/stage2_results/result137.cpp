@@ -45,6 +45,8 @@ F12->p_mq_M2_2(mq_M2_2.p_target_socket);
 //model connect to relation
 F2->p_mq_M1_2(mq_M1_2.p_target_socket);
 F2->p_mq_M1_3(mq_M1_3.p_target_socket);
+F2->p_mq_M2_1(mq_M2_1.p_target_socket);
+F2->p_mq_M2_2(mq_M2_2.p_target_socket);
 //model connect to relation
 P1->p_mq_M1_1(mq_M1_1.p_target_socket);
 //model connect to relation

@@ -12,7 +12,7 @@
 #include "cfm_bankdmuxer_global_types.h"
 #include <vector>
 #include "cofluent.h"
-#include "dt/cft_defddrcommand_in.h"
+#include "dt/cft_defdrc_command_in.h"
 
 class cfm_bankdmuxer : public cf_core::cf_function {
 public:

@@ -14,15 +14,14 @@
 #include "cofluent.h"
 #include "cfm_bankdmuxer.h"
 #include "cfm_memorycommandexecution.h"
-#include "dt/cft_defddrcommand_in.h"
 #include "dt/cft_defdqs_in.h"
+#include "dt/cft_defdividercommand_in.h"
 
 class cfm_memory : public cf_core::cf_function {
 public:
-typedef cf_core::cf_message_queue<cft_DefDDRCommand> mq_DDRAction_t;
 
-typedef cf_core::cf_mq_initiator_socket<cfm_memory, cft_defddrcommand> p_mq_DDRCommand_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_memory, cft_defdqs> p_mq_DQs_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_memory, cft_defdividercommand> p_mq_DDRCommand_t;
 
 /// constructor
 cfm_memory(sc_core::sc_module_name name);
@@ -30,8 +29,8 @@ cfm_memory(sc_core::sc_module_name name);
 /// destructor
 virtual ~cfm_memory(void);
 
-p_mq_DDRCommand_t p_mq_DDRCommand;
 p_mq_DQs_t p_mq_DQs;
+p_mq_DDRCommand_t p_mq_DDRCommand;
 
 cfm_bankdmuxer *BankDmuxer;
 std::vector<cfm_memorycommandexecution *> Memory_vec;
@@ -41,7 +40,7 @@ void cb_init_attributes(void);
 void cb_init_local_vars(void);
 
 public:
-std::vector<mq_DDRAction_t *> mq_DDRAction_vec;
+std::vector<cfm_memory*>::vector<cfm_memorycommandexecution *> Memory_vec;
 };
 #endif
 //<#!@READ-ONLY-SECTION-END@!#>

@@ -23,7 +23,7 @@ using namespace cf_core;
 //@{
 cfm_memory ::cfm_memory() : 
 //instantiation of non-vector Event, MessageQueue, SharedVariable
-cf_function(),mq_DDRAction("DDRAction"),p_mq_DDRCommand("p_mq_DDRCommand"),p_mq_DQs("p_mq_DQs"){
+cf_function(),p_mq_DQs("p_mq_DQs"),p_mq_DDRCommand("p_mq_DDRCommand"){
 cf_function_container::init();
 //instantiation of models
 BankDmuxer = new cfm_bankdmuxer("BankDmuxer");
@@ -35,29 +35,25 @@ for (cf_count i = 0; i < (cf_count)( NbBanksperMemory + 1); i++) {
 	}
 //instantiation of relations
 for (cf_count i = 0; i < (cf_count)( NbBanksperMemory + 1); i++) {
-		mq_DDRAction_t* module = new mq_DDRAction_t(
+		MessageQueue<cft_DefDDRCommand> mq_DDRAction_t;
+		cq_DMAQ_t* module = new cq_DMAQ_t(
 				cf_string("DDRAction[%d]", i).c_str());
 		CF_ASSERT (module)
 		mq_DDRAction_vec.push_back(module);
 	}
 //connections
-//model connect to relation
-for (cf_count i = 0; i < (cf_count)( NbBanksperMemory + 1); i++) {
-		BankDmuxer->p_mq_DDRAction(mq_DDRAction_vec[i]->p_target_socket);
-	}
+//model connect to port
+BankDmuxer->p_mq_DDRCommand(p_mq_DDRCommand);
 for (cf_count i = 0; i < (cf_count)( NbBanksperMemory + 1); i++) {
 		cfm_memorycommandexecution* module = MemoryCommandExecution_vec[i];
 		if (module!= nullptr) {
-//model connect to relation
+//model connect to port
+module->p_mq_DQs(p_mq_DQs);
 for (cf_count j = 0; j < (cf_count)( NbBanksperMemory + 1); j++) {
 				module->p_mq_DDRAction(mq_DDRAction_vec[j]->p_target_socket);
 			}
-//model connect to port
-module->p_mq_DQs(p_mq_DQs);
 }
 }
-//model connect to port
-BankDmuxer->p_mq_DDRCommand(p_mq_DDRCommand);
 cf_function_container::elab_end();
 }
 //@}

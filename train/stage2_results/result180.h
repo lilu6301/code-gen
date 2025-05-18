@@ -16,31 +16,22 @@
 #include "cfm_collectrequests.h"
 #include "cfm_ddrcommandgeneration.h"
 #include "cfm_responseforward.h"
-#include "dt/cft_defddrcommand_in.h"
 #include "dt/cft_defdqs_in.h"
-#include "dt/cft_defdataread_in.h"
 #include "dt/cft_defmemreadrequest_in.h"
-#include "dt/cft_defmemwritereq_in.h"
+#include "dt/cft_defmemwriterequest_in.h"
+#include "dt/cft_defwriteack_in.h"
 #include "dt/cft_defrequestinformation_in.h"
 #include "dt/cft_defrequests2memory_in.h"
-#include "dt/cft_deflistrequestsptr_in.h"
-#include "dt/cft_defmemorystatus_in.h"
 
 class cfm_backend : public cf_core::cf_function {
 public:
 
-typedef cf_core::cf_shared_variable<cft_DefListRequestsPtr> sv_ListRequestsPtr_t;
-typedef cf_core::cf_shared_variable<cft_DefMemoryStatus> sv_MemoryStatus_t;
-typedef cf_core::cf_event ev_RequestCounter_t;
-typedef cf_core::cf_message_queue<cft_DefRequestInformation> mq_RequestInformation_t;
-typedef cf_core::cf_message_queue<cft_DefRequests2Memory> mq_Requests2Memory_t;
-
-typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defddrcommand> p_mq_DDRCommand_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defdqs> p_mq_DQs_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defdataread> p_mq_DataRead_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defmemreadrequest> p_mq_MemReadRequest_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defmemwritereq> p_mq_MemWriteRequest_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defmemwriterequest> p_mq_MemWriteRequest_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defwriteack> p_mq_WriteAck_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defrequestinformation> p_mq_RequestCounter_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_backend, cft_defrequests2memory> p_mq_Requests2Memory_t;
 
 /// constructor
 cfm_backend(sc_core::sc_module_name name);
@@ -48,12 +39,12 @@ cfm_backend(sc_core::sc_module_name name);
 /// destructor
 virtual ~cfm_backend(void);
 
-p_mq_DDRCommand_t p_mq_DDRCommand;
 p_mq_DQs_t p_mq_DQs;
-p_mq_DataRead_t p_mq_DataRead;
 p_mq_MemReadRequest_t p_mq_MemReadRequest;
 p_mq_MemWriteRequest_t p_mq_MemWriteRequest;
 p_mq_WriteAck_t p_mq_WriteAck;
+p_mq_RequestCounter_t p_mq_RequestCounter;
+p_mq_Requests2Memory_t p_mq_Requests2Memory;
 
 cfm_arbitration *Arbitration;
 cfm_collectrequests *CollectRequests;
@@ -65,11 +56,6 @@ void cb_init_attributes(void);
 void cb_init_local_vars(void);
 
 public:
-sv_ListRequestsPtr_t sv_ListRequestsPtr;
-std::vector<sv_MemoryStatus_t *> sv_MemoryStatus_vec;
-ev_RequestCounter_t ev_RequestCounter;
-mq_RequestInformation_t mq_RequestInformation;
-mq_Requests2Memory_t mq_Requests2Memory;
 };
 #endif
 //<#!@READ-ONLY-SECTION-END@!#>

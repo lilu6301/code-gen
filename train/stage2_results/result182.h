@@ -12,8 +12,8 @@
 #include "cfm_memorycommandexecution_global_types.h"
 #include <vector>
 #include "cofluent.h"
-#include "dt/cft_defddrc_command_in.h"
 #include "dt/cft_defdqs_in.h"
+#include "dt/cft_defdrcommand_in.h"
 
 class cfm_memorycommandexecution : public cf_core::cf_function {
 public:

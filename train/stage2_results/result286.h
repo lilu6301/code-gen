@@ -1,4 +1,6 @@
- //<#!@READ-ONLY-SECTION-START@!#>
+}
+
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation

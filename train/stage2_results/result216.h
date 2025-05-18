@@ -21,15 +21,11 @@
 
 class cfm_aggswitch : public cf_core::cf_function {
 public:
-typedef cf_core::cf_message_queue<cft_DefPacket> mq_MsgQInboundDataCenterSwitch_t;
-typedef cf_core::cf_message_queue<cft_DefPacket> mq_MsgQInboundRack_t;
-typedef cf_core::cf_message_queue<cft_DefPacket> mq_MsgQOutboundDataCenterSwitch_t;
-typedef cf_core::cf_message_queue<cft_DefPacket> mq_MsgQOutboundRack_t;
 
-typedef cf_core::cf_mq_initiator_socket<cfm_aggswitch, cft_defpacket> p_mq_MsgQToAggSwitch_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_aggswitch, cft_defpacket> p_mq_MsgQToDataCenterSwitch_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_aggswitch, cft_defpacket> p_mq_MsgQToRack_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_aggswitch, cft_defpacket> p_mq_MsgQToServerRoom_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_aggswitch, cft_defpacket> p_mq_MsgQInboundDataCenterSwitch_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_aggswitch, cft_defpacket> p_mq_MsgQInboundRack_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_aggswitch, cft_defpacket> p_mq_MsgQOutboundDataCenterSwitch_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_aggswitch, cft_defpacket> p_mq_MsgQOutboundRack_t;
 
 /// constructor
 cfm_aggswitch(sc_core::sc_module_name name);
@@ -37,10 +33,10 @@ cfm_aggswitch(sc_core::sc_module_name name);
 /// destructor
 virtual ~cfm_aggswitch(void);
 
-p_mq_MsgQToAggSwitch_t p_mq_MsgQToAggSwitch;
-p_mq_MsgQToDataCenterSwitch_t p_mq_MsgQToDataCenterSwitch;
-p_mq_MsgQToRack_t p_mq_MsgQToRack;
-p_mq_MsgQToServerRoom_t p_mq_MsgQToServerRoom;
+p_mq_MsgQInboundDataCenterSwitch_t p_mq_MsgQInboundDataCenterSwitch;
+p_mq_MsgQInboundRack_t p_mq_MsgQInboundRack;
+p_mq_MsgQOutboundDataCenterSwitch_t p_mq_MsgQOutboundDataCenterSwitch;
+p_mq_MsgQOutboundRack_t p_mq_MsgQOutboundRack;
 
 cfm_inbounddatacenterswitch *InboundDataCenterSwitch;
 std::vector<cfm_inboundrack *> AGGSwitch_vec;
@@ -53,10 +49,6 @@ void cb_init_attributes(void);
 void cb_init_local_vars(void);
 
 public:
-mq_MsgQInboundDataCenterSwitch_t mq_MsgQInboundDataCenterSwitch;
-std::vector<mq_MsgQInboundRack_t *> mq_MsgQInboundRack_vec;
-mq_MsgQOutboundDataCenterSwitch_t mq_MsgQOutboundDataCenterSwitch;
-std::vector<mq_MsgQOutboundRack_t *> mq_MsgQOutboundRack_vec;
 };
 #endif
 //<#!@READ-ONLY-SECTION-END@!#>

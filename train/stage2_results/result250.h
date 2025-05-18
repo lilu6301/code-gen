@@ -21,13 +21,11 @@
 
 class cfm_producer : public cf_core::cf_function {
 public:
-typedef cf_core::cf_shared_variable<cft_DefDataVar> sv_DataVar_t;
-typedef cf_core::cf_event ev_Req_t;
-typedef cf_core::cf_shared_variable<cft_DefTestProd> sv_TestProd_t;
 
 typedef cf_core::cf_mq_initiator_socket<cfm_producer, cft_defack> p_mq_Ack_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_producer, cft_defdatavar> p_sv_DataVar_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_producer, cft_defmsg> p_mq_Msg_t;
-
+typedef cf_core::cf_sv_initiator_socket<cfm_producer, cft_deftestprod> p_sv_TestProd_t;
 /// constructor
 cfm_producer(sc_core::sc_module_name name);
 
@@ -35,7 +33,9 @@ cfm_producer(sc_core::sc_module_name name);
 virtual ~cfm_producer(void);
 
 p_mq_Ack_t p_mq_Ack;
+p_sv_DataVar_t p_sv_DataVar;
 p_mq_Msg_t p_mq_Msg;
+p_sv_TestProd_t p_sv_TestProd;
 
 cfm_generator *Generator;
 cfm_sender *Sender;
@@ -45,9 +45,6 @@ void cb_init_attributes(void);
 void cb_init_local_vars(void);
 
 public:
-sv_DataVar_t sv_DataVar;
-ev_Req_t ev_Req;
-sv_TestProd_t sv_TestProd;
 };
 #endif
 //<#!@READ-ONLY-SECTION-END@!#>

@@ -19,29 +19,24 @@
 #include "dt/cft_defbaseband_in.h"
 #include "dt/cft_defdatain_in.h"
 #include "dt/cft_defdataout_in.h"
-#include "dt/cft_defreadwrite_in.h"
-#include "dt/cft_defl2cap_in.h"
 #include "dt/cft_defobex_in.h"
 #include "dt/cft_defobex_out.h"
 #include "dt/cft_defrfcomm_in.h"
 #include "dt/cft_defrfcomm_out.h"
+#include "dt/cft_deftestprod_in.h"
 
 class cfm_bt_stack : public cf_core::cf_function {
 public:
-typedef cf_core::cf_message_queue<cft_DefL2CAP_In> mq_L2CAP_In_t;
-typedef cf_core::cf_message_queue<cft_DefL2CAP_Out> mq_L2CAP_Out_t;
-typedef cf_core::cf_message_queue<cft_DefOBEX_In> mq_OBEX_In_t;
-typedef cf_core::cf_message_queue<cft_DefOBEX_Out> mq_OBEX_Out_t;
-typedef cf_core::cf_message_queue<cft_DefRFCOMM_In> mq_RFCOMM_In_t;
-typedef cf_core::cf_message_queue<cft_DefRFCOMM_Out> mq_RFCOMM_Out_t;
 
 typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defbaseband> p_mq_BaseBand_In_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defbaseband> p_mq_BaseBand_Out_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defdatain> p_mq_DataIn_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defdataout> p_mq_DataOut_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defreadwrite> p_mq_ReadWrite_t;
-typedef cf_core::cf_ev_initiator_socket<cfm_bt_stack> p_ev_WrOK_t;
-typedef cf_core::cf_ev_initiator_socket<cfm_bt_stack> p_ev_startEv_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defobex> p_mq_OBEX_In_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defobex> p_mq_OBEX_Out_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defrfcomm> p_mq_RFCOMM_In_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_defrfcomm> p_mq_RFCOMM_Out_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_bt_stack, cft_deftestprod> p_mq_StartEv_t;
 
 /// constructor
 cfm_bt_stack(sc_core::sc_module_name name);
@@ -53,9 +48,11 @@ p_mq_BaseBand_In_t p_mq_BaseBand_In;
 p_mq_BaseBand_Out_t p_mq_BaseBand_Out;
 p_mq_DataIn_t p_mq_DataIn;
 p_mq_DataOut_t p_mq_DataOut;
-p_mq_ReadWrite_t p_mq_ReadWrite;
-p_ev_WrOK_t p_ev_WrOK;
-p_ev_startEv_t p_ev_startEv;
+p_mq_OBEX_In_t p_mq_OBEX_In;
+p_mq_OBEX_Out_t p_mq_OBEX_Out;
+p_mq_RFCOMM_In_t p_mq_RFCOMM_In;
+p_mq_RFCOMM_Out_t p_mq_RFCOMM_Out;
+p_mq_StartEv_t p_mq_StartEv;
 
 cfm_baseband_layer *BaseBand_Layer;
 cfm_l2cap_layer *L2CAP_Layer;
@@ -67,12 +64,6 @@ void cb_init_attributes(void);
 void cb_init_local_vars(void);
 
 public:
-mq_L2CAP_In_t mq_L2CAP_In;
-mq_L2CAP_Out_t mq_L2CAP_Out;
-mq_OBEX_In_t mq_OBEX_In;
-mq_OBEX_Out_t mq_OBEX_Out;
-mq_RFCOMM_In_t mq_RFCOMM_In;
-mq_RFCOMM_Out_t mq_RFCOMM_Out;
 };
 #endif
 //<#!@READ-ONLY-SECTION-END@!#>

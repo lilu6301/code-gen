@@ -18,8 +18,8 @@
 
 class cfm_cofluentapifromexternalip : public cf_core::cf_application {
 public:
-typedef cf_core::cf_message_queue<cft_DefMsgQ> mq_MsgBwQ_t;
 typedef cf_core::cf_message_queue<cft_DefMsgQ> mq_MsgFwQ_t;
+typedef cf_core::cf_message_queue<cft_DefMsgQ> mq_MsgBwQ_t;
 
 /// constructor
 cfm_cofluentapifromexternalip(sc_core::sc_module_name name);
@@ -35,8 +35,8 @@ void cb_init_attributes(void);
 void cb_init_local_vars(void);
 
 public:
-mq_MsgBwQ_t mq_MsgBwQ;
 mq_MsgFwQ_t mq_MsgFwQ;
+mq_MsgBwQ_t mq_MsgBwQ;
 };
 #endif
 //<#!@READ-ONLY-SECTION-END@!#>

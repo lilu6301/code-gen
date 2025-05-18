@@ -23,7 +23,7 @@ using namespace cf_core;
 //@{
 cfm_applicationlayer ::cfm_applicationlayer() : 
 //instantiation of non-vector Event, MessageQueue, SharedVariable
-cf_function(),p_mq_AppToCtrl("p_mq_AppToCtrl"),p_mq_AppToHTTP("p_mq_AppToHTTP"),p_mq_HTTPToApp("p_mq_HTTPToApp"),p_mq_RTPToApp("p_mq_RTPToApp"),p_mq_Request("p_mq_Request"),p_mq_Response("p_mq_Response"),p_mq_Video("p_mq_Video"){
+cf_function(),p_mq_AppToCtrl("p_mq_AppToCtrl"),p_mq_AppToHTTP("p_mq_AppToHTTP"),p_mq_HTTPToApp("p_mq_HTTPtoApp"),p_mq_RTPToApp("p_mq_RTPtoApp"),p_mq_Req("p_mq_Req"),p_mq_Response("p_mq_Response"),p_mq_Video("p_mq_Video"){
 cf_function_container::init();
 //instantiation of models
 CallApplication = new cfm_callapplication("CallApplication");
@@ -32,11 +32,11 @@ VideoApplication = new cfm_videoapplication("VideoApplication");
 //model connect to port
 CallApplication->p_mq_AppToCtrl(p_mq_AppToCtrl);
 CallApplication->p_mq_AppToHTTP(p_mq_AppToHTTP);
-CallApplication->p_mq_HTTPToApp(p_mq_HTTPToApp);
-CallApplication->p_mq_Request(p_mq_Request);
+CallApplication->p_mq_HTTPtoApp(p_mq_HTTPtoApp);
+CallApplication->p_mq_Req(p_mq_Req);
 CallApplication->p_mq_Response(p_mq_Response);
 //model connect to port
-VideoApplication->p_mq_RTPToApp(p_mq_RTPToApp);
+VideoApplication->p_mq_RTPToApp(p_mq_RTPtoApp);
 VideoApplication->p_mq_Video(p_mq_Video);
 cf_function_container::elab_end();
 }

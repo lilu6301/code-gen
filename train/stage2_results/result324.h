@@ -18,18 +18,19 @@
 #include "dt/cft_defdata_in.h"
 #include "dt/cft_defdataout_in.h"
 #include "dt/cft_defreadwrite_in.h"
+#include "dt/cft_defwr-ok_in.h"
 
 class cfm_bt_system : public cf_core::cf_function {
 public:
-typedef cf_core::cf_shared_variable<cft_DefData> sv_Data_t;
-typedef cf_core::cf_message_queue<cft_DefDataIn> mq_DataIn_t;
-typedef cf_core::cf_message_queue<cft_DefDataOut> mq_DataOut_t;
-typedef cf_core::cf_message_queue<cft_DefReadWrite> mq_ReadWrite_t;
-typedef cf_core::cf_event ev_WrOK_t;
 
 typedef cf_core::cf_mq_initiator_socket<cfm_bt_system, cft_defbaseband> p_mq_BaseBand_In_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_bt_system, cft_defbaseband> p_mq_BaseBand_Out_t;
 typedef cf_core::cf_ev_initiator_socket<cfm_bt_system> p_ev_startEv_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_bt_system, cft_defdata> p_mq_Data_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_bt_system, cft_defdatain> p_mq_DataIn_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_bt_system, cft_defdataout> p_mq_DataOut_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_bt_system, cft_defreadwrite> p_mq_ReadWrite_t;
+typedef cf_core::cf_ev_initiator_socket<cfm_bt_system> p_ev_WrOK_t;
 
 /// constructor
 cfm_bt_system(sc_core::sc_module_name name);
@@ -40,6 +41,11 @@ virtual ~cfm_bt_system(void);
 p_mq_BaseBand_In_t p_mq_BaseBand_In;
 p_mq_BaseBand_Out_t p_mq_BaseBand_Out;
 p_ev_startEv_t p_ev_startEv;
+p_mq_Data_t p_mq_Data;
+p_mq_DataIn_t p_mq_DataIn;
+p_mq_DataOut_t p_mq_DataOut;
+p_mq_ReadWrite_t p_mq_ReadWrite;
+p_ev_WrOK_t p_ev_WrOK;
 
 cfm_bt_stack *BT_Stack;
 cfm_filesystem *FileSystem;
@@ -49,11 +55,6 @@ void cb_init_attributes(void);
 void cb_init_local_vars(void);
 
 public:
-sv_Data_t sv_Data;
-mq_DataIn_t mq_DataIn;
-mq_DataOut_t mq_DataOut;
-mq_ReadWrite_t mq_ReadWrite;
-ev_WrOK_t ev_WrOK;
 };
 #endif
 //<#!@READ-ONLY-SECTION-END@!#>

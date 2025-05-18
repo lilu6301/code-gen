@@ -23,49 +23,34 @@ using namespace cf_core;
 //@{
 cfm_backend ::cfm_backend() : 
 //instantiation of non-vector Event, MessageQueue, SharedVariable
-cf_function(),ev_RequestCounter("RequestCounter"),mq_RequestInformation("RequestInformation"),mq_Requests2Memory("Requests2Memory"),p_mq_DDRCommand("p_mq_DDRCommand"),p_mq_DQs("p_mq_DQs"),p_mq_DataRead("p_mq_DataRead"),p_mq_MemReadRequest("p_mq_MemReadRequest"),p_mq_MemWriteRequest("p_mq_MemWriteRequest"),p_mq_WriteAck("p_mq_WriteAck"){
+cf_function(),p_mq_DQs("p_mq_DQs"),p_mq_DataRead("p_mq_DataRead"),p_mq_MemReadRequest("p_mq_MemReadRequest"),p_mq_MemWriteRequest("p_mq_MemWriteRequest"),p_mq_ReqCounter("p_mq_ReqCounter"),p_mq_ReqInformation("p_mq_ReqInformation"),p_mq_Requests2Memory("p_mq_Requests2Memory"),p_mq_WriteAck("p_mq_WriteAck"),sv_ListRequestsPtr("ListRequestsPtr"),sv_MemoryStatus("MemoryStatus"),ev_ReqCounter("ReqCounter"),mq_ReqInformation("ReqInformation"),mq_Requests2Memory("Requests2Memory"),sv_WriteAck("WriteAck"){
 cf_function_container::init();
 //instantiation of models
 Arbitration = new cfm_arbitration("Arbitration");
 CollectRequests = new cfm_collectrequests("CollectRequests");
 DDRCommandGeneration = new cfm_ddrcommandgeneration("DDRCommandGeneration");
 ResponseForward = new cfm_responseforward("ResponseForward");
-//instantiation of relations
-for (cf_count i = 0; i < (cf_count)( M_Nbr + 1); i++) {
-		mq_MemoryStatus_t* module = new mq_MemoryStatus_t(
-				cf_string("MemoryStatus[%d]", i).c_str());
-		CF_ASSERT (module)
-		mq_MemoryStatus_vec.push_back(module);
-	}
 //connections
-//model connect to relation
-Arbitration->p_sv_ListRequestsPtr(mq_ListRequestsPtr.p_target_socket);
-Arbitration->p_ev_RequestCounter(ev_RequestCounter.p_target_socket);
-Arbitration->p_mq_RequestInformation(mq_RequestInformation.p_target_socket);
-Arbitration->p_mq_Requests2Memory(mq_Requests2Memory.p_target_socket);
 //model connect to port
-Arbitration->p_mq_WriteAck(p_mq_WriteAck);
-//model connect to relation
-CollectRequests->p_sv_ListRequestsPtr(mq_ListRequestsPtr.p_target_socket);
-CollectRequests->p_ev_RequestCounter(ev_RequestCounter.p_target_socket);
+Arbitration->p_sv_ListRequestsPtr(sv_ListRequestsPtr.p_target_socket);
+Arbitration->p_ev_ReqCounter(ev_ReqCounter.p_target_socket);
+Arbitration->p_mq_ReqInformation(mq_ReqInformation.p_target_socket);
+Arbitration->p_mq_Requests2Memory(mq_Requests2Memory.p_target_socket);
+Arbitration->p_sv_WriteAck(sv_WriteAck.p_target_socket);
 //model connect to port
 CollectRequests->p_mq_MemReadRequest(p_mq_MemReadRequest);
 CollectRequests->p_mq_MemWriteRequest(p_mq_MemWriteRequest);
-//model connect to relation
-for (cf_count i = 0; i < (cf_count)( M_Nbr + 1); i++) {
-		DDRCommandGeneration->p_sv_MemoryStatus(mq_MemoryStatus_vec[i]->p_target_socket);
-	}
-DDRCommandGeneration->p_mq_Requests2Memory(mq_Requests2Memory.p_target_socket);
 //model connect to port
-DDRCommandGeneration->p_mq_DDRCommand(p_mq_DDRCommand);
-//model connect to relation
-ResponseForward->p_mq_RequestInformation(mq_RequestInformation.p_target_socket);
+DDRCommandGeneration->p_mq_DQs(p_mq_DQs);
+DDRCommandGeneration->p_mq_MemReadRequest(p_mq_MemReadRequest);
+DDRCommandGeneration->p_mq_MemWriteRequest(p_mq_MemWriteRequest);
+//model connect to port
 ResponseForward->p_mq_DataRead(p_mq_DataRead);
-ResponseForward->p_mq_WriteAck(p_mq_WriteAck);
-//model connect to port
 ResponseForward->p_mq_DQs(p_mq_DQs);
-ResponseForward->p_mq_DataRead(p_mq_DataRead);
-ResponseForward->p_mq_WriteAck(p_mq_WriteAck);
+ResponseForward->p_mq_ReqCounter(p_mq_ReqCounter);
+ResponseForward->p_mq_ReqInformation(mq_ReqInformation.p_target_socket);
+ResponseForward->p_mq_Requests2Memory(mq_Requests2Memory.p_target_socket);
+ResponseForward->p_sv_WriteAck(sv_WriteAck.p_target_socket);
 cf_function_container::elab_end();
 }
 //@}
@@ -83,11 +68,6 @@ delete Arbitration;
 delete CollectRequests;
 delete DDRCommandGeneration;
 delete ResponseForward;
-//deconstructor for vector relation
-for (vector<mq_MemoryStatus_t*>::const_iterator vi = mq_MemoryStatus_vec.begin();
-			vi!= mq_MemoryStatus_vec.end(); vi++) {
-		delete (*vi);
-	}
 }
 
 

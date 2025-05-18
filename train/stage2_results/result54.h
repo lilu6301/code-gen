@@ -8,21 +8,21 @@
 #define COFS_MODEL_UMTS_RECEIVE
 
 
-#include "cfm_ums_tms_receive_global.h"
-#include "cfm_ums_tms_receive_global_types.h"
+#include "cfm_ums_receive_global.h"
+#include "cfm_ums_receive_global_types.h"
 #include <vector>
 #include "cofluent.h"
 #include "dt/cft_defcall_in.h"
 
-class cfm_ums_tms_receive : public cf_core::cf_function {
+class cfm_ums_receive : public cf_core::cf_function {
 public:
 
 
 /// constructor
-cfm_ums_tms_receive(sc_core::sc_module_name name);
+cfm_ums_receive(sc_core::sc_module_name name);
 
 /// destructor
-virtual ~cfm_ums_tms_receive(void);
+virtual ~cfm_ums_receive(void);
 
 
 protected:

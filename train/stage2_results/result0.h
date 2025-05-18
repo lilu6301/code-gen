@@ -20,7 +20,7 @@
 
 class cfm_softwaredefinedradioapp : public cf_core::cf_application {
 public:
-typedef cf_core::cf_message_queue<cft_DefVideo> mq_NetToDVB_t;
+typedef cf_core::cf_message_queue<cft_DefCall> mq_NetToDVB_t;
 typedef cf_core::cf_message_queue<cft_DefCall> mq_NetToUMTS_t;
 typedef cf_core::cf_message_queue<cft_DefCall> mq_Request_t;
 typedef cf_core::cf_message_queue<cft_DefCall> mq_Response_t;

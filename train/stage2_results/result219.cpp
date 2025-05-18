@@ -1,4 +1,4 @@
-!@READ-ONLY-SECTION-START@!#>
+@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_rack
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -23,7 +23,7 @@ using namespace cf_core;
 //@{
 cfm_rack ::cfm_rack() : 
 //instantiation of non-vector Event, MessageQueue, SharedVariable
-cf_function(),mq_MsgQServerToToRSwitch("MsgQServerToToRSwitch"),mq_MsgQToServer("MsgQToServer"),p_mq_MsgQToAggSwitch("p_mq_MsgQToAggSwitch"),p_mq_MsgQToRack("p_mq_MsgQToRack"){
+cf_function(),p_mq_MsgQServerToToRSwitch("p_mq_MsgQServerToToRSwitch"),p_mq_MsgQToServer("p_mq_MsgQToServer"){
 cf_function_container::init();
 //instantiation of models
 for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
@@ -35,16 +35,14 @@ for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
 ToRSwitch = new cfm_torswitch("ToRSwitch");
 //instantiation of relations
 for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
-		mq_MsgQServerToToRSwitch_t* module = new mq_MsgQServerToToRSwitch_t(
-				cf_string("MsgQServerToToRSwitch[%d]", i).c_str());
-		CF_ASSERT (module)
-		mq_MsgQServerToToRSwitch_vec.push_back(module);
+		MessageQueue<cft_DefPacket> mq_MsgQServerToToRSwitch_t;
+		CF_ASSERT (mq_MsgQServerToToRSwitch_t)
+		mq_MsgQServerToToRSwitch_vec.push_back(mq_MsgQServerToToRSwitch_t);
 	}
 for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
-		mq_MsgQToServer_t* module = new mq_MsgQToServer_t(
-				cf_string("MsgQToServer[%d]", i).c_str());
-		CF_ASSERT (module)
-		mq_MsgQToServer_vec.push_back(module);
+		MessageQueue<cft_DefPacket> mq_MsgQToServer_t;
+		CF_ASSERT (mq_MsgQToServer_t)
+		mq_MsgQToServer_vec.push_back(mq_MsgQToServer_t);
 	}
 //connections
 for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
@@ -66,9 +64,6 @@ for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
 for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
 		ToRSwitch->p_mq_MsgQToServer(mq_MsgQToServer_vec[i]->p_target_socket);
 	}
-//model connect to port
-ToRSwitch->p_mq_MsgQToAggSwitch(p_mq_MsgQToAggSwitch);
-ToRSwitch->p_mq_MsgQToRack(p_mq_MsgQToRack);
 cf_function_container::elab_end();
 }
 //@}

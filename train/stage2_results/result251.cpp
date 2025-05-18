@@ -1,4 +1,5 @@
-/<#!@READ-ONLY-SECTION-START@!#>
+
+//<#!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_producer
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -23,22 +24,21 @@ using namespace cf_core;
 //@{
 cfm_producer ::cfm_producer() : 
 //instantiation of non-vector Event, MessageQueue, SharedVariable
-cf_function(),ev_Req("Req"),p_mq_Ack("p_mq_Ack"),p_mq_Msg("p_mq_Msg"),sv_DataVar("DataVar"),sv_TestProd("TestProd"){
+cf_function(),p_mq_Ack("p_mq_Ack"),p_mq_Msg("p_mq_Msg"),sv_DataVar("DataVar"),ev_Req("Req"),sv_TestProd("TestProd"){
 cf_function_container::init();
 //instantiation of models
 Generator = new cfm_generator("Generator");
 Sender = new cfm_sender("Sender");
 //connections
-//model connect to relation
+//model connect to port
 Generator->p_sv_DataVar(sv_DataVar.p_target_socket);
 Generator->p_ev_Req(ev_Req.p_target_socket);
 Generator->p_sv_TestProd(sv_TestProd.p_target_socket);
-//model connect to relation
-Sender->p_sv_DataVar(sv_DataVar.p_target_socket);
-Sender->p_ev_Req(ev_Req.p_target_socket);
 //model connect to port
 Sender->p_mq_Ack(p_mq_Ack);
 Sender->p_mq_Msg(p_mq_Msg);
+Sender->p_sv_DataVar(sv_DataVar.p_target_socket);
+Sender->p_ev_Req(ev_Req.p_target_socket);
 cf_function_container::elab_end();
 }
 //@}

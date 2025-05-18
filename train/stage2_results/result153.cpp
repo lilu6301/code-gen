@@ -1,4 +1,4 @@
-!@READ-ONLY-SECTION-START@!#>
+@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_clientside
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -23,7 +23,7 @@ using namespace cf_core;
 //@{
 cfm_clientside ::cfm_clientside() : 
 //instantiation of non-vector Event, MessageQueue, SharedVariable
-cf_function(),mq_BRESPin("BRESPin"),mq_RDATAin("RDATAin"),p_mq_ARADDRchn("p_mq_ARADDRchn"),p_mq_AWADDRchn("p_mq_AWADDRchn"),p_mq_BRESPchn("p_mq_BRESPchn"),p_mq_RDATAchn("p_mq_RDATAchn"),p_mq_WDATAchn("p_mq_WDATAchn"){
+cf_function(),p_mq_ARADDRchn("p_mq_ARADDRchn"),p_mq_AWADDRchn("p_mq_AWADDRchn"),p_mq_BRESPchn("p_mq_BRESPchn"),p_mq_RDATAchn("p_mq_RDATAchn"),p_mq_WDATAchn("p_mq_WDATAchn"){
 cf_function_container::init();
 //instantiation of models
 for (cf_count i = 0; i < (cf_count)( C_Nbr + 1); i++) {
@@ -36,45 +36,37 @@ RDDmux = new cfm_rddmux("RDDmux");
 WRDmux = new cfm_wrdmux("WRDmux");
 //instantiation of relations
 for (cf_count i = 0; i < (cf_count)( C_Nbr + 1); i++) {
-		mq_BRESPin_t* module = new mq_BRESPin_t(
-				cf_string("BRESPin[%d]", i).c_str());
-		CF_ASSERT (module)
-		mq_BRESPin_vec.push_back(module);
+		MessageQueue<cft_DefBRESPchn> mq_BRESP_t;
+		c++:
+		mq_BRESP_t = MessageQueue<cft_DefBRESPchn>("BRESP[%d]", i).c_str());
+		p_mq_BRESPchn(mq_BRESP_t.p_target_socket);
 	}
 for (cf_count i = 0; i < (cf_count)( C_Nbr + 1); i++) {
-		mq_RDATAin_t* module = new mq_RDATAin_t(
-				cf_string("RDATAin[%d]", i).c_str());
-		CF_ASSERT (module)
-		mq_RDATAin_vec.push_back(module);
+		MessageQueue<cft_DefRDATAchn> mq_RDATA_t;
+		c++:
+		mq_RDATA_t = MessageQueue<cft_DefRDATAchn>("RDATA[%d]", i).c_str());
+		p_mq_RDATAchn(mq_RDATA_t.p_target_socket);
 	}
 //connections
 for (cf_count i = 0; i < (cf_count)( C_Nbr + 1); i++) {
 		cfm_device* module = Device_vec[i];
 		if (module!= nullptr) {
-//model connect to relation
-for (cf_count j = 0; j < (cf_count)( C_Nbr + 1); j++) {
-				module->p_mq_BRESPin(mq_BRESPin_vec[j]->p_target_socket);
-			}
-for (cf_count j = 0; j < (cf_count)( C_Nbr + 1); j++) {
-				module->p_mq_RDATAin(mq_RDATAin_vec[j]->p_target_socket);
-			}
 //model connect to port
 module->p_mq_ARADDRchn(p_mq_ARADDRchn);
 module->p_mq_AWADDRchn(p_mq_AWADDRchn);
-module->p_mq_BDATAchn(p_mq_BDATAchn);
+module->p_mq_BRESPchn(p_mq_BRESPchn);
+module->p_mq_RDATAchn(p_mq_RDATAchn);
+module->p_mq_WDATAchn(p_mq_WDATAchn);
 }
 }
-//model connect to relation
+//model connect to port
 for (cf_count i = 0; i < (cf_count)( C_Nbr + 1); i++) {
-		RDDmux->p_mq_RDATAin(mq_RDATAin_vec[i]->p_target_socket);
+		RDDmux->p_mq_RDATA(mq_RDATA_vec[i]->p_target_socket);
 	}
 //model connect to port
-RDDmux->p_mq_RDATAchn(p_mq_RDATAchn);
-//model connect to relation
 for (cf_count i = 0; i < (cf_count)( C_Nbr + 1); i++) {
-		WRDmux->p_mq_BRESPin(mq_BRESPin_vec[i]->p_target_socket);
+		WRDmux->p_mq_BRESP(mq_BRESP_vec[i]->p_target_socket);
 	}
-//model connect to port
 WRDmux->p_mq_BRESPchn(p_mq_BRESPchn);
 cf_function_container::elab_end();
 }
@@ -96,12 +88,12 @@ for (vector<cfm_device*>::const_iterator vi = Device_vec.begin();
 delete RDDmux;
 delete WRDmux;
 //deconstructor for vector relation
-for (vector<mq_BRESPin_t*>::const_iterator vi = mq_BRESPin_vec.begin();
-			vi!= mq_BRESPin_vec.end(); vi++) {
+for (vector<mq_BRESP_t*>::const_iterator vi = mq_BRESP_vec.begin();
+			vi!= mq_BRESP_vec.end(); vi++) {
 		delete (*vi);
 	}
-for (vector<mq_RDATAin_t*>::const_iterator vi = mq_RDATAin_vec.begin();
-			vi!= mq_RDATAin_vec.end(); vi++) {
+for (vector<mq_RDATA_t*>::const_iterator vi = mq_RDATA_vec.begin();
+			vi!= mq_RDATA_vec.end(); vi++) {
 		delete (*vi);
 	}
 }

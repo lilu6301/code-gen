@@ -23,25 +23,22 @@ using namespace cf_core;
 //@{
 cfm_hwdevicetest ::cfm_hwdevicetest() : 
 //instantiation of non-vector Event, MessageQueue, SharedVariable
-cf_function(),ev_startProcess("startProcess"),mq_inputFrame("inputFrame"),mq_outputFrame("outputFrame"),p_sv_inputStream("p_sv_inputStream"),p_sv_outputStream("p_sv_outputStream"),sv_processingMode("processingMode"){
+cf_function(),p_ev_startProcess("p_ev_startProcess"),p_mq_inputFrame("p_mq_inputFrame"),p_mq_outputFrame("p_mq_outputFrame"),p_sv_processingMode("p_sv_processingMode"){
 cf_function_container::init();
 //instantiation of models
 hwModel = new cfm_hwmodel("hwModel");
 hwTestBench = new cfm_hwtestbench("hwTestBench");
 //connections
-//model connect to relation
-hwModel->p_mq_inputFrame(mq_inputFrame.p_target_socket);
-hwModel->p_mq_outputFrame(mq_outputFrame.p_target_socket);
-hwModel->p_sv_processingMode(sv_processingMode.p_target_socket);
-hwModel->p_ev_startProcess(ev_startProcess.p_target_socket);
-//model connect to relation
-hwTestBench->p_mq_inputFrame(mq_inputFrame.p_target_socket);
-hwTestBench->p_mq_outputFrame(mq_outputFrame.p_target_socket);
-hwTestBench->p_sv_processingMode(sv_processingMode.p_target_socket);
-hwTestBench->p_ev_startProcess(ev_startProcess.p_target_socket);
 //model connect to port
-hwTestBench->p_mq_inputStream(p_mq_inputStream);
-hwTestBench->p_mq_outputStream(p_mq_outputStream);
+hwModel->p_mq_inputFrame(p_mq_inputFrame);
+hwModel->p_mq_outputFrame(p_mq_outputFrame);
+hwModel->p_mq_processingMode(p_mq_processingMode);
+hwModel->p_mq_startProcess(p_mq_startProcess);
+//model connect to port
+hwTestBench->p_mq_inputFrame(p_mq_inputFrame);
+hwTestBench->p_mq_outputFrame(p_mq_outputFrame);
+hwTestBench->p_mq_processingMode(p_mq_processingMode);
+hwTestBench->p_mq_startProcess(p_mq_startProcess);
 cf_function_container::elab_end();
 }
 //@}

@@ -21,23 +21,18 @@
 
 class cfm_networks : public cf_core::cf_function {
 public:
+
 typedef cf_core::cf_event ev_BurstClock_t;
+typedef cf_core::cf_message_queue<cft_DefCall> mq_NetToDVB_t;
+typedef cf_core::cf_message_queue<cft_DefCall> mq_NetToUMTS_t;
 typedef cf_core::cf_shared_variable<cft_DefNet> sv_VideoFiles_t;
 typedef cf_core::cf_message_queue<cft_DefNet> mq_VideoNet_t;
-
-typedef cf_core::cf_mq_initiator_socket<cfm_networks, cft_defvideo> p_mq_NetToDVB_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_networks, cft_defcall> p_mq_NetToUMTS_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_networks, cft_defvideo> p_mq_UMTSToNet_t;
 
 /// constructor
 cfm_networks(sc_core::sc_module_name name);
 
 /// destructor
 virtual ~cfm_networks(void);
-
-p_mq_NetToDVB_t p_mq_NetToDVB;
-p_mq_NetToUMTS_t p_mq_NetToUMTS;
-p_mq_UMTSToNet_t p_mq_UMTSToNet;
 
 cfm_broadcastnetwork *BroadcastNetwork;
 cfm_clockgenerator *ClockGenerator;
@@ -49,6 +44,8 @@ void cb_init_local_vars(void);
 
 public:
 ev_BurstClock_t ev_BurstClock;
+mq_NetToDVB_t mq_NetToDVB;
+mq_NetToUMTS_t mq_NetToUMTS;
 sv_VideoFiles_t sv_VideoFiles;
 mq_VideoNet_t mq_VideoNet;
 };

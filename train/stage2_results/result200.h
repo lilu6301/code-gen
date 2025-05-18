@@ -12,7 +12,7 @@
 #include "cfm_ddrcommandgeneration_global_types.h"
 #include <vector>
 #include "cofluent.h"
-#include "dt/cft_defddrcommand_in.h"
+#include "dt/cft_defdrcommand_in.h"
 #include "dt/cft_defmemorystatus_in.h"
 #include "dt/cft_defrequests2memory_in.h"
 

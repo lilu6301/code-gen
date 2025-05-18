@@ -23,32 +23,23 @@ using namespace cf_core;
 //@{
 cfm_callprotocolstack ::cfm_callprotocolstack() : 
 //instantiation of non-vector Event, MessageQueue, SharedVariable
-cf_function(),mq_HTTPToIP("HTTPToIP"),mq_IPToHTTP("IPToHTTP"),mq_IPToUMTS("IPToUMTS"),mq_UMTSToIP("UMTSToIP"),p_mq_AppToHTTP("p_mq_AppToHTTP"),p_mq_HTTPToApp("p_mq_HTTPToApp"),p_mq_NetToUMTS("p_mq_NetToUMTS"),p_mq_UMTSToNet("p_mq_UMTSToNet"){
+cf_function(),p_mq_AppToHTTP("p_mq_AppToHTTP"),p_mq_HTTPToApp("p_mq_HTTPToApp"),p_mq_IPToHTTP("p_mq_IPtoHTTP"),p_mq_IPtoUMTS("p_mq_IPtoUMTS"),p_mq_NetToUMTS("p_mq_NetToUMTS"),p_mq_UMTSToIP("p_mq_UMTSToIP"),p_mq_UMTSToNet("p_mq_UMTSToNet"){
 cf_function_container::init();
 //instantiation of models
-HTTPTCP = new cfm_httptcp("HTTPTCP");
+HTTPTCP = new cfm_hattptcp("HTTPTCP");
 IPCall = new cfm_ipcall("IPCall");
-UMTS = new cfm_ums("UMTS");
+UMTS = new cfm_uts("UMTS");
 //connections
-//model connect to relation
-HTTPTCP->p_mq_HTTPToIP(mq_HTTPToIP.p_target_socket);
-HTTPTCP->p_mq_IPToHTTP(mq_IPToHTTP.p_target_socket);
 //model connect to port
 HTTPTCP->p_mq_AppToHTTP(p_mq_AppToHTTP);
 HTTPTCP->p_mq_HTTPToApp(p_mq_HTTPToApp);
-//model connect to relation
-IPCall->p_mq_HTTPToIP(mq_HTTPToIP.p_target_socket);
-IPCall->p_mq_IPToHTTP(mq_IPToHTTP.p_target_socket);
-IPCall->p_mq_IPToUMTS(mq_IPToUMTS.p_target_socket);
-IPCall->p_mq_UMTSToIP(mq_UMTSToIP.p_target_socket);
 //model connect to port
-IPCall->p_mq_NetToUMTS(p_mq_NetToUMTS);
-IPCall->p_mq_UMTSToNet(p_mq_UMTSToNet);
-//model connect to relation
-UMTS->p_mq_IPToUMTS(mq_IPToUMTS.p_target_socket);
-UMTS->p_mq_UMTSToIP(mq_UMTSToIP.p_target_socket);
+IPCall->p_mq_IPtoHTTP(p_mq_IPtoHTTP);
+IPCall->p_mq_IPtoUMTS(p_mq_IPtoUMTS);
 //model connect to port
+UMTS->p_mq_IPtoUMTS(p_mq_IPtoUMTS);
 UMTS->p_mq_NetToUMTS(p_mq_NetToUMTS);
+UMTS->p_mq_UMTSToIP(p_mq_UMTSToIP);
 UMTS->p_mq_UMTSToNet(p_mq_UMTSToNet);
 cf_function_container::elab_end();
 }

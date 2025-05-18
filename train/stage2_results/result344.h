@@ -13,7 +13,7 @@
 #include <vector>
 #include "cofluent.h"
 #include "dt/cft_defdataout_in.h"
-#include "dt/cft_defobex_out.h"
+#include "dt/cft_defobex_out_in.h"
 #include "dt/cft_defreadwrite_in.h"
 
 class cfm_obex_send : public cf_core::cf_function {

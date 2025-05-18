@@ -1,4 +1,5 @@
- //<#!@READ-ONLY-SECTION-START@!#>
+};
+//<#!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_consumer
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation

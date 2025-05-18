@@ -14,6 +14,7 @@
 #include "cofluent.h"
 #include "dt/cft_defdata_in.h"
 #include "dt/cft_defmsgq_in.h"
+#include "dt/cft_initiator_in.h"
 
 class cfm_writer : public cf_core::cf_function {
 public:

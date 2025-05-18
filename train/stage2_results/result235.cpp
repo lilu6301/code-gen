@@ -23,7 +23,7 @@ using namespace cf_core;
 //@{
 cfm_torswitch ::cfm_torswitch() : 
 //instantiation of non-vector Event, MessageQueue, SharedVariable
-cf_function(),mq_MsgQInboundAGGSwitch("MsgQInboundAGGSwitch"),mq_MsgQInboundServer("MsgQInboundServer"),mq_MsgQOutboundAGGSwitch("MsgQOutboundAGGSwitch"),mq_MsgQOutboundServer("MsgQOutboundServer"),p_mq_MsgQServerToToRSwitch("p_mq_MsgQServerToToRSwitch"),p_mq_MsgQToAggSwitch("p_mq_MsgQToAggSwitch"),p_mq_MsgQToRack("p_mq_MsgQToRack"),p_mq_MsgQToServer("p_mq_MsgQToServer"){
+cf_function(),p_mq_MsgQInboundAGGSwitch("p_mq_MsgQInboundAGGSwitch"),p_mq_MsgQInboundServer("p_mq_MsgQInboundServer"),p_mq_MsgQOutboundAGGSwitch("p_mq_MsgQOutboundAGGSwitch"),p_mq_MsgQOutboundServer("p_mq_MsgQOutboundServer"){
 cf_function_container::init();
 //instantiation of models
 InboundAGGSwitch = new cfm_inboundaggswitch("InboundAGGSwitch");
@@ -43,56 +43,44 @@ for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
 RoutingFunction = new cfm_routingfunction("RoutingFunction");
 //instantiation of relations
 for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
-		mq_MsgQInboundServer_t* module = new mq_MsgQInboundServer_t(
-				cf_string("MsgQInboundServer[%d]", i).c_str());
-		CF_ASSERT (module)
-		mq_MsgQInboundServer_vec.push_back(module);
+		MessageQueue<cft_DefPacket> mq_MsgQInboundServer_t;
 	}
 for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
-		mq_MsgQOutboundServer_t* module = new mq_MsgQOutboundServer_t(
-				cf_string("MsgQOutboundServer[%d]", i).c_str());
-		CF_ASSERT (module)
-		mq_MsgQOutboundServer_vec.push_back(module);
+		MessageQueue<cft_DefPacket> mq_MsgQOutboundServer_t;
 	}
 //connections
-//model connect to relation
-InboundAGGSwitch->p_mq_MsgQInboundAGGSwitch(mq_MsgQInboundAGGSwitch.p_target_socket);
 //model connect to port
-InboundAGGSwitch->p_mq_MsgQToRack(p_mq_MsgQToRack);
+InboundAGGSwitch->p_mq_MsgQInboundAGGSwitch(p_mq_MsgQInboundAGGSwitch);
+InboundAGGSwitch->p_mq_MsgQToAggSwitch(p_mq_MsgQToAggSwitch);
+//model connect to port
 for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
 		cfm_inboundserver* module = InboundServer_vec[i];
 		if (module!= nullptr) {
-//model connect to relation
-for (cf_count j = 0; j < (cf_count)( dpServerPerRackNb + 1); j++) {
-				module->p_mq_MsgQInboundServer(mq_MsgQInboundServer_vec[j]->p_target_socket);
-			}
 //model connect to port
-module->p_mq_MsgQServerToToRSwitch(p_mq_MsgQServerToToRSwitch);
-}
-}
-//model connect to relation
-OutboundAGGSwitch->p_mq_MsgQOutboundAGGSwitch(mq_MsgQOutboundAGGSwitch.p_target_socket);
-//model connect to port
-OutboundAGGSwitch->p_mq_MsgQToAggSwitch(p_mq_MsgQToAggSwitch);
-for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
-		cfm_outboundserver* module = OutboundServer_vec[i];
-		if (module!= nullptr) {
-//model connect to relation
-for (cf_count j = 0; j < (cf_count)( dpServerPerRackNb + 1); j++) {
-				module->p_mq_MsgQOutboundServer(mq_MsgQOutboundServer_vec[j]->p_target_socket);
-			}
-//model connect to port
+module->p_mq_MsgQInboundServer_t(p_mq_MsgQInboundServer_t);
 module->p_mq_MsgQToServer(p_mq_MsgQToServer);
 }
 }
-//model connect to relation
-RoutingFunction->p_mq_MsgQInboundAGGSwitch(mq_MsgQInboundAGGSwitch.p_target_socket);
+//model connect to port
+OutboundAGGSwitch->p_mq_MsgQOutboundAGGSwitch(p_mq_MsgQOutboundAGGSwitch);
+OutboundAGGSwitch->p_mq_MsgQToAggSwitch(p_mq_MsgQToAggSwitch);
+//model connect to port
 for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
-		RoutingFunction->p_mq_MsgQInboundServer(mq_MsgQInboundServer_vec[i]->p_target_socket);
+		cfm_outboundserver* module = OutboundServer_vec[i];
+		if (module!= nullptr) {
+//model connect to port
+module->p_mq_MsgQOutboundServer_t(p_mq_MsgQOutboundServer_t);
+module->p_mq_MsgQToServer(p_mq_MsgQToServer);
+}
+}
+//model connect to port
+RoutingFunction->p_mq_MsgQInboundAGGSwitch(p_mq_MsgQInboundAGGSwitch);
+for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
+		RoutingFunction->p_mq_MsgQInboundServer_t(mq_MsgQInboundServer_vec[i]->p_target_socket);
 	}
-RoutingFunction->p_mq_MsgQOutboundAGGSwitch(mq_MsgQOutboundAGGSwitch.p_target_socket);
+RoutingFunction->p_mq_MsgQOutboundAGGSwitch(p_mq_MsgQOutboundAGGSwitch);
 for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
-		RoutingFunction->p_mq_MsgQOutboundServer(mq_MsgQOutboundServer_vec[i]->p_target_socket);
+		RoutingFunction->p_mq_MsgQOutboundServer_t(mq_MsgQOutboundServer_vec[i]->p_target_socket);
 	}
 cf_function_container::elab_end();
 }

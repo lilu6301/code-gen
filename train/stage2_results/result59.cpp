@@ -1,3 +1,4 @@
+;
 //<#!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_consumer

@@ -14,16 +14,16 @@
 #include "cofluent.h"
 #include "cfm_l2cap_receive.h"
 #include "cfm_l2cap_send.h"
-#include "dt/cft_defdl2cap_in.h"
-#include "dt/cft_defdl2cap_out.h"
+#include "dt/cft_defl2cap_in.h"
+#include "dt/cft_defl2cap_out.h"
 #include "dt/cft_defrfcomm_in.h"
 #include "dt/cft_defrfcomm_out.h"
 
 class cfm_l2cap_layer : public cf_core::cf_function {
 public:
 
-typedef cf_core::cf_mq_initiator_socket<cfm_l2cap_layer, cft_defdl2cap_in> p_mq_L2CAP_In_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_l2cap_layer, cft_defdl2cap_out> p_mq_L2CAP_Out_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_l2cap_layer, cft_defl2cap_in> p_mq_L2CAP_In_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_l2cap_layer, cft_defl2cap_out> p_mq_L2CAP_Out_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_l2cap_layer, cft_defrfcomm_in> p_mq_RFCOMM_In_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_l2cap_layer, cft_defrfcomm_out> p_mq_RFCOMM_Out_t;
 
