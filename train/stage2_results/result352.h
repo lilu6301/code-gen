@@ -13,8 +13,7 @@
 #include <vector>
 #include "cofluent.h"
 #include "dt/cft_defobex_out_in.h"
-#include "dt/cft_defrfomm_in.h"
-#include "dt/cft_defrfomm_out_in.h"
+#include "dt/cft_deffromrfc_in.h"
 
 class cfm_rfcomm_send : public cf_core::cf_function {
 public:

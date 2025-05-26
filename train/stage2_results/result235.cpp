@@ -1,4 +1,4 @@
-@READ-ONLY-SECTION-START@!#>
+//<#!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_torswitch
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -23,7 +23,7 @@ using namespace cf_core;
 //@{
 cfm_torswitch ::cfm_torswitch() : 
 //instantiation of non-vector Event, MessageQueue, SharedVariable
-cf_function(),p_mq_MsgQInboundAGGSwitch("p_mq_MsgQInboundAGGSwitch"),p_mq_MsgQInboundServer("p_mq_MsgQInboundServer"),p_mq_MsgQOutboundAGGSwitch("p_mq_MsgQOutboundAGGSwitch"),p_mq_MsgQOutboundServer("p_mq_MsgQOutboundServer"){
+cf_function(),p_mq_MsgQInboundAGGSwitch("p_mq_MsgQInboundAGGSwitch"),p_mq_MsgQInboundServer("p_mq_MsgQInboundServer"),p_mq_MsgQOutboundAGGSwitch("p_mq_MsgQOutboundAGGSwitch"),p_mq_MsgQOutboundServer("p_mq_MsgQOutboundServer"),p_mq_MsgQServerToToRSwitch("p_mq_MsgQServerToToRSwitch"),p_mq_MsgQToAggSwitch("p_mq_MsgQToAggSwitch"),p_mq_MsgQToRack("p_mq_MsgQToRack"),p_mq_MsgQToServer("p_mq_MsgQToServer"){
 cf_function_container::init();
 //instantiation of models
 InboundAGGSwitch = new cfm_inboundaggswitch("InboundAGGSwitch");
@@ -43,44 +43,56 @@ for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
 RoutingFunction = new cfm_routingfunction("RoutingFunction");
 //instantiation of relations
 for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
-		MessageQueue<cft_DefPacket> mq_MsgQInboundServer_t;
+		mq_MsgQInboundServer_t* module = new mq_MsgQInboundServer_t(
+				cf_string("MsgQInboundServer[%d]", i).c_str());
+		CF_ASSERT (module)
+		mq_MsgQInboundServer_vec.push_back(module);
 	}
 for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
-		MessageQueue<cft_DefPacket> mq_MsgQOutboundServer_t;
+		mq_MsgQOutboundServer_t* module = new mq_MsgQOutboundServer_t(
+				cf_string("MsgQOutboundServer[%d]", i).c_str());
+		CF_ASSERT (module)
+		mq_MsgQOutboundServer_vec.push_back(module);
 	}
 //connections
 //model connect to port
 InboundAGGSwitch->p_mq_MsgQInboundAGGSwitch(p_mq_MsgQInboundAGGSwitch);
-InboundAGGSwitch->p_mq_MsgQToAggSwitch(p_mq_MsgQToAggSwitch);
-//model connect to port
+InboundAGGSwitch->p_mq_MsgQToRack(p_mq_MsgQToRack);
 for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
 		cfm_inboundserver* module = InboundServer_vec[i];
-		if (module!= nullptr) {
+		if (module != nullptr) {
 //model connect to port
-module->p_mq_MsgQInboundServer_t(p_mq_MsgQInboundServer_t);
-module->p_mq_MsgQToServer(p_mq_MsgQToServer);
+for (cf_count j = 0; j < (cf_count)( dpServerPerRackNb + 1); j++) {
+				module->p_mq_MsgQInboundServer(mq_MsgQInboundServer_vec[j]->p_target_socket);
+			}
+for (cf_count j = 0; j < (cf_count)( dpServerPerRackNb + 1); j++) {
+				module->p_mq_MsgQServerToToRSwitch(mq_MemReadRequest_vec[j]->p_target_socket);
+			}
 }
 }
 //model connect to port
 OutboundAGGSwitch->p_mq_MsgQOutboundAGGSwitch(p_mq_MsgQOutboundAGGSwitch);
 OutboundAGGSwitch->p_mq_MsgQToAggSwitch(p_mq_MsgQToAggSwitch);
-//model connect to port
 for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
 		cfm_outboundserver* module = OutboundServer_vec[i];
-		if (module!= nullptr) {
+		if (module != nullptr) {
 //model connect to port
-module->p_mq_MsgQOutboundServer_t(p_mq_MsgQOutboundServer_t);
-module->p_mq_MsgQToServer(p_mq_MsgQToServer);
+for (cf_count j = 0; j < (cf_count)( dpServerPerRackNb + 1); j++) {
+				module->p_mq_MsgQOutboundServer(mq_MsgQOutboundServer_vec[j]->p_target_socket);
+			}
+for (cf_count j = 0; j < (cf_count)( dpServerPerRackNb + 1); j++) {
+				module->p_mq_MsgQToServer(mq_MemReadRequest_vec[j]->p_target_socket);
+			}
 }
 }
-//model connect to port
-RoutingFunction->p_mq_MsgQInboundAGGSwitch(p_mq_MsgQInboundAGGSwitch);
+//model connect to relation
+RoutingFunction->p_mq_MsgQInboundAGGSwitch(mq_MsgQInboundAGGSwitch.p_target_socket);
 for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
-		RoutingFunction->p_mq_MsgQInboundServer_t(mq_MsgQInboundServer_vec[i]->p_target_socket);
+		RoutingFunction->p_mq_MsgQInboundServer(mq_MsgQInboundServer_vec[i]->p_target_socket);
 	}
-RoutingFunction->p_mq_MsgQOutboundAGGSwitch(p_mq_MsgQOutboundAGGSwitch);
+RoutingFunction->p_mq_MsgQOutboundAGGSwitch(mq_MsgQOutboundAGGSwitch.p_target_socket);
 for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
-		RoutingFunction->p_mq_MsgQOutboundServer_t(mq_MsgQOutboundServer_vec[i]->p_target_socket);
+		RoutingFunction->p_mq_MsgQOutboundServer(mq_MsgQOutboundServer_vec[i]->p_target_socket);
 	}
 cf_function_container::elab_end();
 }
@@ -97,22 +109,22 @@ cfm_torswitch::~cfm_torswitch(void) {
 //deconstruct for models
 delete InboundAGGSwitch;
 for (vector<cfm_inboundserver*>::const_iterator vi = InboundServer_vec.begin();
-			vi!= InboundServer_vec.end(); vi++) {
+			vi != InboundServer_vec.end(); vi++) {
 		delete (*vi);
 	}
 delete OutboundAGGSwitch;
 for (vector<cfm_outboundserver*>::const_iterator vi = OutboundServer_vec.begin();
-			vi!= OutboundServer_vec.end(); vi++) {
+			vi != OutboundServer_vec.end(); vi++) {
 		delete (*vi);
 	}
 delete RoutingFunction;
 //deconstructor for vector relation
 for (vector<mq_MsgQInboundServer_t*>::const_iterator vi = mq_MsgQInboundServer_vec.begin();
-			vi!= mq_MsgQInboundServer_vec.end(); vi++) {
+			vi != mq_MsgQInboundServer_vec.end(); vi++) {
 		delete (*vi);
 	}
 for (vector<mq_MsgQOutboundServer_t*>::const_iterator vi = mq_MsgQOutboundServer_vec.begin();
-			vi!= mq_MsgQOutboundServer_vec.end(); vi++) {
+			vi != mq_MsgQOutboundServer_vec.end(); vi++) {
 		delete (*vi);
 	}
 }

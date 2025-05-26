@@ -12,7 +12,7 @@
 #include "cfm_arbitration_global_types.h"
 #include <vector>
 #include "cofluent.h"
-#include "dt/cft_deflistrequestptr_in.h"
+#include "dt/cft_deflistrequestsptr_in.h"
 #include "dt/cft_defrequestinformation_in.h"
 #include "dt/cft_defrequests2memory_in.h"
 #include "dt/cft_defwriteack_in.h"

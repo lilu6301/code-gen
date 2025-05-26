@@ -1,4 +1,4 @@
-/<#!@READ-ONLY-SECTION-START@!#>
+ //<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -22,23 +22,17 @@
 class cfm_mobilephone : public cf_core::cf_function {
 public:
 
-typedef cf_core::cf_mq_initiator_socket<cfm_mobilephone, cft_defvideo> p_mq_HitToApp_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_mobilephone, cft_defcall> p_mq_NetToDVB_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_mobilephone, cft_defcall> p_mq_NetToUMTS_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_mobilephone, cft_defcall> p_mq_RTPToApp_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_mobilephone, cft_defvideo> p_mq_Video_t;
+typedef cf_core::cf_message_queue<cft_DefCall> mq_AppToCtrl_t;
+typedef cf_core::cf_message_queue<cft_DefCall> mq_AppToHTTP_t;
+typedef cf_core::cf_message_queue<cft_DefCall> mq_HTTPToApp_t;
+typedef cf_core::cf_message_queue<cft_DefVideo> mq_RTPToApp_t;
+typedef cf_core::cf_message_queue<cft_DefCall> mq_UMTSToNet_t;
 
 /// constructor
 cfm_mobilephone(sc_core::sc_module_name name);
 
 /// destructor
 virtual ~cfm_mobilephone(void);
-
-p_mq_HitToApp_t p_mq_HitToApp;
-p_mq_NetToDVB_t p_mq_NetToDVB;
-p_mq_NetToUMTS_t p_mq_NetToUMTS;
-p_mq_RTPToApp_t p_mq_RTPToApp;
-p_mq_Video_t p_mq_Video;
 
 cfm_applicationlayer *ApplicationLayer;
 cfm_callprotocolstack *CallProtocolStack;
@@ -50,6 +44,11 @@ void cb_init_attributes(void);
 void cb_init_local_vars(void);
 
 public:
+mq_AppToCtrl_t mq_AppToCtrl;
+mq_AppToHTTP_t mq_AppToHTTP;
+mq_HTTPToApp_t mq_HTTPToApp;
+mq_RTPToApp_t mq_RTPToApp;
+mq_UMTSToNet_t mq_UMTSToNet;
 };
 #endif
 //<#!@READ-ONLY-SECTION-END@!#>

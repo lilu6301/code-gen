@@ -1,4 +1,4 @@
-@READ-ONLY-SECTION-START@!#>
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -23,6 +23,9 @@
 
 class cfm_clientside : public cf_core::cf_function {
 public:
+
+typedef cf_core::cf_message_queue<cft_DefBRESPchn> mq_BRESPin_t;
+typedef cf_core::cf_message_queue<cft_DefRDATAchn> mq_RDATAin_t;
 
 typedef cf_core::cf_mq_initiator_socket<cfm_clientside, cft_defaraddrchn> p_mq_ARADDRchn_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_clientside, cft_defawaddrchn> p_mq_AWADDRchn_t;
@@ -51,6 +54,8 @@ void cb_init_attributes(void);
 void cb_init_local_vars(void);
 
 public:
+std::vector<mq_BRESPin_t *> mq_BRESPin_vec;
+std::vector<mq_RDATAin_t *> mq_RDATAin_vec;
 };
 #endif
 //<#!@READ-ONLY-SECTION-END@!#>

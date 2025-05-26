@@ -1,4 +1,4 @@
-@READ-ONLY-SECTION-START@!#>
+//<#!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_rack
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -23,7 +23,7 @@ using namespace cf_core;
 //@{
 cfm_rack ::cfm_rack() : 
 //instantiation of non-vector Event, MessageQueue, SharedVariable
-cf_function(),p_mq_MsgQServerToToRSwitch("p_mq_MsgQServerToToRSwitch"),p_mq_MsgQToServer("p_mq_MsgQToServer"){
+cf_function(),p_mq_MsgQServerToToRSwitch("p_mq_MsgQServerToToRSwitch"),p_mq_MsgQToAggSwitch("p_mq_MsgQToAggSwitch"),p_mq_MsgQToRack("p_mq_MsgQToRack"),p_mq_MsgQToServer("p_mq_MsgQToServer"){
 cf_function_container::init();
 //instantiation of models
 for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
@@ -35,19 +35,21 @@ for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
 ToRSwitch = new cfm_torswitch("ToRSwitch");
 //instantiation of relations
 for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
-		MessageQueue<cft_DefPacket> mq_MsgQServerToToRSwitch_t;
-		CF_ASSERT (mq_MsgQServerToToRSwitch_t)
-		mq_MsgQServerToToRSwitch_vec.push_back(mq_MsgQServerToToRSwitch_t);
+		mq_MsgQServerToToRSwitch_t* module = new mq_MsgQServerToToRSwitch_t(
+				cf_string("MsgQServerToToRSwitch[%d]", i).c_str());
+		CF_ASSERT (module)
+		mq_MsgQServerToToRSwitch_vec.push_back(module);
 	}
 for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
-		MessageQueue<cft_DefPacket> mq_MsgQToServer_t;
-		CF_ASSERT (mq_MsgQToServer_t)
-		mq_MsgQToServer_vec.push_back(mq_MsgQToServer_t);
+		mq_MsgQToServer_t* module = new mq_MsgQToServer_t(
+				cf_string("MsgQToServer[%d]", i).c_str());
+		CF_ASSERT (module)
+		mq_MsgQToServer_vec.push_back(module);
 	}
 //connections
 for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
 		cfm_server* module = Server_vec[i];
-		if (module!= nullptr) {
+		if (module != nullptr) {
 //model connect to relation
 for (cf_count j = 0; j < (cf_count)( dpServerPerRackNb + 1); j++) {
 				module->p_mq_MsgQServerToToRSwitch(mq_MsgQServerToToRSwitch_vec[j]->p_target_socket);
@@ -64,6 +66,9 @@ for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
 for (cf_count i = 0; i < (cf_count)( dpServerPerRackNb + 1); i++) {
 		ToRSwitch->p_mq_MsgQToServer(mq_MsgQToServer_vec[i]->p_target_socket);
 	}
+//model connect to port
+ToRSwitch->p_mq_MsgQToAggSwitch(p_mq_MsgQToAggSwitch);
+ToRSwitch->p_mq_MsgQToRack(p_mq_MsgQToRack);
 cf_function_container::elab_end();
 }
 //@}
@@ -78,17 +83,17 @@ cfm_rack::~cfm_rack(void) {
 //<#!@READ-ONLY-SECTION-START@!#>
 //deconstruct for models
 for (vector<cfm_server*>::const_iterator vi = Server_vec.begin();
-			vi!= Server_vec.end(); vi++) {
+			vi != Server_vec.end(); vi++) {
 		delete (*vi);
 	}
 delete ToRSwitch;
 //deconstructor for vector relation
 for (vector<mq_MsgQServerToToRSwitch_t*>::const_iterator vi = mq_MsgQServerToToRSwitch_vec.begin();
-			vi!= mq_MsgQServerToToRSwitch_vec.end(); vi++) {
+			vi != mq_MsgQServerToToRSwitch_vec.end(); vi++) {
 		delete (*vi);
 	}
 for (vector<mq_MsgQToServer_t*>::const_iterator vi = mq_MsgQToServer_vec.begin();
-			vi!= mq_MsgQToServer_vec.end(); vi++) {
+			vi != mq_MsgQToServer_vec.end(); vi++) {
 		delete (*vi);
 	}
 }

@@ -13,7 +13,7 @@
 #include <vector>
 #include "cofluent.h"
 #include "dt/cft_defdata_in.h"
-#include "dt/cft_defdata_out.h"
+#include "dt/cft_defdataout_in.h"
 #include "dt/cft_defreadwrite_in.h"
 
 class cfm_filesystem : public cf_core::cf_function {

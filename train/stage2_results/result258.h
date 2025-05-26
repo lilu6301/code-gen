@@ -1,4 +1,4 @@
-/<#!@READ-ONLY-SECTION-START@!#>
+ //<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -19,8 +19,8 @@
 
 class cfm_applicationmodelrefinement : public cf_core::cf_application {
 public:
-typedef cf_core::cf_message_queue<cft_DefMsg> mq_Ack_t;
-typedef cf_core::cf_message_queue<cft_DefAck> mq_Msg_t;
+typedef cf_core::cf_message_queue<cft_DefAck> mq_Ack_t;
+typedef cf_core::cf_message_queue<cft_DefMsg> mq_Msg_t;
 
 /// constructor
 cfm_applicationmodelrefinement(sc_core::sc_module_name name);

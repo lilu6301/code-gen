@@ -1,4 +1,4 @@
-#!@READ-ONLY-SECTION-START@!#>
+ //<#!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_bt_stack
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -23,7 +23,7 @@ using namespace cf_core;
 //@{
 cfm_bt_stack ::cfm_bt_stack() : 
 //instantiation of non-vector Event, MessageQueue, SharedVariable
-cf_function(),p_ev_Req("p_ev_Req"),p_ev_StartEv("p_ev_StartEv"),p_mq_BaseBand_In("p_mq_BaseBand_In"),p_mq_BaseBand_Out("p_mq_BaseBand_Out"),p_mq_DataIn("p_mq_DataIn"),p_mq_DataOut("p_mq_DataOut"),p_mq_L2CAP_In("p_mq_L2CAP_In"),p_mq_L2CAP_Out("p_mq_L2CAP_Out"),p_mq_OBEX_In("p_mq_OBEX_In"),p_mq_OBEX_Out("p_mq_OBEX_Out"),p_mq_RFCOMM_In("p_mq_RFCOMM_In"),p_mq_RFCOMM_Out("p_mq_RFCOMM_Out"),p_ev_WrOK("p_ev_WrOK"){
+cf_function(),p_ev_startEv("p_ev_startEv"),p_mq_BaseBand_In("p_mq_BaseBand_In"),p_mq_BaseBand_Out("p_mq_BaseBand_Out"),p_mq_DataIn("p_mq_DataIn"),p_mq_DataOut("p_mq_DataOut"),p_mq_L2CAP_In("p_mq_L2CAP_In"),p_mq_L2CAP_Out("p_mq_L2CAP_Out"),p_mq_OBEX_In("p_mq_OBEX_In"),p_mq_OBEX_Out("p_mq_OBEX_Out"),p_mq_RFCOMM_In("p_mq_RFCOMM_In"),p_mq_RFCOMM_Out("p_mq_RFCOMM_Out"),p_ev_WrOK("p_ev_WrOK"){
 cf_function_container::init();
 //instantiation of models
 BaseBand_Layer = new cfm_baseband_layer("BaseBand_Layer");
@@ -44,8 +44,9 @@ L2CAP_Layer->p_mq_RFCOMM_Out(p_mq_RFCOMM_Out);
 //model connect to port
 OBEX_Layer->p_mq_DataIn(p_mq_DataIn);
 OBEX_Layer->p_mq_DataOut(p_mq_DataOut);
-OBEX_Layer->p_mq_Req(p_mq_Req);
-OBEX_Layer->p_mq_StartEv(p_mq_StartEv);
+OBEX_Layer->p_mq_OBEX_In(p_mq_OBEX_In);
+OBEX_Layer->p_mq_OBEX_Out(p_mq_OBEX_Out);
+OBEX_Layer->p_mq_ReadWrite(p_mq_ReadWrite);
 OBEX_Layer->p_mq_WrOK(p_mq_WrOK);
 //model connect to port
 RFCOMM_Layer->p_mq_OBEX_In(p_mq_OBEX_In);

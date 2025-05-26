@@ -1,4 +1,4 @@
-READ-ONLY-SECTION-START@!#>
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -23,35 +23,27 @@ READ-ONLY-SECTION-START@!#>
 #include "dt/cft_defdqs_in.h"
 #include "dt/cft_defmemreadrequest_in.h"
 #include "dt/cft_defmemwriterequest_in.h"
-#include "dt/cft_defwriteack_in.h"
+#include "dt/cft_defrdatachn_in.h"
 #include "dt/cft_defwdatachn_in.h"
+#include "dt/cft_defwriteack_in.h"
 
 class cfm_memorycontroller : public cf_core::cf_function {
 public:
 
-typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defaraddrchn> p_mq_ARADDRchn_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defawaddrchn> p_mq_AWADDRchn_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defbrespchn> p_mq_BRESPchn_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defdqs> p_mq_DQs_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defmemreadrequest> p_mq_MemReadRequest_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defmemwriterequest> p_mq_MemWriteRequest_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defwriteack> p_mq_WriteAck_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_memorycontroller, cft_defwdatachn> p_mq_WDATAchn_t;
+typedef cf_core::cf_message_queue<cft_DefARADDRchn> mq_ARADDRin_t;
+typedef cf_core::cf_message_queue<cft_DefAWADDRchn> mq_AWADDRin_t;
+typedef cf_core::cf_message_queue<cft_DefDataRead> mq_DataRead_t;
+typedef cf_core::cf_message_queue<cft_DefMemReadRequest> mq_MemReadRequest_t;
+typedef cf_core::cf_message_queue<cft_DefMemWriteRequest> mq_MemWriteRequest_t;
+typedef cf_core::cf_message_queue<cft_DefRDATAchn> mq_RDATAchn_t;
+typedef cf_core::cf_message_queue<cft_DefWDATAchn> mq_WDATAin_t;
+typedef cf_core::cf_message_queue<cft_DefWriteAck> mq_WriteAck_t;
 
 /// constructor
 cfm_memorycontroller(sc_core::sc_module_name name);
 
 /// destructor
 virtual ~cfm_memorycontroller(void);
-
-p_mq_ARADDRchn_t p_mq_ARADDRchn;
-p_mq_AWADDRchn_t p_mq_AWADDRchn;
-p_mq_BRESPchn_t p_mq_BRESPchn;
-p_mq_DQs_t p_mq_DQs;
-p_mq_MemReadRequest_t p_mq_MemReadRequest;
-p_mq_MemWriteRequest_t p_mq_MemWriteRequest;
-p_mq_WriteAck_t p_mq_WriteAck;
-p_mq_WDATAchn_t p_mq_WDATAchn;
 
 cfm_backend *BackEnd;
 std::vector<cfm_frontend *> MemoryController_vec;
@@ -66,12 +58,12 @@ void cb_init_local_vars(void);
 public:
 std::vector<mq_ARADDRin_t *> mq_ARADDRin_vec;
 std::vector<mq_AWADDRin_t *> mq_AWADDRin_vec;
-mq_BRESPchn_t mq_BRESPchn;
-mq_DQs_t mq_DQs;
+std::vector<mq_DataRead_t *> mq_DataRead_vec;
 mq_MemReadRequest_t mq_MemReadRequest;
 mq_MemWriteRequest_t mq_MemWriteRequest;
-std::vector<mq_WriteAck_t *> mq_WriteAck_vec;
+std::vector<mq_RDATAchn_t *> mq_RDATAchn_vec;
 std::vector<mq_WDATAin_t *> mq_WDATAin_vec;
+std::vector<mq_WriteAck_t *> mq_WriteAck_vec;
 };
 #endif
 //<#!@READ-ONLY-SECTION-END@!#>

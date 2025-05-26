@@ -1,4 +1,4 @@
-#!@READ-ONLY-SECTION-START@!#>
+//<#!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_memory
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -23,7 +23,7 @@ using namespace cf_core;
 //@{
 cfm_memory ::cfm_memory() : 
 //instantiation of non-vector Event, MessageQueue, SharedVariable
-cf_function(),p_mq_DQs("p_mq_DQs"),p_mq_DDRCommand("p_mq_DDRCommand"){
+cf_function(),p_mq_DDRAction("p_mq_DDRAction"),p_mq_DDRCommand("p_mq_DDRCommand"),p_mq_DQs("p_mq_DQs"){
 cf_function_container::init();
 //instantiation of models
 BankDmuxer = new cfm_bankdmuxer("BankDmuxer");
@@ -35,23 +35,26 @@ for (cf_count i = 0; i < (cf_count)( NbBanksperMemory + 1); i++) {
 	}
 //instantiation of relations
 for (cf_count i = 0; i < (cf_count)( NbBanksperMemory + 1); i++) {
-		MessageQueue<cft_DefDDRCommand> mq_DDRAction_t;
-		cq_DMAQ_t* module = new cq_DMAQ_t(
-				cf_string("DDRAction[%d]", i).c_str());
+		p_mq_DDRAction_t* module = new p_mq_DDRAction_t(
+				cf_string("p_mq_DDRAction[%d]", i).c_str());
 		CF_ASSERT (module)
-		mq_DDRAction_vec.push_back(module);
+		p_mq_DDRAction_vec.push_back(module);
 	}
 //connections
 //model connect to port
 BankDmuxer->p_mq_DDRCommand(p_mq_DDRCommand);
 for (cf_count i = 0; i < (cf_count)( NbBanksperMemory + 1); i++) {
+		BankDmuxer->p_mq_DDRAction(p_mq_DDRAction_vec[i]);
+	}
+for (cf_count i = 0; i < (cf_count)( NbBanksperMemory + 1); i++) {
 		cfm_memorycommandexecution* module = MemoryCommandExecution_vec[i];
-		if (module!= nullptr) {
+		if (module != nullptr) {
+//model connect to relation
+for (cf_count j = 0; j < (cf_count)( NbBanksperMemory + 1); j++) {
+				module->p_mq_DDRAction(p_mq_DDRAction_vec[j]);
+			}
 //model connect to port
 module->p_mq_DQs(p_mq_DQs);
-for (cf_count j = 0; j < (cf_count)( NbBanksperMemory + 1); j++) {
-				module->p_mq_DDRAction(mq_DDRAction_vec[j]->p_target_socket);
-			}
 }
 }
 cf_function_container::elab_end();
@@ -69,12 +72,12 @@ cfm_memory::~cfm_memory(void) {
 //deconstruct for models
 delete BankDmuxer;
 for (vector<cfm_memorycommandexecution*>::const_iterator vi = MemoryCommandExecution_vec.begin();
-			vi!= MemoryCommandExecution_vec.end(); vi++) {
+			vi != MemoryCommandExecution_vec.end(); vi++) {
 		delete (*vi);
 	}
 //deconstructor for vector relation
-for (vector<mq_DDRAction_t*>::const_iterator vi = mq_DDRAction_vec.begin();
-			vi!= mq_DDRAction_vec.end(); vi++) {
+for (vector<p_mq_DDRAction_t*>::const_iterator vi = p_mq_DDRAction_vec.begin();
+			vi != p_mq_DDRAction_vec.end(); vi++) {
 		delete (*vi);
 	}
 }

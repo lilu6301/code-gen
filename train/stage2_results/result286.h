@@ -1,5 +1,3 @@
-}
-
 //<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer

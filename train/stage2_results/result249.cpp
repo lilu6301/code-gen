@@ -1,4 +1,4 @@
-/<#!@READ-ONLY-SECTION-START@!#>
+//<#!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_applicationmodel
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation

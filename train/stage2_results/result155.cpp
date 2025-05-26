@@ -1,4 +1,4 @@
-@READ-ONLY-SECTION-START@!#>
+//<#!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_target
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -35,25 +35,27 @@ for (cf_count i = 0; i < (cf_count)( M_Nbr + 1); i++) {
 MemoryController = new cfm_memorycontroller("MemoryController");
 //instantiation of relations
 for (cf_count i = 0; i < (cf_count)( M_Nbr + 1); i++) {
-		MessageQueue<cft_DefDQs> mq_DQs_t;
-		CF_ASSERT (mq_DQs_t)
-		DQs_vec.push_back(mq_DQs_t.p_target_socket);
+		mq_DDRCommand_t* module = new mq_DDRCommand_t(
+				cf_string("DDRCommand[%d]", i).c_str());
+		CF_ASSERT (module)
+		mq_DDRCommand_vec.push_back(module);
 	}
 for (cf_count i = 0; i < (cf_count)( M_Nbr + 1); i++) {
-		MessageQueue<cft_DefDDRCommand> mq_DDRCommand_t;
-		CF_ASSERT (mq_DDRCommand_t)
-		mq_DDRCommand_vec.push_back(mq_DDRCommand_t.p_target_socket);
+		mq_DQs_t* module = new mq_DQs_t(
+				cf_string("DQs[%d]", i).c_str());
+		CF_ASSERT (module)
+		mq_DQs_vec.push_back(module);
 	}
 //connections
 for (cf_count i = 0; i < (cf_count)( M_Nbr + 1); i++) {
 		cfm_memory* module = Memory_vec[i];
-		if (module!= nullptr) {
+		if (module != nullptr) {
 //model connect to relation
 for (cf_count j = 0; j < (cf_count)( M_Nbr + 1); j++) {
-				module->p_mq_DQs(DQs_vec[j]->p_target_socket);
+				module->p_mq_DDRCommand(mq_DDRCommand_vec[j]->p_target_socket);
 			}
 for (cf_count j = 0; j < (cf_count)( M_Nbr + 1); j++) {
-				module->p_mq_DDRCommand(mq_DDRCommand_vec[j]->p_target_socket);
+				module->p_mq_DQs(mq_DQs_vec[j]->p_target_socket);
 			}
 }
 }
@@ -63,6 +65,18 @@ MemoryController->p_mq_AWADDRchn(p_mq_AWADDRchn);
 MemoryController->p_mq_BRESPchn(p_mq_BRESPchn);
 MemoryController->p_mq_RDATAchn(p_mq_RDATAchn);
 MemoryController->p_mq_WDATAchn(p_mq_WDATAchn);
+for (cf_count i = 0; i < (cf_count)( M_Nbr + 1); i++) {
+		cfm_memory* module = Memory_vec[i];
+		if (module != nullptr) {
+//model connect to relation
+for (cf_count j = 0; j < (cf_count)( M_Nbr + 1); j++) {
+				module->p_mq_DDRCommand(mq_DDRCommand_vec[j]->p_target_socket);
+			}
+for (cf_count j = 0; j < (cf_count)( M_Nbr + 1); j++) {
+				module->p_mq_DQs(mq_DQs_vec[j]->p_target_socket);
+			}
+}
+}
 cf_function_container::elab_end();
 }
 //@}
@@ -77,17 +91,17 @@ cfm_target::~cfm_target(void) {
 //<#!@READ-ONLY-SECTION-START@!#>
 //deconstruct for models
 for (vector<cfm_memory*>::const_iterator vi = Memory_vec.begin();
-			vi!= Memory_vec.end(); vi++) {
+			vi != Memory_vec.end(); vi++) {
 		delete (*vi);
 	}
 delete MemoryController;
 //deconstructor for vector relation
-for (vector<mq_DQs_t*>::const_iterator vi = DQs_vec.begin();
-			vi!= DQs_vec.end(); vi++) {
+for (vector<mq_DDRCommand_t*>::const_iterator vi = mq_DDRCommand_vec.begin();
+			vi != mq_DDRCommand_vec.end(); vi++) {
 		delete (*vi);
 	}
-for (vector<mq_DDRCommand_t*>::const_iterator vi = mq_DDRCommand_vec.begin();
-			vi!= mq_DDRCommand_vec.end(); vi++) {
+for (vector<mq_DQs_t*>::const_iterator vi = mq_DQs_vec.begin();
+			vi != mq_DQs_vec.end(); vi++) {
 		delete (*vi);
 	}
 }

@@ -1,4 +1,4 @@
-/<#!@READ-ONLY-SECTION-START@!#>
+ //<!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_softwaredefinedradioapp
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -83,4 +83,4 @@ void cfm_softwaredefinedradioapp::cb_init_local_vars(void) {
 	//<#!@READ-ONLY-SECTION-START@!#>
 }
 //@}
-//<#!@READ-ONLY-SECTION-END@!#>
+//<!@READ-ONLY-SECTION-END@!#>

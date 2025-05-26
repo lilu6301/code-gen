@@ -1,4 +1,4 @@
-!@READ-ONLY-SECTION-START@!#>
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -18,18 +18,16 @@
 
 class cfm_rack : public cf_core::cf_function {
 public:
-
-typedef cf_core::cf_mq_initiator_socket<cfm_rack, cft_defpacket> p_mq_MsgQServerToToRSwitch_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_rack, cft_defpacket> p_mq_MsgQToServer_t;
+typedef cf_core::cf_message_queue<cft_DefPacket> mq_MsgQServerToToRSwitch_t;
+typedef cf_core::cf_message_queue<cft_DefPacket> mq_MsgQToAggSwitch_t;
+typedef cf_core::cf_message_queue<cft_DefPacket> mq_MsgQToRack_t;
+typedef cf_core::cf_message_queue<cft_DefPacket> mq_MsgQToServer_t;
 
 /// constructor
 cfm_rack(sc_core::sc_module_name name);
 
 /// destructor
 virtual ~cfm_rack(void);
-
-p_mq_MsgQServerToToRSwitch_t p_mq_MsgQServerToToRSwitch;
-p_mq_MsgQToServer_t p_mq_MsgQToServer;
 
 std::vector<cfm_server *> Rack_vec;
 cfm_torswitch *ToRSwitch;
@@ -39,6 +37,10 @@ void cb_init_attributes(void);
 void cb_init_local_vars(void);
 
 public:
+std::vector<mq_MsgQServerToToRSwitch_t *> mq_MsgQServerToToRSwitch_vec;
+mq_MsgQToAggSwitch_t mq_MsgQToAggSwitch;
+mq_MsgQToRack_t mq_MsgQToRack;
+std::vector<mq_MsgQToServer_t *> mq_MsgQToServer_vec;
 };
 #endif
 //<#!@READ-ONLY-SECTION-END@!#>

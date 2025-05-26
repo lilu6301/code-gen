@@ -1,4 +1,4 @@
-//<#!@READ-ONLY-SECTION-START@!#>
+ //<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -20,25 +20,22 @@
 #include "dt/cft_defdata_in.h"
 #include "dt/cft_defmsgq_in.h"
 #include "dt/cft_initiator_in.h"
-#include "dt/cft_initiatorwriter_in.h"
 #include "dt/cft_target_in.h"
-#include "dt/cft_target_2_in.h"
-#include "dt/cft_wrapper_in.h"
 
 class cfm_tlm2at : public cf_core::cf_application {
 public:
-typedef cf_core::cf_message_queue<cft_DefData> mq_InitiatorReader_t;
-typedef cf_core::cf_message_queue<cft_DefData> mq_InitiatorWriter_t;
-typedef cf_core::cf_message_queue<cft_DefMsgQ> mq_ReaderResponse_t;
 typedef cf_core::cf_message_queue<cft_DefData> mq_ReferenceQueue_t;
 typedef cf_core::cf_message_queue<cft_DefData> mq_ReferenceQueue2_t;
-typedef cf_core::cf_message_queue<cft_DefData> mq_ReferenceQueue3_t;
-typedef cf_core::cf_message_queue<cft_DefData> mq_Sync_t;
-typedef cf_core::cf_message_queue<cft_DefData> mq_Sync2_t;
-typedef cf_core::cf_message_queue<cft_DefData> mq_Sync3_t;
-typedef cf_core::cf_message_queue<cft_DefData> mq_TargetRequest_t;
-typedef cf_core::cf_message_queue<cft_DefData> mq_TargetResponse_t;
-typedef cf_core::cf_message_queue<cft_DefData> mq_TargetWrapper_t;
+typedef cf_core::cf_message_queue<cft_DefMsgQ> mq_ReferenceQueue3_t;
+typedef cf_core::cf_event ev_Sync_t;
+typedef cf_core::cf_event ev_Sync2_t;
+typedef cf_core::cf_event ev_Sync3_t;
+typedef cf_core::cf_message_queue<cft_Initiator> mq_InitiatorReader_t;
+typedef cf_core::cf_message_queue<cft_Initiator> mq_InitiatorWriter_t;
+typedef cf_core::cf_message_queue<cft_Target> mq_ReaderResponse_t;
+typedef cf_core::cf_message_queue<cft_Target> mq_TargetRequest_t;
+typedef cf_core::cf_message_queue<cft_Target> mq_TargetResponse_t;
+typedef cf_core::cf_message_queue<cft_Target> mq_TargetWrapper_t;
 
 /// constructor
 cfm_tlm2at(sc_core::sc_module_name name);
@@ -57,15 +54,15 @@ void cb_init_attributes(void);
 void cb_init_local_vars(void);
 
 public:
-mq_InitiatorReader_t mq_InitiatorReader;
-mq_InitiatorWriter_t mq_InitiatorWriter;
-mq_ReaderResponse_t mq_ReaderResponse;
 mq_ReferenceQueue_t mq_ReferenceQueue;
 mq_ReferenceQueue2_t mq_ReferenceQueue2;
 mq_ReferenceQueue3_t mq_ReferenceQueue3;
-mq_Sync_t mq_Sync;
-mq_Sync2_t mq_Sync2;
-mq_Sync3_t mq_Sync3;
+ev_Sync_t ev_Sync;
+ev_Sync2_t ev_Sync2;
+ev_Sync3_t ev_Sync3;
+mq_InitiatorReader_t mq_InitiatorReader;
+mq_InitiatorWriter_t mq_InitiatorWriter;
+mq_ReaderResponse_t mq_ReaderResponse;
 mq_TargetRequest_t mq_TargetRequest;
 mq_TargetResponse_t mq_TargetResponse;
 mq_TargetWrapper_t mq_TargetWrapper;

@@ -21,9 +21,9 @@
 class cfm_user : public cf_core::cf_function {
 public:
 
-typedef cf_core::cf_mq_initiator_socket<cfm_user, cft_defvideo> p_mq_Video_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_user, cft_defcall> p_mq_Request_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_user, cft_defcall> p_mq_Response_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_user, cft_defvideo> p_mq_Video_t;
 
 /// constructor
 cfm_user(sc_core::sc_module_name name);
@@ -31,9 +31,9 @@ cfm_user(sc_core::sc_module_name name);
 /// destructor
 virtual ~cfm_user(void);
 
-p_mq_Video_t p_mq_Video;
 p_mq_Request_t p_mq_Request;
 p_mq_Response_t p_mq_Response;
+p_mq_Video_t p_mq_Video;
 
 cfm_reading *Reading;
 cfm_requesting *Requesting;

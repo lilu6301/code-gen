@@ -1,4 +1,4 @@
-<#!@READ-ONLY-SECTION-START@!#>
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -17,36 +17,24 @@
 #include "cfm_ob_out.h"
 #include "dt/cft_defdatain_in.h"
 #include "dt/cft_defdataout_in.h"
-#include "dt/cft_defobex_in.h"
-#include "dt/cft_defobex_out.h"
+#include "dt/cft_defobex_in_in.h"
+#include "dt/cft_defobex_out_in.h"
 #include "dt/cft_defreadwrite_in.h"
 
 class cfm_obex_layer : public cf_core::cf_function {
 public:
 
-typedef cf_core::cf_mq_initiator_socket<cfm_obex_layer, cft_defdatain> p_mq_DataIn_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_obex_layer, cft_defdataout> p_mq_DataOut_t;
-typedef cf_core::cf_ev_initiator_socket<cfm_obex_layer> p_ev_ContinueEv_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_obex_layer, cft_defobex_in> p_mq_OBEX_In_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_obex_layer, cft_defobex_out> p_mq_OBEX_Out_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_obex_layer, cft_defreadwrite> p_mq_ReadWrite_t;
-typedef cf_core::cf_ev_initiator_socket<cfm_obex_layer> p_ev_StartEv_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_obex_layer, cft_defdatain> p_mq_WrOK_t;
+typedef cf_core::cf_message_queue<cft_DefOBEX_Out> mq_OB_Out1_t;
+typedef cf_core::cf_message_queue<cft_DefOBEX_Out> mq_OB_Out2_t;
+
+typedef cf_core::cf_event ev_continueEv_t;
+typedef cf_core::cf_event ev_startEv_t;
 
 /// constructor
 cfm_obex_layer(sc_core::sc_module_name name);
 
 /// destructor
 virtual ~cfm_obex_layer(void);
-
-p_mq_DataIn_t p_mq_DataIn;
-p_mq_DataOut_t p_mq_DataOut;
-p_ev_ContinueEv_t p_ev_ContinueEv;
-p_mq_OBEX_In_t p_mq_OBEX_In;
-p_mq_OBEX_Out_t p_mq_OBEX_Out;
-p_mq_ReadWrite_t p_mq_ReadWrite;
-p_ev_StartEv_t p_ev_StartEv;
-p_mq_WrOK_t p_mq_WrOK;
 
 cfm_obex_receive *OBEX_Receive;
 cfm_obex_send *OBEX_Send;
@@ -57,6 +45,11 @@ void cb_init_attributes(void);
 void cb_init_local_vars(void);
 
 public:
+mq_OB_Out1_t mq_OB_Out1;
+mq_OB_Out2_t mq_OB_Out2;
+
+ev_continueEv_t ev_continueEv;
+ev_startEv_t ev_startEv;
 };
 #endif
 //<#!@READ-ONLY-SECTION-END@!#>

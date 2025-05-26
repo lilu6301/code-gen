@@ -1,4 +1,4 @@
-/<#!@READ-ONLY-SECTION-START@!#>
+ //<#!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_callprotocolstack
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -23,23 +23,24 @@ using namespace cf_core;
 //@{
 cfm_callprotocolstack ::cfm_callprotocolstack() : 
 //instantiation of non-vector Event, MessageQueue, SharedVariable
-cf_function(),p_mq_AppToHTTP("p_mq_AppToHTTP"),p_mq_HTTPToApp("p_mq_HTTPToApp"),p_mq_IPToHTTP("p_mq_IPtoHTTP"),p_mq_IPtoUMTS("p_mq_IPtoUMTS"),p_mq_NetToUMTS("p_mq_NetToUMTS"),p_mq_UMTSToIP("p_mq_UMTSToIP"),p_mq_UMTSToNet("p_mq_UMTSToNet"){
+cf_function(),p_mq_AppToHTTP("p_mq_AppToHTTP"),p_mq_HTTPToApp("p_mq_HTTPToApp"),p_mq_NettoUMTS("p_mq_NettoUMTS"),p_mq_UMTSToNet("p_mq_UMTSToNet"){
 cf_function_container::init();
 //instantiation of models
-HTTPTCP = new cfm_hattptcp("HTTPTCP");
-IPCall = new cfm_ipcall("IPCall");
-UMTS = new cfm_uts("UMTS");
+HTTPTCP = new cfm_httptcp("HTTPTCP");
+IPCall = new cfm_icall("IPCall");
+UMTS = new cfm_umts("UMTS");
 //connections
 //model connect to port
 HTTPTCP->p_mq_AppToHTTP(p_mq_AppToHTTP);
 HTTPTCP->p_mq_HTTPToApp(p_mq_HTTPToApp);
+HTTPTCP->p_mq_IPToHTTP(p_mq_IPToHTTP);
+HTTPTCP->p_mq_UMTSToIP(p_mq_UMTSToIP);
 //model connect to port
-IPCall->p_mq_IPtoHTTP(p_mq_IPtoHTTP);
-IPCall->p_mq_IPtoUMTS(p_mq_IPtoUMTS);
+IPCall->p_mq_IPToHTTP(p_mq_IPToHTTP);
+IPCall->p_mq_IPToUMTS(p_mq_IPToUMTS);
+IPCall->p_mq_UMTSToIP(p_mq_UMTSToIP);
 //model connect to port
-UMTS->p_mq_IPtoUMTS(p_mq_IPtoUMTS);
-UMTS->p_mq_NetToUMTS(p_mq_NetToUMTS);
-UMTS->p_mq_UMTSToIP(p_mq_UMTSToIP);
+UMTS->p_mq_NettoUMTS(p_mq_NettoUMTS);
 UMTS->p_mq_UMTSToNet(p_mq_UMTSToNet);
 cf_function_container::elab_end();
 }

@@ -1,4 +1,4 @@
-/<#!@READ-ONLY-SECTION-START@!#>
+//<#!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_inheritance_example1app
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation

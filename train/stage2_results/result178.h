@@ -12,9 +12,9 @@
 #include "cfm_frontend_global_types.h"
 #include <vector>
 #include "cofluent.h"
-#include "cfm_readdata driver.h"
+#include "cfm_readdatadriver.h"
 #include "cfm_readdriver.h"
-#include "cfm_sendwaackdriver.h"
+#include "cfm_sendwackdriver.h"
 #include "cfm_writedriver.h"
 #include "dt/cft_defaraddrchn_in.h"
 #include "dt/cft_defawaddrchn_in.h"
@@ -23,8 +23,8 @@
 #include "dt/cft_defmemreadrequest_in.h"
 #include "dt/cft_defmemwriterequest_in.h"
 #include "dt/cft_defrdatachn_in.h"
-#include "dt/cft_defwriteack_in.h"
 #include "dt/cft_defwdatachn_in.h"
+#include "dt/cft_defwriteack_in.h"
 
 class cfm_frontend : public cf_core::cf_function {
 public:
@@ -36,8 +36,8 @@ typedef cf_core::cf_mq_initiator_socket<cfm_frontend, cft_defdataread> p_mq_Data
 typedef cf_core::cf_mq_initiator_socket<cfm_frontend, cft_defmemreadrequest> p_mq_MemReadRequest_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_frontend, cft_defmemwriterequest> p_mq_MemWriteRequest_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_frontend, cft_defrdatachn> p_mq_RDATAchn_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_frontend, cft_defwdatachn> p_mq_WDATAin_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_frontend, cft_defwriteack> p_mq_WriteAck_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_frontend, cft_defwdatachn> p_mq_WriteData_t;
 
 /// constructor
 cfm_frontend(sc_core::sc_module_name name);
@@ -52,12 +52,12 @@ p_mq_DataRead_t p_mq_DataRead;
 p_mq_MemReadRequest_t p_mq_MemReadRequest;
 p_mq_MemWriteRequest_t p_mq_MemWriteRequest;
 p_mq_RDATAchn_t p_mq_RDATAchn;
+p_mq_WDATAin_t p_mq_WDATAin;
 p_mq_WriteAck_t p_mq_WriteAck;
-p_mq_WriteData_t p_mq_WriteData;
 
-cfm_readdata driver *ReadDataDriver;
+cfm_readdatadriver *ReadDataDriver;
 cfm_readdriver *ReadDriver;
-cfm_sendwaackdriver *SendWAckDriver;
+cfm_sendwackdriver *SendWAckDriver;
 cfm_writedriver *WriteDriver;
 
 protected:

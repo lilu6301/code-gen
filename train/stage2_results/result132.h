@@ -1,4 +1,4 @@
- //<#!@READ-ONLY-SECTION-START@!#>
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -13,8 +13,8 @@
 #include <vector>
 #include "cofluent.h"
 #include "dt/cft_defmsgq_in.h"
-#include "dt/cft_target_in.h"
 #include "dt/cft_initiator_in.h"
+#include "dt/cft_target_in.h"
 
 class cfm_reader : public cf_core::cf_function {
 public:

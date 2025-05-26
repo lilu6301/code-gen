@@ -1,4 +1,4 @@
-/<#!@READ-ONLY-SECTION-START@!#>
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -8,8 +8,8 @@
 #define COFS_MODEL_DDRMEMORY
 
 
-#include "cfm_dramemory_global.h"
-#include "cfm_dramemory_global_types.h"
+#include "cfm_ddrmemory_global.h"
+#include "cfm_ddrmemory_global_types.h"
 #include <vector>
 #include "cofluent.h"
 #include "cfm_clientside.h"
@@ -20,7 +20,7 @@
 #include "dt/cft_defrdatachn_in.h"
 #include "dt/cft_defwdatachn_in.h"
 
-class cfm_dramemory : public cf_core::cf_application {
+class cfm_ddrmemory : public cf_core::cf_application {
 public:
 typedef cf_core::cf_message_queue<cft_DefARADDRchn> mq_ARADDRchn_t;
 typedef cf_core::cf_message_queue<cft_DefAWADDRchn> mq_AWADDRchn_t;
@@ -29,10 +29,10 @@ typedef cf_core::cf_message_queue<cft_DefRDATAchn> mq_RDATAchn_t;
 typedef cf_core::cf_message_queue<cft_DefWDATAchn> mq_WDATAchn_t;
 
 /// constructor
-cfm_dramemory(sc_core::sc_module_name name);
+cfm_ddrmemory(sc_core::sc_module_name name);
 
 /// destructor
-virtual ~cfm_dramemory(void);
+virtual ~cfm_ddrmemory(void);
 
 cfm_clientside *ClientSide;
 cfm_target *Target;

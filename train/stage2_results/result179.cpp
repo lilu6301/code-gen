@@ -23,12 +23,12 @@ using namespace cf_core;
 //@{
 cfm_frontend ::cfm_frontend() : 
 //instantiation of non-vector Event, MessageQueue, SharedVariable
-cf_function(),p_mq_ARADDRin("p_mq_ARADDRin"),p_mq_AWADDRin("p_mq_AWADDRin"),p_mq_BRESPchn("p_mq_BRESPchn"),p_mq_DataRead("p_mq_DataRead"),p_mq_MemReadRequest("p_mq_MemReadRequest"),p_mq_MemWriteRequest("p_mq_MemWriteRequest"),p_mq_RDATAchn("p_mq_RDATAchn"),p_mq_WriteAck("p_mq_WriteAck"),p_mq_WDATAin("p_mq_WDATAin"){
+cf_function(),p_mq_AWADDRin("p_mq_AWADDRin"),p_mq_ARADDRin("p_mq_ARADDRin"),p_mq_BRESPchn("p_mq_BRESPchn"),p_mq_DataRead("p_mq_DataRead"),p_mq_MemReadRequest("p_mq_MemReadRequest"),p_mq_MemWriteRequest("p_mq_MemWriteRequest"),p_mq_RDATAchn("p_mq_RDATAchn"),p_mq_WriteAck("p_mq_WriteAck"),p_mq_WDATAin("p_mq_WDATAin"){
 cf_function_container::init();
 //instantiation of models
 ReadDataDriver = new cfm_readdatadriver("ReadDataDriver");
 ReadDriver = new cfm_readdriver("ReadDriver");
-SendWAckDriver = new cfm_sendwaackdriver("SendWAckDriver");
+SendWAckDriver = new cfm_sendwackdriver("SendWAckDriver");
 WriteDriver = new cfm_writedriver("WriteDriver");
 //connections
 //model connect to port
@@ -43,7 +43,6 @@ SendWAckDriver->p_mq_WriteAck(p_mq_WriteAck);
 //model connect to port
 WriteDriver->p_mq_AWADDRin(p_mq_AWADDRin);
 WriteDriver->p_mq_MemWriteRequest(p_mq_MemWriteRequest);
-WriteDriver->p_mq_RDATAchn(p_mq_RDATAchn);
 WriteDriver->p_mq_WDATAin(p_mq_WDATAin);
 cf_function_container::elab_end();
 }

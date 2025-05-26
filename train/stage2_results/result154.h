@@ -1,4 +1,4 @@
-!@READ-ONLY-SECTION-START@!#>
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -17,11 +17,16 @@
 #include "dt/cft_defaraddrchn_in.h"
 #include "dt/cft_defawaddrchn_in.h"
 #include "dt/cft_defbrespchn_in.h"
+#include "dt/cft_defddrcommand_in.h"
+#include "dt/cft_defdqs_in.h"
 #include "dt/cft_defrdatachn_in.h"
 #include "dt/cft_defwdatachn_in.h"
 
 class cfm_target : public cf_core::cf_function {
 public:
+
+typedef cf_core::cf_message_queue<cft_DefDDRCommand> mq_DDRCommand_t;
+typedef cf_core::cf_message_queue<cft_DefDQs> mq_DQs_t;
 
 typedef cf_core::cf_mq_initiator_socket<cfm_target, cft_defaraddrchn> p_mq_ARADDRchn_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_target, cft_defawaddrchn> p_mq_AWADDRchn_t;
@@ -49,8 +54,8 @@ void cb_init_attributes(void);
 void cb_init_local_vars(void);
 
 public:
-std::vector<cfm_ddrcmd> mq_DDRCommand_vec;
-std::vector<cfm_dq> mq_DQs_vec;
+std::vector<mq_DDRCommand_t *> mq_DDRCommand_vec;
+std::vector<mq_DQs_t *> mq_DQs_vec;
 };
 #endif
 //<#!@READ-ONLY-SECTION-END@!#>

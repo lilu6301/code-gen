@@ -1,4 +1,4 @@
-//<#!@READ-ONLY-SECTION-START@!#>
+ //<!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -22,10 +22,10 @@ public:
 
 typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defcall> p_mq_AppToCtrl_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defcall> p_mq_AppToHTTP_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defcall> p_mq_HTPToApp_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defcall> p_mq_HTTPToApp_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defvideo> p_mq_RTPToApp_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defcall> p_mq_Req_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defcall> p_mq_Res_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defcall> p_mq_Request_t;
+typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defcall> p_mq_Response_t;
 typedef cf_core::cf_mq_initiator_socket<cfm_applicationlayer, cft_defvideo> p_mq_Video_t;
 
 /// constructor
@@ -36,10 +36,10 @@ virtual ~cfm_applicationlayer(void);
 
 p_mq_AppToCtrl_t p_mq_AppToCtrl;
 p_mq_AppToHTTP_t p_mq_AppToHTTP;
-p_mq_HTPToApp_t p_mq_HTPtoApp;
-p_mq_RTPToApp_t p_mq_RTPtoApp;
-p_mq_Req_t p_mq_Req;
-p_mq_Res_t p_mq_Res;
+p_mq_HTTPToApp_t p_mq_HTTPToApp;
+p_mq_RTPToApp_t p_mq_RTPToApp;
+p_mq_Request_t p_mq_Request;
+p_mq_Response_t p_mq_Response;
 p_mq_Video_t p_mq_Video;
 
 cfm_callapplication *CallApplication;
@@ -52,4 +52,4 @@ void cb_init_local_vars(void);
 public:
 };
 #endif
-//<#!@READ-ONLY-SECTION-END@!#>
+//<!@READ-ONLY-SECTION-END@!#>

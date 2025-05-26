@@ -1,4 +1,4 @@
- //<#!@READ-ONLY-SECTION-START@!#>
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -8,22 +8,22 @@
 #define COFS_MODEL_READDATADRIVER
 
 
-#include "cfm_readdata driver_global.h"
-#include "cfm_readdata driver_global_types.h"
+#include "cfm_readdatadriver_global.h"
+#include "cfm_readdatadriver_global_types.h"
 #include <vector>
 #include "cofluent.h"
-#include "dt/cft_defdataread_in.h"
+#include "dt/cft_defdatadata_in.h"
 #include "dt/cft_defrdatachn_in.h"
 
-class cfm_readdata driver : public cf_core::cf_function {
+class cfm_readdatadriver : public cf_core::cf_function {
 public:
 
 
 /// constructor
-cfm_readdata driver(sc_core::sc_module_name name);
+cfm_readdatadriver(sc_core::sc_module_name name);
 
 /// destructor
-virtual ~cfm_readdata driver(void);
+virtual ~cfm_readdatadriver(void);
 
 
 protected:

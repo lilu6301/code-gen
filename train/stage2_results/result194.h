@@ -12,9 +12,9 @@
 #include "cfm_collectrequests_global_types.h"
 #include <vector>
 #include "cofluent.h"
+#include "dt/cft_deflistrequestsptr_in.h"
 #include "dt/cft_defmemreadrequest_in.h"
 #include "dt/cft_defmemwriterequest_in.h"
-#include "dt/cft_deflistrequestsptr_in.h"
 
 class cfm_collectrequests : public cf_core::cf_function {
 public:

@@ -1,4 +1,4 @@
-/<#!@READ-ONLY-SECTION-START@!#>
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -13,13 +13,12 @@
 #include <vector>
 #include "cofluent.h"
 #include "cfm_cof_initiator.h"
-#include "cfm_iuart.h"
 #include "dt/cft_defmsgq_in.h"
 
 class cfm_cofluentapifromexternalip : public cf_core::cf_application {
 public:
-typedef cf_core::cf_message_queue<cft_DefMsgQ> mq_MsgFwQ_t;
 typedef cf_core::cf_message_queue<cft_DefMsgQ> mq_MsgBwQ_t;
+typedef cf_core::cf_message_queue<cft_DefMsgQ> mq_MsgFwQ_t;
 
 /// constructor
 cfm_cofluentapifromexternalip(sc_core::sc_module_name name);
@@ -28,15 +27,15 @@ cfm_cofluentapifromexternalip(sc_core::sc_module_name name);
 virtual ~cfm_cofluentapifromexternalip(void);
 
 cfm_cof_initiator *CoF_Initiator;
-cfm_iuart *iUart;
+iUart *iUart;
 
 protected:
 void cb_init_attributes(void);
 void cb_init_local_vars(void);
 
 public:
-mq_MsgFwQ_t mq_MsgFwQ;
 mq_MsgBwQ_t mq_MsgBwQ;
+mq_MsgFwQ_t mq_MsgFwQ;
 };
 #endif
 //<#!@READ-ONLY-SECTION-END@!#>

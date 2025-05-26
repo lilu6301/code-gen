@@ -1,4 +1,4 @@
-/<#!@READ-ONLY-SECTION-START@!#>
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -12,21 +12,18 @@
 #include "cfm_callprotocolstack_global_types.h"
 #include <vector>
 #include "cofluent.h"
-#include "cfm_hattptcp.h"
-#include "cfm_ipcall.h"
-#include "cfm_ums.h"
+#include "cfm_httptcp.h"
+#include "cfm_icall.h"
+#include "cfm_umts.h"
 #include "dt/cft_defcall_in.h"
 
 class cfm_callprotocolstack : public cf_core::cf_function {
 public:
 
-typedef cf_core::cf_mq_initiator_socket<cfm_callprotocolstack, cft_defcall> p_mq_AppToHTTP_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_callprotocolstack, cft_defcall> p_mq_HTTPToApp_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_callprotocolstack, cft_defcall> p_mq_IPToHTTP_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_callprotocolstack, cft_defcall> p_mq_IPToUMTS_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_callprotocolstack, cft_defcall> p_mq_NetToUMTS_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_callprotocolstack, cft_defcall> p_mq_UMTSToIP_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_callprotocolstack, cft_defcall> p_mq_UMTSToNet_t;
+typedef cf_core::cf_message_queue<cft_DefCall> mq_IPToHTTP_t;
+typedef cf_core::cf_message_queue<cft_DefCall> mq_IPToUMTS_t;
+typedef cf_core::cf_message_queue<cft_DefCall> mq_UMTSToIP_t;
+typedef cf_core::cf_message_queue<cft_DefCall> mq_UMTSToNet_t;
 
 /// constructor
 cfm_callprotocolstack(sc_core::sc_module_name name);
@@ -34,23 +31,19 @@ cfm_callprotocolstack(sc_core::sc_module_name name);
 /// destructor
 virtual ~cfm_callprotocolstack(void);
 
-p_mq_AppToHTTP_t p_mq_AppToHTTP;
-p_mq_HTTPToApp_t p_mq_HTTPToApp;
-p_mq_IPToHTTP_t p_mq_IPtoHTTP;
-p_mq_IPtoUMTS_t p_mq_IPtoUMTS;
-p_mq_NetToUMTS_t p_mq_NetToUMTS;
-p_mq_UMTSToIP_t p_mq_UMTSToIP;
-p_mq_UMTSToNet_t p_mq_UMTSToNet;
-
-cfm_hattptcp *HTTPTCP;
-cfm_ipcall *IPCall;
-cfm_ums *UMTS;
+cfm_httptcp *HTTPTCP;
+cfm_icall *IPCall;
+cfm_umts *UMTS;
 
 protected:
 void cb_init_attributes(void);
 void cb_init_local_vars(void);
 
 public:
+mq_IPToHTTP_t mq_IPToHTTP;
+mq_IPToUMTS_t mq_IPToUMTS;
+mq_UMTSToIP_t mq_UMTSToIP;
+mq_UMTSToNet_t mq_UMTSToNet;
 };
 #endif
 //<#!@READ-ONLY-SECTION-END@!#>

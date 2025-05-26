@@ -1,4 +1,4 @@
-//<#!@READ-ONLY-SECTION-START@!#>
+ //<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -17,7 +17,7 @@
 #include "cfm_producer.h"
 #include "dt/cft_default_in.h"
 
-class cfm_applicationvectordataapplication : public cf_core::cf_application {
+class cfm_applicationvectordatatype : public cf_core::cf_application {
 public:
 typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_user_data_in_t;
 typedef cf_core::cf_message_queue<cf_core::cf_payload_int> mq_user_data_out_t;

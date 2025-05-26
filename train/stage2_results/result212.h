@@ -1,4 +1,4 @@
-!@READ-ONLY-SECTION-START@!#>
+//<#!@READ-ONLY-SECTION-START@!#>
 /*!
  * \class cfm_baseband_layer
  * rief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -19,17 +19,16 @@
 class cfm_serverroom : public cf_core::cf_function {
 public:
 
-typedef cf_core::cf_mq_initiator_socket<cfm_serverroom, cft_defpacket> p_mq_MsgQToAggSwitch_t;
-typedef cf_core::cf_mq_initiator_socket<cfm_serverroom, cft_defpacket> p_mq_MsgQToRack_t;
+typedef cf_core::cf_message_queue<cft_DefPacket> mq_MsgQToAggSwitch_t;
+typedef cf_core::cf_message_queue<cft_DefPacket> mq_MsgQToDataCenterSwitch_t;
+typedef cf_core::cf_message_queue<cft_DefPacket> mq_MsgQToRack_t;
+typedef cf_core::cf_message_queue<cft_DefPacket> mq_MsgQToServerRoom_t;
 
 /// constructor
 cfm_serverroom(sc_core::sc_module_name name);
 
 /// destructor
 virtual ~cfm_serverroom(void);
-
-p_mq_MsgQToAggSwitch_t p_mq_MsgQToAggSwitch;
-p_mq_MsgQToRack_t p_mq_MsgQToRack;
 
 cfm_aggswitch *AGGSwitch;
 std::vector<cfm_rack *> ServerRoom_vec;
@@ -39,6 +38,10 @@ void cb_init_attributes(void);
 void cb_init_local_vars(void);
 
 public:
+std::vector<mq_MsgQToAggSwitch_t *> mq_MsgQToAggSwitch_vec;
+mq_MsgQToDataCenterSwitch_t mq_MsgQToDataCenterSwitch;
+std::vector<mq_MsgQToRack_t *> mq_MsgQToRack_vec;
+mq_MsgQToServerRoom_t mq_MsgQToServerRoom;
 };
 #endif
 //<#!@READ-ONLY-SECTION-END@!#>

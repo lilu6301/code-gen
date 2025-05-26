@@ -1,4 +1,4 @@
-/<#!@READ-ONLY-SECTION-START@!#>
+ //<!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_mobilephone
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -23,29 +23,31 @@ using namespace cf_core;
 //@{
 cfm_mobilephone ::cfm_mobilephone() : 
 //instantiation of non-vector Event, MessageQueue, SharedVariable
-cf_function(),p_mq_AppToCtrl("p_mq_AppToCtrl"),p_mq_AppToHTTP("p_mq_AppToHTTP"),p_mq_HTTPToApp("p_mq_HTTPtoApp"),p_mq_RTPtoApp("p_mq_RTPtoApp"),p_mq_UMTSToNet("p_mq_UMTSToNet"){
+cf_function(),p_mq_AppToCtrl("p_mq_AppToCtrl"),p_mq_AppToHTTP("p_mq_AppToHTTP"),p_mq_HTTPToApp("p_mq_HTTPToApp"),p_mq_RTPToApp("p_mq_RTPToApp"),p_mq_UseProfile("p_mq_UseProfile"){
 cf_function_container::init();
 //instantiation of models
 ApplicationLayer = new cfm_applicationlayer("ApplicationLayer");
 CallProtocolStack = new cfm_callprotocolstack("CallProtocolStack");
 Controller = new cfm_controller("Controller");
-VideoProtocolStack = new cfm_videoprocessack("VideoProtocolStack");
+VideoProtocolStack = new cfm_videoprotocolstack("VideoProtocolStack");
 //connections
 //model connect to port
 ApplicationLayer->p_mq_AppToCtrl(p_mq_AppToCtrl);
 ApplicationLayer->p_mq_AppToHTTP(p_mq_AppToHTTP);
-ApplicationLayer->p_mq_HTTPtoApp(p_mq_HTTPtoApp);
-ApplicationLayer->p_mq_RTPtoApp(p_mq_RTPtoApp);
+ApplicationLayer->p_mq_HTTPToApp(p_mq_HTTPToApp);
+ApplicationLayer->p_mq_RTPToApp(p_mq_RTPToApp);
 ApplicationLayer->p_mq_Video(p_mq_Video);
 //model connect to port
-CallProtocolStack->p_mq_AppToHTTP(p_mq_AppToHTTP);
+CallProtocolStack->p_mq_NetToUMTS(p_mq_NetToUMTS);
 CallProtocolStack->p_mq_UMTSToNet(p_mq_UMTSToNet);
+//model connect to relation
+CallProtocolStack->p_mq_AppToHTTP(p_mq_AppToHTTP);
+CallProtocolStack->p_mq_HTTPToApp(p_mq_HTTPToApp);
 //model connect to port
 Controller->p_mq_AppToCtrl(p_mq_AppToCtrl);
-Controller->p_mq_UMTSToNet(p_mq_UMTSToNet);
 //model connect to port
 VideoProtocolStack->p_mq_NetToDVB(p_mq_NetToDVB);
-VideoProtocolStack->p_mq_RTPtoApp(p_mq_RTPtoApp);
+VideoProtocolStack->p_mq_RTPToApp(p_mq_RTPToApp);
 VideoProtocolStack->p_mq_Video(p_mq_Video);
 cf_function_container::elab_end();
 }

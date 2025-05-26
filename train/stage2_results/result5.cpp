@@ -1,4 +1,4 @@
-/<#!@READ-ONLY-SECTION-START@!#>
+ //<!@READ-ONLY-SECTION-START@!#>
 /*
 * \class cfm_networks
 * \brief Intel(R) CoFluent(TM) Studio - Intel Corporation
@@ -23,7 +23,7 @@ using namespace cf_core;
 //@{
 cfm_networks ::cfm_networks() : 
 //instantiation of non-vector Event, MessageQueue, SharedVariable
-cf_function(),p_ev_BurstClock("p_ev_BurstClock"),p_mq_NetToDVB("p_mq_NetToDVB"),p_mq_NetToUMTS("p_mq_NetToUMTS"),p_sv_VideoFiles("p_sv_VideoFiles"),p_mq_VideoNet("p_mq_VideoNet"){
+cf_function(),ev_BurstClock("BurstClock"),mq_VideoNet("VideoNet"),sv_VideoFiles("VideoFiles"){
 cf_function_container::init();
 //instantiation of models
 BroadcastNetwork = new cfm_broadcastnetwork("BroadcastNetwork");
@@ -31,16 +31,17 @@ ClockGenerator = new cfm_clockgenerator("ClockGenerator");
 InteractiveNetwork = new cfm_interactivenetwork("InteractiveNetwork");
 //connections
 //model connect to port
-BroadcastNetwork->p_mq_NetToDVB(p_mq_NetToDVB);
-BroadcastNetwork->p_mq_NetToUMTS(p_mq_NetToUMTS);
-BroadcastNetwork->p_sv_VideoFiles(p_sv_VideoFiles);
-BroadcastNetwork->p_mq_VideoNet(p_mq_VideoNet);
+BroadcastNetwork->p_ev_BurstClock(ev_BurstClock.p_target_socket);
+BroadcastNetwork->p_mq_VideoNet(mq_VideoNet.p_target_socket);
+BroadcastNetwork->p_sv_VideoFiles(sv_VideoFiles.p_target_socket);
 //model connect to port
-ClockGenerator->p_mq_BurstClock(p_mq_BurstClock);
+ClockGenerator->p_ev_BurstClock(ev_BurstClock.p_target_socket);
 //model connect to port
+InteractiveNetwork->p_mq_VideoNet(mq_VideoNet.p_target_socket);
+InteractiveNetwork->p_sv_VideoFiles(sv_VideoFiles.p_target_socket);
+InteractiveNetwork->p_mq_NetToDVB(p_mq_NetToDVB);
 InteractiveNetwork->p_mq_NetToUMTS(p_mq_NetToUMTS);
-InteractiveNetwork->p_sv_VideoFiles(p_sv_VideoFiles);
-InteractiveNetwork->p_mq_VideoNet(p_mq_VideoNet);
+InteractiveNetwork->p_mq_UMTSToNet(p_mq_UMTSToNet);
 cf_function_container::elab_end();
 }
 //@}
