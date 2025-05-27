@@ -24,6 +24,7 @@ from transformers import (
 import transformers
 import torch.distributed as dist
 import os 
+from peft import LoraConfig, get_peft_model
 
 IGNORE_INDEX = -100
 DEFAULT_PAD_TOKEN = "[PAD]"
@@ -35,6 +36,11 @@ DEFAULT_UNK_TOKEN = "</s>"
 @dataclass
 class ModelArguments:
     model_name_or_path: Optional[str] = field(default="facebook/opt-125m")
+    use_peft: bool = field(
+        default=False,
+        metadata={
+            "help": "Whether to use PEFT, default is LoRA`]"
+        })
 
 
 @dataclass
@@ -51,6 +57,20 @@ class TrainingArguments(transformers.TrainingArguments):
         metadata={"help": "Maximum sequence length. Sequences will be right padded (and possibly truncated)."},
     )
 
+
+def print_trainable_parameters(model):
+    """
+    Prints the number of trainable parameters in the model.
+    """
+    trainable_params = 0
+    all_param = 0
+    for _, param in model.named_parameters():
+        all_param += param.numel()
+        if param.requires_grad:
+            trainable_params += param.numel()
+    print(
+        f"trainable params: {trainable_params} || all params: {all_param} || trainable%: {100 * trainable_params / all_param}"
+    )
 
 def smart_tokenizer_and_embedding_resize(
     special_tokens_dict: Dict,
@@ -197,9 +217,23 @@ def train():
         attn_implementation="sdpa"
     )
 
+    # PEFT LoRA setting
+    if model_args.use_peft:
+        lora_config = LoraConfig(
+            r=8, 
+            lora_alpha=16, 
+            target_modules=["q_proj", "v_proj"], 
+            #target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"],
+            #target_modules=["q_proj", "k_proj", "v_proj"],
+            lora_dropout=0.05, 
+            bias="none", 
+            task_type="CAUSAL_LM"
+        )
+        model = get_peft_model(model, lora_config)
+
     model.gradient_checkpointing_enable()
     
-
+    print_trainable_parameters(model)
 
     tokenizer = transformers.AutoTokenizer.from_pretrained(
         model_args.model_name_or_path,
@@ -219,7 +253,7 @@ def train():
     #dist_cp.load_state_dict(
     #            state_dict=state_dict,
     #            #storage_reader= torch.distributed.checkpoint.FileSystemReader("/root/llm/fine-tuning/RTL-Coder/train/output/checkpoint-261/pytorch_model_fsdp_0"),
-    #            storage_reader= torch.distributed.checkpoint.FileSystemReader("/root/llm/fine-tuning/RTL-Coder/train/output/checkpoint-576/pytorch_model_fsdp_0"),
+    #            storage_reader= torch.distributed.checkpoint.FileSystemReader("/localdisk/output/checkpoint-2278//pytorch_model_fsdp_0"),
     #            no_dist=True,
     #        )
     #model.load_state_dict(state_dict["model"])
@@ -267,8 +301,27 @@ def train():
                 "unk_token": DEFAULT_UNK_TOKEN,
             }
         )
+        if model_args.use_peft:
+            if hasattr(model, "enable_input_require_grads"):
+                model.enable_input_require_grads()
+            else:
+                def make_inputs_require_grad(module, input, output):
+                    output.requires_grad_(True)
+
+                model.get_input_embeddings().register_forward_hook(make_inputs_require_grad)
+
+
     data_module = make_supervised_data_module(tokenizer=tokenizer, data_args=data_args)
     trainer = Trainer(model=model, tokenizer=tokenizer, args=training_args, **data_module)
+
+    # set fsdp wrap policy, ensure the LoRA part could be warpped separately
+    if model_args.use_peft and trainer.is_fsdp_enabled:
+        from peft.utils.other import fsdp_auto_wrap_policy
+        fsdp_plugin = trainer.accelerator.state.fsdp_plugin
+        fsdp_plugin.auto_wrap_policy = fsdp_auto_wrap_policy(trainer.model)
+    
+    model.config.use_cache = True
+
     trainer.train()
     #trainer.save_state()
     if trainer.is_fsdp_enabled:
